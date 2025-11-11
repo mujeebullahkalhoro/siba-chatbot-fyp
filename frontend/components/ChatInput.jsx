@@ -5,14 +5,16 @@ const sibaOrange = "#ea6645";
 
 export default function ChatInput({
   handleSendMessage = () => {},
-  currentMessage = "",              
+  currentMessage = "",
+  setCurrentMessage = () => {},
   className = "",
-}) {
+  textareaRef, // accept the prop so it's in scope
+} = {}) {
   const localRef = useRef(null);
-  const taRef = textareaRef || localRef;
+  const taRef = textareaRef ?? localRef; // safe fallback
 
   const handleTextareaChange = (e) => {
-    const v = e.target.value ?? "";             // coerce to string
+    const v = e.target.value ?? "";
     setCurrentMessage(v);
     const ta = e.target;
     ta.style.height = "auto";
@@ -21,13 +23,13 @@ export default function ChatInput({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const trimmed = (currentMessage ?? "").trim(); // guard
+    const trimmed = (currentMessage ?? "").trim();
     if (!trimmed) return;
     handleSendMessage(e);
     if (taRef.current) taRef.current.style.height = "44px";
   };
 
-  const disabled = !((currentMessage ?? "").trim()); // guard disabled
+  const disabled = !((currentMessage ?? "").trim());
 
   return (
     <form
@@ -40,7 +42,7 @@ export default function ChatInput({
     >
       <textarea
         ref={taRef}
-        value={currentMessage ?? ""}              // always a string
+        value={currentMessage ?? ""}
         onChange={handleTextareaChange}
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) handleSubmit(e);
