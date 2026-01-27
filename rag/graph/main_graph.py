@@ -1,6 +1,7 @@
 # rag/graph/main_graph.py
 from pathlib import Path
 from typing import Dict
+import os
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
