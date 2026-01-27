@@ -1,4 +1,4 @@
-// File: E:\Fyp\FYPProject\siba-chatbot-fyp\frontend\app\layout.jsx
+// File: E:\SIBA-Chatbot\siba-chatbot-fyp\frontend\app\layout.jsx
 import * as entry from '../../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

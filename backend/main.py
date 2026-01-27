@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import auth_routes
+from routes import auth_routes, chat_routes, audio_routes
 from database import init_db, close_db
 
 # Explicit origins are required when allow_credentials=True
@@ -34,3 +34,5 @@ app.add_middleware(
 
 # Auth router (includes /api/auth/google/callback and others)
 app.include_router(auth_routes.router)
+app.include_router(chat_routes.router)
+app.include_router(audio_routes.router)

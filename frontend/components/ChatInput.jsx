@@ -1,17 +1,19 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import VoiceRecorder from "./VoiceRecorder";
 
 const sibaOrange = "#ea6645";
 
 export default function ChatInput({
-  handleSendMessage = () => {},
+  handleSendMessage = () => { },
   currentMessage = "",
-  setCurrentMessage = () => {},
+  setCurrentMessage = () => { },
   className = "",
   textareaRef, // accept the prop so it's in scope
 } = {}) {
   const localRef = useRef(null);
   const taRef = textareaRef ?? localRef; // safe fallback
+  const [isRecording, setIsRecording] = useState(false);
 
   const handleTextareaChange = (e) => {
     const v = e.target.value ?? "";
@@ -22,14 +24,39 @@ export default function ChatInput({
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const trimmed = (currentMessage ?? "").trim();
     if (!trimmed) return;
     handleSendMessage(e);
     if (taRef.current) taRef.current.style.height = "44px";
   };
 
+  const handleTranscription = (text) => {
+    setCurrentMessage((prev) => (prev ? `${prev} ${text}` : text));
+    setIsRecording(false); // Close recorder on success
+
+    // Optionally auto-submit or just focus
+    if (taRef.current) {
+      taRef.current.focus();
+      taRef.current.style.height = "auto";
+      setTimeout(() => {
+        if (taRef.current) taRef.current.style.height = `${Math.min(taRef.current.scrollHeight, 160)}px`;
+      }, 0);
+    }
+  };
+
   const disabled = !((currentMessage ?? "").trim());
+
+  if (isRecording) {
+    return (
+      <div className={className}>
+        <VoiceRecorder
+          onTranscription={handleTranscription}
+          onClose={() => setIsRecording(false)}
+        />
+      </div>
+    );
+  }
 
   return (
     <form
@@ -57,6 +84,7 @@ export default function ChatInput({
         <button
           type="button"
           aria-label="Voice input"
+          onClick={() => setIsRecording(true)}
           className="text-gray-500 hover:text-gray-700 focus:outline-none h-9 w-9 flex items-center justify-center"
           style={{ color: sibaOrange }}
         >

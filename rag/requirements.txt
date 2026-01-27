@@ -1,0 +1,21 @@
+# Core Python libraries
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+
+# LangChain and LLMs
+langchain==0.1.20
+
+# Embeddings
+sentence-transformers>=2.2.2
+torch>=2.1.0
+
+# FAISS vector store
+faiss-cpu>=1.7.4
+
+# Optional: for advanced NLP parsing
+regex>=2023.10.11
+
+langchain_groq
+
+# (Optional for LangGraph integration later)
+# langgraph>=0.0.1  # uncomment if you integrate LangGraph

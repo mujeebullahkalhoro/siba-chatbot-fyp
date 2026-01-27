@@ -3,29 +3,52 @@ import React, { useRef, useState, useEffect } from "react";
 import ChatMessages from "@/components/ChatMessages";
 import ChatInput from "@/components/ChatInput";
 
+import { sendMessage } from "@/services/chatService";
+
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const textareaRef = useRef(null);
+  const sessionIdRef = useRef("");
 
-  const send = (e) => {
+  useEffect(() => {
+    // Generate a simple session ID on mount
+    sessionIdRef.current = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }, []);
+
+  const send = async (e) => {
     e.preventDefault();
     const trimmed = currentMessage.trim();
-    if (!trimmed) return;
+    if (!trimmed || isLoading) return;
+
     const usr = { id: Date.now(), text: trimmed, sender: "user" };
     setMessages((p) => [...p, usr]);
     setCurrentMessage("");
+    setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await sendMessage(trimmed, sessionIdRef.current);
       setMessages((p) => [
         ...p,
         {
           id: Date.now() + 1,
-          text: `I received your inquiry: "${trimmed}". As the SIBA AI Assistant, I can provide information on admissions, courses, and schedules.`,
+          text: response,
           sender: "bot",
         },
       ]);
-    }, 700);
+    } catch (error) {
+      setMessages((p) => [
+        ...p,
+        {
+          id: Date.now() + 1,
+          text: "Sorry, I encountered an error. Please try again.",
+          sender: "bot",
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const hasMessages = messages.length > 0;
@@ -35,45 +58,45 @@ export default function ChatPage() {
     textareaRef.current?.focus();
   }, []);
 
- if (!hasMessages) {
-  return (
-    <div className="relative h-full bg-gray-50 overflow-hidden">
-      {/*  Centered header & text for all screens */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-        <div className="w-full max-w-[800px]">
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-2 text-gray-900">
-            SIBA AI ASSISTANT
-          </h2>
-          <p className="text-sm sm:text-lg text-gray-500 mb-10">
-            Ask about admissions, faculty, or policies at SIBA.
-          </p>
+  if (!hasMessages) {
+    return (
+      <div className="relative h-full bg-gray-50 overflow-hidden">
+        {/*  Centered header & text for all screens */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <div className="w-full max-w-[800px]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-2 text-gray-900">
+              SIBA AI ASSISTANT
+            </h2>
+            <p className="text-sm sm:text-lg text-gray-500 mb-10">
+              Ask about admissions, faculty, or policies at SIBA.
+            </p>
 
-          {/*  Desktop input appears below heading */}
-          <div className="hidden sm:block">
-            <ChatInput
-              handleSendMessage={send}
-              currentMessage={currentMessage}
-              setCurrentMessage={setCurrentMessage}
-              textareaRef={textareaRef}
-              className="w-full"
-            />
+            {/*  Desktop input appears below heading */}
+            <div className="hidden sm:block">
+              <ChatInput
+                handleSendMessage={send}
+                currentMessage={currentMessage}
+                setCurrentMessage={setCurrentMessage}
+                textareaRef={textareaRef}
+                className="w-full"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/*  Mobile fixed bottom input */}
-      <div className="sm:hidden fixed bottom-0 inset-x-0 bg-gray-50 border-t border-gray-200 shadow-md px-4 py-3">
-        <ChatInput
-          handleSendMessage={send}
-          currentMessage={currentMessage}
-          setCurrentMessage={setCurrentMessage}
-          textareaRef={textareaRef}
-          className="w-full"
-        />
+        {/*  Mobile fixed bottom input */}
+        <div className="sm:hidden fixed bottom-0 inset-x-0 bg-gray-50 border-t border-gray-200 shadow-md px-4 py-3">
+          <ChatInput
+            handleSendMessage={send}
+            currentMessage={currentMessage}
+            setCurrentMessage={setCurrentMessage}
+            textareaRef={textareaRef}
+            className="w-full"
+          />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 
 
