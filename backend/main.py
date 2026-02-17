@@ -1,6 +1,7 @@
 # main.py
 from __future__ import annotations
 
+import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,10 +15,23 @@ ALLOW_ORIGINS = [
     "https://siba-chatbot.vercel.app",
 ]
 
+async def _warmup_rag():
+    """Pre-load retrievers & LLM in background after server starts."""
+    try:
+        from graph.main_graph import _get_faculty_retriever, _get_policies_retriever, _get_llm
+        await asyncio.to_thread(_get_faculty_retriever)
+        await asyncio.to_thread(_get_policies_retriever)
+        _get_llm()
+        print("[OK] RAG components warmed up (faculty + policies)")
+    except Exception as e:
+        print(f"[WARN] RAG warm-up failed (will retry on first request): {e}")
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
     await init_db()     # ensure unique email index exists
+    # Warm up RAG components in background so first request isn't slow
+    asyncio.create_task(_warmup_rag())
     yield
     # Shutdown
     close_db()

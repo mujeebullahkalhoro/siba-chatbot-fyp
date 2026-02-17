@@ -1,9 +1,9 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import ChatMessages from "@/components/ChatMessages";
 import ChatInput from "@/components/ChatInput";
 
-import { sendMessage } from "@/services/chatService";
+import { sendMessageStream } from "@/services/chatService";
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
@@ -17,39 +17,52 @@ export default function ChatPage() {
     sessionIdRef.current = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }, []);
 
-  const send = async (e) => {
+  const send = useCallback(async (e) => {
     e.preventDefault();
     const trimmed = currentMessage.trim();
     if (!trimmed || isLoading) return;
 
-    const usr = { id: Date.now(), text: trimmed, sender: "user" };
+    const usrId = Date.now();
+    const botId = usrId + 1;
+    const usr = { id: usrId, text: trimmed, sender: "user" };
+
     setMessages((p) => [...p, usr]);
     setCurrentMessage("");
     setIsLoading(true);
 
+    // Add an empty bot message that we'll stream into
+    setMessages((p) => [
+      ...p,
+      { id: botId, text: "", sender: "bot" },
+    ]);
+
     try {
-      const response = await sendMessage(trimmed, sessionIdRef.current);
-      setMessages((p) => [
-        ...p,
-        {
-          id: Date.now() + 1,
-          text: response,
-          sender: "bot",
-        },
-      ]);
+      let firstToken = true;
+      await sendMessageStream(trimmed, sessionIdRef.current, (token) => {
+        if (firstToken) {
+          // Hide thinking bubble once first token arrives
+          setIsLoading(false);
+          firstToken = false;
+        }
+        // Append each token to the bot message
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === botId ? { ...m, text: m.text + token } : m
+          )
+        );
+      });
     } catch (error) {
-      setMessages((p) => [
-        ...p,
-        {
-          id: Date.now() + 1,
-          text: "Sorry, I encountered an error. Please try again.",
-          sender: "bot",
-        },
-      ]);
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === botId
+            ? { ...m, text: "Sorry, I encountered an error. Please try again." }
+            : m
+        )
+      );
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [currentMessage, isLoading]);
 
   const hasMessages = messages.length > 0;
 
@@ -104,7 +117,7 @@ export default function ChatPage() {
     <div className="flex flex-col h-full bg-gray-50 overflow-hidden">
       {/*  Chat messages scroll independently */}
       <div className="flex-1 overflow-y-auto px-4">
-        <ChatMessages messages={messages} />
+        <ChatMessages messages={messages} isLoading={isLoading} />
       </div>
 
       {/*  Input bar centered within chat area */}

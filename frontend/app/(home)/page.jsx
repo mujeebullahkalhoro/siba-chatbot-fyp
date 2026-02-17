@@ -44,6 +44,10 @@ const sibaDarkText = '#333333';
 const sibaLight = '#f7f7f7';
 
 // 1. Chat Bubble Component 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
+// 1. Chat Bubble Component 
 const ChatBubble = ({ message }) => {
   const { text, sender } = message;
   const isUser = sender === 'user';
@@ -57,13 +61,30 @@ const ChatBubble = ({ message }) => {
           }`}
         style={{ backgroundColor: isUser ? sibaDarkBlue : undefined, color: isUser ? 'white' : sibaDarkText }}
       >
-        <p>{text}</p>
+        <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert text-white' : 'text-gray-800'}`}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ node, ...props }) => <a {...props} className={isUser ? 'text-white underline' : 'text-blue-600 underline'} />,
+              p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
+              table: ({ node, ...props }) => <div className="overflow-x-auto my-2"><table {...props} className="min-w-full divide-y divide-gray-300 border border-gray-300 text-sm" /></div>,
+              thead: ({ node, ...props }) => <thead {...props} className={isUser ? 'bg-white/10' : 'bg-gray-300'} />,
+              th: ({ node, ...props }) => <th {...props} className="px-3 py-2 text-left font-semibold" />,
+              td: ({ node, ...props }) => <td {...props} className="px-3 py-2 border-t border-gray-300/20" />,
+              ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-4 mb-2" />,
+              ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-4 mb-2" />,
+            }}
+          >
+            {text}
+          </ReactMarkdown>
+        </div>
       </div>
     </div>
   );
 };
 
 import ChatInput from '@/components/ChatInput';
+import ThinkingBubble from '@/components/ThinkingBubble';
 
 import { sendMessage } from '@/services/chatService';
 
@@ -103,12 +124,17 @@ export default function App() {
 
     try {
       const response = await sendMessage(trimmed, sessionIdRef.current);
-      const botReply = {
-        id: Date.now() + 1,
-        text: response,
-        sender: 'bot',
-      };
-      setMessages((prev) => [...prev, botReply]);
+
+      if (response === "LOGIN_REQUIRED") {
+        setIsModalOpen(true);
+      } else {
+        const botReply = {
+          id: Date.now() + 1,
+          text: response,
+          sender: 'bot',
+        };
+        setMessages((prev) => [...prev, botReply]);
+      }
     } catch (error) {
       const errorReply = {
         id: Date.now() + 1,
@@ -122,10 +148,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (hasMessages) {
+    if (hasMessages || isLoading) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, hasMessages]);
+  }, [messages, hasMessages, isLoading]);
 
   useEffect(() => {
     textareaRef.current?.focus();
@@ -245,6 +271,7 @@ export default function App() {
           {messages.map((msg) => (
             <ChatBubble key={msg.id} message={msg} />
           ))}
+          {isLoading && <ThinkingBubble />}
           <div ref={messagesEndRef} className="h-0" />
         </div>
       </main>

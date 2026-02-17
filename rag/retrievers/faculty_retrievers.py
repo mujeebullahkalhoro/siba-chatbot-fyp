@@ -78,7 +78,7 @@ class BM25RetrieverLC(BaseRetriever):
         self._documents = documents
         self._bm25 = BM25Okapi(corpus)
 
-    def get_relevant_documents(self, query: str) -> List[Document]: # type: ignore
+    def _get_relevant_documents(self, query: str, *, run_manager=None) -> List[Document]: # type: ignore
         tokens = query.lower().split()
         return self._bm25.get_top_n(tokens, self._documents, n=self.k)
 

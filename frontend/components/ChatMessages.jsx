@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import ChatMessage from "./ChatMessage";
+import ThinkingBubble from "./ThinkingBubble";
 
 // Pass hasFixedInput=true when the composer is fixed at the bottom
-export default function ChatMessages({ messages, hasFixedInput = false }) {
+export default function ChatMessages({ messages, hasFixedInput = false, isLoading = false }) {
   const endRef = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, isLoading]);
 
   return (
     <main
@@ -23,6 +24,7 @@ export default function ChatMessages({ messages, hasFixedInput = false }) {
       {messages.map((m) => (
         <ChatMessage key={m.id} message={m} />
       ))}
+      {isLoading && <ThinkingBubble />}
       <div ref={endRef} />
     </main>
   );
