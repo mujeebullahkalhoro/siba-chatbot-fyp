@@ -10,8 +10,7 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.messages import HumanMessage, AIMessage
 from dotenv import load_dotenv
 
-from retrievers.faculty_retrievers import get_faculty_ensemble_retriever
-from retrievers.policies_retrievers import get_policies_ensemble_retriever
+from retrievers.universal_retriever import get_universal_ensemble_retriever
 from llm.groq_llm import get_groq_llm
 
 from graph.classifier import classify_query
@@ -37,26 +36,24 @@ policies_prompt = ChatPromptTemplate.from_messages([
     ("human", "Context:\n{context}\n\nQuestion: {question}")
 ])
 
+# General prompt for categories without a specialized prompt
+general_prompt = ChatPromptTemplate.from_messages([
+    ("system", SYSTEM_PROMPT),
+    MessagesPlaceholder(variable_name="chat_history"),
+    ("human", "Context:\n{context}\n\nQuestion: {question}")
+])
+
 # ── Lazy singletons ─────────────────────────────────────
-_faculty_retriever = None
-_policies_retriever = None
+_universal_retriever = None
 _llm = None
 
-def _get_faculty_retriever():
-    global _faculty_retriever
-    if _faculty_retriever is None:
-        print("[INFO] Loading faculty retriever...")
-        _faculty_retriever = get_faculty_ensemble_retriever(k=6)
-        print("[OK] Faculty retriever loaded")
-    return _faculty_retriever
-
-def _get_policies_retriever():
-    global _policies_retriever
-    if _policies_retriever is None:
-        print("[INFO] Loading policies retriever...")
-        _policies_retriever = get_policies_ensemble_retriever(k=6)
-        print("[OK] Policies retriever loaded")
-    return _policies_retriever
+def _get_universal_retriever():
+    global _universal_retriever
+    if _universal_retriever is None:
+        print("[INFO] Loading universal retriever...")
+        _universal_retriever = get_universal_ensemble_retriever(k=6)
+        print("[OK] Universal retriever loaded")
+    return _universal_retriever
 
 def _get_llm():
     global _llm
@@ -73,14 +70,23 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
     return store[session_id]
 
 
-def _get_retriever_and_prompt(category: str):
-    """Return the appropriate retriever and prompt for a category."""
-    if category == "Faculty":
-        return _get_faculty_retriever(), faculty_prompt
-    elif category == "Policies":
-        return _get_policies_retriever(), policies_prompt
+GENERAL_RESPONSE = (
+    "Hello! I'm the Sukkur IBA University assistant. "
+    "I can help you with information about faculty, university policies, "
+    "events, scholarships, timetables, and academic programs. "
+    "How can I assist you today?"
+)
+
+
+def _get_prompt_for_category(category: str):
+    """Return the appropriate prompt based on category (retriever is always universal)."""
+    if category == "Policies":
+        return policies_prompt
+    elif category == "Faculty":
+        return faculty_prompt
     else:
-        return None, None
+        # Academic, Scholarships, Events, Timetable — use general prompt
+        return general_prompt
 
 
 # ── Non-streaming chat ───────────────────────────────────
@@ -91,11 +97,14 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
     if category in ["Timetable", "Events"] and not is_authenticated:
         return "LOGIN_REQUIRED"
 
-    retriever, active_prompt = _get_retriever_and_prompt(category)
-    if retriever is None:
-        return "We will implement it later"
+    if category == "General":
+        return GENERAL_RESPONSE
 
-    docs = await retriever.aget_relevant_documents(query)
+    # Always use universal retriever — classification only picks the prompt
+    retriever = _get_universal_retriever()
+    active_prompt = _get_prompt_for_category(category)
+
+    docs = await retriever.ainvoke(query)
     context = "\n\n".join([d.page_content for d in docs])
 
     chain = active_prompt | _get_llm()
@@ -130,12 +139,15 @@ async def faculty_chat_stream(
         yield "LOGIN_REQUIRED"
         return
 
-    retriever, active_prompt = _get_retriever_and_prompt(category)
-    if retriever is None:
-        yield "We will implement it later"
+    if category == "General":
+        yield GENERAL_RESPONSE
         return
 
-    docs = await retriever.aget_relevant_documents(query)
+    # Always use universal retriever — classification only picks the prompt
+    retriever = _get_universal_retriever()
+    active_prompt = _get_prompt_for_category(category)
+
+    docs = await retriever.ainvoke(query)
     context = "\n\n".join([d.page_content for d in docs])
 
     # Get chat history for the session
