@@ -53,8 +53,8 @@ async def google_auth(google_token: str = Body(..., embed=True)):
         key=COOKIE_NAME,
         value=token,
         httponly=True,
-        secure=True,
-        samesite="none",
+        secure=False,
+        samesite="lax",
         max_age=COOKIE_MAX_AGE,
         path="/",
     )
@@ -111,8 +111,8 @@ async def google_oauth_callback(request: Request):
         key=COOKIE_NAME,
         value=jwt_token,
         httponly=True,
-        secure=True,
-        samesite="none",
+        secure=False,
+        samesite="lax",
         max_age=COOKIE_MAX_AGE,
         path="/",
     )
@@ -147,7 +147,7 @@ async def logout():
     response.delete_cookie(
         COOKIE_NAME,
         path="/",
-        samesite="none",
-        secure=True,
+        samesite="lax",
+        secure=False,
     )
     return response

@@ -78,6 +78,8 @@ export const sendMessageStream = async (message, sessionId, onToken) => {
         if (payload.token) {
           fullText += payload.token;
           onToken(payload.token);
+          // Add a small delay for smoother typing effect
+          await new Promise(resolve => setTimeout(resolve, 30));
         }
       } catch (e) {
         if (e.message !== "Unexpected end of JSON input") {
@@ -89,3 +91,71 @@ export const sendMessageStream = async (message, sessionId, onToken) => {
 
   return fullText;
 };
+
+const HISTORY_API_URL = "http://localhost:8000/api/chats";
+
+export const getChatSessions = async () => {
+  const response = await fetch(HISTORY_API_URL, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+  });
+  if (!response.ok) {
+    console.error("getChatSessions failed:", response.status, response.statusText);
+    throw new Error("Failed to fetch chat sessions");
+  }
+  return await response.json();
+}
+
+export const createChatSession = async (title = "New Chat") => {
+  const response = await fetch(HISTORY_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ title }),
+  });
+  if (!response.ok) throw new Error("Failed to create chat session");
+  return await response.json();
+}
+
+export const deleteChatSession = async (sessionId) => {
+  const response = await fetch(`${HISTORY_API_URL}/${sessionId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Failed to delete chat session");
+  return await response.json();
+}
+
+export const getChatMessages = async (sessionId) => {
+  const response = await fetch(`${HISTORY_API_URL}/${sessionId}/messages`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Failed to fetch chat messages");
+  return await response.json();
+}
+
+export const shareChatSession = async (sessionId) => {
+  const response = await fetch(`${HISTORY_API_URL}/${sessionId}/share`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+  });
+  if (!response.ok) throw new Error("Failed to share chat session");
+  return await response.json();
+}
+
+export const getSharedChat = async (shareId) => {
+  // Note: This is a public endpoint, no credentials needed usually, 
+  // but if backend requires it (unlikely for public share), we might need it.
+  // Routes say: @router.get("/api/shared/{share_id}") -> public
+  const response = await fetch(`http://localhost:8000/api/shared/${shareId}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) throw new Error("Failed to fetch shared chat");
+  return await response.json();
+}

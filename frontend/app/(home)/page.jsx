@@ -1,6 +1,13 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import AuthModal from '@/components/AuthModal';
+import SideBar from '@/components/SideBar';
+import ChatInput from '@/components/ChatInput';
+import ThinkingBubble from '@/components/ThinkingBubble';
+import { useAuth } from '@/context/AuthContext';
+import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream } from '@/services/chatService';
 
 // This ensures the custom-scrollbar class is defined globally.
 const GlobalStyles = () => (
@@ -35,19 +42,15 @@ const GlobalStyles = () => (
   `}</style>
 );
 
-// Color Variables (Defined globally for easy access) 
-const sibaLightBlue = '#007bff'; // Used for Log In button text color
-const sibaDarkBlue = '#0056b3'; // Dark Blue for Header and User Messages
-const sibaDarkerBlue = '#003e80'; // Even darker for hover/accents
-const sibaOrange = '#ea6645'; // Vibrant orange for Sign Up button, icons, and send button
+// Color Variables
+const sibaLightBlue = '#007bff';
+const sibaDarkBlue = '#0056b3';
+const sibaDarkerBlue = '#003e80';
+const sibaOrange = '#ea6645';
 const sibaDarkText = '#333333';
 const sibaLight = '#f7f7f7';
 
-// 1. Chat Bubble Component 
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-
-// 1. Chat Bubble Component 
+// Chat Bubble Component 
 const ChatBubble = ({ message }) => {
   const { text, sender } = message;
   const isUser = sender === 'user';
@@ -83,30 +86,83 @@ const ChatBubble = ({ message }) => {
   );
 };
 
-import ChatInput from '@/components/ChatInput';
-import ThinkingBubble from '@/components/ThinkingBubble';
-
-import { sendMessage } from '@/services/chatService';
-
-// ... (GlobalStyles and other components remain unchanged)
-
 // Main Page Component 
 export default function App() {
+  const { user } = useAuth();
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Chat History State
+  const [sessions, setSessions] = useState([]);
+  const [currentSessionId, setCurrentSessionId] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const textareaRef = useRef(null);
   const messagesEndRef = useRef(null);
-  const sessionIdRef = useRef("");
+  const sessionIdRef = useRef(""); // For guest sessions
   const hasMessages = messages.length > 0;
 
   useEffect(() => {
-    // Generate a simple session ID on mount
-    sessionIdRef.current = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    // Generate a simple guest session ID on mount
+    sessionIdRef.current = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }, []);
+
+  // Load chat sessions when user logs in
+  useEffect(() => {
+    if (user) {
+      loadSessions();
+    } else {
+      setSessions([]);
+      setCurrentSessionId(null);
+      setMessages([]);
+      // Reset to guest session
+      sessionIdRef.current = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    }
+  }, [user]);
+
+  const loadSessions = async () => {
+    try {
+      const data = await getChatSessions();
+      setSessions(data);
+    } catch (e) {
+      console.error("Failed to load sessions:", e);
+    }
+  };
+
+  const handleNewChat = () => {
+    setCurrentSessionId(null);
+    setMessages([]);
+    setIsSidebarOpen(false);
+    // For authenticated user, next message will create a session
+    // For guest, we reset guest session ID
+    if (!user) {
+      sessionIdRef.current = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    }
+    if (textareaRef.current) textareaRef.current.focus();
+  };
+
+  const handleSelectSession = async (sessionId) => {
+    if (currentSessionId === sessionId) return;
+    setCurrentSessionId(sessionId);
+    setIsSidebarOpen(false);
+    setMessages([]); // Clear current while loading
+    setIsLoading(true);
+
+    try {
+      const history = await getChatMessages(sessionId);
+      setMessages(history.map(msg => ({
+        id: msg._id,
+        text: msg.text,
+        sender: msg.sender
+      })));
+    } catch (e) {
+      console.error("Failed to load messages:", e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -122,26 +178,62 @@ export default function App() {
       textareaRef.current.style.height = '44px';
     }
 
-    try {
-      const response = await sendMessage(trimmed, sessionIdRef.current);
+    let activeSessionId = currentSessionId;
 
-      if (response === "LOGIN_REQUIRED") {
-        setIsModalOpen(true);
-      } else {
-        const botReply = {
-          id: Date.now() + 1,
-          text: response,
-          sender: 'bot',
-        };
-        setMessages((prev) => [...prev, botReply]);
+    // Create session if first message and logged in
+    if (user && !activeSessionId) {
+      try {
+        // Use first 30 chars as title
+        const title = trimmed.length > 30 ? trimmed.substring(0, 30) + "..." : trimmed;
+        const newSession = await createChatSession(title);
+        activeSessionId = newSession._id;
+        setCurrentSessionId(activeSessionId);
+        loadSessions(); // Update list
+      } catch (e) {
+        console.error("Failed to create session:", e);
       }
+    }
+
+    // Fallback to guest session if no active session (or create failed)
+    if (!activeSessionId) {
+      activeSessionId = sessionIdRef.current;
+    }
+
+    try {
+      // NOTE: We do NOT add an empty bot message here to avoid the "white box" artifact.
+      // The bot message will be added when the first token arrives.
+
+      const botId = Date.now() + 1;
+      let firstToken = true;
+
+      await sendMessageStream(trimmed, activeSessionId, (token) => {
+        if (firstToken) {
+          setIsLoading(false); // Hide thinking bubble
+          firstToken = false;
+          // Add the bot message NOW
+          setMessages((prev) => [...prev, { id: botId, text: token, sender: 'bot' }]);
+        } else {
+          // Update existing bot message
+          setMessages((prev) =>
+            prev.map((m) =>
+              m.id === botId ? { ...m, text: m.text + token } : m
+            )
+          );
+        }
+      });
+
     } catch (error) {
-      const errorReply = {
-        id: Date.now() + 1,
-        text: "Sorry, I encountered an error. Please try again.",
-        sender: 'bot',
-      };
-      setMessages((prev) => [...prev, errorReply]);
+      // If error occurs, we need to ensure the error message is shown
+      const errorText = "Sorry, I encountered an error. Please try again.";
+
+      setMessages((prev) => {
+        // If we already started streaming a bot message, replace it or append error
+        // Ideally just append error message if it failed mid-stream, but simple fallback:
+        return [...prev, { id: Date.now() + 2, text: errorText, sender: 'bot' }];
+      });
+      if (error.message === "LOGIN_REQUIRED") {
+        setIsModalOpen(true);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -159,137 +251,142 @@ export default function App() {
 
   const handleAuthClick = () => {
     setIsModalOpen(true);
-    setIsMenuOpen(false);
   };
 
-  // FIXED FUNCTION
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleDeleteChat = async (sessionId, e) => {
+    // Confirmation is now handled by the UI component (SideBar)
+    try {
+      await deleteChatSession(sessionId);
+      setSessions(prev => prev.filter(s => s._id !== sessionId));
+
+      // If deleted active session, reset
+      if (currentSessionId === sessionId) {
+        setCurrentSessionId(null);
+        setMessages([]);
+        if (!user) {
+          sessionIdRef.current = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        }
+      }
+    } catch (error) {
+      console.error("Failed to delete session:", error);
+    }
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-x-hidden font-sans" style={{ backgroundColor: sibaLight }}>
+    <div className="flex h-screen overflow-hidden font-sans" style={{ backgroundColor: sibaLight }}>
       <GlobalStyles />
 
-      <header
-        className="fixed top-0 left-0 w-full h-16 shadow-lg z-50 flex items-center justify-between px-4 sm:px-6"
-        style={{ backgroundColor: sibaDarkerBlue }}
-      >
-        {/* Left side: title */}
-        <h1 className="text-lg sm:text-xl font-bold uppercase text-white">
-          SIBA AI ASSISTANT
-        </h1>
+      {/* Sidebar for authenticated users */}
+      {user && (
+        <SideBar
+          isMobileOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+          sessions={sessions}
+          currentSessionId={currentSessionId}
+          onSelectSession={handleSelectSession}
+          onNewChat={handleNewChat}
+          onDeleteChat={handleDeleteChat}
+        />
+      )}
 
-        {/* Right side: buttons */}
-        <div className="hidden sm:flex space-x-4">
-          <button
-            onClick={handleAuthClick}
-            className="bg-white font-semibold py-2 px-4 text-base rounded-lg hover:bg-gray-100 transition duration-150"
-            style={{ color: sibaDarkBlue }}
-          >
-            Log in
-          </button>
-          <button
-            onClick={handleAuthClick}
-            className="font-semibold py-2 px-4 text-base rounded-lg transition duration-150 hover:opacity-90"
-            style={{ backgroundColor: sibaOrange, color: 'white' }}
-          >
-            Sign up
-          </button>
-        </div>
+      {/* Main Content Wrapper */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative transition-all duration-300">
 
-        {/* Mobile menu icon */}
-        <button
-          className="sm:hidden p-2 text-white"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle navigation menu"
+        {/* Header */}
+        <header
+          className="w-full h-16 shadow-lg z-30 flex items-center justify-between px-4 sm:px-6 shrink-0"
+          style={{ backgroundColor: sibaDarkerBlue }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </button>
-      </header>
+          <div className="flex items-center">
+            {/* Mobile menu icon (only if user is logged in for sidebar, or guest menu?) 
+                     If logged in -> toggle sidebar 
+                     If guest -> toggle guest menu (handled below)
+                 */}
+            {user ? (
+              <button
+                className="md:hidden p-2 text-white mr-2"
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              </button>
+            ) : null}
 
-
-      <div
-        className={`fixed top-16 right-0 w-48 bg-white shadow-xl z-40 transition-transform duration-300 transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          } sm:hidden border-b border-l border-gray-200`}
-      >
-        <button
-          onClick={handleAuthClick}
-          className="w-full text-left font-semibold py-3 px-4 transition duration-150 hover:bg-gray-100"
-          style={{ color: sibaDarkBlue }}
-        >
-          Log in
-        </button>
-        <button
-          onClick={handleAuthClick}
-          className="w-full text-left font-semibold py-3 px-4 transition duration-150 hover:opacity-90"
-          style={{ backgroundColor: sibaOrange, color: 'white' }}
-        >
-          Sign up
-        </button>
-      </div>
-
-      <main
-        className={`flex-1 w-full flex flex-col items-center overflow-y-auto transition-all duration-300 ${hasMessages ? 'justify-start pt-16 pb-28' : 'justify-center pt-16'
-          }`}
-      >
-        {!hasMessages && (
-          <div className="text-center flex flex-col items-center justify-center max-w-[800px] w-full px-6 -mt-16 h-full">
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: sibaDarkText }}>
+            <h1 className="text-lg sm:text-xl font-bold uppercase text-white">
               SIBA AI ASSISTANT
-            </h2>
-            <p className="text-sm sm:text-lg text-gray-500 max-w-lg mx-auto mb-16 px-4">
-              Ask about admissions, faculty, or policies at SIBA.
-            </p>
+            </h1>
+          </div>
+
+          {/* Right side: buttons (only show if NOT logged in) */}
+          {!user && (
+            <div className="flex space-x-4">
+              <button
+                onClick={handleAuthClick}
+                className="bg-white font-semibold py-2 px-4 text-sm sm:text-base rounded-lg hover:bg-gray-100 transition duration-150"
+                style={{ color: sibaDarkBlue }}
+              >
+                Log in
+              </button>
+              <button
+                onClick={handleAuthClick}
+                className="font-semibold py-2 px-4 text-sm sm:text-base rounded-lg transition duration-150 hover:opacity-90 min-w-max"
+                style={{ backgroundColor: sibaOrange, color: 'white' }}
+              >
+                Sign up
+              </button>
+            </div>
+          )}
+        </header>
+
+        <main
+          className={`flex-1 w-full flex flex-col items-center overflow-y-auto transition-all duration-300 ${hasMessages ? 'justify-start pt-4 pb-28' : 'justify-center'
+            }`}
+        >
+          {!hasMessages && (
+            <div className="text-center flex flex-col items-center justify-center max-w-[800px] w-full px-6 h-full">
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: sibaDarkText }}>
+                SIBA AI ASSISTANT
+              </h2>
+              <p className="text-sm sm:text-lg text-gray-500 max-w-lg mx-auto mb-16 px-4">
+                Ask about admissions, faculty, or policies at SIBA.
+              </p>
+              <ChatInput
+                handleSendMessage={handleSendMessage}
+                currentMessage={currentMessage}
+                setCurrentMessage={setCurrentMessage}
+                textareaRef={textareaRef}
+                className="relative w-full max-w-[800px] px-4"
+              />
+            </div>
+          )}
+
+          <div
+            className={`flex flex-col space-y-4 pt-4 pb-4 w-full max-w-[800px] px-4 sm:px-6 ${hasMessages ? 'opacity-100' : 'hidden'
+              }`}
+          >
+            {messages.map((msg) => (
+              <ChatBubble key={msg.id} message={msg} />
+            ))}
+            {isLoading && <ThinkingBubble />}
+            <div ref={messagesEndRef} className="h-0" />
+          </div>
+        </main>
+
+        {hasMessages && (
+          <div className="w-full flex justify-center py-4 bg-gray-100 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] border-t border-gray-200 shrink-0">
             <ChatInput
               handleSendMessage={handleSendMessage}
               currentMessage={currentMessage}
               setCurrentMessage={setCurrentMessage}
               textareaRef={textareaRef}
-              className="relative w-full max-w-[800px] px-4"
+              className="w-full max-w-[800px] px-4 sm:px-6"
             />
           </div>
         )}
+      </div>
 
-        <div
-          className={`flex flex-col space-y-4 pt-4 pb-4 w-full max-w-[800px] px-4 sm:px-6 ${hasMessages ? 'opacity-100' : 'hidden'
-            }`}
-        >
-          {messages.map((msg) => (
-            <ChatBubble key={msg.id} message={msg} />
-          ))}
-          {isLoading && <ThinkingBubble />}
-          <div ref={messagesEndRef} className="h-0" />
-        </div>
-      </main>
-
-      {hasMessages && (
-        <div className="fixed bottom-0 w-full flex justify-center py-4 bg-gray-100 z-40 shadow-xl border-t border-gray-200">
-          <ChatInput
-            handleSendMessage={handleSendMessage}
-            currentMessage={currentMessage}
-            setCurrentMessage={setCurrentMessage}
-            textareaRef={textareaRef}
-            className="w-full max-w-[800px] px-4 sm:px-6"
-          />
-        </div>
-      )}
-
-      {/* FIXED Auth Modal */}
-      <AuthModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

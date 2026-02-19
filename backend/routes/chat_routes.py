@@ -23,9 +23,15 @@ class ChatRequest(BaseModel):
     message: str
     session_id: str
 
+from database import chat_messages_collection, chat_sessions_collection
+from datetime import datetime
+from bson import ObjectId
+
 @router.post("/api/chat")
 async def chat_endpoint(request: Request, chat_req: ChatRequest):
     is_authenticated = False
+    
+    # ... (auth logic) ...
     token = request.cookies.get("access_token")
     if token:
         try:
@@ -35,8 +41,49 @@ async def chat_endpoint(request: Request, chat_req: ChatRequest):
             is_authenticated = False
             
     try:
-        response = await faculty_chat(chat_req.message, chat_req.session_id, is_authenticated=is_authenticated)
-        return {"response": response}
+        # Save User Message
+        user_msg = {
+            "session_id": chat_req.session_id,
+            "sender": "user",
+            "text": chat_req.message,
+            "created_at": datetime.utcnow()
+        }
+        await chat_messages_collection.insert_one(user_msg)
+        
+        # Get Bot Response
+        response_text = await faculty_chat(chat_req.message, chat_req.session_id, is_authenticated=is_authenticated)
+        
+        # Save Bot Message (only if not a control message like LOGIN_REQUIRED, or maybe save that too? 
+        # Typically we save what the user sees. If LOGIN_REQUIRED implies a modal and no text bubble, maybe don't save?
+        # But for history consistency, if the user sees it as a bubble (or modal), we track it.
+        # implementation_plan said: "Save the bot's response". 
+        # For LOGIN_REQUIRED, the frontend handles it specially. Let's save it so history reflects the attempt? 
+        # Or better, don't save LOGIN_REQUIRED as a text message if it triggers a modal. 
+        # The prompt says: "if user ask greeting it should repsoe".
+        # Let's save it. Frontend can filter or display.
+        
+        # Wait, if LOGIN_REQUIRED is returned, the frontend shows a modal, NOT a chat bubble.
+        # So we probably shouldn't save "LOGIN_REQUIRED" as a message in the history, 
+        # otherwise reloading the chat would show "LOGIN_REQUIRED" bubble.
+        
+        if response_text != "LOGIN_REQUIRED":
+            bot_msg = {
+                "session_id": chat_req.session_id,
+                "sender": "bot",
+                "text": response_text,
+                "created_at": datetime.utcnow()
+            }
+            await chat_messages_collection.insert_one(bot_msg)
+            
+            # Update Session Timestamp
+            # Update Session Timestamp only for persistent sessions
+            if ObjectId.is_valid(chat_req.session_id):
+                await chat_sessions_collection.update_one(
+                    {"_id": ObjectId(chat_req.session_id)},
+                    {"$set": {"updated_at": datetime.utcnow()}}
+                )
+
+        return {"response": response_text}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -52,16 +99,47 @@ async def chat_stream_endpoint(request: Request, chat_req: ChatRequest):
         except:
             is_authenticated = False
 
+    # Save User Message immediately
+    user_msg = {
+        "session_id": chat_req.session_id,
+        "sender": "user",
+        "text": chat_req.message,
+        "created_at": datetime.utcnow()
+    }
+    await chat_messages_collection.insert_one(user_msg)
+
     async def event_generator():
+        full_response = ""
         try:
             async for chunk in faculty_chat_stream(
                 chat_req.message, chat_req.session_id, is_authenticated=is_authenticated
             ):
+                full_response += chunk
                 # SSE format: data: <json>\n\n
                 yield f"data: {json.dumps({'token': chunk})}\n\n"
+            
+            # Save Bot Message after stream completes
+            if full_response:
+                bot_msg = {
+                    "session_id": chat_req.session_id,
+                    "sender": "bot",
+                    "text": full_response,
+                    "created_at": datetime.utcnow()
+                }
+                await chat_messages_collection.insert_one(bot_msg)
+                
+                # Update Session Timestamp
+                # Update Session Timestamp only for persistent sessions (not guest)
+                if ObjectId.is_valid(chat_req.session_id):
+                    await chat_sessions_collection.update_one(
+                        {"_id": ObjectId(chat_req.session_id)},
+                        {"$set": {"updated_at": datetime.utcnow()}}
+                    )
+
             # Signal end of stream
             yield f"data: {json.dumps({'done': True})}\n\n"
         except Exception as e:
+            print(f"Stream error: {e}")
             yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
     return StreamingResponse(

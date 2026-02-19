@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import auth_routes, chat_routes, audio_routes
+from routes import auth_routes, chat_routes, audio_routes, chat_history_routes
 from database import init_db, close_db
 
 # Explicit origins are required when allow_credentials=True
@@ -18,9 +18,8 @@ ALLOW_ORIGINS = [
 async def _warmup_rag():
     """Pre-load retrievers & LLM in background after server starts."""
     try:
-        from graph.main_graph import _get_faculty_retriever, _get_policies_retriever, _get_llm
-        await asyncio.to_thread(_get_faculty_retriever)
-        await asyncio.to_thread(_get_policies_retriever)
+        from graph.main_graph import _get_universal_retriever, _get_llm
+        await asyncio.to_thread(_get_universal_retriever)
         _get_llm()
         print("[OK] RAG components warmed up (faculty + policies)")
     except Exception as e:
@@ -50,3 +49,4 @@ app.add_middleware(
 app.include_router(auth_routes.router)
 app.include_router(chat_routes.router)
 app.include_router(audio_routes.router)
+app.include_router(chat_history_routes.router)

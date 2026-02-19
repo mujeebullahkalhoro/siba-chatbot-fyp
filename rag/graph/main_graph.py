@@ -21,24 +21,11 @@ current_dir = Path(__file__).parent
 load_dotenv(current_dir.parent / ".env")
 
 # ── Prompts ──────────────────────────────────────────────
-SYSTEM_PROMPT = (current_dir.parent / "prompts" / "system.txt").read_text()
-POLICIES_SYSTEM_PROMPT = (current_dir.parent / "prompts" / "policies_system.txt").read_text()
+# ── Prompts ──────────────────────────────────────────────
+UNIVERSAL_SYSTEM_PROMPT = (current_dir.parent / "prompts" / "universal_system.txt").read_text()
 
-faculty_prompt = ChatPromptTemplate.from_messages([
-    ("system", SYSTEM_PROMPT),
-    MessagesPlaceholder(variable_name="chat_history"),
-    ("human", "Context:\n{context}\n\nQuestion: {question}")
-])
-
-policies_prompt = ChatPromptTemplate.from_messages([
-    ("system", POLICIES_SYSTEM_PROMPT),
-    MessagesPlaceholder(variable_name="chat_history"),
-    ("human", "Context:\n{context}\n\nQuestion: {question}")
-])
-
-# General prompt for categories without a specialized prompt
-general_prompt = ChatPromptTemplate.from_messages([
-    ("system", SYSTEM_PROMPT),
+universal_prompt = ChatPromptTemplate.from_messages([
+    ("system", UNIVERSAL_SYSTEM_PROMPT),
     MessagesPlaceholder(variable_name="chat_history"),
     ("human", "Context:\n{context}\n\nQuestion: {question}")
 ])
@@ -70,25 +57,6 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
     return store[session_id]
 
 
-GENERAL_RESPONSE = (
-    "Hello! I'm the Sukkur IBA University assistant. "
-    "I can help you with information about faculty, university policies, "
-    "events, scholarships, timetables, and academic programs. "
-    "How can I assist you today?"
-)
-
-
-def _get_prompt_for_category(category: str):
-    """Return the appropriate prompt based on category (retriever is always universal)."""
-    if category == "Policies":
-        return policies_prompt
-    elif category == "Faculty":
-        return faculty_prompt
-    else:
-        # Academic, Scholarships, Events, Timetable — use general prompt
-        return general_prompt
-
-
 # ── Non-streaming chat ───────────────────────────────────
 async def faculty_chat(query: str, session_id: str, is_authenticated: bool = False) -> str:
     category = await classify_query(query)
@@ -97,12 +65,11 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
     if category in ["Timetable", "Events"] and not is_authenticated:
         return "LOGIN_REQUIRED"
 
-    if category == "General":
-        return GENERAL_RESPONSE
-
-    # Always use universal retriever — classification only picks the prompt
+    # Always use universal retriever — classification only used for auth check now
     retriever = _get_universal_retriever()
-    active_prompt = _get_prompt_for_category(category)
+    
+    # Use the single universal prompt for everything
+    active_prompt = universal_prompt
 
     docs = await retriever.ainvoke(query)
     context = "\n\n".join([d.page_content for d in docs])
@@ -139,13 +106,9 @@ async def faculty_chat_stream(
         yield "LOGIN_REQUIRED"
         return
 
-    if category == "General":
-        yield GENERAL_RESPONSE
-        return
-
-    # Always use universal retriever — classification only picks the prompt
+    # Always use universal retriever
     retriever = _get_universal_retriever()
-    active_prompt = _get_prompt_for_category(category)
+    active_prompt = universal_prompt
 
     docs = await retriever.ainvoke(query)
     context = "\n\n".join([d.page_content for d in docs])

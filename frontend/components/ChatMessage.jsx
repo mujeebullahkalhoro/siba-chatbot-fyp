@@ -10,10 +10,11 @@ export default function ChatMessage({ message }) {
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full`}>
       <div
-        className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 rounded-2xl shadow-sm text-base ${isUser
-          ? "bg-blue-600 text-white rounded-tr-none"
-          : "bg-white text-gray-800 border border-gray-200 rounded-tl-none"
+        className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word ${isUser
+          ? "text-white rounded-t-xl rounded-bl-xl"
+          : "bg-gray-200 text-gray-800 rounded-t-xl rounded-br-xl"
           }`}
+        style={{ backgroundColor: isUser ? '#0056b3' : undefined }}
       >
         <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert text-white' : 'text-gray-800'}`}>
           <ReactMarkdown

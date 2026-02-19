@@ -12,6 +12,8 @@ from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from embeddings.embedding_model import get_embedding_model
 
+import shutil
+
 # All data directories to include
 DATA_ROOT = str(Path(__file__).parent.parent / "data")
 VECTOR_DB_PATH = str(Path(__file__).parent.parent / "vector_db" / "universal")
@@ -19,6 +21,12 @@ VECTOR_DB_PATH = str(Path(__file__).parent.parent / "vector_db" / "universal")
 
 def build_universal_vectorstore():
     """Build a single FAISS vector store from ALL documents across all categories."""
+    
+    # Clear existing vector store if it exists
+    if os.path.exists(VECTOR_DB_PATH):
+        print(f"Removing old vector store at {VECTOR_DB_PATH}...")
+        shutil.rmtree(VECTOR_DB_PATH)
+
     documents = []
 
     # Walk through ALL subdirectories in data/
@@ -31,7 +39,7 @@ def build_universal_vectorstore():
             category = relative_path.split(os.sep)[0] if relative_path != "." else "unknown"
 
             if file.endswith(".txt"):
-                print(f"📄 Loading TXT [{category}]: {file}")
+                print(f" Loading TXT [{category}]: {file}")
                 loader = TextLoader(file_path, encoding="utf-8")
                 loaded_docs = loader.load()
                 for doc in loaded_docs:
@@ -39,7 +47,7 @@ def build_universal_vectorstore():
                 documents.extend(loaded_docs)
 
             elif file.endswith(".pdf"):
-                print(f"📕 Loading PDF [{category}]: {file}")
+                print(f" Loading PDF [{category}]: {file}")
                 try:
                     loader = PyPDFLoader(file_path)
                     loaded_docs = loader.load()

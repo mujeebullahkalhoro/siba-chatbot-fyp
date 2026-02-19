@@ -1,8 +1,9 @@
 "use client";
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { Plus, Search, PanelLeftClose, PanelRightClose, X } from "lucide-react";
+import { Plus, Search, PanelLeftClose, PanelRightClose, X, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
 // Strict circular avatar wrapper used for both photo and initials
 function AvatarBox({ children }) {
@@ -13,9 +14,10 @@ function AvatarBox({ children }) {
   );
 }
 
-const SidebarItem = ({ icon: Icon, text, active, isCollapsed }) => (
+const SidebarItem = ({ icon: Icon, text, active, isCollapsed, onClick }) => (
   <a
     href="#"
+    onClick={onClick}
     className={`flex items-center p-2 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100
       ${active ? "bg-gray-100 text-gray-900" : ""}
       ${isCollapsed ? "justify-center w-full h-[46px]" : ""}`}
@@ -25,136 +27,101 @@ const SidebarItem = ({ icon: Icon, text, active, isCollapsed }) => (
   </a>
 );
 
-const ChatHistoryItem = ({ text, isCollapsed }) =>
-  !isCollapsed && (
-    <a
-      href="#"
-      className="block text-sm p-2 rounded-lg text-gray-700 hover:bg-gray-100 truncate"
-    >
-      {text}
-    </a>
-  );
-
 const GMAIL_PALETTE = [
-  "#F28B82","#F6AEA9","#FDD663","#F8E36E","#81C995","#57BB8A",
-  "#0097A7","#78D9EC","#8AB4F8","#AECBFA","#C58AF9","#E8B2FF",
-  "#FFB3C7","#B39DDB","#B0BEC5",
+  "#F28B82", "#F6AEA9", "#FDD663", "#F8E36E", "#81C995", "#57BB8A",
+  "#0097A7", "#78D9EC", "#8AB4F8", "#AECBFA", "#C58AF9", "#E8B2FF",
+  "#FFB3C7", "#B39DDB", "#B0BEC5",
 ];
-function hashString(str){let h=5381;for(let i=0;i<str.length;i++)h=(h<<5)+h+str.charCodeAt(i);return h>>>0;}
-function gmailColor(seed){const h=hashString((seed||"user").toLowerCase());return GMAIL_PALETTE[h%GMAIL_PALETTE.length];}
+function hashString(str) { let h = 5381; for (let i = 0; i < str.length; i++)h = (h << 5) + h + str.charCodeAt(i); return h >>> 0; }
+function gmailColor(seed) { const h = hashString((seed || "user").toLowerCase()); return GMAIL_PALETTE[h % GMAIL_PALETTE.length]; }
 
-export default function ResponsiveSidebar({ isMobileOpen, onClose }) {
+export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = [], currentSessionId, onSelectSession, onNewChat, onDeleteChat }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { user, signOut } = useAuth() || {};
+  const [searchQuery, setSearchQuery] = useState("");
+  const hideText = isCollapsed;
+  const { user, logout } = useAuth() || {};
 
-  // Popover state/refs
-  const [menuOpen, setMenuOpen] = useState(false);
-  const triggerRef = useRef(null);
-  const menuRef = useRef(null);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
+  // Delete Modal State
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [chatIdToDelete, setChatIdToDelete] = useState(null);
 
-  // Logout state
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
-
-  // Close on outside click / Escape
-  useEffect(() => {
-    const onDown = (e) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(e.target) &&
-        triggerRef.current &&
-        !triggerRef.current.contains(e.target)
-      ) setMenuOpen(false);
-    };
-    const onKey = (e) => { if (e.key === "Escape") setMenuOpen(false); };
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, []);
-
-  // Position and clamp popover with a tight 6px gap
-  useEffect(() => {
-    if (!menuOpen) return;
-    const btn = triggerRef.current;
-    const menu = menuRef.current;
-    if (!btn || !menu) return;
-
-    const r = btn.getBoundingClientRect();
-    const mw = menu.offsetWidth || 320;
-    const mh = menu.offsetHeight || 180;
-
-    const gap = 6;
-    const margin = 8;
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-
-    let top;
-    if (r.top >= mh + gap + margin) {
-      top = r.top - mh - gap;   // above
-    } else {
-      top = Math.min(r.bottom + gap, vh - mh - margin); // below
-    }
-
-    let left = r.right - mw; // align right
-    left = Math.max(margin, Math.min(left, vw - mw - margin));
-
-    setPos({ top, left });
-  }, [menuOpen]);
-
-  const hideText = isCollapsed && !isMobileOpen;
-
-  const initial = (user?.name?.trim()?.[0] || user?.email?.trim()?.[0] || "U").toUpperCase();
-  const avatarSrc = user?.picture || "";
-  const avatarLoader = ({ src, width, quality }) => {
-    try {
-      const u = new URL(src);
-      if (width) u.searchParams.set("w", width);
-      if (quality) u.searchParams.set("q", quality);
-      return u.toString();
-    } catch { return src; }
+  const handleDeleteClick = (sessionId, e) => {
+    e.stopPropagation();
+    setChatIdToDelete(sessionId);
+    setIsDeleteModalOpen(true);
   };
 
+  const handleConfirmDelete = (e) => {
+    if (onDeleteChat && chatIdToDelete) {
+      onDeleteChat(chatIdToDelete, e);
+    }
+    setIsDeleteModalOpen(false);
+    setChatIdToDelete(null);
+  };
+
+  // Filter sessions based on search query
+  const filteredSessions = sessions.filter(session =>
+    (session.title || "New Chat").toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Popover & Menu State
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const triggerRef = useRef(null);
+  const menuRef = useRef(null);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // Avatar State
   const [imgError, setImgError] = useState(false);
-  const showInitial = imgError || !avatarSrc;
-  const seed = user?.email || user?.name || "user";
-  const bgColor = gmailColor(seed);
 
-  const chatHistory = useMemo(() => ([
-    { text: "BSCS Course Structure" },
-    { text: "Refund Policy" },
-    { text: "Grading Criteria" },
-    { text: "Academic Policies" },
-    { text: "7th Semester Electives" },
-    { text: "Upcoming Events" },
-    { text: "BS AI Program & Faculty" },
-  ]), []);
+  // Calculate avatar properties
+  const initial = useMemo(() => (user?.name?.[0] || user?.email?.[0] || "U").toUpperCase(), [user]);
+  const bgColor = useMemo(() => gmailColor(user?.email || "user"), [user]);
+  const avatarSrc = user?.picture;
+  const showInitial = !avatarSrc || imgError;
+  const avatarLoader = ({ src }) => src;
 
-  // Working logout (cookie-based)
   const handleLogout = async () => {
-    if (isLoggingOut) return;
-    setIsLoggingOut(true);
     try {
-      const apiBase = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
-      await fetch(`${apiBase}/api/auth/logout`, {
-        method: "POST",
-        credentials: "include", // send HttpOnly cookie for deletion
-      });
+      setIsLoggingOut(true);
+      if (logout) await logout();
     } catch (e) {
-      // optional: console.warn(e);
+      console.error("Logout failed", e);
     } finally {
-      setMenuOpen(false);
-      // Clear client auth state if provided by context
-      if (typeof signOut === "function") {
-        try { await signOut(); } catch {}
-      }
-      // Navigate to public page to avoid stale cookie-based UI
-      if (typeof window !== "undefined") window.location.href = "/";
       setIsLoggingOut(false);
     }
   };
+
+  // Calculate menu position
+  useEffect(() => {
+    if (menuOpen && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setPos({
+        top: Math.max(10, rect.top - 160),
+        left: rect.left
+      });
+    }
+  }, [menuOpen]);
+
+  // Close menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !triggerRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
 
   return (
     <>
@@ -205,32 +172,70 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose }) {
                   Open sidebar
                 </span>
               </button>
-              {isMobileOpen && (
-                <button onClick={onClose} className="absolute top-2 right-2 md:hidden text-gray-500 hover:text-gray-800" aria-label="Close sidebar">
-                  <X className="w-5 h-5" />
-                </button>
-              )}
             </div>
           )}
         </div>
 
         {/* New Chat */}
         <div className={hideText ? "px-2 py-4" : "p-4"}>
-          <button className={`flex items-center justify-center w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition ${hideText ? "p-2 h-[46px]" : "px-4"}`}>
+          <button
+            onClick={onNewChat}
+            className={`flex items-center justify-center w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition ${hideText ? "p-2 h-[46px]" : "px-4"}`}
+          >
             <Plus className={`w-5 h-5 ${hideText ? "" : "mr-2"}`} />
             {!hideText && <span>New Chat</span>}
           </button>
         </div>
 
-        {/* Chat History */}
+        {/* Chat History and Search */}
         <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
-          <SidebarItem icon={Search} text="Search chats" isCollapsed={hideText} />
+
+          {/* Search Input Area */}
+          {!hideText ? (
+            <div className="relative mb-2">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search chats..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 pr-3 py-2 text-sm bg-gray-100 border border-transparent rounded-lg focus:bg-white focus:border-gray-300 focus:outline-none transition-all"
+              />
+            </div>
+          ) : (
+            <SidebarItem
+              icon={Search}
+              text="Search"
+              isCollapsed={true}
+              onClick={(e) => { e.preventDefault(); setIsCollapsed(false); }}
+            />
+          )}
+
           {!hideText && (
             <>
-              <h3 className="px-2 pt-4 text-xs font-semibold text-gray-500 uppercase">Chats</h3>
-              {chatHistory.map((item, i) => (
-                <ChatHistoryItem key={i} text={item.text} isCollapsed={hideText} />
+              <h3 className="px-2 pt-4 text-xs font-semibold text-gray-500 uppercase">
+                MY CHATS ({filteredSessions.length})
+              </h3>
+              {filteredSessions.map((session) => (
+                <div key={session._id} onClick={() => onSelectSession(session._id)} className="group relative">
+                  <a
+                    href="#"
+                    className={`block text-sm p-2 rounded-lg hover:bg-gray-100 truncate pr-8 ${currentSessionId === session._id ? "bg-gray-100 font-semibold" : "text-gray-700"}`}
+                  >
+                    {session.title || "New Chat"}
+                  </a>
+                  <button
+                    onClick={(e) => handleDeleteClick(session._id, e)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    title="Delete Chat"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               ))}
+              {filteredSessions.length === 0 && (
+                <p className="px-2 text-sm text-gray-400 italic">No chats found</p>
+              )}
             </>
           )}
         </div>
@@ -296,7 +301,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose }) {
                   role="menu"
                   aria-label="Account menu"
                   className="fixed z-99 w-72 sm:w-80 bg-white border border-gray-200 rounded-xl shadow-2xl ring-1 ring-black/5 py-2"
-                  style={{ top: pos.top, left: pos.left }}
+                  style={{ top: pos.top - 160, left: 10 }}
                 >
                   <div className="px-4 pb-2 text-xs text-gray-500 truncate">{user?.email || "account"}</div>
 
@@ -320,6 +325,11 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose }) {
           </div>
         </div>
       </aside>
+      <DeleteConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleConfirmDelete}
+      />
     </>
   );
 }
