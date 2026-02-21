@@ -38,7 +38,7 @@ def _get_universal_retriever():
     global _universal_retriever
     if _universal_retriever is None:
         print("[INFO] Loading universal retriever...")
-        _universal_retriever = get_universal_ensemble_retriever(k=6)
+        _universal_retriever = get_universal_ensemble_retriever(k=10)
         print("[OK] Universal retriever loaded")
     return _universal_retriever
 

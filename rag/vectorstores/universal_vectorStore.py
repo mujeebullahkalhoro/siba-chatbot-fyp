@@ -44,6 +44,7 @@ def build_universal_vectorstore():
                 loaded_docs = loader.load()
                 for doc in loaded_docs:
                     doc.metadata["category"] = category
+                    doc.metadata["source"] = file
                 documents.extend(loaded_docs)
 
             elif file.endswith(".pdf"):
@@ -53,6 +54,7 @@ def build_universal_vectorstore():
                     loaded_docs = loader.load()
                     for doc in loaded_docs:
                         doc.metadata["category"] = category
+                        doc.metadata["source"] = file
                     documents.extend(loaded_docs)
                 except Exception as e:
                     print(f"[WARN] Error loading PDF {file}: {e}")

@@ -26,7 +26,7 @@ DATA_ROOT = str(Path(__file__).parent.parent / "data")
 # =========================
 # Semantic Retriever (FAISS)
 # =========================
-def get_universal_semantic_retriever(k: int = 6):
+def get_universal_semantic_retriever(k: int = 10):
     embeddings = get_embedding_model()
 
     vectorstore = FAISS.load_local(
@@ -100,13 +100,13 @@ class UniversalBM25Retriever(BaseRetriever):
 # =========================
 # Ensemble Retriever
 # =========================
-def get_universal_ensemble_retriever(k: int = 6):
+def get_universal_ensemble_retriever(k: int = 10):
     semantic_retriever = get_universal_semantic_retriever(k)
     bm25_retriever = UniversalBM25Retriever(k)  # type: ignore
 
     ensemble_retriever = EnsembleRetriever(
         retrievers=[bm25_retriever, semantic_retriever],
-        weights=[0.4, 0.6]  # BM25 + Semantic balance
+        weights=[0.5, 0.5]  # Balanced for better keyword matching in tables
     )
 
     return ensemble_retriever
