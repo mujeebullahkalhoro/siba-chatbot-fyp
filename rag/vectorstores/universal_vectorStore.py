@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from langchain.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.schema import Document
 from embeddings.embedding_model import get_embedding_model
 
 import shutil
@@ -49,15 +50,19 @@ def build_universal_vectorstore():
 
             elif file.endswith(".pdf"):
                 print(f" Loading PDF [{category}]: {file}")
-                try:
-                    loader = PyPDFLoader(file_path)
-                    loaded_docs = loader.load()
-                    for doc in loaded_docs:
-                        doc.metadata["category"] = category
-                        doc.metadata["source"] = file
-                    documents.extend(loaded_docs)
-                except Exception as e:
-                    print(f"[WARN] Error loading PDF {file}: {e}")
+                if category == "schema":
+                    print(f" Skipping embedding for PDF [{category}]: {file} (Link Only strategy)")
+                    continue
+                else:
+                    try:
+                        loader = PyPDFLoader(file_path)
+                        loaded_docs = loader.load()
+                        for doc in loaded_docs:
+                            doc.metadata["category"] = category
+                            doc.metadata["source"] = file
+                        documents.extend(loaded_docs)
+                    except Exception as e:
+                        print(f"[WARN] Error loading PDF {file}: {e}")
 
     if not documents:
         raise ValueError("No documents found in data directory!")

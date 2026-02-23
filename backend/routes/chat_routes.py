@@ -2,7 +2,7 @@ import sys
 import os
 import json
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from pydantic import BaseModel
 from controllers.auth_controller import decode_token
 
@@ -150,4 +150,27 @@ async def chat_stream_endpoint(request: Request, chat_req: ChatRequest):
             "Connection": "keep-alive",
             "X-Accel-Buffering": "no",
         },
+    )
+
+import urllib.parse
+
+@router.get("/api/schemas/download/{filename}")
+async def download_schema(filename: str):
+    """Download a schema PDF with correct headers."""
+    # Decode URL-encoded characters (like %20 for spaces)
+    decoded_filename = urllib.parse.unquote(filename)
+    
+    # Assuming the schemas are in rag/data/schema/ relative to this file's grand-parent
+    schema_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../rag/data/schema"))
+    file_path = os.path.join(schema_dir, decoded_filename)
+    
+    if not os.path.exists(file_path):
+        # Debugging: check if it's there but maybe name mismatch
+        print(f"[DEBUG] Download requested for '{filename}' (decoded: '{decoded_filename}'), but not found at {file_path}")
+        raise HTTPException(status_code=404, detail="File not found")
+        
+    return FileResponse(
+        path=file_path,
+        filename=decoded_filename,
+        media_type='application/pdf'
     )

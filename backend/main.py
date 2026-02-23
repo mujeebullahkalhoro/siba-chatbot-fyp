@@ -3,8 +3,10 @@ from __future__ import annotations
 
 import asyncio
 from contextlib import asynccontextmanager
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from routes import auth_routes, chat_routes, audio_routes, chat_history_routes
 from database import init_db, close_db
@@ -44,6 +46,12 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
 )
+
+# Mount Course Schemas
+SCHEMA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "rag", "data", "schema"))
+if not os.path.exists(SCHEMA_DIR):
+    os.makedirs(SCHEMA_DIR, exist_ok=True)
+app.mount("/schemas", StaticFiles(directory=SCHEMA_DIR), name="schemas")
 
 # Auth router (includes /api/auth/google/callback and others)
 app.include_router(auth_routes.router)

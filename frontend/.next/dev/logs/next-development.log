@@ -1,3 +1,3 @@
-[00:00:04.442] Server  LOG      ✓ Ready in 3.5s
-[00:00:29.942] Server  LOG      ○ Compiling / ...
-[00:01:47.285] Browser ERROR   SSE parse error: {}
+[00:00:03.713] Server  LOG      ✓ Ready in 3.2s
+[00:00:54.130] Browser ERROR   SSE parse error: {}
+[00:02:12.439] Browser ERROR   SSE parse error: {}

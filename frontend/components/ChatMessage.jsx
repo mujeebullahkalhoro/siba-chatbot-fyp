@@ -20,7 +20,19 @@ export default function ChatMessage({ message }) {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              a: ({ node, ...props }) => <a {...props} className={isUser ? 'text-white underline' : 'text-blue-600 underline'} />,
+              a: ({ node, ...props }) => {
+                const { href, ...other } = props;
+                const isSchema = href?.includes('/api/schemas/download/') || href?.includes('.pdf');
+                return (
+                  <a
+                    {...other}
+                    href={href}
+                    className={isUser ? 'text-white underline' : 'text-blue-600 underline'}
+                    target={isSchema ? "_blank" : undefined}
+                    rel={isSchema ? "noopener noreferrer" : undefined}
+                  />
+                );
+              },
               p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
               table: ({ node, ...props }) => <div className="overflow-x-auto my-2"><table {...props} className="min-w-full divide-y divide-gray-300 border border-gray-300 text-sm" /></div>,
               thead: ({ node, ...props }) => <thead {...props} className={isUser ? 'bg-white/10' : 'bg-gray-100'} />,

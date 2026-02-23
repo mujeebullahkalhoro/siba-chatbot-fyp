@@ -24,6 +24,10 @@ load_dotenv(current_dir.parent / ".env")
 # ── Prompts ──────────────────────────────────────────────
 UNIVERSAL_SYSTEM_PROMPT = (current_dir.parent / "prompts" / "universal_system.txt").read_text()
 
+# ── Schema index (always included in context) ───────────
+_SCHEMAS_INDEX_PATH = current_dir.parent / "data" / "schemas_index.txt"
+SCHEMAS_INDEX_CONTENT = _SCHEMAS_INDEX_PATH.read_text(encoding="utf-8") if _SCHEMAS_INDEX_PATH.exists() else ""
+
 universal_prompt = ChatPromptTemplate.from_messages([
     ("system", UNIVERSAL_SYSTEM_PROMPT),
     MessagesPlaceholder(variable_name="chat_history"),
@@ -72,7 +76,14 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
     active_prompt = universal_prompt
 
     docs = await retriever.ainvoke(query)
-    context = "\n\n".join([d.page_content for d in docs])
+    context = ""
+    for d in docs:
+        source_info = f"[Source: {d.metadata.get('source', 'Unknown')}, Link: {d.metadata.get('source_link', 'N/A')}]"
+        context += f"{source_info}\n{d.page_content}\n\n"
+
+    # Always include schemas index so LLM can provide download links
+    if SCHEMAS_INDEX_CONTENT:
+        context = f"[Schema Download Links]\n{SCHEMAS_INDEX_CONTENT}\n\n{context}"
 
     chain = active_prompt | _get_llm()
 
@@ -111,7 +122,15 @@ async def faculty_chat_stream(
     active_prompt = universal_prompt
 
     docs = await retriever.ainvoke(query)
-    context = "\n\n".join([d.page_content for d in docs])
+    # Include source metadata in streaming context (matching non-streaming path)
+    context = ""
+    for d in docs:
+        source_info = f"[Source: {d.metadata.get('source', 'Unknown')}]"
+        context += f"{source_info}\n{d.page_content}\n\n"
+
+    # Always include schemas index so LLM can provide download links
+    if SCHEMAS_INDEX_CONTENT:
+        context = f"[Schema Download Links]\n{SCHEMAS_INDEX_CONTENT}\n\n{context}"
 
     # Get chat history for the session
     history = get_session_history(session_id)
@@ -135,3 +154,4 @@ async def faculty_chat_stream(
     # Save to chat history after streaming completes
     history.add_message(HumanMessage(content=query))
     history.add_message(AIMessage(content=full_response))
+
