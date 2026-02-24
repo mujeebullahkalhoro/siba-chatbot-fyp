@@ -7,7 +7,7 @@ import SideBar from '@/components/SideBar';
 import ChatInput from '@/components/ChatInput';
 import ThinkingBubble from '@/components/ThinkingBubble';
 import { useAuth } from '@/context/AuthContext';
-import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream } from '@/services/chatService';
+import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback } from '@/services/chatService';
 
 // This ensures the custom-scrollbar class is defined globally.
 const GlobalStyles = () => (
@@ -50,21 +50,30 @@ const sibaOrange = '#ea6645';
 const sibaDarkText = '#333333';
 const sibaLight = '#f7f7f7';
 
+const SUGGESTED_QUESTIONS = [
+  "What is the attendance policy?",
+  "Show CS department faculty",
+  "What scholarships are available?",
+  "What programs does SIBA offer?",
+];
+
 // Chat Bubble Component 
-const ChatBubble = ({ message }) => {
+const ChatBubble = ({ message, feedback, onFeedback, darkMode }) => {
   const { text, sender } = message;
   const isUser = sender === 'user';
+  const botBg = darkMode ? '#1e293b' : undefined;
+  const botTextClass = darkMode ? 'text-gray-200' : 'text-gray-800';
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} w-full`}>
       <div
         className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word ${isUser
           ? 'text-white rounded-t-xl rounded-bl-xl'
-          : 'bg-gray-200 rounded-t-xl rounded-br-xl'
+          : 'rounded-t-xl rounded-br-xl'
           }`}
-        style={{ backgroundColor: isUser ? sibaDarkBlue : undefined, color: isUser ? 'white' : sibaDarkText }}
+        style={{ backgroundColor: isUser ? sibaDarkBlue : botBg, color: isUser ? 'white' : undefined }}
       >
-        <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert text-white' : 'text-gray-800'}`}>
+        <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert text-white' : (darkMode ? 'prose-invert text-gray-200' : 'text-gray-800')}`}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -82,6 +91,31 @@ const ChatBubble = ({ message }) => {
           </ReactMarkdown>
         </div>
       </div>
+      {/* Feedback buttons for bot messages */}
+      {!isUser && (
+        <div className="flex gap-1 mt-1 ml-1">
+          <button
+            onClick={() => onFeedback(message.id, 'up')}
+            className={`p-1 rounded transition-colors ${feedback === 'up' ? 'text-green-600' : 'text-gray-400 hover:text-gray-600'}`}
+            title="Helpful"
+            disabled={!!feedback}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+              <path d="M1 8.998a1 1 0 0 1 1-1h3v9H2a1 1 0 0 1-1-1v-7Zm5.5 8.25 2.872-.763a7.03 7.03 0 0 0 1.81-.653l.463-.243a4.966 4.966 0 0 0 2.612-4.11l.051-.463a.8.8 0 0 0-.662-.857l-2.127-.355a1.2 1.2 0 0 1-.78-.554l-.423-.713a8.84 8.84 0 0 1-.549-1.125l-.349-.944a1.2 1.2 0 0 0-.687-.7l-.124-.047a.8.8 0 0 0-1.053.552l-.198.692a5.095 5.095 0 0 1-1.054 2.009l.001 7.07Z" />
+            </svg>
+          </button>
+          <button
+            onClick={() => onFeedback(message.id, 'down')}
+            className={`p-1 rounded transition-colors ${feedback === 'down' ? 'text-red-500' : 'text-gray-400 hover:text-gray-600'}`}
+            title="Not helpful"
+            disabled={!!feedback}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+              <path d="M19 11.002a1 1 0 0 1-1 1h-3v-9h3a1 1 0 0 1 1 1v7Zm-5.5-8.25-2.872.763a7.03 7.03 0 0 0-1.81.653l-.463.243a4.966 4.966 0 0 0-2.612 4.11l-.051.463a.8.8 0 0 0 .662.857l2.127.355c.32.054.6.262.78.554l.423.713c.2.337.384.729.549 1.125l.349.944c.13.35.383.631.687.7l.124.047a.8.8 0 0 0 1.053-.552l.198-.692a5.095 5.095 0 0 1 1.054-2.009l-.001-7.07Z" />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -98,6 +132,29 @@ export default function App() {
   const [sessions, setSessions] = useState([]);
   const [currentSessionId, setCurrentSessionId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [feedbackMap, setFeedbackMap] = useState({}); // { messageId: 'up' | 'down' }
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Load dark mode preference
+  useEffect(() => {
+    const saved = localStorage.getItem('siba_dark_mode');
+    if (saved === 'true') setDarkMode(true);
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      localStorage.setItem('siba_dark_mode', !prev);
+      return !prev;
+    });
+  };
+
+  // Dark mode colors
+  const bg = darkMode ? '#0f172a' : sibaLight;
+  const headerBg = darkMode ? '#020617' : sibaDarkerBlue;
+  const textColor = darkMode ? '#e2e8f0' : sibaDarkText;
+  const botBubbleBg = darkMode ? '#1e293b' : undefined;
+  const inputBg = darkMode ? '#1e293b' : '#f3f4f6';
+  const inputBorder = darkMode ? '#334155' : '#e5e7eb';
 
   const textareaRef = useRef(null);
   const messagesEndRef = useRef(null);
@@ -253,6 +310,27 @@ export default function App() {
     setIsModalOpen(true);
   };
 
+  const handleFeedback = async (messageId, rating) => {
+    if (feedbackMap[messageId]) return; // already rated
+    setFeedbackMap(prev => ({ ...prev, [messageId]: rating }));
+    // Find the bot message and the preceding user message
+    const msgs = messages;
+    const botIdx = msgs.findIndex(m => m.id === messageId);
+    const botMsg = msgs[botIdx];
+    const userMsg = botIdx > 0 ? msgs[botIdx - 1] : null;
+    try {
+      await submitFeedback({
+        message_id: String(messageId),
+        session_id: currentSessionId || sessionIdRef.current,
+        rating,
+        query: userMsg?.text || '',
+        response_text: botMsg?.text?.substring(0, 500) || '',
+      });
+    } catch (e) {
+      console.error('Feedback failed:', e);
+    }
+  };
+
   const handleDeleteChat = async (sessionId, e) => {
     // Confirmation is now handled by the UI component (SideBar)
     try {
@@ -273,7 +351,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden font-sans" style={{ backgroundColor: sibaLight }}>
+    <div className="flex h-screen overflow-hidden font-sans transition-colors duration-300" style={{ backgroundColor: bg }}>
       <GlobalStyles />
 
       {/* Sidebar for authenticated users */}
@@ -294,8 +372,8 @@ export default function App() {
 
         {/* Header */}
         <header
-          className="w-full h-16 shadow-lg z-30 flex items-center justify-between px-4 sm:px-6 shrink-0"
-          style={{ backgroundColor: sibaDarkerBlue }}
+          className="w-full h-16 shadow-lg z-30 flex items-center justify-between px-4 sm:px-6 shrink-0 transition-colors duration-300"
+          style={{ backgroundColor: headerBg }}
         >
           <div className="flex items-center">
             {/* Mobile menu icon (only if user is logged in for sidebar, or guest menu?) 
@@ -318,25 +396,43 @@ export default function App() {
             </h1>
           </div>
 
-          {/* Right side: buttons (only show if NOT logged in) */}
-          {!user && (
-            <div className="flex space-x-4">
-              <button
-                onClick={handleAuthClick}
-                className="bg-white font-semibold py-2 px-4 text-sm sm:text-base rounded-lg hover:bg-gray-100 transition duration-150"
-                style={{ color: sibaDarkBlue }}
-              >
-                Log in
-              </button>
-              <button
-                onClick={handleAuthClick}
-                className="font-semibold py-2 px-4 text-sm sm:text-base rounded-lg transition duration-150 hover:opacity-90 min-w-max"
-                style={{ backgroundColor: sibaOrange, color: 'white' }}
-              >
-                Sign up
-              </button>
-            </div>
-          )}
+          {/* Right side: buttons */}
+          <div className="flex items-center space-x-3">
+            {/* Dark mode toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 text-white rounded-lg hover:bg-white/10 transition"
+              title={darkMode ? 'Light mode' : 'Dark mode'}
+            >
+              {darkMode ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Zm8.25-9.75a.75.75 0 0 1 .53.22l1.5 1.5a.75.75 0 1 1-1.06 1.06l-1.5-1.5a.75.75 0 0 1 .53-1.28ZM21 11.25h-2.25a.75.75 0 0 0 0 1.5H21a.75.75 0 0 0 0-1.5Zm-2.47 6.22a.75.75 0 0 1 0 1.06l-1.5 1.5a.75.75 0 1 1-1.06-1.06l1.5-1.5a.75.75 0 0 1 1.06 0ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18Zm-7.56-.44a.75.75 0 0 1 .53.22l1.5 1.5a.75.75 0 0 1-1.06 1.06l-1.5-1.5a.75.75 0 0 1 .53-1.28ZM3 11.25a.75.75 0 0 0 0 1.5h2.25a.75.75 0 0 0 0-1.5H3Zm3.97-6.22a.75.75 0 0 1 0 1.06l-1.5 1.5a.75.75 0 0 1-1.06-1.06l1.5-1.5a.75.75 0 0 1 1.06 0Z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clipRule="evenodd" />
+                </svg>
+              )}
+            </button>
+            {!user && (
+              <>
+                <button
+                  onClick={handleAuthClick}
+                  className="bg-white font-semibold py-2 px-4 text-sm sm:text-base rounded-lg hover:bg-gray-100 transition duration-150"
+                  style={{ color: sibaDarkBlue }}
+                >
+                  Log in
+                </button>
+                <button
+                  onClick={handleAuthClick}
+                  className="font-semibold py-2 px-4 text-sm sm:text-base rounded-lg transition duration-150 hover:opacity-90 min-w-max"
+                  style={{ backgroundColor: sibaOrange, color: 'white' }}
+                >
+                  Sign up
+                </button>
+              </>
+            )}
+          </div>
         </header>
 
         <main
@@ -345,12 +441,34 @@ export default function App() {
         >
           {!hasMessages && (
             <div className="text-center flex flex-col items-center justify-center max-w-[800px] w-full px-6 h-full">
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: sibaDarkText }}>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: textColor }}>
                 SIBA AI ASSISTANT
               </h2>
-              <p className="text-sm sm:text-lg text-gray-500 max-w-lg mx-auto mb-16 px-4">
+              <p className={`text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                 Ask about admissions, faculty, or policies at SIBA.
               </p>
+              {/* Suggested Questions */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 w-full max-w-lg px-4">
+                {SUGGESTED_QUESTIONS.map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => {
+                      setCurrentMessage(q);
+                      // Trigger send via form-submit-like approach
+                      setTimeout(() => {
+                        const form = document.querySelector('form');
+                        if (form) form.requestSubmit();
+                      }, 50);
+                    }}
+                    className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${darkMode
+                        ? 'bg-slate-800 border-slate-700 text-gray-300 hover:bg-slate-700 hover:border-slate-600'
+                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                      }`}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
               <ChatInput
                 handleSendMessage={handleSendMessage}
                 currentMessage={currentMessage}
@@ -366,7 +484,13 @@ export default function App() {
               }`}
           >
             {messages.map((msg) => (
-              <ChatBubble key={msg.id} message={msg} />
+              <ChatBubble
+                key={msg.id}
+                message={msg}
+                feedback={feedbackMap[msg.id]}
+                onFeedback={handleFeedback}
+                darkMode={darkMode}
+              />
             ))}
             {isLoading && <ThinkingBubble />}
             <div ref={messagesEndRef} className="h-0" />
@@ -374,7 +498,7 @@ export default function App() {
         </main>
 
         {hasMessages && (
-          <div className="w-full flex justify-center py-4 bg-gray-100 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] border-t border-gray-200 shrink-0">
+          <div className={`w-full flex justify-center py-4 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] shrink-0 transition-colors duration-300 ${darkMode ? 'bg-slate-900 border-t border-slate-700' : 'bg-gray-100 border-t border-gray-200'}`}>
             <ChatInput
               handleSendMessage={handleSendMessage}
               currentMessage={currentMessage}

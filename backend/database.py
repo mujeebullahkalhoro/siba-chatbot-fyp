@@ -8,6 +8,7 @@ db = client["siba_chatbot"]
 users_collection = db["users"]
 chat_sessions_collection = db["chat_sessions"]
 chat_messages_collection = db["chat_messages"]
+feedback_collection = db["feedback"]
 
 async def init_db() -> None:
     await users_collection.create_index([("email", ASCENDING)], unique=True, name="uniq_email")

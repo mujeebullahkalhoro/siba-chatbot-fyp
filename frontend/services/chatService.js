@@ -159,3 +159,14 @@ export const getSharedChat = async (shareId) => {
   if (!response.ok) throw new Error("Failed to fetch shared chat");
   return await response.json();
 }
+
+export const submitFeedback = async (data) => {
+  const response = await fetch("http://localhost:8000/api/feedback", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) throw new Error("Failed to submit feedback");
+  return await response.json();
+};

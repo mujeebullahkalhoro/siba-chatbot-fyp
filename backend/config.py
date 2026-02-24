@@ -15,3 +15,8 @@ JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
 GOOGLE_CLIENT_ID = os.environ["GOOGLE_CLIENT_ID"]
 GOOGLE_CLIENT_SECRET = os.environ["GOOGLE_CLIENT_SECRET"]  # <-- required for code flow
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")  # <-- used for redirects
+
+# Admin panel credentials
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@siba.edu.pk")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
+

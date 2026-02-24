@@ -29,6 +29,11 @@ from bson import ObjectId
 
 @router.post("/api/chat")
 async def chat_endpoint(request: Request, chat_req: ChatRequest):
+    # Check maintenance mode
+    from routes.admin_routes import _maintenance_mode
+    if _maintenance_mode:
+        return {"response": "MAINTENANCE_MODE"}
+
     is_authenticated = False
     
     # ... (auth logic) ...
@@ -90,6 +95,15 @@ async def chat_endpoint(request: Request, chat_req: ChatRequest):
 @router.post("/api/chat/stream")
 async def chat_stream_endpoint(request: Request, chat_req: ChatRequest):
     """Stream LLM response via Server-Sent Events."""
+    # Check maintenance mode
+    from routes.admin_routes import _maintenance_mode
+    if _maintenance_mode:
+        async def maintenance_stream():
+            msg = json.dumps({"token": "The system is currently under maintenance. Please try again in a few minutes."})
+            yield f"data: {msg}\n\n"
+            yield "data: [DONE]\n\n"
+        return StreamingResponse(maintenance_stream(), media_type="text/event-stream")
+
     is_authenticated = False
     token = request.cookies.get("access_token")
     if token:
