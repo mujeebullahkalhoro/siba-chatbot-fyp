@@ -1,8 +1,11 @@
 "use client";
 import React from 'react';
 import { X, Trash2 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
-export default function DeleteConfirmationModal({ isOpen, onClose, onConfirm, title = "Delete Chat", message = "Are you sure you want to delete this chat? This action cannot be undone." }) {
+export default function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
+    const { t } = useLanguage();
+
     if (!isOpen) return null;
 
     return (
@@ -19,11 +22,11 @@ export default function DeleteConfirmationModal({ isOpen, onClose, onConfirm, ti
                     </div>
 
                     <h3 className="mb-2 text-lg font-semibold text-center text-gray-900" id="modal-title">
-                        {title}
+                        {t('delete.title')}
                     </h3>
 
                     <p className="text-sm text-center text-gray-500 mb-6">
-                        {message}
+                        {t('delete.message')}
                     </p>
 
                     <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
@@ -31,13 +34,13 @@ export default function DeleteConfirmationModal({ isOpen, onClose, onConfirm, ti
                             onClick={onClose}
                             className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 transition-colors"
                         >
-                            Cancel
+                            {t('delete.cancel')}
                         </button>
                         <button
                             onClick={onConfirm}
                             className="w-full px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors shadow-sm"
                         >
-                            Delete
+                            {t('delete.confirm')}
                         </button>
                     </div>
                 </div>

@@ -6,8 +6,11 @@ import AuthModal from '@/components/AuthModal';
 import SideBar from '@/components/SideBar';
 import ChatInput from '@/components/ChatInput';
 import ThinkingBubble from '@/components/ThinkingBubble';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback } from '@/services/chatService';
+import useTTS from '@/hooks/useTTS';
 
 // This ensures the custom-scrollbar class is defined globally.
 const GlobalStyles = () => (
@@ -50,19 +53,12 @@ const sibaOrange = '#ea6645';
 const sibaDarkText = '#333333';
 const sibaLight = '#f7f7f7';
 
-const SUGGESTED_QUESTIONS = [
-  "What is the attendance policy?",
-  "Show CS department faculty",
-  "What scholarships are available?",
-  "What programs does SIBA offer?",
-];
-
 // Chat Bubble Component 
-const ChatBubble = ({ message, feedback, onFeedback, darkMode }) => {
+const ChatBubble = ({ message, feedback, onFeedback, darkMode, t, ttsHook }) => {
   const { text, sender } = message;
   const isUser = sender === 'user';
   const botBg = darkMode ? '#1e293b' : undefined;
-  const botTextClass = darkMode ? 'text-gray-200' : 'text-gray-800';
+  const isThisSpeaking = ttsHook?.speakingId === message.id && ttsHook?.isSpeaking;
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} w-full`}>
@@ -91,29 +87,42 @@ const ChatBubble = ({ message, feedback, onFeedback, darkMode }) => {
           </ReactMarkdown>
         </div>
       </div>
-      {/* Feedback buttons for bot messages */}
+      {/* Feedback + Speaker buttons for bot messages */}
       {!isUser && (
-        <div className="flex gap-1 mt-1 ml-1">
-          <button
-            onClick={() => onFeedback(message.id, 'up')}
-            className={`p-1 rounded transition-colors ${feedback === 'up' ? 'text-green-600' : 'text-gray-400 hover:text-gray-600'}`}
-            title="Helpful"
-            disabled={!!feedback}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-              <path d="M1 8.998a1 1 0 0 1 1-1h3v9H2a1 1 0 0 1-1-1v-7Zm5.5 8.25 2.872-.763a7.03 7.03 0 0 0 1.81-.653l.463-.243a4.966 4.966 0 0 0 2.612-4.11l.051-.463a.8.8 0 0 0-.662-.857l-2.127-.355a1.2 1.2 0 0 1-.78-.554l-.423-.713a8.84 8.84 0 0 1-.549-1.125l-.349-.944a1.2 1.2 0 0 0-.687-.7l-.124-.047a.8.8 0 0 0-1.053.552l-.198.692a5.095 5.095 0 0 1-1.054 2.009l.001 7.07Z" />
-            </svg>
-          </button>
-          <button
-            onClick={() => onFeedback(message.id, 'down')}
-            className={`p-1 rounded transition-colors ${feedback === 'down' ? 'text-red-500' : 'text-gray-400 hover:text-gray-600'}`}
-            title="Not helpful"
-            disabled={!!feedback}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-              <path d="M19 11.002a1 1 0 0 1-1 1h-3v-9h3a1 1 0 0 1 1 1v7Zm-5.5-8.25-2.872.763a7.03 7.03 0 0 0-1.81.653l-.463.243a4.966 4.966 0 0 0-2.612 4.11l-.051.463a.8.8 0 0 0 .662.857l2.127.355c.32.054.6.262.78.554l.423.713c.2.337.384.729.549 1.125l.349.944c.13.35.383.631.687.7l.124.047a.8.8 0 0 0 1.053-.552l.198-.692a5.095 5.095 0 0 1 1.054-2.009l-.001-7.07Z" />
-            </svg>
-          </button>
+        <div className="flex flex-col gap-1 mt-1 ml-1">
+          <div className="flex gap-1">
+            <button
+              onClick={() => onFeedback(message.id, 'up')}
+              className={`p-1 rounded transition-colors ${feedback === 'up' ? 'text-green-600' : 'text-gray-400 hover:text-gray-600'}`}
+              title={t('feedback.helpful')}
+              disabled={!!feedback}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path d="M1 8.998a1 1 0 0 1 1-1h3v9H2a1 1 0 0 1-1-1v-7Zm5.5 8.25 2.872-.763a7.03 7.03 0 0 0 1.81-.653l.463-.243a4.966 4.966 0 0 0 2.612-4.11l.051-.463a.8.8 0 0 0-.662-.857l-2.127-.355a1.2 1.2 0 0 1-.78-.554l-.423-.713a8.84 8.84 0 0 1-.549-1.125l-.349-.944a1.2 1.2 0 0 0-.687-.7l-.124-.047a.8.8 0 0 0-1.053.552l-.198.692a5.095 5.095 0 0 1-1.054 2.009l.001 7.07Z" />
+              </svg>
+            </button>
+            <button
+              onClick={() => onFeedback(message.id, 'down')}
+              className={`p-1 rounded transition-colors ${feedback === 'down' ? 'text-red-500' : 'text-gray-400 hover:text-gray-600'}`}
+              title={t('feedback.notHelpful')}
+              disabled={!!feedback}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path d="M19 11.002a1 1 0 0 1-1 1h-3v-9h3a1 1 0 0 1 1 1v7Zm-5.5-8.25-2.872.763a7.03 7.03 0 0 0-1.81.653l-.463.243a4.966 4.966 0 0 0-2.612 4.11l-.051.463a.8.8 0 0 0 .662.857l2.127.355c.32.054.6.262.78.554l.423.713c.2.337.384.729.549 1.125l.349.944c.13.35.383.631.687.7l.124.047a.8.8 0 0 0 1.053-.552l.198-.692a5.095 5.095 0 0 1 1.054-2.009l-.001-7.07Z" />
+              </svg>
+            </button>
+            {/* Speaker button */}
+            <button
+              onClick={() => ttsHook?.speak(text, message.id)}
+              className={`p-1 rounded transition-colors ${isThisSpeaking ? 'text-blue-600 animate-pulse' : 'text-gray-400 hover:text-gray-600'}`}
+              title={isThisSpeaking ? 'Stop' : 'Listen'}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z" />
+                <path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -123,6 +132,7 @@ const ChatBubble = ({ message, feedback, onFeedback, darkMode }) => {
 // Main Page Component 
 export default function App() {
   const { user } = useAuth();
+  const { t, isRTL, lang } = useLanguage();
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -134,6 +144,21 @@ export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [feedbackMap, setFeedbackMap] = useState({}); // { messageId: 'up' | 'down' }
   const [darkMode, setDarkMode] = useState(false);
+
+  // TTS (Text-to-Speech) for voice-to-voice
+  const ttsHook = useTTS();
+  const isVoiceQueryRef = useRef(false);
+
+  const markVoiceQuery = () => {
+    isVoiceQueryRef.current = true;
+  };
+
+  const SUGGESTED_QUESTIONS = [
+    t("suggested.1"),
+    t("suggested.2"),
+    t("suggested.3"),
+    t("suggested.4"),
+  ];
 
   // Load dark mode preference
   useEffect(() => {
@@ -160,6 +185,9 @@ export default function App() {
   const messagesEndRef = useRef(null);
   const sessionIdRef = useRef(""); // For guest sessions
   const hasMessages = messages.length > 0;
+
+  // Font class for Urdu
+  const fontClass = isRTL ? 'font-urdu' : '';
 
   useEffect(() => {
     // Generate a simple guest session ID on mount
@@ -221,9 +249,9 @@ export default function App() {
     }
   };
 
-  const handleSendMessage = async (e) => {
-    e.preventDefault();
-    const trimmed = currentMessage.trim();
+  const handleSendMessage = async (e, overrideText = null) => {
+    if (e) e.preventDefault();
+    const trimmed = (overrideText || currentMessage).trim();
     if (!trimmed || isLoading) return;
 
     const newUserMsg = { id: Date.now(), text: trimmed, sender: 'user' };
@@ -262,6 +290,7 @@ export default function App() {
 
       const botId = Date.now() + 1;
       let firstToken = true;
+      let fullText = "";
 
       await sendMessageStream(trimmed, activeSessionId, (token) => {
         if (firstToken) {
@@ -277,15 +306,19 @@ export default function App() {
             )
           );
         }
+        fullText += token;
       });
 
+      // Auto-speak if voice-initiated query
+      if (isVoiceQueryRef.current && fullText) {
+        ttsHook.speak(fullText, botId);
+        isVoiceQueryRef.current = false;
+      }
+
     } catch (error) {
-      // If error occurs, we need to ensure the error message is shown
-      const errorText = "Sorry, I encountered an error. Please try again.";
+      const errorText = t('home.error');
 
       setMessages((prev) => {
-        // If we already started streaming a bot message, replace it or append error
-        // Ideally just append error message if it failed mid-stream, but simple fallback:
         return [...prev, { id: Date.now() + 2, text: errorText, sender: 'bot' }];
       });
       if (error.message === "LOGIN_REQUIRED") {
@@ -351,7 +384,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden font-sans transition-colors duration-300" style={{ backgroundColor: bg }}>
+    <div className={`flex h-screen overflow-hidden font-sans transition-colors duration-300 ${fontClass}`} style={{ backgroundColor: bg }}>
       <GlobalStyles />
 
       {/* Sidebar for authenticated users */}
@@ -376,13 +409,9 @@ export default function App() {
           style={{ backgroundColor: headerBg }}
         >
           <div className="flex items-center">
-            {/* Mobile menu icon (only if user is logged in for sidebar, or guest menu?) 
-                     If logged in -> toggle sidebar 
-                     If guest -> toggle guest menu (handled below)
-                 */}
             {user ? (
               <button
-                className="md:hidden p-2 text-white mr-2"
+                className={`md:hidden p-2 text-white ${isRTL ? 'ml-2' : 'mr-2'}`}
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -392,17 +421,19 @@ export default function App() {
             ) : null}
 
             <h1 className="text-lg sm:text-xl font-bold uppercase text-white">
-              SIBA AI ASSISTANT
+              {t('header.title')}
             </h1>
           </div>
 
           {/* Right side: buttons */}
           <div className="flex items-center space-x-3">
+            {/* Language switcher */}
+            <LanguageSwitcher className="text-white" />
             {/* Dark mode toggle */}
             <button
               onClick={toggleDarkMode}
               className="p-2 text-white rounded-lg hover:bg-white/10 transition"
-              title={darkMode ? 'Light mode' : 'Dark mode'}
+              title={darkMode ? t('header.lightMode') : t('header.darkMode')}
             >
               {darkMode ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -421,14 +452,14 @@ export default function App() {
                   className="bg-white font-semibold py-2 px-4 text-sm sm:text-base rounded-lg hover:bg-gray-100 transition duration-150"
                   style={{ color: sibaDarkBlue }}
                 >
-                  Log in
+                  {t('header.login')}
                 </button>
                 <button
                   onClick={handleAuthClick}
                   className="font-semibold py-2 px-4 text-sm sm:text-base rounded-lg transition duration-150 hover:opacity-90 min-w-max"
                   style={{ backgroundColor: sibaOrange, color: 'white' }}
                 >
-                  Sign up
+                  {t('header.signup')}
                 </button>
               </>
             )}
@@ -442,16 +473,16 @@ export default function App() {
           {!hasMessages && (
             <div className="text-center flex flex-col items-center justify-center max-w-[800px] w-full px-6 h-full">
               <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: textColor }}>
-                SIBA AI ASSISTANT
+                {t('header.title')}
               </h2>
               <p className={`text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                Ask about admissions, faculty, or policies at SIBA.
+                {t('home.subtitle')}
               </p>
               {/* Suggested Questions */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 w-full max-w-lg px-4">
-                {SUGGESTED_QUESTIONS.map((q) => (
+                {SUGGESTED_QUESTIONS.map((q, idx) => (
                   <button
-                    key={q}
+                    key={idx}
                     onClick={() => {
                       setCurrentMessage(q);
                       // Trigger send via form-submit-like approach
@@ -460,9 +491,9 @@ export default function App() {
                         if (form) form.requestSubmit();
                       }, 50);
                     }}
-                    className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${darkMode
-                        ? 'bg-slate-800 border-slate-700 text-gray-300 hover:bg-slate-700 hover:border-slate-600'
-                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${isRTL ? 'text-right' : ''} ${darkMode
+                      ? 'bg-slate-800 border-slate-700 text-gray-300 hover:bg-slate-700 hover:border-slate-600'
+                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                       }`}
                   >
                     {q}
@@ -474,6 +505,7 @@ export default function App() {
                 currentMessage={currentMessage}
                 setCurrentMessage={setCurrentMessage}
                 textareaRef={textareaRef}
+                markVoiceQuery={markVoiceQuery}
                 className="relative w-full max-w-[800px] px-4"
               />
             </div>
@@ -490,6 +522,8 @@ export default function App() {
                 feedback={feedbackMap[msg.id]}
                 onFeedback={handleFeedback}
                 darkMode={darkMode}
+                t={t}
+                ttsHook={ttsHook}
               />
             ))}
             {isLoading && <ThinkingBubble />}
@@ -504,6 +538,7 @@ export default function App() {
               currentMessage={currentMessage}
               setCurrentMessage={setCurrentMessage}
               textareaRef={textareaRef}
+              markVoiceQuery={markVoiceQuery}
               className="w-full max-w-[800px] px-4 sm:px-6"
             />
           </div>

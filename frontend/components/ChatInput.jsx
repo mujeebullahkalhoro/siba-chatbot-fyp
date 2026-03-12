@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import VoiceRecorder from "./VoiceRecorder";
+import { useLanguage } from "@/context/LanguageContext";
 
 const sibaOrange = "#ea6645";
 
@@ -10,10 +11,12 @@ export default function ChatInput({
   setCurrentMessage = () => { },
   className = "",
   textareaRef, // accept the prop so it's in scope
+  markVoiceQuery, // for voice-to-voice auto-speak
 } = {}) {
   const localRef = useRef(null);
   const taRef = textareaRef ?? localRef; // safe fallback
   const [isRecording, setIsRecording] = useState(false);
+  const { t, isRTL } = useLanguage();
 
   const handleTextareaChange = (e) => {
     const v = e.target.value ?? "";
@@ -32,17 +35,10 @@ export default function ChatInput({
   };
 
   const handleTranscription = (text) => {
-    setCurrentMessage((prev) => (prev ? `${prev} ${text}` : text));
-    setIsRecording(false); // Close recorder on success
-
-    // Optionally auto-submit or just focus
-    if (taRef.current) {
-      taRef.current.focus();
-      taRef.current.style.height = "auto";
-      setTimeout(() => {
-        if (taRef.current) taRef.current.style.height = `${Math.min(taRef.current.scrollHeight, 160)}px`;
-      }, 0);
-    }
+    setIsRecording(false);
+    setCurrentMessage(text);
+    markVoiceQuery?.(); // Flag so the response gets auto-spoken
+    handleSendMessage(null, text); // Pass text directly to avoid state race
   };
 
   const disabled = !((currentMessage ?? "").trim());
@@ -74,16 +70,17 @@ export default function ChatInput({
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) handleSubmit(e);
         }}
-        placeholder="Ask about admissions, faculty, or events..."
-        className="flex-1 border-0 rounded-lg p-2 pr-22 sm:pr-20 resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar"
+        placeholder={t("input.placeholder")}
+        dir={isRTL ? "rtl" : "ltr"}
+        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar`}
         rows={1}
         style={{ lineHeight: "1.5", transition: "height 0.1s ease-out" }}
       />
 
-      <div className="absolute bottom-2 right-3 flex items-center space-x-2">
+      <div className={`absolute bottom-2 ${isRTL ? 'left-3' : 'right-3'} flex items-center space-x-2`}>
         <button
           type="button"
-          aria-label="Voice input"
+          aria-label={t("voice.submit")}
           onClick={() => setIsRecording(true)}
           className="text-gray-500 hover:text-gray-700 focus:outline-none h-9 w-9 flex items-center justify-center"
           style={{ color: sibaOrange }}
@@ -96,7 +93,7 @@ export default function ChatInput({
         <button
           type="submit"
           disabled={disabled}
-          aria-label="Send message"
+          aria-label={t("voice.submit")}
           className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ backgroundColor: sibaOrange }}
         >

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const sibaOrange = "#ea6645";
 
@@ -71,6 +72,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
     const [stream, setStream] = useState(null);
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
+    const { t } = useLanguage();
 
     useEffect(() => {
         startRecording();
@@ -96,7 +98,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
             mediaRecorder.start();
         } catch (err) {
             console.error("Error accessing microphone:", err);
-            alert("Could not access microphone.");
+            alert(t('voice.micError'));
             onClose();
         }
     };
@@ -135,7 +137,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
                 onTranscription(data.text);
             } catch (err) {
                 console.error("Transcription error:", err);
-                alert("Failed to transcribe audio.");
+                alert(t('voice.transcribeError'));
                 onClose(); // Close on error
             }
         });
@@ -157,7 +159,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
                 {isRecording ? (
                     <AudioVisualizer stream={stream} />
                 ) : (
-                    <span className="text-gray-400 text-sm font-medium animate-pulse">Listening...</span>
+                    <span className="text-gray-400 text-sm font-medium animate-pulse">{t('voice.listening')}</span>
                 )}
             </div>
 
@@ -166,7 +168,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
                 <button
                     onClick={onClose}
                     className="group flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 transition-colors duration-200"
-                    title="Cancel"
+                    title={t('voice.cancel')}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -177,7 +179,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
                 <button
                     onClick={handleSubmit}
                     className="flex items-center justify-center w-8 h-8 rounded-full bg-black text-white hover:bg-gray-800 transition-transform duration-200 hover:scale-105 shadow-md"
-                    title="Submit"
+                    title={t('voice.submit')}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />

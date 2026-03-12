@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchMaintenanceStatus } from "@/services/adminService";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function MaintenanceBanner() {
     const [maintenance, setMaintenance] = useState(false);
+    const { t } = useLanguage();
 
     useEffect(() => {
         let interval;
@@ -35,7 +37,7 @@ export default function MaintenanceBanner() {
             fontWeight: 500,
             letterSpacing: "0.01em",
         }}>
-            System maintenance in progress — The knowledge base is being updated. Please try again shortly.
+            {t('maintenance.message')}
         </div>
     );
 }

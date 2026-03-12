@@ -43,9 +43,10 @@ export default function ChatMessage({ message }) {
             }}
           >
             {text}
-          </ReactMarkdown>
-        </div>
+          </Adding markdown text here...}
+        </ReactMarkdown>
       </div>
     </div>
+    </div >
   );
 }

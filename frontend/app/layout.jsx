@@ -1,6 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Nastaliq_Urdu } from "next/font/google";
 import "./globals.css";
 import MaintenanceBanner from "@/components/MaintenanceBanner";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +13,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const nastaliqUrdu = Noto_Nastaliq_Urdu({
+  variable: "--font-nastaliq-urdu",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+});
+
 export const metadata = {
   title: "SIBA Chatbot",
   description: "Sukkur IBA University AI Chatbot",
@@ -21,10 +28,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nastaliqUrdu.variable} antialiased`}
       >
-        <MaintenanceBanner />
-        {children}
+        <LanguageProvider>
+          <MaintenanceBanner />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

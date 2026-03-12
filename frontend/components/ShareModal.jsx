@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import { X, Copy, Check, Share2 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ShareModal({ isOpen, onClose, shareUrl }) {
     const [copied, setCopied] = useState(false);
+    const { t } = useLanguage();
 
     if (!isOpen) return null;
 
@@ -29,7 +31,7 @@ export default function ShareModal({ isOpen, onClose, shareUrl }) {
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-xl font-bold text-gray-900 flex items-center" id="share-modal-title">
                             <Share2 className="w-5 h-5 mr-2 text-blue-600" />
-                            Share Chat
+                            {t('share.title')}
                         </h3>
                         <button
                             onClick={onClose}
@@ -40,7 +42,7 @@ export default function ShareModal({ isOpen, onClose, shareUrl }) {
                     </div>
 
                     <p className="text-sm text-gray-500 mb-6">
-                        Anyone with this link will be able to view this chat session.
+                        {t('share.description')}
                     </p>
 
                     <div className="relative flex items-center mb-4">
@@ -53,7 +55,7 @@ export default function ShareModal({ isOpen, onClose, shareUrl }) {
                         <button
                             onClick={handleCopy}
                             className="absolute right-2 p-2 text-gray-400 hover:text-blue-600 transition-colors rounded-lg hover:bg-white"
-                            title="Copy to clipboard"
+                            title={t('share.copy')}
                         >
                             {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                         </button>
@@ -64,7 +66,7 @@ export default function ShareModal({ isOpen, onClose, shareUrl }) {
                             onClick={onClose}
                             className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
                         >
-                            Done
+                            {t('share.done')}
                         </button>
                     </div>
                 </div>

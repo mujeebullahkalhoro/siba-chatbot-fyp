@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import ChatMessages from "@/components/ChatMessages";
 import ChatInput from "@/components/ChatInput";
 import { useChat } from "@/context/ChatContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ChatPage() {
   const {
@@ -13,6 +14,7 @@ export default function ChatPage() {
     handleSendMessage,
     textareaRef
   } = useChat();
+  const { t, isRTL } = useLanguage();
 
   const hasMessages = messages.length > 0;
 
@@ -28,10 +30,10 @@ export default function ChatPage() {
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <div className="w-full max-w-[800px]">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: '#333333' }}>
-              SIBA AI ASSISTANT
+              {t('header.title')}
             </h2>
             <p className="text-sm sm:text-lg text-gray-500 max-w-lg mx-auto mb-16 px-4">
-              Ask about admissions, faculty, or policies at SIBA.
+              {t('home.subtitle')}
             </p>
 
             {/*  Desktop input appears below heading */}

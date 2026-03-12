@@ -1,3 +1,94 @@
-[00:00:03.041] Server  LOG      ✓ Ready in 2.4s
-[00:01:34.575] Server  LOG      ○ Compiling / ...
-[00:01:45.944] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:00:05.929] Server  LOG      ✓ Ready in 5.1s
+[00:07:14.734] Server  LOG      ○ Compiling / ...
+[00:07:20.452] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(home)/lay...">
+                          <SegmentTrieNode>
+                          <link>
+                          <RootLayout>
+                            <html lang="en">
+                              <body
++                               className="__variable_188709 __variable_9a8899 antialiased"
+-                               className="__variable_188709 __variable_9a8899 __variable_27baec antialiased"
+                              >
+                      ...
+          ...
+
+[00:07:36.169] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(home)/lay...">
+                          <SegmentTrieNode>
+                          <link>
+                          <RootLayout>
+                            <html lang="en">
+                              <body
++                               className="__variable_188709 __variable_9a8899 antialiased"
+-                               className="__variable_188709 __variable_9a8899 __variable_27baec antialiased"
+                              >
+                      ...
+          ...
+
+[00:08:27.545] Server  WARN     ⚠ ./app/(home)/layout.jsx
+Attempted import error: 'AuthProvider' is not exported from '@/context/AuthContext' (imported as 'AuthProvider').
+
+Import trace for requested module:
+./app/(home)/layout.jsx
+[00:08:28.002] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `HomeLayout`.
+[00:38:49.181] Browser ERROR   SSE parse error: {}
+[00:58:07.877] Browser ERROR   SSE parse error: {}
+[02:03:31.754] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:03:31.756] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:03:33.576] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:03:36.610] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:03:55.562] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:03:56.615] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:04:06.487] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:04:07.377] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:04:08.607] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:09:05.749] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:10:56.974] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+[02:10:58.604] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.

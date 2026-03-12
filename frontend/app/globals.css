@@ -36,3 +36,18 @@ body {
 .animate-fade-in-up {
   animation: fadeInUp 0.3s ease-out forwards;
 }
+
+/* Urdu / RTL Styles */
+.font-urdu {
+  font-family: var(--font-nastaliq-urdu), 'Noto Nastaliq Urdu', serif;
+  line-height: 2.2;
+}
+
+[dir="rtl"] .sidebar-rtl {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .sidebar-rtl-translate {
+  --tw-translate-x: 100%;
+}

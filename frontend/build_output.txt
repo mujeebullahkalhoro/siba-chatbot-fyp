@@ -1,0 +1,158 @@
+﻿
+> frontend@0.1.0 build
+> next build --webpack
+
+npm : [baseline-browse
+r-mapping] The data 
+in this module is 
+over two months old.  
+To ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+At line:1 char:1
++ npm run build 2>&1 
+| Out-File -FilePath 
+build_output.txt 
+-Encoding ut ...
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ([baseline-   
+ brows...ping@late    
+st -D`:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+   Γû▓ Next.js 16.0.1 (webpack)
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+ Γ£ô Compiled successfully in 3.3s
+   Running TypeScript ...
+   Collecting page data ...
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+   Generating static pages (0/8) ...
+[baseline-browser-mapp
+ing] The data in this 
+module is over two 
+months old.  To 
+ensure accurate 
+Baseline data, please 
+update: `npm i baselin
+e-browser-mapping@late
+st -D`
+   Generating static pages (2/8) 
+   Generating static pages (4/8) 
+   Generating static pages (6/8) 
+ Γ£ô Generating static pages (8/8) in 1247.0ms
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)
+Γöî Γùï /
+Γö£ Γùï /_not-found
+Γö£ Γùï /admin
+Γö£ ╞Æ /admin/[category]
+Γö£ Γùï /admin/analytics
+Γö£ Γùï /admin/dashboard
+Γö£ Γùï /admin/rebuild
+Γö£ Γùï /dashboard
+Γöö ╞Æ /share/[shareId]
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
