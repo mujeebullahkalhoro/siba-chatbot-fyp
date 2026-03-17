@@ -12,6 +12,8 @@ export default function ChatInput({
   className = "",
   textareaRef, // accept the prop so it's in scope
   markVoiceQuery, // for voice-to-voice auto-speak
+  isGenerating,
+  onStopGeneration,
 } = {}) {
   const localRef = useRef(null);
   const taRef = textareaRef ?? localRef; // safe fallback
@@ -90,17 +92,32 @@ export default function ChatInput({
           </svg>
         </button>
 
-        <button
-          type="submit"
-          disabled={disabled}
-          aria-label={t("voice.submit")}
-          className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          style={{ backgroundColor: sibaOrange }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L6 12Z" />
-          </svg>
-        </button>
+        {isGenerating ? (
+          <button
+            type="button"
+            onClick={onStopGeneration}
+            aria-label={t("voice.stop")}
+            className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2"
+            style={{ backgroundColor: "#dc2626" }} // Tailwind red-600
+          >
+            {/* A square STOP icon */}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+              <rect x="6" y="6" width="12" height="12" rx="1" ry="1" />
+            </svg>
+          </button>
+        ) : (
+          <button
+            type="submit"
+            disabled={disabled}
+            aria-label={t("voice.submit")}
+            className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ backgroundColor: sibaOrange }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L6 12Z" />
+            </svg>
+          </button>
+        )}
       </div>
     </form>
   );

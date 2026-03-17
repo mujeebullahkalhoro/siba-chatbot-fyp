@@ -106,7 +106,7 @@ def get_universal_ensemble_retriever(k: int = 10):
 
     ensemble_retriever = EnsembleRetriever(
         retrievers=[bm25_retriever, semantic_retriever],
-        weights=[0.5, 0.5]  # Balanced for better keyword matching in tables
+        weights=[0.4, 0.6]  # 0.4 for bm25 (exact), 0.6 for semantic 
     )
 
     return ensemble_retriever

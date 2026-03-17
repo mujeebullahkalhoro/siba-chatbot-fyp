@@ -12,11 +12,13 @@ export const ChatProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
     const [currentMessage, setCurrentMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
     const [sessions, setSessions] = useState([]);
     const [currentSessionId, setCurrentSessionId] = useState(null);
 
     const textareaRef = useRef(null);
     const sessionIdRef = useRef(""); // For guest sessions
+    const abortControllerRef = useRef(null);
 
     useEffect(() => {
         // Generate a simple guest session ID on mount
@@ -110,6 +112,10 @@ export const ChatProvider = ({ children }) => {
             activeSessionId = sessionIdRef.current;
         }
 
+        // Setup abort controller for streaming
+        abortControllerRef.current = new AbortController();
+        setIsGenerating(true);
+
         try {
             let firstToken = true;
             let fullText = "";
@@ -129,13 +135,17 @@ export const ChatProvider = ({ children }) => {
                     );
                 }
                 fullText += token;
-            });
+            }, abortControllerRef.current.signal);
 
             if (isNewSession) {
                 loadSessions();
             }
 
         } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Stream cancelled by user');
+                return; // Do not overwrite with error message
+            }
             // If error occurs, we need to ensure the error message is shown
             setMessages((prev) => {
                 const exists = prev.some(m => m.id === botId);
@@ -147,6 +157,14 @@ export const ChatProvider = ({ children }) => {
             });
         } finally {
             setIsLoading(false);
+            setIsGenerating(false);
+        }
+    };
+
+    const handleStopGeneration = () => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
         }
     };
 
@@ -184,6 +202,8 @@ export const ChatProvider = ({ children }) => {
             handleSelectSession,
             handleSendMessage,
             handleDeleteChat,
+            handleStopGeneration,
+            isGenerating,
             textareaRef
         }}>
             {children}

@@ -16,6 +16,7 @@ from retrievers.universal_retriever import get_universal_ensemble_retriever
 from llm.groq_llm import get_groq_llm, get_groq_llm_fast
 
 from graph.classifier import classify_query
+from graph.timetable_lookup import search_timetable
 
 
 # ── Query translation for multilingual support ──────────
@@ -34,199 +35,18 @@ def _get_translate_llm():
         )
     return _translate_llm
 
-# Common Roman Urdu words to detect Roman Urdu vs English
-_ROMAN_URDU_WORDS = {
-    # ── Question words ──
-    "kiya", "kya", "kia", "kon", "kaun", "kaise", "kese", "kahan", "kaha",
-    "kab", "kitna", "kitne", "kitni", "kyun", "kyu", "kiun", "kis", "kin",
-    "kidhar", "kidar", "kaisa", "kaisi", "kesy", "konsa", "konsi", "konse",
-
-    # ── Auxiliary / to-be verbs ──
-    "hai", "hain", "hy", "hen", "ho", "hua", "hui", "hue",
-    "tha", "thi", "the", "hoga", "hogi", "honge", "hoge",
-    "hota", "hoti", "hote",
-
-    # ── Common verbs ──
-    "bata", "batao", "btao", "bataiye", "bataye", "bataen", "batana",
-    "karo", "kro", "karein", "karain", "karna", "krna", "karega", "karegi",
-    "karta", "karti", "karte",
-    "chahiye", "chahte", "chahti", "chaiye", "chahia",
-    "milta", "milti", "milte", "mil", "milay", "milega", "milegi", "milenge",
-    "dena", "dein", "den", "dia", "diya", "dijiye", "dijie",
-    "lena", "lein", "len", "lia", "liya", "lijiye", "lijie",
-    "ana", "aana", "aao", "aayen", "ayen", "aaya", "aayi",
-    "jana", "jao", "jayein", "jayen", "jaye", "gaya", "gayi", "gaye",
-    "rakhna", "rakho", "rakhein", "rakha", "rakhi",
-    "dekho", "dekhna", "dekha", "dekhi", "dekhen",
-    "suno", "sunna", "suna", "suni", "sunen", "sunao", "sunaye",
-    "socho", "sochna", "socha", "sochi",
-    "samjho", "samajhna", "samjha", "samjhi", "samajh",
-    "padho", "parhna", "parho", "parha", "parhi",
-    "likho", "likhna", "likha", "likhi", "likhen",
-    "bolo", "bolna", "bola", "boli", "bolen",
-    "chalo", "chalna", "chala", "chali", "chalen", "chalo",
-    "ruko", "rukna", "ruka", "ruki", "ruken", "ruko",
-    "kholo", "kholna", "khola", "kholi", "kholen",
-    "bhejo", "bhejna", "bheja", "bheji", "bhejen",
-    "pocho", "poocho", "poochna", "puchna", "pucha", "puchi", "puchen",
-    "chahta", "chahti", "chahte",
-    "sakta", "sakti", "sakte", "sakein",
-    "mangta", "mangti", "mangte", "mango", "manga", "mangi",
-    "rok", "roken", "roko",
-    "chor", "choro", "chorna", "chora", "chori",
-    "laga", "lagi", "lagay", "lagta", "lagti", "lagte",
-    "ata", "aata", "aati", "ate", "aate",
-    "jata", "jaata", "jaati", "jate", "jaate",
-
-    # ── Pronouns & particles ──
-    "ka", "ki", "ke", "ky", "ko", "se", "sy", "ne",
-    "mein", "ma", "mai", "me",
-    "par", "pe", "pr", "upar", "neeche", "nichay",
-    "ya", "aur", "or",
-    "ye", "yeh", "wo", "woh", "is", "us", "in", "un",
-    "iss", "uss",
-    "mujhe", "mujhy", "muje", "muj",
-    "humein", "humen", "hamein", "hum", "ham",
-    "aap", "ap", "tum", "tu", "tumhein", "tumhen",
-    "iska", "iski", "iske", "uska", "uski", "uske",
-    "unka", "unki", "unke", "inka", "inki", "inke",
-    "mera", "meri", "mere", "hamara", "hamari", "hamare",
-    "tera", "teri", "tere", "tumhara", "tumhari", "tumhare",
-    "apna", "apni", "apne", "khud",
-    "sb", "sab", "koi", "kisi",
-
-    # ── Negation / affirmation ──
-    "nahi", "nahin", "nhi", "ni", "mat", "na",
-    "haan", "han", "ji", "jee",
-    "bilkul", "zaroor", "zarur",
-    "theek", "thek", "thik", "acha", "achha", "accha",
-    "sahi", "sahih", "galat",
-
-    # ── Connectors & conjunctions ──
-    "lekin", "magar", "lkin", "mgar",
-    "bhi", "bhe",
-    "toh", "to",
-    "phir", "fir", "fer",
-    "warna", "wrna",
-    "isliye", "islye", "islie",
-    "kyunke", "kyuki", "kyunki", "kionke", "chunke",
-    "agar", "agr",
-    "jab", "tab", "jaise", "jese", "waise", "wese",
-    "taake", "taky", "taki",
-
-    # ── Time & place words ──
-    "abhi", "abi", "ab",
-    "pehle", "phle", "pehlay", "pahle",
-    "baad", "bad", "baadme", "badme",
-    "kal", "aaj", "aj",
-    "subah", "dopahar", "shaam", "raat",
-    "yahan", "yaha", "wahan", "waha", "idhar", "udhar",
-    "andar", "bahar",
-    "sath", "saath",
-    "agay", "aage", "peechay", "piche",
-    "jaldi", "dheere", "dhire",
-    "hamesha", "kabhi", "kabhr",
-
-    # ── Adjectives & adverbs ──
-    "bohot", "bohat", "bahut", "bhot", "bht",
-    "acha", "achi", "ache",
-    "bura", "buri", "bure",
-    "bara", "bari", "bare", "bary", "bada", "badi", "bade",
-    "chota", "choti", "chote", "chhota", "chhoti",
-    "naya", "nayi", "naye", "nae",
-    "purana", "purani", "purane",
-    "zyada", "ziada", "zyda",
-    "kam", "kum",
-    "sasta", "sasti", "saste",
-    "mehnga", "mehngi", "mehnge",
-    "mushkil", "asan", "asaan",
-    "zaroori", "zaruri", "lazmi", "lazimi",
-    "khas", "aam",
-    "alag", "mukhtalif",
-    "kuch", "kch", "thora", "thoda", "thodi",
-
-    # ── Nouns (common) ──
-    "log", "banda", "bandi", "admi", "aadmi", "aurat", "larki", "larka",
-    "bachay", "bachey", "bacha", "bachi",
-    "ghar", "kamra", "makaan",
-    "paisa", "paise", "paisay", "rupay", "rupee",
-    "waqt", "waqat", "time",
-    "kaam", "kam",
-    "baat", "bat",
-    "jagah", "jaga",
-    "taraf", "janib",
-    "naam", "nam",
-    "din", "mahina", "saal", "hafta",
-
-    # ── Academic / university ──
-    "sukkur", "iba",
-    "dakhla", "dakhlay",
-    "tarika", "tariqa",
-    "imtihan", "imtehaan", "exam",
-    "marksheet", "result", "nateeja",
-    "professor", "ustad", "teacher",
-    "student", "talib",
-    "class", "jamat",
-    "semester",
-    "degree", "sanad",
-    "course", "courses",
-    "department", "dept",
-    "faculty",
-    "university", "uni",
-    "college",
-    "admission",
-    "fee", "fees",
-    "hostel",
-    "scholarship",
-    "library", "kutub",
-    "lab",
-    "campus",
-    "schedule", "waqfay",
-
-    # ── Greetings & common phrases ──
-    "assalam", "salam", "walaikum", "alaikum", "assalamualaikum",
-    "khuda", "allah", "hafiz", "khudahafiz",
-    "hal", "haal", "chal",
-    "bhai", "yaar", "dost",
-    "shukriya", "meherbani", "mashallah", "inshallah", "inshaallah",
-    "muaf", "maaf", "maafi",
-
-    # ── Prepositions / postpositions ──
-    "wala", "wali", "wale", "walay", "waly",
-    "liye", "lye",
-    "baare", "baaray", "baray",
-    "zariye", "zariay",
-    "beghair", "baghair", "bina",
-    "mutabiq", "mutabik",
-    "khilaf",
-    "darmiyan",
-
-    # ── Polite / formal ──
-    "please", "plz", "pls",
-    "thank", "thanks",
-    "sorry",
-    "karam", "nawazi",
-}
-
 def detect_language_script(text: str) -> str:
-    """Detect whether query is urdu_script, roman_urdu, or english."""
+    """Detect whether query is urdu_script or english."""
     # Check for Urdu/Arabic script characters
     urdu_chars = len(re.findall(r'[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]', text))
     if urdu_chars > 2:
         return "urdu_script"
     
-    # Check for Roman Urdu by looking for common Urdu words written in English
-    words = set(text.lower().split())
-    roman_urdu_matches = words.intersection(_ROMAN_URDU_WORDS)
-    if len(roman_urdu_matches) >= 2:
-        return "roman_urdu"
-    
     return "english"
 
 _RESPONSE_LANGUAGE_INSTRUCTIONS = {
     "english": "Respond in English.",
-    "urdu_script": "Respond entirely in Urdu script (اردو). Do NOT use English or Roman Urdu.",
-    "roman_urdu": "Respond in Roman Urdu (Urdu words written in English letters, e.g. 'Sukkur IBA ki attendance policy ke mutabiq...'). Do NOT use Urdu script or pure English.",
+    "urdu_script": "Respond entirely in Urdu script (اردو). Do NOT use English.",
 }
 
 _translate_prompt = ChatPromptTemplate.from_messages([
@@ -234,23 +54,13 @@ _translate_prompt = ChatPromptTemplate.from_messages([
      "You are a query translator. Your ONLY job is to translate the user's text into proper English.\n\n"
      "Rules:\n"
      "- If the text is already in proper English, output it exactly as-is.\n"
-     "- If the text is in Urdu script, Roman Urdu (Urdu written in English letters), Hindi, or Sindhi, translate it to proper English.\n"
+     "- If the text is in Urdu script, Hindi, or Sindhi, translate it to proper English.\n"
      "- Output ONLY the English translation. No explanations, no extra text, no quotes.\n\n"
      "Examples:\n"
      "Input: حاضری کی پالیسی کیا ہے؟\n"
      "Output: What is the attendance policy?\n\n"
      "Input: کمپیوٹر سائنس ڈیپارٹمنٹ کے ہیڈ کون ہیں؟\n"
      "Output: Who is the head of the Computer Science department?\n\n"
-     "Input: attendance policy kiya hai sukkur iba ke\n"
-     "Output: What is the attendance policy of Sukkur IBA?\n\n"
-     "Input: kiya hal hai\n"
-     "Output: How are you?\n\n"
-     "Input: admission ka tarika kiya hai\n"
-     "Output: What is the admission process?\n\n"
-     "Input: CS department mein konse professors hain\n"
-     "Output: Which professors are in the CS department?\n\n"
-     "Input: fee structure bata do\n"
-     "Output: Tell me the fee structure\n\n"
      "Input: What scholarships are available?\n"
      "Output: What scholarships are available?"),
     ("human", "{text}")
@@ -273,10 +83,157 @@ async def translate_query_for_retrieval(query: str, detected_lang: str) -> str:
         print(f"[TRANSLATE] Error: {e}, using original query")
         return query
 
+def normalize_retrieval_query(query: str) -> str:
+    """Expand common university terms and acronyms to improve retrieval."""
+    # Replace hod/HoD/Head of Department with "HOD" (since documents use "HOD")
+    query = re.sub(r'\b(?i:hod)\b', 'HOD', query)
+    query = re.sub(r'\b(?i:hods)\b', 'HODs', query)
+    query = re.sub(r'(?i:head of (the )?department)', 'HOD', query)
+    
+    # Replace VC with "Vice Chancellor" (already correct)
+    query = re.sub(r'\b(?i:vcs?)\b', 'Vice Chancellor', query)
+    return query
+
 # Get the directory of the current file (rag/graph)
 current_dir = Path(__file__).parent
 # Load .env from rag directory
 load_dotenv(current_dir.parent / ".env")
+
+# ── Role-based faculty lookup ────────────────────────────
+_faculty_roles = None
+
+def _load_faculty_roles():
+    """Scan faculty files once and build a role→document mapping.
+    Stores only essential fields (Name, Designation, Department, Email)
+    to keep LLM context compact.
+    """
+    global _faculty_roles
+    if _faculty_roles is not None:
+        return _faculty_roles
+
+    roles = {}
+    hod_entries = []
+    faculty_dir = current_dir.parent / "data" / "faculty"
+
+    for f in faculty_dir.glob("*.txt"):
+        try:
+            text = f.read_text(encoding="utf-8")
+        except Exception:
+            continue
+
+        # Extract only the essential header (Name, Designation, Dept, Email)
+        lines = text.split("\n")
+        essential_lines = []
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith(("Name:", "Designation:", "Department:", "Email:")):
+                essential_lines.append(stripped)
+        essential_text = "\n".join(essential_lines)
+
+        for line in lines:
+            stripped = line.strip()
+            if not stripped.lower().startswith("designation"):
+                continue
+
+            line_lower = stripped.lower()
+
+            # HOD detection
+            if "hod" in line_lower or "head of" in line_lower:
+                m = re.search(r'(?:hod|head)\s+(?:of\s+)?(.+)', stripped, re.IGNORECASE)
+                if m:
+                    dept = m.group(1).strip().rstrip(" Department").strip()
+                    dept_key = dept.lower().replace("(", "").replace(")", "").strip()
+                    roles[f"hod_{dept_key}"] = essential_text
+                    hod_entries.append(essential_text)
+                    print(f"[ROLES] Indexed HOD: '{dept}' → {f.name}")
+
+            # Dean detection
+            if "dean" in line_lower and "pro vice" not in line_lower:
+                m = re.search(r'dean\s+(?:of\s+)?(.+)', stripped, re.IGNORECASE)
+                if m:
+                    dept = m.group(1).strip()
+                    dept_key = dept.lower().replace("(", "").replace(")", "").strip()
+                    roles[f"dean_{dept_key}"] = essential_text
+                    print(f"[ROLES] Indexed Dean: '{dept}' → {f.name}")
+                else:
+                    roles["dean_general"] = essential_text
+                    print(f"[ROLES] Indexed Dean (general) → {f.name}")
+
+            # Vice Chancellor detection
+            if "vice chancellor" in line_lower:
+                if "pro" in line_lower:
+                    roles["pro_vice_chancellor"] = essential_text
+                    print(f"[ROLES] Indexed Pro Vice Chancellor → {f.name}")
+                else:
+                    roles["vice_chancellor"] = essential_text
+                    print(f"[ROLES] Indexed Vice Chancellor → {f.name}")
+            break  # only check Designation line
+
+    # Combined entry for "all HODs" / "list HODs" queries
+    if hod_entries:
+        roles["all_hods"] = "\n\n".join(hod_entries)
+
+    _faculty_roles = roles
+    print(f"[ROLES] Total role entries indexed: {len(roles)}")
+    return roles
+
+# Eagerly load roles at module import time (avoids first-query latency)
+_load_faculty_roles()
+
+
+def find_role_documents(query: str) -> str:
+    """If query is about a specific role (HOD/VC/Dean), return matching docs.
+    Returns empty string if no role match detected."""
+    roles = _load_faculty_roles()
+    q = query.lower()
+    matched_docs = []
+
+    # Detect HOD queries
+    hod_match = re.search(r'(?:hod|head of (?:the )?department)(?:\s+(?:of\s+)?(.+?))?(?:\?|$)', q)
+    if hod_match:
+        dept_query = (hod_match.group(1) or "").strip().rstrip("?").strip()
+
+        if not dept_query or "all" in q or "list" in q or "every" in q:
+            # "list all HODs" / "who are the HODs"
+            if "all_hods" in roles:
+                matched_docs.append(roles["all_hods"])
+                print(f"[ROLES] Matched: all HODs")
+        else:
+            # Try to find matching department
+            dept_query_clean = dept_query.lower().replace("(", "").replace(")", "").strip()
+            for key, doc in roles.items():
+                if key.startswith("hod_"):
+                    dept_key = key[4:]
+                    # Fuzzy match: check if query dept appears in key or vice versa
+                    if (dept_query_clean in dept_key or
+                        dept_key in dept_query_clean or
+                        any(w in dept_key for w in dept_query_clean.split() if len(w) > 2)):
+                        matched_docs.append(doc)
+                        print(f"[ROLES] Matched HOD: {key}")
+
+    # Detect Vice Chancellor queries
+    if re.search(r'\b(?:vice chancellor|pro vice chancellor)\b', q):
+        if "pro" in q and "pro_vice_chancellor" in roles:
+            matched_docs.append(roles["pro_vice_chancellor"])
+            print(f"[ROLES] Matched: Pro Vice Chancellor")
+        elif "vice_chancellor" in roles:
+            matched_docs.append(roles["vice_chancellor"])
+            print(f"[ROLES] Matched: Vice Chancellor")
+        elif "pro_vice_chancellor" in roles:
+            # Fallback: if no VC but PVC exists
+            matched_docs.append(roles["pro_vice_chancellor"])
+            print(f"[ROLES] Matched: Pro Vice Chancellor (fallback)")
+
+    # Detect Dean queries
+    if re.search(r'\bdean\b', q) and "vice" not in q:
+        for key, doc in roles.items():
+            if key.startswith("dean_"):
+                matched_docs.append(doc)
+                print(f"[ROLES] Matched Dean: {key}")
+
+    if matched_docs:
+        return "[Direct Faculty Role Lookup — HIGH PRIORITY CONTEXT]\n" + "\n\n---\n\n".join(matched_docs) + "\n\n"
+    return ""
 
 # ── Prompts ──────────────────────────────────────────────
 UNIVERSAL_SYSTEM_PROMPT = (current_dir.parent / "prompts" / "universal_system.txt").read_text(encoding="utf-8")
@@ -334,21 +291,25 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
 
     # Translate query to English for retrieval (documents are in English)
     retrieval_query = await translate_query_for_retrieval(query, detected_lang)
+    retrieval_query = normalize_retrieval_query(retrieval_query)
+    
     print(f"\n{'='*60}")
     print(f"[DEBUG] Original query (repr): {repr(query)}")
     print(f"[DEBUG] Detected language: {detected_lang}")
-    print(f"[DEBUG] Retrieval query (translated): {retrieval_query}")
+    print(f"[DEBUG] Retrieval query (translated & normalized): {retrieval_query}")
 
-    # Always use universal retriever — classification only used for auth check now
+    # Always use universal retriever — skip for Timetable (timetable data is injected directly)
     retriever = _get_universal_retriever()
-    
-    # Use the single universal prompt for everything
     active_prompt = universal_prompt
 
-    docs = await retriever.ainvoke(retrieval_query)
-    print(f"[DEBUG] Documents retrieved: {len(docs)}")
-    for i, d in enumerate(docs):
-        print(f"[DEBUG] Doc {i+1}: {d.page_content[:100]}...")
+    if category == "Timetable":
+        docs = []  # skip retriever — timetable context injected below
+        print(f"[DEBUG] Timetable query: skipping retriever")
+    else:
+        docs = await retriever.ainvoke(retrieval_query)
+        print(f"[DEBUG] Documents retrieved: {len(docs)}")
+        for i, d in enumerate(docs):
+            print(f"[DEBUG] Doc {i+1}: {d.page_content[:100]}...")
     print(f"{'='*60}\n")
 
     context = ""
@@ -356,8 +317,19 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
         source_info = f"[Source: {d.metadata.get('source', 'Unknown')}, Link: {d.metadata.get('source_link', 'N/A')}]"
         context += f"{source_info}\n{d.page_content}\n\n"
 
-    # Always include schemas index so LLM can provide download links
-    if SCHEMAS_INDEX_CONTENT:
+    # Inject role-based documents for HOD/VC/Dean queries
+    role_context = find_role_documents(retrieval_query)
+    if role_context:
+        context = role_context + context
+
+    # Inject timetable data if applicable
+    if category == "Timetable":
+        tt_context = search_timetable(retrieval_query)
+        if tt_context:
+            context = tt_context + context
+
+    # Include schemas index only for non-timetable queries
+    if SCHEMAS_INDEX_CONTENT and category != "Timetable":
         context = f"[Schema Download Links]\n{SCHEMAS_INDEX_CONTENT}\n\n{context}"
 
     chain = active_prompt | _get_llm()
@@ -368,6 +340,9 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
         input_messages_key="question",
         history_messages_key="chat_history",
     )
+
+    # Final debug of the context being sent to LLM
+    print(f"\n[LLM CONTEXT] --- START ---\n{context[:500]}...\n[LLM CONTEXT] --- END ---\n")
 
     response = await with_message_history.ainvoke(
         {
@@ -400,19 +375,25 @@ async def faculty_chat_stream(
 
     # Translate query to English for retrieval (documents are in English)
     retrieval_query = await translate_query_for_retrieval(query, detected_lang)
+    retrieval_query = normalize_retrieval_query(retrieval_query)
+    
     print(f"\n{'='*60}")
     print(f"[DEBUG-STREAM] Original query (repr): {repr(query)}")
     print(f"[DEBUG-STREAM] Detected language: {detected_lang}")
-    print(f"[DEBUG-STREAM] Retrieval query (translated): {retrieval_query}")
+    print(f"[DEBUG-STREAM] Retrieval query (translated & normalized): {retrieval_query}")
 
-    # Always use universal retriever
+    # Always use universal retriever — skip for Timetable (timetable data is injected directly)
     retriever = _get_universal_retriever()
     active_prompt = universal_prompt
 
-    docs = await retriever.ainvoke(retrieval_query)
-    print(f"[DEBUG-STREAM] Documents retrieved: {len(docs)}")
-    for i, d in enumerate(docs):
-        print(f"[DEBUG-STREAM] Doc {i+1}: {d.page_content[:100]}...")
+    if category == "Timetable":
+        docs = []  # skip retriever — timetable context injected below
+        print(f"[DEBUG-STREAM] Timetable query: skipping retriever")
+    else:
+        docs = await retriever.ainvoke(retrieval_query)
+        print(f"[DEBUG-STREAM] Documents retrieved: {len(docs)}")
+        for i, d in enumerate(docs):
+            print(f"[DEBUG-STREAM] Doc {i+1}: {d.page_content[:100]}...")
     print(f"{'='*60}\n")
 
     # Include source metadata in streaming context (matching non-streaming path)
@@ -421,8 +402,19 @@ async def faculty_chat_stream(
         source_info = f"[Source: {d.metadata.get('source', 'Unknown')}]"
         context += f"{source_info}\n{d.page_content}\n\n"
 
-    # Always include schemas index so LLM can provide download links
-    if SCHEMAS_INDEX_CONTENT:
+    # Inject role-based documents for HOD/VC/Dean queries
+    role_context = find_role_documents(retrieval_query)
+    if role_context:
+        context = role_context + context
+
+    # Inject timetable data if applicable
+    if category == "Timetable":
+        tt_context = search_timetable(retrieval_query)
+        if tt_context:
+            context = tt_context + context
+
+    # Include schemas index only for non-timetable queries
+    if SCHEMAS_INDEX_CONTENT and category != "Timetable":
         context = f"[Schema Download Links]\n{SCHEMAS_INDEX_CONTENT}\n\n{context}"
 
     # Get chat history for the session

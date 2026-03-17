@@ -12,7 +12,7 @@ Categories:
 
 4. Scholarships — Questions about financial aid, need-based scholarships, merit scholarships, scholarship application procedures, eligibility criteria, or funding opportunities.
 
-5. Timetable — Questions about class schedules, what classes are today or on a specific day, when a specific subject class is, or if a professor has a class right now.
+5. Timetable — Questions about class schedules, what classes are today or on a specific day, when a specific subject class is, or if a professor has a class right now. This includes asking about the schedule or classes of a specific teacher or professor.
 
 6. Academic — Questions about academic calendar, course outlines, programs offered, departments, curriculum, semesters, or degree requirements.
 
@@ -21,8 +21,9 @@ Categories:
 Classification rules:
 - If a query asks about HOW to get admission, admission requirements, or admission procedure, classify as Policies.
 - If a query asks about passing marks, grading criteria, CGPA calculation, or exam rules, classify as Policies.
-- If a query mentions a professor or teacher by name, classify as Faculty.
 - If a query asks about fee structure in the context of admission or rules, classify as Policies.
+- IMPORTANT: If a query asks about the SCHEDULE, CLASSES, or TIMETABLE of a teacher/professor (even if the teacher is mentioned by name), classify as Timetable — NOT Faculty.
+- If a query mentions a professor or teacher by name but is asking about their profile, contact info, email, designation, or qualifications, classify as Faculty.
 - If unsure between two categories, prefer the more specific one.
 
 Examples:
@@ -43,6 +44,10 @@ Examples:
 - "How to apply for need-based scholarship?" → Scholarships
 - "What is my class schedule today?" → Timetable
 - "Does Dr. Ali have a class on Monday?" → Timetable
+- "What are the classes of Dr. Ismail?" → Timetable
+- "Show me the timetable of Dr. Khan" → Timetable
+- "When does Dr. Niaz teach?" → Timetable
+- "What subjects does Prof. Irfan teach and when?" → Timetable
 - "What programs does the university offer?" → Academic
 - "Tell me about the CS department curriculum" → Academic
 - "Hello" → General

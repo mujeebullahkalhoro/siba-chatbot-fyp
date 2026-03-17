@@ -32,14 +32,16 @@ export const sendMessage = async (message, sessionId) => {
  * @param {string} message
  * @param {string} sessionId
  * @param {(token: string) => void} onToken  — called for each text chunk
+ * @param {AbortSignal} [signal] — optional AbortSignal to cancel the stream
  * @returns {Promise<string>} the full response once streaming finishes
  */
-export const sendMessageStream = async (message, sessionId, onToken) => {
+export const sendMessageStream = async (message, sessionId, onToken, signal) => {
   const response = await fetch(STREAM_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify({ message, session_id: sessionId }),
+    signal, // Pass the AbortSignal to fetch
   });
 
   if (!response.ok) {

@@ -26,23 +26,6 @@ export default function useTTS() {
         const urduChars = (text.match(/[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/g) || []).length;
         if (urduChars > 2) return "ur";
 
-        // Check for Roman Urdu common words
-        const romanUrduWords = new Set([
-            "hai", "hain", "hy", "ka", "ki", "ke", "ky", "ko", "se", "sy",
-            "mein", "ma", "mai", "aur", "or", "ye", "yeh", "wo", "woh",
-            "nahi", "nhi", "bhi", "kiya", "kya", "kon", "kaun",
-            "kaise", "kahan", "kyun", "hoga", "hogi",
-            "mujhe", "mujhy", "aap", "ap", "tum",
-            "lekin", "magar", "agar", "bohot", "bohat", "bahut",
-            "sath", "saath", "abhi", "pehle", "baad",
-            "batao", "bata", "karo", "karna",
-            "zaruri", "zaroori", "tarika",
-            "mutabiq", "baare", "bary",
-        ]);
-        const words = text.toLowerCase().split(/\s+/);
-        const matches = words.filter(w => romanUrduWords.has(w)).length;
-        if (matches >= 2) return "ur";
-
         return "en-US";
     }, []);
 

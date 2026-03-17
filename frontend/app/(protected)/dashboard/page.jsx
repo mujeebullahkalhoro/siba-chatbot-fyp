@@ -11,7 +11,9 @@ export default function ChatPage() {
     currentMessage,
     setCurrentMessage,
     isLoading,
+    isGenerating,
     handleSendMessage,
+    handleStopGeneration,
     textareaRef
   } = useChat();
   const { t, isRTL } = useLanguage();
@@ -43,6 +45,8 @@ export default function ChatPage() {
                 currentMessage={currentMessage}
                 setCurrentMessage={setCurrentMessage}
                 textareaRef={textareaRef}
+                isGenerating={isGenerating}
+                onStopGeneration={handleStopGeneration}
                 className="w-full"
               />
             </div>
@@ -56,6 +60,8 @@ export default function ChatPage() {
             currentMessage={currentMessage}
             setCurrentMessage={setCurrentMessage}
             textareaRef={textareaRef}
+            isGenerating={isGenerating}
+            onStopGeneration={handleStopGeneration}
             className="w-full"
           />
         </div>
@@ -78,6 +84,8 @@ export default function ChatPage() {
             currentMessage={currentMessage}
             setCurrentMessage={setCurrentMessage}
             textareaRef={textareaRef}
+            isGenerating={isGenerating}
+            onStopGeneration={handleStopGeneration}
             className="w-full"
           />
         </div>

@@ -137,6 +137,7 @@ export default function App() {
   const [currentMessage, setCurrentMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   // Chat History State
   const [sessions, setSessions] = useState([]);
@@ -184,6 +185,7 @@ export default function App() {
   const textareaRef = useRef(null);
   const messagesEndRef = useRef(null);
   const sessionIdRef = useRef(""); // For guest sessions
+  const abortControllerRef = useRef(null); // For streaming cancellation
   const hasMessages = messages.length > 0;
 
   // Font class for Urdu
@@ -284,6 +286,9 @@ export default function App() {
       activeSessionId = sessionIdRef.current;
     }
 
+    abortControllerRef.current = new AbortController();
+    setIsGenerating(true);
+
     try {
       // NOTE: We do NOT add an empty bot message here to avoid the "white box" artifact.
       // The bot message will be added when the first token arrives.
@@ -293,6 +298,13 @@ export default function App() {
       let fullText = "";
 
       await sendMessageStream(trimmed, activeSessionId, (token) => {
+        fullText += token;
+        
+        if (fullText.trim() === "LOGIN_REQUIRED") {
+          setIsModalOpen(true);
+          return;
+        }
+
         if (firstToken) {
           setIsLoading(false); // Hide thinking bubble
           firstToken = false;
@@ -306,8 +318,7 @@ export default function App() {
             )
           );
         }
-        fullText += token;
-      });
+      }, abortControllerRef.current.signal);
 
       // Auto-speak if voice-initiated query
       if (isVoiceQueryRef.current && fullText) {
@@ -316,16 +327,25 @@ export default function App() {
       }
 
     } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Stream cancelled by user');
+        return; // Don't show error message if user cancelled
+      }
       const errorText = t('home.error');
 
       setMessages((prev) => {
         return [...prev, { id: Date.now() + 2, text: errorText, sender: 'bot' }];
       });
-      if (error.message === "LOGIN_REQUIRED") {
-        setIsModalOpen(true);
-      }
     } finally {
       setIsLoading(false);
+      setIsGenerating(false);
+    }
+  };
+
+  const handleStopGeneration = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
     }
   };
 
@@ -506,6 +526,8 @@ export default function App() {
                 setCurrentMessage={setCurrentMessage}
                 textareaRef={textareaRef}
                 markVoiceQuery={markVoiceQuery}
+                isGenerating={isGenerating}
+                onStopGeneration={handleStopGeneration}
                 className="relative w-full max-w-[800px] px-4"
               />
             </div>
@@ -539,6 +561,8 @@ export default function App() {
               setCurrentMessage={setCurrentMessage}
               textareaRef={textareaRef}
               markVoiceQuery={markVoiceQuery}
+              isGenerating={isGenerating}
+              onStopGeneration={handleStopGeneration}
               className="w-full max-w-[800px] px-4 sm:px-6"
             />
           </div>

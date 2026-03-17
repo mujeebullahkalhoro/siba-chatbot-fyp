@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
@@ -7,6 +8,40 @@ from llm.groq_llm import get_groq_llm_fast
 # Load environment variables
 current_dir = Path(__file__).parent
 load_dotenv(current_dir.parent / ".env")
+
+# ── Pre-LLM keyword heuristics ───────────────────────────────────────────────
+# Patterns that unambiguously indicate a Timetable query even when a teacher
+# name is present (which would otherwise be mis-classified as Faculty).
+_TIMETABLE_PATTERNS = [
+    # "classes of Dr. X" / "class of Prof. Y"
+    r'\bclasses?\s+(?:of|for)\b',
+    # "where is Dr. X class" / "where is Prof. Y class"
+    r'\bwhere\s+is\b.{0,30}\bclass\b',
+    # "(whose) class is it"
+    r'\b(?:whose|who)\b.{0,20}\bclass\b',
+    # "timetable of …" / "time table of …"
+    r'\btime\s*table\s+(?:of|for)\b',
+    # "schedule of …"
+    r'\bschedule\s+(?:of|for)\b',
+    # "show (me) (the) timetable / schedule of / for …"
+    r'\bshow\b.{0,20}\b(?:timetable|schedule|routine)\b',
+    # "when does … teach" / "when does … have class"
+    r'\bwhen\s+does\b.{0,40}\b(?:teach|have\s+class)\b',
+    # "does Dr. X teach on …" / "does Prof. Y have class …"
+    r'\bdoes\b.{0,30}\b(?:teach|have\s+(?:a\s+)?class)\b',
+    # "what does Dr. X teach" — asking about teaching schedule / subjects+times
+    r'\bwhat\b.{0,20}\b(?:teach)\b',
+    # Mentioning a title + class keywords
+    r'\b(?:dr|prof|engr|mr|ms|miss)\.?\s+\w+.{0,20}\b(?:class|schedule|timetable)\b',
+]
+_TIMETABLE_RE = re.compile("|".join(_TIMETABLE_PATTERNS), re.IGNORECASE)
+
+
+def _pre_classify(query: str) -> str | None:
+    """Fast keyword-based pre-classification. Returns a category or None."""
+    if _TIMETABLE_RE.search(query):
+        return "Timetable"
+    return None
 
 # Load classification prompt
 prompt_path = current_dir.parent / "prompts" / "classification.txt"
@@ -77,6 +112,13 @@ async def classify_query(query: str) -> str:
     Returns the canonical category name as a string.
     Includes output validation and retry logic for robustness.
     """
+    # 1. Fast pre-LLM heuristic check (catches obvious Timetable queries)
+    pre_cat = _pre_classify(query)
+    if pre_cat:
+        print(f"[CLASSIFIER] Pre-classified (regex): '{query}' → {pre_cat}")
+        return pre_cat
+
+    # 2. LLM-based classification
     llm = _get_classifier_llm()
     
     prompt = ChatPromptTemplate.from_messages([

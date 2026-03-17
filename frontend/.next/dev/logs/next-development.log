@@ -1,6 +1,26 @@
-[00:00:05.929] Server  LOG      ✓ Ready in 5.1s
-[00:07:14.734] Server  LOG      ○ Compiling / ...
-[00:07:20.452] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:06.507] Server  LOG      ✓ Ready in 5.8s
+[00:00:29.968] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:43.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:44.195] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:44.195] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
+[00:06:44.807] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:06:44.808] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
+[00:06:45.331] Server  ERROR    ⨯ ReferenceError: messages is not defined
+[00:06:46.239] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:46.519] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
+[00:07:10.680] Server  ERROR    ⨯ ReferenceError: messages is not defined
+[00:07:11.320] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:11.830] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
+[00:07:32.863] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:07:33.949] Server  ERROR    ⨯ ReferenceError: messages is not defined
+[00:07:34.590] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:34.830] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
+[00:07:48.324] Server  ERROR    ⨯ ReferenceError: messages is not defined
+[00:07:48.994] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:49.830] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
+[00:09:12.721] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:13.036] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -13,82 +33,174 @@ It can also happen if the client has a browser extension installed which messes 
 %s%s https://react.dev/link/hydration-mismatch 
 
   ...
-    <RenderFromTemplateContext>
-      <ScrollAndFocusHandler segmentPath={[...]}>
-        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
-          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
-            <LoadingBoundary name="/" loading={null}>
-              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
-                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
-                  <RedirectBoundary>
-                    <RedirectErrorBoundary router={{...}}>
-                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
-                        <SegmentViewNode type="layout" pagePath="(home)/lay...">
-                          <SegmentTrieNode>
-                          <link>
-                          <RootLayout>
-                            <html lang="en">
-                              <body
-+                               className="__variable_188709 __variable_9a8899 antialiased"
--                               className="__variable_188709 __variable_9a8899 __variable_27baec antialiased"
-                              >
-                      ...
-          ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.jsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
++                           className="__variable_188709 __variable_9a8899 __variable_27baec antialiased"
+-                           className="__variable_188709 __variable_9a8899 __variable_27baec antialiased antigravity-s..."
+                          >
+                  ...
 
-[00:07:36.169] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:09:34.121] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:34.834] Server  ERROR    ⨯ ReferenceError: messages is not defined
+[00:10:35.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:35.774] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
+[00:11:05.172] Server  ERROR    ⨯ ./context/ChatContext.jsx
+Error:   × Return statement is not allowed here
+     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:184:1]
+ 181 │             }
+ 182 │         };
+ 183 │     
+ 184 │ ╭─▶     return (
+ 185 │ │           <ChatContext.Provider value={{
+ 186 │ │               messages,
+ 187 │ │               setMessages,
+ 188 │ │               currentMessage,
+ 189 │ │               setCurrentMessage,
+ 190 │ │               isLoading,
+ 191 │ │               sessions,
+ 192 │ │               currentSessionId,
+ 193 │ │               handleNewChat,
+ 194 │ │               handleSelectSession,
+ 195 │ │               handleSendMessage,
+ 196 │ │               handleDeleteChat,
+ 197 │ │               handleStopGeneration,
+ 198 │ │               isGenerating,
+ 199 │ │               textareaRef
+ 200 │ │           }}>
+ 201 │ │               {children}
+ 202 │ │           </ChatContext.Provider>
+ 203 │ ╰─▶     );
+ 204 │     };
+ 205 │     
+ 205 │     export const useChat = () => useContext(ChatContext);
+     ╰────
+  × Expression expected
+     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:204:1]
+ 201 │             {children}
+ 202 │         </ChatContext.Provider>
+ 203 │     );
+ 204 │ };
+     · ─
+ 205 │ 
+ 206 │ export const useChat = () => useContext(ChatContext);
+     ╰────
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <RenderFromTemplateContext>
-      <ScrollAndFocusHandler segmentPath={[...]}>
-        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
-          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
-            <LoadingBoundary name="/" loading={null}>
-              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
-                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
-                  <RedirectBoundary>
-                    <RedirectErrorBoundary router={{...}}>
-                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
-                        <SegmentViewNode type="layout" pagePath="(home)/lay...">
-                          <SegmentTrieNode>
-                          <link>
-                          <RootLayout>
-                            <html lang="en">
-                              <body
-+                               className="__variable_188709 __variable_9a8899 antialiased"
--                               className="__variable_188709 __variable_9a8899 __variable_27baec antialiased"
-                              >
-                      ...
-          ...
-
-[00:08:27.545] Server  WARN     ⚠ ./app/(home)/layout.jsx
-Attempted import error: 'AuthProvider' is not exported from '@/context/AuthContext' (imported as 'AuthProvider').
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./app/(home)/layout.jsx
-[00:08:28.002] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+./context/ChatContext.jsx
+./app/(protected)/dashboard/layout.jsx
+[00:11:05.825] Browser ERROR   ./context/ChatContext.jsx
+Error:   × Return statement is not allowed here
+     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:184:1]
+ 181 │             }
+ 182 │         };
+ 183 │     
+ 184 │ ╭─▶     return (
+ 185 │ │           <ChatContext.Provider value={{
+ 186 │ │               messages,
+ 187 │ │               setMessages,
+ 188 │ │               currentMessage,
+ 189 │ │               setCurrentMessage,
+ 190 │ │               isLoading,
+ 191 │ │               sessions,
+ 192 │ │               currentSessionId,
+ 193 │ │               handleNewChat,
+ 194 │ │               handleSelectSession,
+ 195 │ │               handleSendMessage,
+ 196 │ │               handleDeleteChat,
+ 197 │ │               handleStopGeneration,
+ 198 │ │               isGenerating,
+ 199 │ │               textareaRef
+ 200 │ │           }}>
+ 201 │ │               {children}
+ 202 │ │           </ChatContext.Provider>
+ 203 │ ╰─▶     );
+ 204 │     };
+ 205 │     
+ 205 │     export const useChat = () => useContext(ChatContext);
+     ╰────
+  × Expression expected
+     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:204:1]
+ 201 │             {children}
+ 202 │         </ChatContext.Provider>
+ 203 │     );
+ 204 │ };
+     · ─
+ 205 │ 
+ 206 │ export const useChat = () => useContext(ChatContext);
+     ╰────
 
-Check the render method of `HomeLayout`.
-[00:38:49.181] Browser ERROR   SSE parse error: {}
-[00:58:07.877] Browser ERROR   SSE parse error: {}
-[02:03:31.754] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:03:31.756] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:03:33.576] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:03:36.610] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:03:55.562] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:03:56.615] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:04:06.487] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:04:07.377] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:04:08.607] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:09:05.749] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:10:56.974] Server  ERROR    ⨯ TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
-[02:10:58.604] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'markVoiceQuery' of '(0 , _context_ChatContext__WEBPACK_IMPORTED_MODULE_4__.useChat)(...)' as it is undefined.
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/ChatContext.jsx
+./app/(protected)/dashboard/layout.jsx
+[00:11:24.850] Browser ERROR   ./context/ChatContext.jsx
+Error:   × Return statement is not allowed here
+     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:184:1]
+ 181 │             }
+ 182 │         };
+ 183 │     
+ 184 │ ╭─▶     return (
+ 185 │ │           <ChatContext.Provider value={{
+ 186 │ │               messages,
+ 187 │ │               setMessages,
+ 188 │ │               currentMessage,
+ 189 │ │               setCurrentMessage,
+ 190 │ │               isLoading,
+ 191 │ │               sessions,
+ 192 │ │               currentSessionId,
+ 193 │ │               handleNewChat,
+ 194 │ │               handleSelectSession,
+ 195 │ │               handleSendMessage,
+ 196 │ │               handleDeleteChat,
+ 197 │ │               handleStopGeneration,
+ 198 │ │               isGenerating,
+ 199 │ │               textareaRef
+ 200 │ │           }}>
+ 201 │ │               {children}
+ 202 │ │           </ChatContext.Provider>
+ 203 │ ╰─▶     );
+ 204 │     };
+ 205 │     
+ 205 │     export const useChat = () => useContext(ChatContext);
+     ╰────
+  × Expression expected
+     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:204:1]
+ 201 │             {children}
+ 202 │         </ChatContext.Provider>
+ 203 │     );
+ 204 │ };
+     · ─
+ 205 │ 
+ 206 │ export const useChat = () => useContext(ChatContext);
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/ChatContext.jsx
+./app/(protected)/dashboard/layout.jsx
+[00:11:27.301] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:28.821] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
+[00:11:52.202] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:17:27.007] Browser LOG     Stream cancelled by user
