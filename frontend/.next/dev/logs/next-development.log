@@ -1,206 +1,158 @@
-[00:00:06.507] Server  LOG      ✓ Ready in 5.8s
-[00:00:29.968] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:43.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:44.195] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:44.195] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+[00:00:05.620] Server  LOG      ✓ Ready in 5s
+[00:01:28.126] Server  LOG      ○ Compiling / ...
+[00:01:30.431] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:47.940] Server  LOG      ○ Compiling /dashboard ...
+[00:04:50.420] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:50.625] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:04:50.625] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
-[00:06:44.807] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:06:44.808] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
-[00:06:45.331] Server  ERROR    ⨯ ReferenceError: messages is not defined
-[00:06:46.239] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:46.519] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
-[00:07:10.680] Server  ERROR    ⨯ ReferenceError: messages is not defined
-[00:07:11.320] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:07:11.830] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
-[00:07:32.863] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:07:33.949] Server  ERROR    ⨯ ReferenceError: messages is not defined
-[00:07:34.590] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:07:34.830] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
-[00:07:48.324] Server  ERROR    ⨯ ReferenceError: messages is not defined
-[00:07:48.994] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:07:49.830] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
-[00:09:12.721] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:13.036] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.jsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <RootLayout>
-                        <html lang="en">
-                          <body
-+                           className="__variable_188709 __variable_9a8899 __variable_27baec antialiased"
--                           className="__variable_188709 __variable_9a8899 __variable_27baec antialiased antigravity-s..."
-                          >
-                  ...
-
-[00:09:34.121] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:10:34.834] Server  ERROR    ⨯ ReferenceError: messages is not defined
-[00:10:35.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:10:35.774] Browser ERROR   uncaughtError: ReferenceError: messages is not defined
-[00:11:05.172] Server  ERROR    ⨯ ./context/ChatContext.jsx
-Error:   × Return statement is not allowed here
-     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:184:1]
- 181 │             }
- 182 │         };
- 183 │     
- 184 │ ╭─▶     return (
- 185 │ │           <ChatContext.Provider value={{
- 186 │ │               messages,
- 187 │ │               setMessages,
- 188 │ │               currentMessage,
- 189 │ │               setCurrentMessage,
- 190 │ │               isLoading,
- 191 │ │               sessions,
- 192 │ │               currentSessionId,
- 193 │ │               handleNewChat,
- 194 │ │               handleSelectSession,
- 195 │ │               handleSendMessage,
- 196 │ │               handleDeleteChat,
- 197 │ │               handleStopGeneration,
- 198 │ │               isGenerating,
- 199 │ │               textareaRef
- 200 │ │           }}>
- 201 │ │               {children}
- 202 │ │           </ChatContext.Provider>
- 203 │ ╰─▶     );
- 204 │     };
- 205 │     
- 205 │     export const useChat = () => useContext(ChatContext);
-     ╰────
-  × Expression expected
-     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:204:1]
- 201 │             {children}
- 202 │         </ChatContext.Provider>
- 203 │     );
- 204 │ };
-     · ─
- 205 │ 
- 206 │ export const useChat = () => useContext(ChatContext);
+[00:32:36.856] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:32:37.637] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:50.242] Server  ERROR    ⨯ ./components/SideBar.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │         )'
+     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
+ 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
+ 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
+ 191 │               </button>
+ 192 │ ╭─▶         </div>
+ 193 │ │   
+ 194 │ ╰─▶         {/* Chat History and Search */}
+ 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
+ 196 │     
+ 196 │               {/* Search Input Area */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./context/ChatContext.jsx
-./app/(protected)/dashboard/layout.jsx
-[00:11:05.825] Browser ERROR   ./context/ChatContext.jsx
-Error:   × Return statement is not allowed here
-     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:184:1]
- 181 │             }
- 182 │         };
- 183 │     
- 184 │ ╭─▶     return (
- 185 │ │           <ChatContext.Provider value={{
- 186 │ │               messages,
- 187 │ │               setMessages,
- 188 │ │               currentMessage,
- 189 │ │               setCurrentMessage,
- 190 │ │               isLoading,
- 191 │ │               sessions,
- 192 │ │               currentSessionId,
- 193 │ │               handleNewChat,
- 194 │ │               handleSelectSession,
- 195 │ │               handleSendMessage,
- 196 │ │               handleDeleteChat,
- 197 │ │               handleStopGeneration,
- 198 │ │               isGenerating,
- 199 │ │               textareaRef
- 200 │ │           }}>
- 201 │ │               {children}
- 202 │ │           </ChatContext.Provider>
- 203 │ ╰─▶     );
- 204 │     };
- 205 │     
- 205 │     export const useChat = () => useContext(ChatContext);
-     ╰────
-  × Expression expected
-     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:204:1]
- 201 │             {children}
- 202 │         </ChatContext.Provider>
- 203 │     );
- 204 │ };
-     · ─
- 205 │ 
- 206 │ export const useChat = () => useContext(ChatContext);
+./components/SideBar.jsx
+./app/(home)/page.jsx
+[00:45:50.256] Browser ERROR   ./components/SideBar.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │         )'
+     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
+ 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
+ 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
+ 191 │               </button>
+ 192 │ ╭─▶         </div>
+ 193 │ │   
+ 194 │ ╰─▶         {/* Chat History and Search */}
+ 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
+ 196 │     
+ 196 │               {/* Search Input Area */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./context/ChatContext.jsx
+./components/SideBar.jsx
 ./app/(protected)/dashboard/layout.jsx
-[00:11:24.850] Browser ERROR   ./context/ChatContext.jsx
-Error:   × Return statement is not allowed here
-     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:184:1]
- 181 │             }
- 182 │         };
- 183 │     
- 184 │ ╭─▶     return (
- 185 │ │           <ChatContext.Provider value={{
- 186 │ │               messages,
- 187 │ │               setMessages,
- 188 │ │               currentMessage,
- 189 │ │               setCurrentMessage,
- 190 │ │               isLoading,
- 191 │ │               sessions,
- 192 │ │               currentSessionId,
- 193 │ │               handleNewChat,
- 194 │ │               handleSelectSession,
- 195 │ │               handleSendMessage,
- 196 │ │               handleDeleteChat,
- 197 │ │               handleStopGeneration,
- 198 │ │               isGenerating,
- 199 │ │               textareaRef
- 200 │ │           }}>
- 201 │ │               {children}
- 202 │ │           </ChatContext.Provider>
- 203 │ ╰─▶     );
- 204 │     };
- 205 │     
- 205 │     export const useChat = () => useContext(ChatContext);
-     ╰────
-  × Expression expected
-     ╭─[D:\siba-chatbot-fyp\frontend\context\ChatContext.jsx:204:1]
- 201 │             {children}
- 202 │         </ChatContext.Provider>
- 203 │     );
- 204 │ };
-     · ─
- 205 │ 
- 206 │ export const useChat = () => useContext(ChatContext);
+[00:45:50.883] Browser ERROR   ./components/SideBar.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │         )'
+     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
+ 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
+ 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
+ 191 │               </button>
+ 192 │ ╭─▶         </div>
+ 193 │ │   
+ 194 │ ╰─▶         {/* Chat History and Search */}
+ 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
+ 196 │     
+ 196 │               {/* Search Input Area */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./context/ChatContext.jsx
+./components/SideBar.jsx
+./app/(home)/page.jsx
+[00:45:52.918] Server  ERROR    ⨯ ./components/SideBar.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │         )'
+     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
+ 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
+ 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
+ 191 │               </button>
+ 192 │ ╭─▶         </div>
+ 193 │ │   
+ 194 │ ╰─▶         {/* Chat History and Search */}
+ 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
+ 196 │     
+ 196 │               {/* Search Input Area */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/SideBar.jsx
+./app/(home)/page.jsx
+[00:45:52.926] Browser ERROR   ./components/SideBar.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │         )'
+     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
+ 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
+ 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
+ 191 │               </button>
+ 192 │ ╭─▶         </div>
+ 193 │ │   
+ 194 │ ╰─▶         {/* Chat History and Search */}
+ 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
+ 196 │     
+ 196 │               {/* Search Input Area */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/SideBar.jsx
 ./app/(protected)/dashboard/layout.jsx
-[00:11:27.301] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:28.821] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+[00:46:02.866] Browser ERROR   ./components/SideBar.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │         )'
+     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
+ 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
+ 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
+ 191 │               </button>
+ 192 │ ╭─▶         </div>
+ 193 │ │   
+ 194 │ ╰─▶         {/* Chat History and Search */}
+ 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
+ 196 │     
+ 196 │               {/* Search Input Area */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/SideBar.jsx
+./app/(home)/page.jsx
+[00:49:30.730] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:30.963] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:49:31.354] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
-[00:11:52.202] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:17:27.007] Browser LOG     Stream cancelled by user
+[00:49:31.679] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:55:05.693] Server  ERROR   (node:11788) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[01:14:27.170] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:27.355] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:27.717] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:15:35.499] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:16:10.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:19:48.871] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:19:49.101] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:19:49.101] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getSharedChat } from '@/services/chatService';
 import ChatMessages from '@/components/ChatMessages';
@@ -13,7 +13,7 @@ import remarkGfm from 'remark-gfm';
 // Let's check ChatMessages.jsx content first to see if it's reusable for read-only.
 // If not, I'll build a simple reader here.
 
-const sibaDarkBlue = '#0056b3';
+const sibaDarkBlue = '#003e80';
 const sibaDarkText = '#333333';
 
 const ReadOnlyChatBubble = ({ message }) => {
@@ -33,7 +33,7 @@ const ReadOnlyChatBubble = ({ message }) => {
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         components={{
-                            a: ({ node, ...props }) => <a {...props} className={isUser ? 'text-white underline' : 'text-blue-600 underline'} />,
+                            a: ({ node, ...props }) => <a {...props} className={isUser ? 'text-white underline' : 'underline'} style={{ color: isUser ? 'white' : '#003e80' }} />,
                             p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
                             table: ({ node, ...props }) => <div className="overflow-x-auto my-2"><table {...props} className="min-w-full divide-y divide-gray-300 border border-gray-300 text-sm" /></div>,
                             thead: ({ node, ...props }) => <thead {...props} className={isUser ? 'bg-white/10' : 'bg-gray-300'} />,
@@ -126,12 +126,15 @@ export default function SharedChatPage() {
                 <p className="text-sm text-gray-600 mb-2">
                     Want to ask your own questions?
                 </p>
-                <a
+                <Link
                     href="/"
-                    className="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition-colors shadow-sm"
+                    className="inline-block px-6 py-2 text-white font-medium rounded-full transition-colors shadow-sm"
+                    style={{ backgroundColor: '#ea6645' }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#d95a3d'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ea6645'}
                 >
                     Start Your Own Chat
-                </a>
+                </Link>
             </div>
         </div>
     );

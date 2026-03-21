@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#0f172a",
+            background: "#003e80",
             fontFamily: "'Inter', 'Segoe UI', sans-serif",
         }}>
             <div style={{
@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
                     <div style={{
                         width: 48, height: 48,
                         borderRadius: 10,
-                        background: "#0f172a",
+                        background: "#ea6645",
                         display: "inline-flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                     </div>
-                    <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: "#0f172a" }}>
+                    <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: "#003e80" }}>
                         Admin Panel
                     </h1>
                     <p style={{ margin: "4px 0 0", fontSize: 13, color: "#64748b" }}>
@@ -102,7 +102,7 @@ export default function AdminLoginPage() {
                                 boxSizing: "border-box",
                                 transition: "border 0.15s",
                             }}
-                            onFocus={(e) => e.target.style.borderColor = "#0f172a"}
+                            onFocus={(e) => e.target.style.borderColor = "#ea6645"}
                             onBlur={(e) => e.target.style.borderColor = "#d1d5db"}
                         />
                     </div>
@@ -127,7 +127,7 @@ export default function AdminLoginPage() {
                                 boxSizing: "border-box",
                                 transition: "border 0.15s",
                             }}
-                            onFocus={(e) => e.target.style.borderColor = "#0f172a"}
+                            onFocus={(e) => e.target.style.borderColor = "#ea6645"}
                             onBlur={(e) => e.target.style.borderColor = "#d1d5db"}
                         />
                     </div>
@@ -140,7 +140,7 @@ export default function AdminLoginPage() {
                             padding: "11px 0",
                             borderRadius: 6,
                             border: "none",
-                            background: loading ? "#94a3b8" : "#0f172a",
+                            background: loading ? "#94a3b8" : "#ea6645",
                             color: "#fff",
                             fontWeight: 600,
                             fontSize: 14,

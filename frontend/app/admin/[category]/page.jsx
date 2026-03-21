@@ -17,6 +17,7 @@ const CATEGORY_LABELS = {
     schemas: "Course Schemas",
     scholarships: "Scholarships",
     introduction: "Introduction",
+    fyp: "FYP Documents",
 };
 
 export default function CategoryPage() {

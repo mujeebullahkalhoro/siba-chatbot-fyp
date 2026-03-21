@@ -2333,6 +2333,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --siba-blue: #003e80;
+  --siba-orange: #ea6645;
 }
 @media (prefers-color-scheme: dark) {
   :root {

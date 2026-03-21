@@ -45,6 +45,11 @@ const SIDEBAR_ITEMS = [
         )
     },
     {
+        key: "fyp", label: "FYP Documents", icon: (
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+        )
+    },
+    {
         key: "rebuild", label: "Vector Database", icon: (
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
         )
@@ -54,25 +59,23 @@ const SIDEBAR_ITEMS = [
 export default function AdminLayout({ children }) {
     const router = useRouter();
     const pathname = usePathname();
-    const [ready, setReady] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        if (pathname === "/admin") {
-            setReady(true);
-            return;
-        }
-        if (!isAdminLoggedIn()) {
+        const t = setTimeout(() => setIsMounted(true), 0);
+        return () => clearTimeout(t);
+    }, []);
+
+    useEffect(() => {
+        if (isMounted && pathname !== "/admin" && !isAdminLoggedIn()) {
             router.replace("/admin");
-        } else {
-            setReady(true);
         }
-    }, [pathname, router]);
+    }, [isMounted, pathname, router]);
 
-    if (pathname === "/admin") {
-        return <>{children}</>;
-    }
+    if (!isMounted) return null;
 
-    if (!ready) return null;
+    const authenticated = pathname === "/admin" || isAdminLoggedIn();
+    if (!authenticated && pathname !== "/admin") return null;
 
     const activeKey = pathname.split("/admin/")[1]?.split("/")[0] || "dashboard";
 
@@ -81,8 +84,8 @@ export default function AdminLayout({ children }) {
             {/* Sidebar */}
             <aside style={{
                 width: 250,
-                background: "#0f172a",
-                color: "#e2e8f0",
+                background: "#003e80",
+                color: "#f8fafc",
                 display: "flex",
                 flexDirection: "column",
                 flexShrink: 0,
@@ -98,7 +101,7 @@ export default function AdminLayout({ children }) {
                     <div style={{
                         width: 34, height: 34,
                         borderRadius: 8,
-                        background: "linear-gradient(135deg, #0056b3, #0ea5e9)",
+                        background: "linear-gradient(135deg, #003e80, #ea6645)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -126,8 +129,8 @@ export default function AdminLayout({ children }) {
                                     display: "flex", alignItems: "center", gap: 10,
                                     width: "100%", padding: "9px 12px", borderRadius: 6,
                                     border: "none",
-                                    background: isActive ? "rgba(14, 165, 233, 0.12)" : "transparent",
-                                    color: isActive ? "#38bdf8" : "#94a3b8",
+                                    background: isActive ? "rgba(234, 102, 69, 0.12)" : "transparent",
+                                    color: isActive ? "#ea6645" : "#94a3b8",
                                     fontWeight: isActive ? 600 : 400, fontSize: 13,
                                     cursor: "pointer", textAlign: "left", marginBottom: 1,
                                     transition: "all 0.15s",
@@ -142,7 +145,7 @@ export default function AdminLayout({ children }) {
                     <div style={{ fontSize: 10, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.05em", padding: "16px 12px 6px" }}>
                         Data Categories
                     </div>
-                    {SIDEBAR_ITEMS.slice(2, 8).map((item) => {
+                    {SIDEBAR_ITEMS.slice(2, 9).map((item) => {
                         const isActive = activeKey === item.key;
                         return (
                             <button
@@ -152,8 +155,8 @@ export default function AdminLayout({ children }) {
                                     display: "flex", alignItems: "center", gap: 10,
                                     width: "100%", padding: "9px 12px", borderRadius: 6,
                                     border: "none",
-                                    background: isActive ? "rgba(14, 165, 233, 0.12)" : "transparent",
-                                    color: isActive ? "#38bdf8" : "#94a3b8",
+                                    background: isActive ? "rgba(234, 102, 69, 0.12)" : "transparent",
+                                    color: isActive ? "#ea6645" : "#94a3b8",
                                     fontWeight: isActive ? 600 : 400, fontSize: 13,
                                     cursor: "pointer", textAlign: "left", marginBottom: 1,
                                     transition: "all 0.15s",
@@ -168,7 +171,7 @@ export default function AdminLayout({ children }) {
                     <div style={{ fontSize: 10, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.05em", padding: "16px 12px 6px" }}>
                         System
                     </div>
-                    {SIDEBAR_ITEMS.slice(8).map((item) => {
+                    {SIDEBAR_ITEMS.slice(9).map((item) => {
                         const isActive = activeKey === item.key;
                         return (
                             <button
@@ -178,8 +181,8 @@ export default function AdminLayout({ children }) {
                                     display: "flex", alignItems: "center", gap: 10,
                                     width: "100%", padding: "9px 12px", borderRadius: 6,
                                     border: "none",
-                                    background: isActive ? "rgba(14, 165, 233, 0.12)" : "transparent",
-                                    color: isActive ? "#38bdf8" : "#94a3b8",
+                                    background: isActive ? "rgba(234, 102, 69, 0.12)" : "transparent",
+                                    color: isActive ? "#ea6645" : "#94a3b8",
                                     fontWeight: isActive ? 600 : 400, fontSize: 13,
                                     cursor: "pointer", textAlign: "left", marginBottom: 1,
                                     transition: "all 0.15s",
@@ -225,7 +228,7 @@ export default function AdminLayout({ children }) {
                     </h2>
                     <div style={{
                         width: 32, height: 32, borderRadius: "50%",
-                        background: "#0f172a",
+                        background: "#ea6645",
                         display: "flex", alignItems: "center", justifyContent: "center",
                         color: "#fff", fontSize: 12, fontWeight: 600,
                     }}>A</div>

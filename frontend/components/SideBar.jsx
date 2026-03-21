@@ -182,7 +182,10 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
         <div className={hideText ? "px-2 py-4" : "p-4"}>
           <button
             onClick={onNewChat}
-            className={`flex items-center justify-center w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition ${hideText ? "p-2 h-[46px]" : "px-4"}`}
+            className={`flex items-center justify-center w-full text-white font-semibold py-2 rounded-lg transition ${hideText ? "p-2 h-[46px]" : "px-4"}`}
+            style={{ backgroundColor: '#ea6645' }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#d95a3d'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ea6645'}
           >
             <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
             {!hideText && <span>{t('sidebar.newChat')}</span>}

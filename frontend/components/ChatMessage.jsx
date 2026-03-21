@@ -21,7 +21,7 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
           ? "text-white rounded-t-xl rounded-bl-xl"
           : "bg-gray-200 text-gray-800 rounded-t-xl rounded-br-xl"
           }`}
-        style={{ backgroundColor: isUser ? '#0056b3' : undefined }}
+        style={{ backgroundColor: isUser ? '#003e80' : undefined }}
       >
         <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert text-white' : 'text-gray-800'}`}>
           <ReactMarkdown
@@ -34,7 +34,8 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
                   <a
                     {...other}
                     href={href}
-                    className={isUser ? 'text-white underline' : 'text-blue-600 underline'}
+                    className={isUser ? 'text-white underline' : 'underline'}
+                    style={{ color: isUser ? undefined : '#003e80' }}
                     target={isSchema ? "_blank" : undefined}
                     rel={isSchema ? "noopener noreferrer" : undefined}
                   />
@@ -82,7 +83,8 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
             {ttsHook && (
             <button
               onClick={() => ttsHook.speak(text, message.id)}
-              className={`p-1 rounded transition-colors ${isThisSpeaking ? 'text-blue-600 animate-pulse' : 'text-gray-400 hover:text-gray-600'}`}
+              className={`p-1 rounded transition-colors ${isThisSpeaking ? 'animate-pulse' : 'text-gray-400 hover:text-gray-600'}`}
+              style={{ color: isThisSpeaking ? '#003e80' : undefined }}
               title={isThisSpeaking ? 'Stop' : 'Listen'}
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">

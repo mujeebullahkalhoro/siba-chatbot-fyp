@@ -1,4 +1,9 @@
 {
-  "/(home)/page": "app/(home)/page.js",
-  "/(protected)/dashboard/page": "app/(protected)/dashboard/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/analytics/page": "app/admin/analytics/page.js",
+  "/(protected)/dashboard/page": "app/(protected)/dashboard/page.js",
+  "/admin/rebuild/page": "app/admin/rebuild/page.js",
+  "/admin/[category]/page": "app/admin/[category]/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/(home)/page": "app/(home)/page.js"
 }

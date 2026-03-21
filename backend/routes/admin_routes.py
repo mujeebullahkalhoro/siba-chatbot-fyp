@@ -30,6 +30,7 @@ CATEGORY_DIRS = {
     "schemas":       RAG_DATA_ROOT / "schema",
     "scholarships":  RAG_DATA_ROOT / "scholarships",
     "introduction":  RAG_DATA_ROOT / "introduction",
+    "fyp":           RAG_DATA_ROOT / "FYP",
 }
 
 # ── Global maintenance state ─────────────────────────────

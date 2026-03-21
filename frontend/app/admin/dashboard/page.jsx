@@ -10,6 +10,7 @@ const CATEGORY_META = {
     schemas: { label: "Course Schemas", color: "#f59e0b", desc: "Course schema and curriculum PDFs" },
     scholarships: { label: "Scholarships", color: "#ec4899", desc: "Scholarship documents and details" },
     introduction: { label: "Introduction", color: "#06b6d4", desc: "University introduction materials" },
+    fyp: { label: "FYP", color: "#6366f1", desc: "Final Year Project documentation" },
 };
 
 function timeAgo(isoString) {

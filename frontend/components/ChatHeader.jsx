@@ -27,7 +27,8 @@ export default function ChatHeader({ onMenuClick, onShare }) {
       {/*  Share Button (Visible only on desktop - hidden on mobile) */}
       <button
         onClick={onShare}
-        className="hidden md:flex items-center bg-white text-blue-800 text-sm font-medium py-1.5 px-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        className="hidden md:flex items-center bg-white text-sm font-medium py-1.5 px-3 rounded-lg hover:bg-gray-100 cursor-pointer"
+        style={{ color: '#003e80' }}
       >
         <Share2 className="w-4 h-4 mr-2" />
         {t('chatHeader.share')}
