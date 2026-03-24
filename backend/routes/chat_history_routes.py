@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List, Optional
+from pydantic import BaseModel
 from database import chat_sessions_collection, chat_messages_collection
 from models.chat_model import ChatSession, ChatMessage, ChatSessionCreate, ChatSessionUpdate
 from models.user_model import UserPublic
@@ -60,6 +61,27 @@ async def delete_chat_session(session_id: str, user: dict = Depends(get_current_
     await chat_sessions_collection.delete_one({"_id": ObjectId(session_id)})
     await chat_messages_collection.delete_many({"session_id": session_id})
     return {"status": "success"}
+
+class RenameSessionRequest(BaseModel):
+    title: str
+
+@router.patch("/api/chats/{session_id}")
+async def rename_chat_session(session_id: str, body: RenameSessionRequest, user: dict = Depends(get_current_user)):
+    user_id = str(user.get("email"))
+    session = await chat_sessions_collection.find_one({"_id": ObjectId(session_id), "user_id": user_id})
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    new_title = body.title.strip()
+    if not new_title:
+        raise HTTPException(status_code=400, detail="Title cannot be empty")
+
+    await chat_sessions_collection.update_one(
+        {"_id": ObjectId(session_id)},
+        {"$set": {"title": new_title, "updated_at": datetime.utcnow()}}
+    )
+    return {"status": "success", "title": new_title}
+
 
 @router.post("/api/chats/{session_id}/share")
 async def share_chat_session(session_id: str, user: dict = Depends(get_current_user)):

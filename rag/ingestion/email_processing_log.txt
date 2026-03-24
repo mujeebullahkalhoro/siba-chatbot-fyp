@@ -26,3 +26,31 @@ Traceback (most recent call last):
     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+Connecting to imap.gmail.com...
+Traceback (most recent call last):
+  File "d:\siba-chatbot-fyp\rag\ingestion\email_handler.py", line 179, in fetch_and_process_emails
+    mail.login(EMAIL_USER, EMAIL_PASS)
+  File "C:\Users\muham\AppData\Local\Programs\Python\Python311\Lib\imaplib.py", line 612, in login
+    raise self.error(dat[-1])
+imaplib.IMAP4.error: b'[AUTHENTICATIONFAILED] Invalid credentials (Failure)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\siba-chatbot-fyp\rag\ingestion\email_handler.py", line 213, in <module>
+    fetch_and_process_emails()
+  File "d:\siba-chatbot-fyp\rag\ingestion\email_handler.py", line 210, in fetch_and_process_emails
+    print(f"\u274c Error: {e}")
+  File "C:\Users\muham\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>

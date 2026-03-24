@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import VoiceRecorder from "./VoiceRecorder";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 const sibaOrange = "#ea6645";
 
@@ -19,6 +20,7 @@ export default function ChatInput({
   const taRef = textareaRef ?? localRef; // safe fallback
   const [isRecording, setIsRecording] = useState(false);
   const { t, isRTL } = useLanguage();
+  const { darkMode } = useTheme();
 
   const handleTextareaChange = (e) => {
     const v = e.target.value ?? "";
@@ -60,8 +62,10 @@ export default function ChatInput({
     <form
       onSubmit={handleSubmit}
       className={[
-        "relative flex items-center bg-white border border-gray-200",
-        "rounded-xl shadow-lg px-3 py-2",
+        "relative flex items-center border rounded-xl shadow-lg px-3 py-2 transition-colors duration-300",
+        darkMode
+          ? "bg-slate-800 border-slate-700"
+          : "bg-white border-gray-200",
         className,
       ].join(" ")}
     >
@@ -74,7 +78,7 @@ export default function ChatInput({
         }}
         placeholder={t("input.placeholder")}
         dir={isRTL ? "rtl" : "ltr"}
-        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar`}
+        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar bg-transparent ${darkMode ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-400'}`}
         rows={1}
         style={{ lineHeight: "1.5", transition: "height 0.1s ease-out" }}
       />

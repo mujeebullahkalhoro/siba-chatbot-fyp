@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Noto_Nastaliq_Urdu } from "next/font/google";
 import "./globals.css";
 import MaintenanceBanner from "@/components/MaintenanceBanner";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +32,10 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${nastaliqUrdu.variable} antialiased`}
       >
         <LanguageProvider>
-          <MaintenanceBanner />
-          {children}
+          <ThemeProvider>
+            <MaintenanceBanner />
+            {children}
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

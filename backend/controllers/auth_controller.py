@@ -6,7 +6,7 @@ from fastapi import HTTPException, status
 from jose import jwt, JWTError
 from config import JWT_SECRET, JWT_ALGORITHM
 
-ACCESS_TOKEN_EXPIRES_SECONDS: int = 3600
+ACCESS_TOKEN_EXPIRES_SECONDS: int = 604800  # 7 days
 IBA_DOMAIN: str = "@iba-suk.edu.pk"
 
 def create_token(data: Dict[str, Any], expires_seconds: int = ACCESS_TOKEN_EXPIRES_SECONDS) -> str:

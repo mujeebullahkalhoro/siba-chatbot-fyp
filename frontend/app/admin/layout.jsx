@@ -72,10 +72,23 @@ export default function AdminLayout({ children }) {
         }
     }, [isMounted, pathname, router]);
 
-    if (!isMounted) return null;
+    if (!isMounted) {
+        return (
+            <div style={{ minHeight: "100vh", fontFamily: "'Inter', 'Segoe UI', sans-serif" }}>
+                {children}
+            </div>
+        );
+    }
 
-    const authenticated = pathname === "/admin" || isAdminLoggedIn();
-    if (!authenticated && pathname !== "/admin") return null;
+    const showSidebar = pathname !== "/admin" && isAdminLoggedIn();
+
+    if (!showSidebar) {
+        return (
+            <div style={{ minHeight: "100vh", fontFamily: "'Inter', 'Segoe UI', sans-serif", background: "#003e80" }}>
+                {children}
+            </div>
+        );
+    }
 
     const activeKey = pathname.split("/admin/")[1]?.split("/")[0] || "dashboard";
 
@@ -110,13 +123,13 @@ export default function AdminLayout({ children }) {
                     </div>
                     <div>
                         <div style={{ fontWeight: 700, fontSize: 14, letterSpacing: "-0.01em" }}>SIBA Admin</div>
-                        <div style={{ fontSize: 11, color: "#64748b" }}>Knowledge Base Manager</div>
+                        <div style={{ fontSize: 11, color: "#94a3b8" }}>Knowledge Base Manager</div>
                     </div>
                 </div>
 
                 {/* Nav Links */}
                 <nav style={{ flex: 1, padding: "12px 10px", overflowY: "auto" }}>
-                    <div style={{ fontSize: 10, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.05em", padding: "8px 12px 6px" }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", padding: "8px 12px 6px" }}>
                         Navigation
                     </div>
                     {SIDEBAR_ITEMS.slice(0, 2).map((item) => {
@@ -129,7 +142,7 @@ export default function AdminLayout({ children }) {
                                     display: "flex", alignItems: "center", gap: 10,
                                     width: "100%", padding: "9px 12px", borderRadius: 6,
                                     border: "none",
-                                    background: isActive ? "rgba(234, 102, 69, 0.12)" : "transparent",
+                                    background: isActive ? "rgba(234, 102, 69, 0.15)" : "transparent",
                                     color: isActive ? "#ea6645" : "#94a3b8",
                                     fontWeight: isActive ? 600 : 400, fontSize: 13,
                                     cursor: "pointer", textAlign: "left", marginBottom: 1,
@@ -142,7 +155,7 @@ export default function AdminLayout({ children }) {
                         );
                     })}
 
-                    <div style={{ fontSize: 10, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.05em", padding: "16px 12px 6px" }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", padding: "16px 12px 6px" }}>
                         Data Categories
                     </div>
                     {SIDEBAR_ITEMS.slice(2, 9).map((item) => {
@@ -155,7 +168,7 @@ export default function AdminLayout({ children }) {
                                     display: "flex", alignItems: "center", gap: 10,
                                     width: "100%", padding: "9px 12px", borderRadius: 6,
                                     border: "none",
-                                    background: isActive ? "rgba(234, 102, 69, 0.12)" : "transparent",
+                                    background: isActive ? "rgba(234, 102, 69, 0.15)" : "transparent",
                                     color: isActive ? "#ea6645" : "#94a3b8",
                                     fontWeight: isActive ? 600 : 400, fontSize: 13,
                                     cursor: "pointer", textAlign: "left", marginBottom: 1,
@@ -168,7 +181,7 @@ export default function AdminLayout({ children }) {
                         );
                     })}
 
-                    <div style={{ fontSize: 10, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.05em", padding: "16px 12px 6px" }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", padding: "16px 12px 6px" }}>
                         System
                     </div>
                     {SIDEBAR_ITEMS.slice(9).map((item) => {
@@ -181,7 +194,7 @@ export default function AdminLayout({ children }) {
                                     display: "flex", alignItems: "center", gap: 10,
                                     width: "100%", padding: "9px 12px", borderRadius: 6,
                                     border: "none",
-                                    background: isActive ? "rgba(234, 102, 69, 0.12)" : "transparent",
+                                    background: isActive ? "rgba(234, 102, 69, 0.15)" : "transparent",
                                     color: isActive ? "#ea6645" : "#94a3b8",
                                     fontWeight: isActive ? 600 : 400, fontSize: 13,
                                     cursor: "pointer", textAlign: "left", marginBottom: 1,
@@ -240,4 +253,5 @@ export default function AdminLayout({ children }) {
             </main>
         </div>
     );
+
 }

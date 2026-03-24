@@ -130,6 +130,17 @@ export const deleteChatSession = async (sessionId) => {
   return await response.json();
 }
 
+export const renameChatSession = async (sessionId, title) => {
+  const response = await fetch(`${HISTORY_API_URL}/${sessionId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ title }),
+  });
+  if (!response.ok) throw new Error("Failed to rename chat session");
+  return await response.json();
+}
+
 export const getChatMessages = async (sessionId) => {
   const response = await fetch(`${HISTORY_API_URL}/${sessionId}/messages`, {
     method: "GET",

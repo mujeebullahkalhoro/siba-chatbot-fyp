@@ -1,158 +1,712 @@
-[00:00:05.620] Server  LOG      ✓ Ready in 5s
-[00:01:28.126] Server  LOG      ○ Compiling / ...
-[00:01:30.431] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:47.940] Server  LOG      ○ Compiling /dashboard ...
-[00:04:50.420] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:50.625] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:04:50.625] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+[00:00:04.654] Server  LOG      ✓ Ready in 3.8s
+[00:00:07.870] Server  LOG      ○ Compiling /admin/rebuild ...
+[00:00:12.464] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.734] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.874] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:15.511] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:15.917] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="(home)/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                        <SegmentViewNode type="page" pagePath="(home)/pag...">
+                          <SegmentTrieNode>
+                          <ClientPageRoot Component={function App} serverProvidedParams={{...}}>
+                            <App params={Promise} searchParams={Promise}>
+                              <div
+                                className={"flex h-screen overflow-hidden font-sans transition-colors duration-300 "}
+                                style={{
++                                 backgroundColor: "#0f172a"
+-                                 background-color: "rgb(247, 247, 247)"
+                                }}
+                              >
+                                <GlobalStyles>
+                                <div className="flex-1 fle...">
+                                  <header
+                                    className="w-full h-16 shadow-lg z-30 flex items-center justify-between px-4 sm:px..."
+                                    style={{
++                                     backgroundColor: "#020617"
+-                                     background-color: "rgb(0, 62, 128)"
+                                    }}
+                                  >
+                                    <div>
+                                    <div className="flex items...">
+                                      <LanguageSwitcher>
+                                      <button
+                                        onClick={function toggleDarkMode}
+                                        className="p-2 text-white rounded-lg hover:bg-white/10 transition"
++                                       title="Light mode"
+-                                       title="Dark mode"
+                                      >
+                                        <svg xmlns="http://www..." viewBox="0 0 24 24" fill="currentColor" ...>
+                                          <path
++                                           d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75..."
+-                                           d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8...."
+-                                           fill-rule="evenodd"
+-                                           clip-rule="evenodd"
+                                          >
+                                      ...
+                                  <main className="flex-1 w-f...">
+                                    <div className="text-cente...">
+                                      <h2
+                                        className="text-3xl sm:text-4xl font-extrabold mb-2"
+                                        style={{
++                                         color: "#e2e8f0"
+-                                         color: "rgb(51, 51, 51)"
+                                        }}
+                                      >
++                                       SIBA AI ASSISTANT
+                                      <p
++                                       className="text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 text-gray-400"
+-                                       className="text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 text-gray-500"
+                                      >
++                                       Ask about admissions, faculty, or policies at SIBA.
+                                      <div className="grid grid-...">
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         What is the attendance policy?
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         Show CS department faculty
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         What scholarships are available?
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         What programs does SIBA offer?
+                                      <ChatInput handleSendMessage={function handleSendMessage} currentMessage="" ...>
+                                        <form
+                                          onSubmit={function handleSubmit}
++                                         className="relative flex items-center border rounded-xl shadow-lg px-3 py-2 ..."
+-                                         className="relative flex items-center border rounded-xl shadow-lg px-3 py-2 ..."
+                                        >
+                                          <textarea
+                                            ref={{current:null}}
+                                            value=""
+                                            onChange={function handleTextareaChange}
+                                            onKeyDown={function onKeyDown}
+                                            placeholder="Ask about admissions, faculty, or events..."
+                                            dir="ltr"
++                                           className="flex-1 border-0 rounded-lg p-2 pr-22 sm:pr-20 resize-none overf..."
+-                                           className="flex-1 border-0 rounded-lg p-2 pr-22 sm:pr-20 resize-none overf..."
+                                            rows={1}
+                                            style={{lineHeight:"1.5",transition:"height 0.1..."}}
+                                          >
+                                          ...
+                                    ...
+                                ...
+                        ...
+                      ...
+          ...
+
+[00:00:17.337] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:17.510] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndFocusHandler segmentPath={[...]}>
+        <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="(home)/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                        <SegmentViewNode type="page" pagePath="(home)/pag...">
+                          <SegmentTrieNode>
+                          <ClientPageRoot Component={function App} serverProvidedParams={{...}}>
+                            <App params={Promise} searchParams={Promise}>
+                              <div
+                                className={"flex h-screen overflow-hidden font-sans transition-colors duration-300 "}
+                                style={{
++                                 backgroundColor: "#0f172a"
+-                                 background-color: "rgb(247, 247, 247)"
+                                }}
+                              >
+                                <GlobalStyles>
+                                <div className="flex-1 fle...">
+                                  <header
+                                    className="w-full h-16 shadow-lg z-30 flex items-center justify-between px-4 sm:px..."
+                                    style={{
++                                     backgroundColor: "#020617"
+-                                     background-color: "rgb(0, 62, 128)"
+                                    }}
+                                  >
+                                    <div>
+                                    <div className="flex items...">
+                                      <LanguageSwitcher>
+                                      <button
+                                        onClick={function toggleDarkMode}
+                                        className="p-2 text-white rounded-lg hover:bg-white/10 transition"
++                                       title="Light mode"
+-                                       title="Dark mode"
+                                      >
+                                        <svg xmlns="http://www..." viewBox="0 0 24 24" fill="currentColor" ...>
+                                          <path
++                                           d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75..."
+-                                           d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8...."
+-                                           fill-rule="evenodd"
+-                                           clip-rule="evenodd"
+                                          >
+                                      ...
+                                  <main className="flex-1 w-f...">
+                                    <div className="text-cente...">
+                                      <h2
+                                        className="text-3xl sm:text-4xl font-extrabold mb-2"
+                                        style={{
++                                         color: "#e2e8f0"
+-                                         color: "rgb(51, 51, 51)"
+                                        }}
+                                      >
++                                       SIBA AI ASSISTANT
+                                      <p
++                                       className="text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 text-gray-400"
+-                                       className="text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 text-gray-500"
+                                      >
++                                       Ask about admissions, faculty, or policies at SIBA.
+                                      <div className="grid grid-...">
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         What is the attendance policy?
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         Show CS department faculty
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         What scholarships are available?
+                                        <button
+                                          onClick={function onClick}
++                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+-                                         className="text-left px-4 py-3 rounded-xl text-sm font-medium transition-all..."
+                                        >
++                                         What programs does SIBA offer?
+                                      <ChatInput handleSendMessage={function handleSendMessage} currentMessage="" ...>
+                                        <form
+                                          onSubmit={function handleSubmit}
++                                         className="relative flex items-center border rounded-xl shadow-lg px-3 py-2 ..."
+-                                         className="relative flex items-center border rounded-xl shadow-lg px-3 py-2 ..."
+                                        >
+                                          <textarea
+                                            ref={{current:null}}
+                                            value=""
+                                            onChange={function handleTextareaChange}
+                                            onKeyDown={function onKeyDown}
+                                            placeholder="Ask about admissions, faculty, or events..."
+                                            dir="ltr"
++                                           className="flex-1 border-0 rounded-lg p-2 pr-22 sm:pr-20 resize-none overf..."
+-                                           className="flex-1 border-0 rounded-lg p-2 pr-22 sm:pr-20 resize-none overf..."
+                                            rows={1}
+                                            style={{lineHeight:"1.5",transition:"height 0.1..."}}
+                                          >
+                                          ...
+                                    ...
+                                ...
+                        ...
+                      ...
+          ...
+
+[00:01:31.688] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:31.690] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:31.704] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:31.711] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:01:33.826] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:33.974] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:34.189] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:34.339] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:35.661] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:35.771] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:02:35.771] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
-[00:32:36.856] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:32:37.637] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:45:50.242] Server  ERROR    ⨯ ./components/SideBar.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
- 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
- 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
- 191 │               </button>
- 192 │ ╭─▶         </div>
- 193 │ │   
- 194 │ ╰─▶         {/* Chat History and Search */}
- 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
- 196 │     
- 196 │               {/* Search Input Area */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/SideBar.jsx
-./app/(home)/page.jsx
-[00:45:50.256] Browser ERROR   ./components/SideBar.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
- 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
- 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
- 191 │               </button>
- 192 │ ╭─▶         </div>
- 193 │ │   
- 194 │ ╰─▶         {/* Chat History and Search */}
- 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
- 196 │     
- 196 │               {/* Search Input Area */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/SideBar.jsx
-./app/(protected)/dashboard/layout.jsx
-[00:45:50.883] Browser ERROR   ./components/SideBar.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
- 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
- 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
- 191 │               </button>
- 192 │ ╭─▶         </div>
- 193 │ │   
- 194 │ ╰─▶         {/* Chat History and Search */}
- 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
- 196 │     
- 196 │               {/* Search Input Area */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/SideBar.jsx
-./app/(home)/page.jsx
-[00:45:52.918] Server  ERROR    ⨯ ./components/SideBar.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
- 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
- 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
- 191 │               </button>
- 192 │ ╭─▶         </div>
- 193 │ │   
- 194 │ ╰─▶         {/* Chat History and Search */}
- 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
- 196 │     
- 196 │               {/* Search Input Area */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/SideBar.jsx
-./app/(home)/page.jsx
-[00:45:52.926] Browser ERROR   ./components/SideBar.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
- 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
- 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
- 191 │               </button>
- 192 │ ╭─▶         </div>
- 193 │ │   
- 194 │ ╰─▶         {/* Chat History and Search */}
- 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
- 196 │     
- 196 │               {/* Search Input Area */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/SideBar.jsx
-./app/(protected)/dashboard/layout.jsx
-[00:46:02.866] Browser ERROR   ./components/SideBar.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[D:\siba-chatbot-fyp\frontend\components\SideBar.jsx:192:1]
- 189 │                 <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
- 190 │                 {!hideText && <span>{t('sidebar.newChat')}</span>}
- 191 │               </button>
- 192 │ ╭─▶         </div>
- 193 │ │   
- 194 │ ╰─▶         {/* Chat History and Search */}
- 195 │             <div className={`flex-1 overflow-y-auto space-y-1 ${hideText ? "px-2 py-4" : "px-4"}`}>
- 196 │     
- 196 │               {/* Search Input Area */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./components/SideBar.jsx
-./app/(home)/page.jsx
-[00:49:30.730] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:49:30.963] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:49:31.354] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+[00:02:36.765] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:37.484] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:37.484] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:38.370] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:02:38.371] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:02:38.414] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:02:38.611] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:02:40.215] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:40.247] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:40.506] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:02:40.507] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
-[00:49:31.679] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:55:05.693] Server  ERROR   (node:11788) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-[01:14:27.170] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:14:27.355] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:14:27.717] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[01:15:35.499] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:16:10.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:19:48.871] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:19:49.101] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[01:19:49.101] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+[00:02:40.720] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:40.819] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:03.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:03.952] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:06:04.255] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
+[00:06:05.049] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:05.509] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:05.677] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:14.162] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+[00:09:14.172] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+[00:09:14.810] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:09:14.810] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/layout.jsx
+[00:09:14.822] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:09:14.822] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/layout.jsx
+[00:09:14.915] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+[00:09:14.915] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:09:14.915] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/layout.jsx
+[00:09:14.915] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+[00:09:14.915] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:09:14.915] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/layout.jsx
+[00:09:15.282] Server  ERROR    ⨯ ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:13:37.269] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:13:37.269] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:13:37.956] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:13:37.956] Browser ERROR   ./context/LanguageContext.jsx
+Error:   × Unterminated string constant
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   ·  ──────────────
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+  × Expected unicode escape
+   ╭─[D:\siba-chatbot-fyp\frontend\context\LanguageContext.jsx:1:1]
+ 1 │ \"use client\";
+   · ▲
+ 2 │ import React, { createContext, useContext, useCallback, useSyncExternalStore } from \"react\";
+ 3 │ import en from \"@/locales/en\";
+ 4 │ import ur from \"@/locales/ur\";
+   ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./context/LanguageContext.jsx
+./app/(home)/page.jsx
+[00:13:39.704] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:39.721] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:40.123] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:40.268] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:41.883] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:42.043] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:42.433] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:42.470] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:42.929] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
+[00:31:18.400] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:39:50.358] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:50.434] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:39:51.929] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:52.407] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:52.635] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:35.924] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width

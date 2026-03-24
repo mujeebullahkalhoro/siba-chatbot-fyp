@@ -9,6 +9,7 @@ import ThinkingBubble from '@/components/ThinkingBubble';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback } from '@/services/chatService';
 import useTTS from '@/hooks/useTTS';
 
@@ -133,6 +134,7 @@ const ChatBubble = ({ message, feedback, onFeedback, darkMode, t, ttsHook }) => 
 export default function App() {
   const { user } = useAuth();
   const { t, isRTL, lang } = useLanguage();
+  const { darkMode, toggleDarkMode } = useTheme();
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -144,7 +146,6 @@ export default function App() {
   const [currentSessionId, setCurrentSessionId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [feedbackMap, setFeedbackMap] = useState({}); // { messageId: 'up' | 'down' }
-  const [darkMode, setDarkMode] = useState(false);
 
   // TTS (Text-to-Speech) for voice-to-voice
   const ttsHook = useTTS();
@@ -160,19 +161,6 @@ export default function App() {
     t("suggested.3"),
     t("suggested.4"),
   ];
-
-  // Load dark mode preference
-  useEffect(() => {
-    const saved = localStorage.getItem('siba_dark_mode');
-    if (saved === 'true') setDarkMode(true);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode(prev => {
-      localStorage.setItem('siba_dark_mode', !prev);
-      return !prev;
-    });
-  };
 
   // Dark mode colors
   const bg = darkMode ? '#0f172a' : sibaLight;

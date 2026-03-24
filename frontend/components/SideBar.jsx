@@ -4,6 +4,7 @@ import { Plus, Search, PanelLeftClose, PanelRightClose, X, Trash2 } from "lucide
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
 // Strict circular avatar wrapper used for both photo and initials
@@ -36,21 +37,47 @@ const GMAIL_PALETTE = [
 function hashString(str) { let h = 5381; for (let i = 0; i < str.length; i++)h = (h << 5) + h + str.charCodeAt(i); return h >>> 0; }
 function gmailColor(seed) { const h = hashString((seed || "user").toLowerCase()); return GMAIL_PALETTE[h % GMAIL_PALETTE.length]; }
 
-export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = [], currentSessionId, onSelectSession, onNewChat, onDeleteChat }) {
+export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = [], currentSessionId, onSelectSession, onNewChat, onDeleteChat, onRenameChat }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const hideText = isCollapsed;
   const { user, logout } = useAuth() || {};
   const { t, isRTL } = useLanguage();
+  const { darkMode } = useTheme();
 
   // Delete Modal State
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [chatIdToDelete, setChatIdToDelete] = useState(null);
 
+  // Rename State
+  const [renamingId, setRenamingId] = useState(null);
+  const [renameValue, setRenameValue] = useState('');
+  const renameInputRef = useRef(null);
+
   const handleDeleteClick = (sessionId, e) => {
     e.stopPropagation();
     setChatIdToDelete(sessionId);
     setIsDeleteModalOpen(true);
+  };
+
+  const handleRenameStart = (session, e) => {
+    e.stopPropagation();
+    setRenamingId(session._id);
+    setRenameValue(session.title || '');
+    setTimeout(() => renameInputRef.current?.select(), 50);
+  };
+
+  const handleRenameSubmit = (sessionId) => {
+    const trimmed = renameValue.trim();
+    if (trimmed && onRenameChat) {
+      onRenameChat(sessionId, trimmed);
+    }
+    setRenamingId(null);
+  };
+
+  const handleRenameCancel = () => {
+    setRenamingId(null);
+    setRenameValue('');
   };
 
   const handleConfirmDelete = (e) => {
@@ -128,22 +155,23 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
   return (
     <>
       {isMobileOpen && (
-        <div className="fixed inset-0 z-40 bg-gray-900 bg-opacity-50 md:hidden" onClick={onClose} />
+        <div className="fixed inset-0 z-40 bg-black/50 md:hidden" onClick={onClose} />
       )}
 
       <aside
-        className={`h-screen shrink-0 bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out z-50
+        className={`h-screen shrink-0 flex flex-col border-r transition-all duration-300 ease-in-out z-50
           fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-64 ${isMobileOpen ? "translate-x-0 shadow-xl" : (isRTL ? "translate-x-full" : "-translate-x-full")}
           md:sticky md:translate-x-0 md:top-0
-          ${isCollapsed ? "md:w-14" : "md:w-72"}`}
+          ${isCollapsed ? "md:w-14" : "md:w-72"}
+          ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-gray-200"}`}
       >
         {/* Header */}
-        <div className={`flex items-center border-b border-gray-200 ${hideText ? "justify-center py-4" : "justify-between p-4"}`}>
+        <div className={`flex items-center border-b ${darkMode ? "border-slate-800" : "border-gray-200"} ${hideText ? "justify-center py-4" : "justify-between p-4"}`}>
           {!hideText && (
             <>
               <div className="flex items-center">
                 <Image src="/image.png" alt="SIBA AI Logo" width={46} height={46} className="rounded-full" />
-                <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-xl font-bold text-gray-900`}>{t('sidebar.brand')}</span>
+                <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-xl font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>{t('sidebar.brand')}</span>
               </div>
               <div className="hidden md:block">
                 <button onClick={() => setIsCollapsed(true)} className="text-gray-500 hover:text-gray-800 relative group/tooltip">
@@ -166,11 +194,14 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
               <Image src="/image.png" alt="SIBA AI Logo" width={46} height={46} className="rounded-full" />
               <button
                 onClick={() => setIsCollapsed(false)}
-                className="absolute inset-0 flex items-center justify-center w-full h-full text-gray-600 bg-white opacity-0 group-hover:opacity-100 transition-all duration-200 hover:text-gray-900 hover:bg-gray-100 focus:outline-none border border-gray-200 rounded-full"
+                className={`absolute inset-0 flex items-center justify-center w-full h-full transition-all duration-200 focus:outline-none border rounded-full
+                  ${darkMode
+                    ? "bg-slate-800 text-gray-300 border-slate-700 hover:bg-slate-700 hover:text-white"
+                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:text-gray-900"}`}
                 aria-label={t('sidebar.openSidebar')}
               >
                 <PanelRightClose className="w-5 h-5" />
-                <span className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? 'right-full mr-2' : 'left-full ml-2'} px-2 py-1 bg-gray-200 text-blue-950 text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10`}>
+                <span className={`absolute top-1/2 -translate-y-1/2 ${isRTL ? 'right-full mr-2' : 'left-full ml-2'} px-2 py-1 ${darkMode ? 'bg-slate-700 text-white' : 'bg-gray-200 text-blue-950'} text-xs rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none z-10`}>
                   {t('sidebar.openSidebar')}
                 </span>
               </button>
@@ -205,7 +236,10 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 dir={isRTL ? "rtl" : "ltr"}
-                className={`w-full ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} py-2 text-sm bg-gray-100 border border-transparent rounded-lg focus:bg-white focus:border-gray-300 focus:outline-none transition-all`}
+                className={`w-full ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} py-2 text-sm border border-transparent rounded-lg focus:outline-none transition-all
+                  ${darkMode 
+                    ? "bg-slate-800 text-gray-200 focus:bg-slate-700 focus:border-slate-600" 
+                    : "bg-gray-100 text-gray-900 focus:bg-white focus:border-gray-300"}`}
               />
             </div>
           ) : (
@@ -213,6 +247,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
               icon={Search}
               text={t('sidebar.search')}
               isCollapsed={true}
+              darkMode={darkMode}
               onClick={(e) => { e.preventDefault(); setIsCollapsed(false); }}
             />
           )}
@@ -223,20 +258,69 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                 {t('sidebar.myChats')} ({filteredSessions.length})
               </h3>
               {filteredSessions.map((session) => (
-                <div key={session._id} onClick={() => onSelectSession(session._id)} className="group relative">
-                  <a
-                    href="#"
-                    className={`block text-sm p-2 rounded-lg hover:bg-gray-100 truncate ${isRTL ? 'pl-8' : 'pr-8'} ${currentSessionId === session._id ? "bg-gray-100 font-semibold" : "text-gray-700"}`}
-                  >
-                    {session.title || t('sidebar.newChat')}
-                  </a>
-                  <button
-                    onClick={(e) => handleDeleteClick(session._id, e)}
-                    className={`absolute ${isRTL ? 'left-2' : 'right-2'} top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity`}
-                    title={t('sidebar.deleteChat')}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                <div key={session._id} className="group relative">
+                  {renamingId === session._id ? (
+                    // Inline rename input
+                    <div className={`flex items-center gap-1 p-1 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-gray-100'}`} onClick={e => e.stopPropagation()}>
+                      <input
+                        ref={renameInputRef}
+                        value={renameValue}
+                        onChange={e => setRenameValue(e.target.value)}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter') handleRenameSubmit(session._id);
+                          if (e.key === 'Escape') handleRenameCancel();
+                        }}
+                        className={`flex-1 text-sm px-2 py-1 rounded border focus:outline-none focus:ring-1 focus:ring-blue-400 min-w-0
+                          ${darkMode ? 'bg-slate-700 border-slate-600 text-gray-100' : 'bg-white border-gray-300 text-gray-900'}`}
+                        autoFocus
+                      />
+                      {/* Save */}
+                      <button onClick={() => handleRenameSubmit(session._id)} className="text-green-500 hover:text-green-400 p-1" title="Save">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                          <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                      {/* Cancel */}
+                      <button onClick={handleRenameCancel} className="text-red-400 hover:text-red-300 p-1" title="Cancel">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                          <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                        </svg>
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <a
+                        href="#"
+                        dir="auto"
+                        onClick={(e) => { e.preventDefault(); onSelectSession(session._id); }}
+                        className={`block text-sm p-2 rounded-lg transition-colors truncate ${isRTL ? 'pl-16' : 'pr-16'} 
+                          ${currentSessionId === session._id 
+                            ? (darkMode ? "bg-slate-800 text-white font-semibold" : "bg-gray-100 font-semibold text-gray-900") 
+                            : (darkMode ? "text-gray-400 hover:bg-slate-800 hover:text-gray-200" : "text-gray-700 hover:bg-gray-50")}`}
+                      >
+                        {session.title || t('sidebar.newChat')}
+                      </a>
+                      {/* Action buttons: rename + delete, visible on hover */}
+                      <div className={`absolute ${isRTL ? 'left-1' : 'right-1'} top-1/2 -translate-y-1/2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity`}>
+                        <button
+                          onClick={(e) => handleRenameStart(session, e)}
+                          className={`p-1 rounded text-gray-400 hover:text-blue-400 transition-colors`}
+                          title={t('sidebar.rename') || 'Rename'}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+                            <path d="M2.695 14.763l-1.262 3.154a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.885L17.5 5.5a2.121 2.121 0 0 0-3-3L3.58 13.42a4 4 0 0 0-.885 1.343Z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={(e) => handleDeleteClick(session._id, e)}
+                          className={`p-1 rounded text-gray-400 hover:text-red-500 transition-colors`}
+                          title={t('sidebar.deleteChat')}
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               ))}
               {filteredSessions.length === 0 && (
@@ -247,13 +331,14 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
         </div>
 
         {/* Footer popover */}
-        <div className={`border-t border-gray-200 ${hideText ? "py-3" : "p-3"}`}>
+        <div className={`border-t ${darkMode ? 'border-slate-800' : 'border-gray-200'} ${hideText ? "py-3" : "p-3"}`}>
           <div className="relative">
             <button
               ref={triggerRef}
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              className={`w-full flex items-center rounded-lg ${hideText ? "justify-center" : "justify-between"} px-2 py-2 hover:bg-gray-50 cursor-pointer`}
+              className={`w-full flex items-center rounded-lg ${hideText ? "justify-center" : "justify-between"} px-2 py-2 cursor-pointer transition-colors
+                ${darkMode ? "hover:bg-slate-800" : "hover:bg-gray-50"}`}
               aria-haspopup="menu"
               aria-expanded={menuOpen ? "true" : "false"}
             >
@@ -285,7 +370,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
 
                 {!hideText && (
                   <div className={`${isRTL ? 'mr-3' : 'ml-3'} min-w-0`}>
-                    <p className="text-sm font-semibold text-gray-900 truncate">
+                    <p className={`text-sm font-semibold truncate ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>
                       {user?.name || user?.email || "User"}
                     </p>
                   </div>
@@ -293,7 +378,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
               </div>
 
               {!hideText && (
-                <svg className={`w-4 h-4 text-gray-500 ${isRTL ? 'mr-2' : 'ml-2'}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <svg className={`w-4 h-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'} ${isRTL ? 'mr-2' : 'ml-2'}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clipRule="evenodd" />
                 </svg>
               )}
@@ -306,22 +391,24 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                   ref={menuRef}
                   role="menu"
                   aria-label="Account menu"
-                  className="fixed z-99 w-72 sm:w-80 bg-white border border-gray-200 rounded-xl shadow-2xl ring-1 ring-black/5 py-2"
+                  className={`fixed z-99 w-72 sm:w-80 border rounded-xl shadow-2xl ring-1 ring-black/5 py-2
+                    ${darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-gray-200 text-gray-900"}`}
                   style={{ top: pos.top - 160, left: 10 }}
                 >
-                  <div className="px-4 pb-2 text-xs text-gray-500 truncate">{user?.email || "account"}</div>
+                  <div className={`px-4 pb-2 text-xs truncate ${darkMode ? "text-gray-400" : "text-gray-500"}`}>{user?.email || "account"}</div>
 
-                  <button role="menuitem" className="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-50">
+                  <button role="menuitem" className={`w-full text-left px-4 py-2 text-sm transition-colors ${darkMode ? "text-gray-200 hover:bg-slate-700" : "text-gray-800 hover:bg-gray-50"}`}>
                     {t('sidebar.settings')}
                   </button>
 
-                  <div className="my-2 border-t border-gray-200" />
+                  <div className={`my-2 border-t ${darkMode ? "border-slate-700" : "border-gray-200"}`} />
 
                   <button
                     role="menuitem"
                     onClick={handleLogout}
                     disabled={isLoggingOut}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50 disabled:opacity-60"
+                    className={`w-full text-left px-4 py-2 text-sm transition-colors disabled:opacity-60 
+                      ${darkMode ? "text-red-400 hover:bg-slate-700" : "text-red-600 hover:bg-gray-50"}`}
                   >
                     {isLoggingOut ? t('sidebar.loggingOut') : t('sidebar.logout')}
                   </button>

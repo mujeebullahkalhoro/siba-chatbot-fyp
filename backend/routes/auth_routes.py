@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/auth", tags=["Auth"])
 
 IBA_DOMAIN = "@iba-suk.edu.pk"
 COOKIE_NAME = "access_token"
-COOKIE_MAX_AGE = 3600
+COOKIE_MAX_AGE = 604800  # 7 days
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")

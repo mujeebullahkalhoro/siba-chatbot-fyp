@@ -51,7 +51,7 @@ class FileUpdateRequest(BaseModel):
 
 def _create_admin_token() -> str:
     from controllers.auth_controller import create_token
-    return create_token({"sub": ADMIN_EMAIL, "role": "admin"}, expires_seconds=86400)
+    return create_token({"sub": ADMIN_EMAIL, "role": "admin"}, expires_seconds=604800)  # 7 days
 
 
 def _verify_admin(credentials: HTTPAuthorizationCredentials = Depends(security)):

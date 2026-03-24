@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { sendMessage, getChatSessions, createChatSession, getChatMessages, sendMessageStream, deleteChatSession } from '@/services/chatService';
+import { sendMessage, getChatSessions, createChatSession, getChatMessages, sendMessageStream, deleteChatSession, renameChatSession } from '@/services/chatService';
 
 const ChatContext = createContext();
 
@@ -189,6 +189,17 @@ export const ChatProvider = ({ children }) => {
         }
     };
 
+    const handleRenameChat = async (sessionId, newTitle) => {
+        try {
+            await renameChatSession(sessionId, newTitle);
+            setSessions(prev => prev.map(s =>
+                s._id === sessionId ? { ...s, title: newTitle } : s
+            ));
+        } catch (error) {
+            console.error("Failed to rename session:", error);
+        }
+    };
+
     return (
         <ChatContext.Provider value={{
             messages,
@@ -202,6 +213,7 @@ export const ChatProvider = ({ children }) => {
             handleSelectSession,
             handleSendMessage,
             handleDeleteChat,
+            handleRenameChat,
             handleStopGeneration,
             isGenerating,
             textareaRef

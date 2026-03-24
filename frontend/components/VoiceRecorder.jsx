@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
 const sibaOrange = "#ea6645";
 
 // Helper to draw a simple waveform animation
@@ -73,6 +75,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
     const { t } = useLanguage();
+    const { darkMode } = useTheme();
 
     useEffect(() => {
         startRecording();
@@ -126,7 +129,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
             formData.append("file", audioBlob, "recording.m4a");
 
             try {
-                const response = await fetch("http://localhost:8000/api/transcribe", {
+                const response = await fetch(`${API_BASE}/api/transcribe`, {
                     method: "POST",
                     body: formData,
                 });
@@ -144,7 +147,10 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
     };
 
     return (
-        <div className="flex items-center w-full h-[50px] bg-white bg-opacity-90 backdrop-blur-md rounded-full px-4 shadow-xl border border-blue-100 transition-all duration-300 animate-in fade-in zoom-in-95">
+        <div className={`flex items-center w-full h-[50px] backdrop-blur-md rounded-full px-4 shadow-xl border transition-all duration-300 animate-in fade-in zoom-in-95
+            ${darkMode
+                ? 'bg-slate-800 bg-opacity-95 border-slate-700'
+                : 'bg-white bg-opacity-90 border-blue-100'}`}>
 
             {/* Microphone Icon (Left) */}
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-blue-500 animate-pulse">
@@ -159,7 +165,7 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
                 {isRecording ? (
                     <AudioVisualizer stream={stream} />
                 ) : (
-                    <span className="text-gray-400 text-sm font-medium animate-pulse">{t('voice.listening')}</span>
+                    <span className={`text-sm font-medium animate-pulse ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>{t('voice.listening')}</span>
                 )}
             </div>
 
@@ -167,7 +173,10 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
                 {/* Cancel Icon (Cross) */}
                 <button
                     onClick={onClose}
-                    className="group flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 transition-colors duration-200"
+                    className={`group flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-200
+                        ${darkMode
+                            ? 'bg-slate-700 hover:bg-red-900/50 text-gray-400 hover:text-red-400'
+                            : 'bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500'}`}
                     title={t('voice.cancel')}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
