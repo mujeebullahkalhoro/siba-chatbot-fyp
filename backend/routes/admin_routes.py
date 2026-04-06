@@ -307,12 +307,23 @@ def _do_rebuild():
         mg._universal_retriever = None  # Force reload on next request
 
         _last_rebuild_at = datetime.utcnow().isoformat() + "Z"
-        _rebuild_status = {"running": False, "message": "Rebuild completed successfully!", "success": True, "last_rebuild_at": _last_rebuild_at}
+        _rebuild_status = {
+            "running": False, 
+            "message": "Vector database rebuilt successfully!", 
+            "success": True, 
+            "last_rebuild_at": _last_rebuild_at
+        }
     except Exception as e:
         print(f"[ADMIN] Rebuild failed: {e}")
-        _rebuild_status = {"running": False, "message": f"Rebuild failed: {str(e)}", "success": False}
+        _rebuild_status = {
+            "running": False, 
+            "message": f"Rebuild failed: {str(e)}", 
+            "success": False
+        }
     finally:
         _maintenance_mode = False
+        # Double check that running is False here just in case of unexpected errors
+        _rebuild_status["running"] = False
 
 
 @router.post("/rebuild", dependencies=[Depends(_verify_admin)])

@@ -1,0 +1,3 @@
+Query 1: [(25, 'Dr. Asif Khan'), (17, 'Asif'), (15, 'Engr. Asif'), (10, 'Dr. Peeral Khan'), (10, 'Dr. Shahzaman Khan')]
+Query 2: [(17, 'Asif'), (15, 'Engr. Asif'), (10, 'Dr. Asif Khan')]
+Query 3: [(28, 'Dr. Ghulam Mujtaba'), (18, 'Dr. Mujtaba'), (13, 'Dr. Ghulam Abbas'), (13, 'Dr. Ghulam Abbas Lashari'), (13, 'Dr. Ghulam Akbar Dahani')]

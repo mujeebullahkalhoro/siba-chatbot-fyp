@@ -146,12 +146,34 @@ def process_timetable(msg, subject):
         with open(save_path, "w", encoding="utf-8") as f:
             f.write(fixed_xml)
         print(f"✅ New timetable saved: {filename}")
+
+        # Rebuild vector store to reflect new timetable
+        print("🔄 Rebuilding universal vector store...")
+        try:
+            build_universal_vectorstore()
+            print("✅ Vector store rebuilt successfully")
+        except Exception as e:
+            print(f"⚠️ Vector store rebuild failed: {e}")
+            return False
+            
         return True
     except Exception as e:
         print(f"⚠️ Failed to process XML: {e}")
         return False
 
 def process_event(msg, subject, body):
+    # --- TC-17: Duplicate Event Handling ---
+    # Check if this event already exists to prevent duplicates
+    for existing_file in EVENTS_DIR.glob("*.txt"):
+        try:
+            content = existing_file.read_text(encoding="utf-8")
+            if f"Subject: {subject}" in content and body[:500] in content:
+                print(f"⏭ TC-17: Duplicate detected. Ignoring repeated event: {subject}")
+                return False
+        except Exception:
+            continue
+    # ---------------------------------------
+
     filename = f"event_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
     save_path = EVENTS_DIR / filename
     with open(save_path, "w", encoding="utf-8") as f:

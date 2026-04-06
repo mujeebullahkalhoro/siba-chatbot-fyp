@@ -1,0 +1,35 @@
+Q1:
+[Timetable — teacher: Dr. Ghulam Mujtaba]
+| Day | Time | Subject | Teacher | Class | Group | Room |
+|-----|------|---------|---------|-------|-------|------|
+| Wednesday | 17:00-17:50 | Research Methodology | Dr. Ghulam Mujtaba | MS (CS,SE)-I, MS (CS,SE)-III, PhD (CS,SE)-I, PhD (CS,SE)-III | All, All, All, All | Room-201, B-V |
+| Wednesday | 17:50-18:40 | Research Methodology | Dr. Ghulam Mujtaba | MS (CS,SE)-I, MS (CS,SE)-III, PhD (CS,SE)-I, PhD (CS,SE)-III | All, All, All, All | Room-201, B-V |
+| Wednesday | 18:40-20:00 | Research Methodology | Dr. Ghulam Mujtaba | MS (CS,SE)-I, MS (CS,SE)-III, PhD (CS,SE)-I, PhD (CS,SE)-III | All, All, All, All | Room-201, B-V |
+| Thursday | 9:00-9:50 | Enterprise Application Development  | Azhar (VF), Dr. Ghulam Mujtaba | BS-VI(CS)-H | All | Room-201, B-V |
+| Thursday | 9:50-10:40 | Enterprise Application Development  | Azhar (VF), Dr. Ghulam Mujtaba | BS-VI(CS)-H | All | Room-201, B-V |
+| Thursday | 11:10-12:00 | Enterprise Application Development  | Azhar (VF), Dr. Ghulam Mujtaba | BS-VI(CS)-H | All | Room-201, B-V |
+
+*(Note: Found teachers with similar names: Dr. Mujtaba, Dr. Ghulam Abbas, Dr. Ghulam Abbas Lashari, Dr. Ghulam Akbar Dahani)*
+
+Q2:
+[Timetable — teacher: Dr. Asif Khan | day: Tuesday]
+| Day | Time | Subject | Teacher | Class | Group | Room |
+|-----|------|---------|---------|-------|-------|------|
+| Tuesday | 14:00-14:50 | Computer Vision | Dr. Asif Khan | BS-VIII(CS)-E | All | Room-206, B-V |
+| Tuesday | 14:50-15:40 | Computer Vision | Dr. Asif Khan | BS-VIII(CS)-E | All | Room-206, B-V |
+| Tuesday | 16:10-17:00 | Computer Vision | Dr. Asif Khan | BS-VIII(CS)-E | All | Room-206, B-V |
+
+*(Note: Found teachers with similar names: Asif, Engr. Asif, Dr. Peeral Khan, Dr. Shahzaman Khan, Umar Khan)*
+
+Q3:
+[Timetable — Ambiguous Teacher Name]
+Multiple teachers match your query:
+- Dr. Adil Khan
+- Dr. Asif Khan
+- Dr. Peeral Khan
+- Dr. Shahzaman Khan
+- Inamullah Khan (VF)
+- Muhammad Hammad Khan (VF)
+- Muhammad Shoaib Khan
+- Umar Khan
+

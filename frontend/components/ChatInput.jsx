@@ -15,6 +15,7 @@ export default function ChatInput({
   markVoiceQuery, // for voice-to-voice auto-speak
   isGenerating,
   onStopGeneration,
+  isMaintenance = false,
 } = {}) {
   const localRef = useRef(null);
   const taRef = textareaRef ?? localRef; // safe fallback
@@ -45,7 +46,8 @@ export default function ChatInput({
     handleSendMessage(null, text); // Pass text directly to avoid state race
   };
 
-  const disabled = !((currentMessage ?? "").trim());
+  const disabled = !((currentMessage ?? "").trim()) || isMaintenance;
+  const placeholder = isMaintenance ? "System is under maintenance..." : t("input.placeholder");
 
   if (isRecording) {
     return (
@@ -76,9 +78,10 @@ export default function ChatInput({
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) handleSubmit(e);
         }}
-        placeholder={t("input.placeholder")}
+        placeholder={placeholder}
+        disabled={isMaintenance}
         dir={isRTL ? "rtl" : "ltr"}
-        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar bg-transparent ${darkMode ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-400'}`}
+        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar bg-transparent ${darkMode ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-400'} ${isMaintenance ? 'opacity-50 cursor-not-allowed' : ''}`}
         rows={1}
         style={{ lineHeight: "1.5", transition: "height 0.1s ease-out" }}
       />

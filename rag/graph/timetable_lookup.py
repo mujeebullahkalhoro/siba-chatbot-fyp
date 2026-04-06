@@ -277,46 +277,38 @@ class TimetableLookup:
         for tn, t_tokens, clean_t_tokens in potential_teachers:
             if not clean_t_tokens: continue
             
-            # Intersection score
-            intersection = q_meaningful & clean_t_tokens
+            # Intersection score with integrated inline fuzzy matching
+            intersection = set()
+            import difflib
+            for qw in q_meaningful:
+                if qw in clean_t_tokens:
+                    intersection.add(qw)
+                elif len(qw) > 2:
+                    m = difflib.get_close_matches(qw, list(clean_t_tokens), n=1, cutoff=0.75)
+                    if m:
+                        intersection.add(m[0])
+            
             if not intersection: continue
             
-            score = len(intersection)
-            
-            # Bonus: subset or superset
-            is_subset = q_meaningful <= clean_t_tokens
-            is_superset = clean_t_tokens <= q_meaningful
-            if is_subset or is_superset:
-                score += 1
+            score = len(intersection) * 10
             
             # Extra bonus for core exact match
-            if q_meaningful == clean_t_tokens:
-                score += 2
+            if intersection == clean_t_tokens:
+                score += 5
                 if len(clean_t_tokens) == len(t_tokens):
                     score += 2
+                    
+            # Titles bonus
+            titles = t_tokens - clean_t_tokens
+            if (q_tokens & titles):
+                score += 3
                 
             # Extra bonus for full exact match (including titles)
             q_clean = q_tokens - {"the","for","of","and","is","show","me","what","who","timetable","schedule","class","classes","teacher","professor"}
             if q_clean == t_tokens:
-                score += 3
+                score += 5
                 
             scored_matches.append((score, tn))
-
-        # 2. Fuzzy fallback
-        if not scored_matches:
-            import difflib
-            for tn, t_tokens, clean_t_tokens in potential_teachers:
-                for qw in q_meaningful:
-                    m = difflib.get_close_matches(qw, list(clean_t_tokens), n=1, cutoff=0.6)
-                    if m:
-                        scored_matches.append((1, tn))
-                        break
-                if any(tn == sm[1] for sm in scored_matches): continue
-                q_full = " ".join(sorted(q_meaningful))
-                t_full = " ".join(sorted(clean_t_tokens))
-                ratio = difflib.SequenceMatcher(None, q_full, t_full).ratio()
-                if ratio > 0.6:
-                    scored_matches.append((1, tn))
 
         return sorted(scored_matches, key=lambda x: x[0], reverse=True)
 
@@ -402,7 +394,7 @@ class TimetableLookup:
         if room_m: room_q = room_m.group(1)
 
         # Teacher detection
-        teacher_intent = any(kw in q for kw in ["teacher","teach","prof","dr","engr","sir","mr","ms"])
+        teacher_intent = any(re.search(r'\b' + kw + r'\b', q) for kw in ["teacher","teach","prof","dr","engr","sir","mr","ms"])
         scored_teacher_matches = []
         if teacher_intent:
             scored_teacher_matches = self.match_teachers(query)
@@ -411,7 +403,7 @@ class TimetableLookup:
         class_names: List[str] = []
         class_keywords = ["class","section","batch","program","timetable","schedule",
                           "bba","bs","be","mba","ms","phd","b.ed","media","math"]
-        class_intent = any(kw in q for kw in class_keywords)
+        class_intent = any(re.search(r'\b' + kw + r'\b', q) for kw in class_keywords)
         if class_intent or (not teacher_intent and not room_q):
             class_names = self.match_classes(query)
             
@@ -423,9 +415,9 @@ class TimetableLookup:
         
         if scored_teacher_matches:
             max_score = scored_teacher_matches[0][0]
-            if max_score >= 5:
-                teacher_names = [tn for s, tn in scored_teacher_matches if s == max_score]
-                similar_names = [tn for s, tn in scored_teacher_matches if s < max_score and s >= 2]
+            if max_score >= 10:
+                teacher_names = [tn for s, tn in scored_teacher_matches if s >= max_score - 3]
+                similar_names = [tn for s, tn in scored_teacher_matches if s < max_score - 3 and s >= 8]
             else:
                 teacher_names = [tn for s, tn in scored_teacher_matches if s >= 0.5 * max_score]
 

@@ -19,7 +19,16 @@ export default function RebuildPage() {
     };
 
     useEffect(() => {
-        pollStatus();
+        const checkInitialStatus = async () => {
+            try {
+                const s = await fetchRebuildStatus();
+                setStatus(s);
+                if (s.running && !intervalRef.current) {
+                    intervalRef.current = setInterval(pollStatus, 2000);
+                }
+            } catch { }
+        };
+        checkInitialStatus();
         return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
     }, []);
 
@@ -86,12 +95,34 @@ export default function RebuildPage() {
 
                 {status.message && (
                     <div style={{
-                        padding: "10px 14px", borderRadius: 6,
+                        padding: "12px 16px", borderRadius: 8,
                         background: status.success === false ? "#fef2f2" : status.success === true ? "#f0fdf4" : "#f8fafc",
                         border: `1px solid ${status.success === false ? "#fecaca" : status.success === true ? "#bbf7d0" : "#e2e8f0"}`,
-                        fontSize: 13, color: "#374151", marginBottom: 20,
+                        fontSize: 14, color: status.success === false ? "#991b1b" : status.success === true ? "#166534" : "#374151", 
+                        marginBottom: 20,
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: 10
                     }}>
-                        {status.message}
+                        {status.success === true && (
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style={{ width: 20, height: 20, flexShrink: 0 }}>
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4.13-5.69z" clipRule="evenodd" />
+                            </svg>
+                        )}
+                        {status.success === false && (
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style={{ width: 20, height: 20, flexShrink: 0 }}>
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
+                            </svg>
+                        )}
+                        <div>
+                            <div style={{ fontWeight: 600 }}>{status.success === true ? "Success" : status.success === false ? "Rebuild Failed" : "Status"}</div>
+                            <div style={{ opacity: 0.9 }}>{status.message}</div>
+                            {status.last_rebuild_at && (
+                                <div style={{ fontSize: 11, marginTop: 4, opacity: 0.7 }}>
+                                    Last synchronized: {new Date(status.last_rebuild_at).toLocaleString()}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
 

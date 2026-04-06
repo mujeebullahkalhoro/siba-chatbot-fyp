@@ -11,6 +11,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback } from '@/services/chatService';
+import { fetchMaintenanceStatus } from '@/services/adminService';
 import useTTS from '@/hooks/useTTS';
 
 // This ensures the custom-scrollbar class is defined globally.
@@ -55,18 +56,18 @@ const sibaDarkText = '#333333';
 const sibaLight = '#f7f7f7';
 
 // Chat Bubble Component 
-const ChatBubble = ({ message, feedback, onFeedback, darkMode, t, ttsHook }) => {
+const ChatBubble = ({ message, feedback, onFeedback, darkMode, t, ttsHook, isRTL }) => {
   const { text, sender } = message;
   const isUser = sender === 'user';
   const botBg = darkMode ? '#1e293b' : undefined;
   const isThisSpeaking = ttsHook?.speakingId === message.id && ttsHook?.isSpeaking;
 
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} w-full`}>
+    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} w-full`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div
         className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word ${isUser
-          ? 'text-white rounded-t-xl rounded-bl-xl'
-          : 'rounded-t-xl rounded-br-xl'
+          ? 'text-white rounded-t-xl ' + (isRTL ? 'rounded-br-xl' : 'rounded-bl-xl')
+          : 'rounded-t-xl ' + (isRTL ? 'rounded-bl-xl' : 'rounded-br-xl')
           }`}
         style={{ backgroundColor: isUser ? sibaDarkBlue : botBg, color: isUser ? 'white' : undefined }}
       >
@@ -78,10 +79,10 @@ const ChatBubble = ({ message, feedback, onFeedback, darkMode, t, ttsHook }) => 
               p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
               table: ({ node, ...props }) => <div className="overflow-x-auto my-2"><table {...props} className="min-w-full divide-y divide-gray-300 border border-gray-300 text-sm" /></div>,
               thead: ({ node, ...props }) => <thead {...props} className={isUser ? 'bg-white/10' : 'bg-gray-300'} />,
-              th: ({ node, ...props }) => <th {...props} className="px-3 py-2 text-left font-semibold" />,
-              td: ({ node, ...props }) => <td {...props} className="px-3 py-2 border-t border-gray-300/20" />,
-              ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-4 mb-2" />,
-              ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-4 mb-2" />,
+              th: ({ node, ...props }) => <th {...props} className={`px-3 py-2 ${isRTL ? 'text-right' : 'text-left'} font-semibold`} />,
+              td: ({ node, ...props }) => <td {...props} className={`px-3 py-2 border-t border-gray-300/20 ${isRTL ? 'text-right' : 'text-left'}`} />,
+              ul: ({ node, ...props }) => <ul {...props} className={`list-disc ${isRTL ? 'pr-4' : 'pl-4'} mb-2`} />,
+              ol: ({ node, ...props }) => <ol {...props} className={`list-decimal ${isRTL ? 'pr-4' : 'pl-4'} mb-2`} />,
             }}
           >
             {text}
@@ -90,7 +91,7 @@ const ChatBubble = ({ message, feedback, onFeedback, darkMode, t, ttsHook }) => 
       </div>
       {/* Feedback + Speaker buttons for bot messages */}
       {!isUser && (
-        <div className="flex flex-col gap-1 mt-1 ml-1">
+        <div className={`flex flex-col gap-1 mt-1 ${isRTL ? 'mr-1' : 'ml-1'}`}>
           <div className="flex gap-1">
             <button
               onClick={() => onFeedback(message.id, 'up')}
@@ -140,6 +141,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isMaintenance, setIsMaintenance] = useState(false);
 
   // Chat History State
   const [sessions, setSessions] = useState([]);
@@ -182,6 +184,17 @@ export default function App() {
   useEffect(() => {
     // Generate a simple guest session ID on mount
     sessionIdRef.current = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+    // Poll maintenance status
+    const checkMaintenance = async () => {
+      try {
+        const data = await fetchMaintenanceStatus();
+        setIsMaintenance(data.maintenance);
+      } catch { }
+    };
+    checkMaintenance();
+    const interval = setInterval(checkMaintenance, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   // Load chat sessions when user logs in
@@ -516,6 +529,7 @@ export default function App() {
                 markVoiceQuery={markVoiceQuery}
                 isGenerating={isGenerating}
                 onStopGeneration={handleStopGeneration}
+                isMaintenance={isMaintenance}
                 className="relative w-full max-w-[800px] px-4"
               />
             </div>
@@ -534,6 +548,7 @@ export default function App() {
                 darkMode={darkMode}
                 t={t}
                 ttsHook={ttsHook}
+                isRTL={isRTL}
               />
             ))}
             {isLoading && <ThinkingBubble />}
@@ -551,6 +566,7 @@ export default function App() {
               markVoiceQuery={markVoiceQuery}
               isGenerating={isGenerating}
               onStopGeneration={handleStopGeneration}
+              isMaintenance={isMaintenance}
               className="w-full max-w-[800px] px-4 sm:px-6"
             />
           </div>
