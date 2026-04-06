@@ -1,7 +1,7 @@
 {
-  "/(home)/page": "app/(home)/page.js",
-  "/admin/page": "app/admin/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/admin/[category]/page": "app/admin/[category]/page.js",
-  "/admin/rebuild/page": "app/admin/rebuild/page.js"
+  "/admin/rebuild/page": "app/admin/rebuild/page.js",
+  "/(protected)/dashboard/page": "app/(protected)/dashboard/page.js",
+  "/(home)/page": "app/(home)/page.js"
 }

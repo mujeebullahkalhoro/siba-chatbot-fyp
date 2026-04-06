@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTheme } from "@/context/ThemeContext";
 
-export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t }) {
+export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false }) {
   const { text, sender } = message;
   const isUser = sender === "user";
   const { darkMode } = useTheme();
@@ -20,12 +20,12 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
   };
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full`}>
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div
-        dir="auto"
-        className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word ${isUser
-          ? "text-white rounded-t-xl rounded-bl-xl"
-          : "rounded-t-xl rounded-br-xl"
+        className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word rounded-t-xl 
+          ${isUser
+            ? `text-white ${isRTL ? 'rounded-br-xl' : 'rounded-bl-xl'}`
+            : `${isRTL ? 'rounded-bl-xl' : 'rounded-br-xl'}`
           }`}
         style={{ 
           backgroundColor: isUser ? '#003e80' : botBg,
@@ -53,10 +53,10 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
               p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
               table: ({ node, ...props }) => <div className="overflow-x-auto my-2" dir="ltr"><table {...props} className={`min-w-full divide-y border text-sm ${darkMode ? 'divide-slate-700 border-slate-700' : 'divide-gray-300 border-gray-300'}`} /></div>,
               thead: ({ node, ...props }) => <thead {...props} className={isUser ? 'bg-white/10' : (darkMode ? 'bg-slate-800' : 'bg-gray-200')} />,
-              th: ({ node, ...props }) => <th {...props} className="px-3 py-2 font-semibold" style={{ textAlign: 'start' }} />,
-              td: ({ node, ...props }) => <td {...props} className={`px-3 py-2 border-t ${darkMode ? 'border-slate-800' : 'border-gray-200'}`} style={{ textAlign: 'start' }} />,
-              ul: ({ node, ...props }) => <ul {...props} className="list-disc ps-4 mb-2" />,
-              ol: ({ node, ...props }) => <ol {...props} className="list-decimal ps-4 mb-2" />,
+              th: ({ node, ...props }) => <th {...props} className={`px-3 py-2 font-semibold ${isRTL ? 'text-right' : 'text-left'}`} />,
+              td: ({ node, ...props }) => <td {...props} className={`px-3 py-2 border-t ${darkMode ? 'border-slate-800' : 'border-gray-200'} ${isRTL ? 'text-right' : 'text-left'}`} />,
+              ul: ({ node, ...props }) => <ul {...props} className={`list-disc ps-4 mb-2 ${isRTL ? 'pr-4' : ''}`} />,
+              ol: ({ node, ...props }) => <ol {...props} className={`list-decimal ps-4 mb-2 ${isRTL ? 'pr-4' : ''}`} />,
             }}
           >
             {text}
@@ -66,7 +66,7 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
       
       {/* Feedback + Speaker buttons for bot messages */}
       {!isUser && (
-        <div className="flex flex-col gap-1 mt-1 ml-1">
+        <div className={`flex flex-col gap-1 mt-1 ${isRTL ? 'mr-1' : 'ml-1'}`}>
           <div className="flex gap-1 items-center">
 
             {/* 👍 Thumbs Up */}
@@ -117,8 +117,8 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t 
               )}
             </button>
 
-            {/* Speaker button */}
-            {ttsHook && (
+            {/* Speaker button - Hidden for Urdu (RTL) responses */}
+            {ttsHook && !isRTL && (
             <button
               onClick={() => ttsHook.speak(text, message.id)}
               className={`p-1.5 rounded-lg transition-all duration-200 ${

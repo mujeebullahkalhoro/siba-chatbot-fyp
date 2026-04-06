@@ -18,3 +18,17 @@ Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
 [01:21:45.702] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
 [01:31:04.944] Browser LOG     Stream cancelled by user
 [01:31:47.696] Browser LOG     Stream cancelled by user
+[02:00:10.428] Browser LOG     Stream cancelled by user
+[02:03:29.231] Server  LOG      ○ Compiling /dashboard ...
+[02:03:34.436] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:03:34.697] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:03:35.039] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
+[02:09:58.979] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:09:59.924] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
+[02:12:45.141] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:15:51.317] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:15:51.619] Browser WARN    Image with src "/image.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:15:51.886] Browser WARN    Image with src "https://lh3.googleusercontent.com/a/ACg8ocI3sIF094zqTpxYysU65OOrNsQQrbq41XT_W_aL47CSXjq6yQ=s96-c" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
+Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width

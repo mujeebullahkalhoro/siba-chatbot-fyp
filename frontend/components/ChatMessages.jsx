@@ -13,7 +13,7 @@ export default function ChatMessages({ messages, hasFixedInput = false, isLoadin
   const { currentSessionId } = useChat();
   const [feedbackMap, setFeedbackMap] = useState({});
   const ttsHook = useTTS();
-  const { t } = useLanguage();
+  const { t, isRTL } = useLanguage();
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -59,6 +59,7 @@ export default function ChatMessages({ messages, hasFixedInput = false, isLoadin
           onFeedback={handleFeedback}
           ttsHook={ttsHook}
           t={t}
+          isRTL={isRTL}
         />
       ))}
       {isLoading && <ThinkingBubble />}
