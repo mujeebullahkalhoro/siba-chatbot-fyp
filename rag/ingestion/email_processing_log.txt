@@ -650,3 +650,13 @@ with new imports of:
 >> from langchain_community.vectorstores import FAISS
 
   warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+^C

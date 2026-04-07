@@ -69,42 +69,76 @@ function AudioVisualizer({ stream }) {
     return <canvas ref={canvasRef} width={300} height={60} className="w-full h-full" />;
 }
 
-export default function VoiceRecorder({ onTranscription, onClose }) {
+// Check for the first supported mime type among common candidates
+function getSupportedMimeType() {
+    const types = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/mp4"];
+    for (const type of types) {
+        if (typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported(type)) {
+            return type;
+        }
+    }
+    return "";
+}
+
+export default function VoiceRecorder({ audioStream, onTranscription, onClose }) {
     const [isRecording, setIsRecording] = useState(false);
     const [stream, setStream] = useState(null);
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
+    const onCloseRef = useRef(onClose);
+    onCloseRef.current = onClose;
     const { t } = useLanguage();
+    const tRef = useRef(t);
+    tRef.current = t;
     const { darkMode } = useTheme();
 
     useEffect(() => {
-        startRecording();
-        return () => stopStream();
-    }, []);
+        if (!audioStream) return;
 
-    const startRecording = async () => {
+        setStream(audioStream);
+        setIsRecording(true);
+
+        let mediaRecorder;
         try {
-            const audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            setStream(audioStream);
-            setIsRecording(true);
-
-            const mediaRecorder = new MediaRecorder(audioStream);
-            mediaRecorderRef.current = mediaRecorder;
-            audioChunksRef.current = [];
-
-            mediaRecorder.ondataavailable = (event) => {
-                if (event.data.size > 0) {
-                    audioChunksRef.current.push(event.data);
-                }
-            };
-
-            mediaRecorder.start();
+            const mimeType = getSupportedMimeType();
+            const options = mimeType ? { mimeType } : {};
+            mediaRecorder = new MediaRecorder(audioStream, options);
         } catch (err) {
-            console.error("Error accessing microphone:", err);
-            alert(t('voice.micError'));
-            onClose();
+            console.error("MediaRecorder not supported or MIME type error:", err);
+            alert(tRef.current("voice.micError"));
+            onCloseRef.current();
+            return;
         }
-    };
+
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+                audioChunksRef.current.push(event.data);
+            }
+        };
+
+        try {
+            mediaRecorder.start(200); // Capture chunks every 200ms
+        } catch (err) {
+            console.error("MediaRecorder failed:", err);
+            alert(tRef.current("voice.micError"));
+            onCloseRef.current();
+            return;
+        }
+
+        return () => {
+            if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+                try {
+                    mediaRecorderRef.current.stop();
+                } catch {
+                    /* ignore */
+                }
+            }
+            mediaRecorderRef.current = null;
+        };
+    }, [audioStream]);
 
     const stopStream = () => {
         if (stream) {
@@ -123,10 +157,20 @@ export default function VoiceRecorder({ onTranscription, onClose }) {
             stopStream();
             setIsRecording(false);
 
-            const audioBlob = new Blob(audioChunksRef.current, { type: "audio/mp4" });
+            const mimeType = mediaRecorderRef.current.mimeType || "audio/webm";
+            const extension = mimeType.includes("webm") ? "webm" : mimeType.includes("ogg") ? "ogg" : "m4a";
+            const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
+
+            // If the blob is too small, it's likely just a header with no audio data
+            if (audioBlob.size < 1000) {
+                console.warn("Audio blob is too small, likely no audio captured:", audioBlob.size);
+                alert(t('voice.micError')); // Or a more specific message if available
+                onClose();
+                return;
+            }
 
             const formData = new FormData();
-            formData.append("file", audioBlob, "recording.m4a");
+            formData.append("file", audioBlob, `recording.${extension}`);
 
             try {
                 const response = await fetch(`${API_BASE}/api/transcribe`, {

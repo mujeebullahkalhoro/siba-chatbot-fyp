@@ -68,6 +68,8 @@ const en = {
     "voice.cancel": "Cancel",
     "voice.submit": "Submit",
     "voice.micError": "Could not access microphone.",
+    "voice.micNotFound": "No microphone was found. Plug in a microphone or enable the default recording device in Windows sound settings.",
+    "voice.micDenied": "Microphone access was denied. Allow the microphone for this site in your browser (address bar → site settings).",
     "voice.transcribeError": "Failed to transcribe audio.",
 
     // Feedback

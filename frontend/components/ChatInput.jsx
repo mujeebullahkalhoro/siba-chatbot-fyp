@@ -6,6 +6,70 @@ import { useTheme } from "@/context/ThemeContext";
 
 const sibaOrange = "#ea6645";
 
+function isMicNotFoundError(e) {
+  return e?.name === "NotFoundError" || e?.name === "DevicesNotFoundError";
+}
+
+/**
+ * Must run from a user gesture. Tries default capture, relaxed processing (some Windows drivers fail
+ * with default DSP), then each enumerated input with ideal (preferred) then exact deviceId.
+ */
+async function requestMicrophoneStream() {
+  const md = navigator.mediaDevices;
+  if (md?.getUserMedia) {
+    const gum = (constraints) => md.getUserMedia(constraints);
+
+    const constraintAttempts = [
+      { audio: true },
+      {
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
+      },
+    ];
+
+    let lastErr;
+    for (const constraints of constraintAttempts) {
+      try {
+        return await gum(constraints);
+      } catch (e) {
+        if (!isMicNotFoundError(e)) throw e;
+        lastErr = e;
+      }
+    }
+
+    const devices = await md.enumerateDevices();
+    const inputs = devices.filter((d) => d.kind === "audioinput" && d.deviceId);
+    for (const d of inputs) {
+      for (const exact of [false, true]) {
+        try {
+          const audio = exact
+            ? { deviceId: { exact: d.deviceId } }
+            : { deviceId: { ideal: d.deviceId } };
+          return await gum({ audio });
+        } catch (e) {
+          if (!isMicNotFoundError(e)) throw e;
+          lastErr = e;
+        }
+      }
+    }
+
+    throw lastErr ?? new Error("No microphone available");
+  }
+  const legacy =
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia;
+  if (!legacy) {
+    throw new Error("getUserMedia is not supported in this browser");
+  }
+  return new Promise((resolve, reject) => {
+    legacy.call(navigator, { audio: true }, resolve, reject);
+  });
+}
+
 export default function ChatInput({
   handleSendMessage = () => { },
   currentMessage: initialMessage = "", // renamed to show it's the initial/external value
@@ -20,6 +84,8 @@ export default function ChatInput({
   const localRef = useRef(null);
   const taRef = textareaRef ?? localRef;
   const [isRecording, setIsRecording] = useState(false);
+  const [micStream, setMicStream] = useState(null);
+  const [micStarting, setMicStarting] = useState(false);
   const [localMessage, setLocalMessage] = useState(initialMessage); // Local state for smooth typing
   const { t, isRTL } = useLanguage();
   const { darkMode } = useTheme();
@@ -50,7 +116,40 @@ export default function ChatInput({
     if (taRef.current) taRef.current.style.height = "44px";
   };
 
+  const stopMicTracks = () => {
+    micStream?.getTracks().forEach((track) => track.stop());
+    setMicStream(null);
+  };
+
+  const handleVoiceClose = () => {
+    stopMicTracks();
+    setIsRecording(false);
+  };
+
+  const handleMicClick = async () => {
+    if (micStarting) return;
+    setMicStarting(true);
+    try {
+      const stream = await requestMicrophoneStream();
+      setMicStream(stream);
+      setIsRecording(true);
+    } catch (err) {
+      console.error("Error accessing microphone:", err);
+      const name = err?.name ?? "";
+      if (name === "NotFoundError" || name === "DevicesNotFoundError") {
+        alert(t("voice.micNotFound"));
+      } else if (name === "NotAllowedError" || name === "PermissionDeniedError") {
+        alert(t("voice.micDenied"));
+      } else {
+        alert(t("voice.micError"));
+      }
+    } finally {
+      setMicStarting(false);
+    }
+  };
+
   const handleTranscription = (text) => {
+    stopMicTracks();
     setIsRecording(false);
     setLocalMessage(text);
     markVoiceQuery?.(); // Flag so the response gets auto-spoken
@@ -61,12 +160,13 @@ export default function ChatInput({
   const disabled = !((localMessage ?? "").trim()) || isMaintenance;
   const placeholder = isMaintenance ? "System is under maintenance..." : t("input.placeholder");
 
-  if (isRecording) {
+  if (isRecording && micStream) {
     return (
       <div className={className}>
         <VoiceRecorder
+          audioStream={micStream}
           onTranscription={handleTranscription}
-          onClose={() => setIsRecording(false)}
+          onClose={handleVoiceClose}
         />
       </div>
     );
@@ -102,8 +202,10 @@ export default function ChatInput({
         <button
           type="button"
           aria-label={t("voice.submit")}
-          onClick={() => setIsRecording(true)}
-          className="text-gray-500 hover:text-gray-700 focus:outline-none h-9 w-9 flex items-center justify-center"
+          disabled={micStarting || isMaintenance}
+          aria-busy={micStarting}
+          onClick={handleMicClick}
+          className="text-gray-500 hover:text-gray-700 focus:outline-none h-9 w-9 flex items-center justify-center disabled:opacity-50"
           style={{ color: sibaOrange }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">

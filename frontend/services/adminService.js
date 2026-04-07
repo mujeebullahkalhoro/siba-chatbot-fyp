@@ -149,9 +149,15 @@ export async function fetchRebuildStatus() {
 }
 
 export async function fetchMaintenanceStatus() {
-    const res = await fetch(`${API_BASE}/api/admin/maintenance`);
-    if (!res.ok) return { maintenance: false };
-    return res.json();
+    if (!API_BASE) return { maintenance: false };
+    try {
+        const res = await fetch(`${API_BASE}/api/admin/maintenance`);
+        if (!res.ok) return { maintenance: false };
+        return res.json();
+    } catch {
+        // Backend down or unreachable — treat as not in maintenance
+        return { maintenance: false };
+    }
 }
 
 export async function fetchAnalytics() {
