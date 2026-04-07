@@ -22,9 +22,9 @@ Classification rules:
 - If a query asks about HOW to get admission, admission requirements, or admission procedure, classify as Policies.
 - If a query asks about passing marks, grading criteria, CGPA calculation, or exam rules, classify as Policies.
 - If a query asks about fee structure in the context of admission or rules, classify as Policies.
-- IMPORTANT: If a query asks about the SCHEDULE, CLASSES, or TIMETABLE of a teacher/professor (even if the teacher is mentioned by name), classify as Timetable — NOT Faculty.
+- IMPORTANT: If a query asks about the SCHEDULE, CLASSES, TIMETABLE, or TEACHING TIMES of a teacher (even if the teacher is mentioned by name and even if 'of' or 'for' is missing), classify as Timetable — NOT Faculty.
 - If a query mentions a professor or teacher by name but is asking about their profile, contact info, email, designation, or qualifications, classify as Faculty.
-- If unsure between two categories, prefer the more specific one.
+- If a query contains both a name AND "class", "schedule", or "teach", prioritize Timetable.
 
 Examples:
 - "Who is the HOD of CS department?" → Faculty
@@ -48,6 +48,8 @@ Examples:
 - "Show me the timetable of Dr. Khan" → Timetable
 - "When does Dr. Niaz teach?" → Timetable
 - "What subjects does Prof. Irfan teach and when?" → Timetable
+- "classes dr ahsanullah" → Timetable
+- "schedule dr asif" → Timetable
 - "What programs does the university offer?" → Academic
 - "Tell me about the CS department curriculum" → Academic
 - "Hello" → General

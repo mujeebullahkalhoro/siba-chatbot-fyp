@@ -1,9 +1,8 @@
-"use client";
-import React from 'react';
+import React, { memo } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 
-const ThinkingBubble = () => {
+const ThinkingBubble = memo(() => {
     const { t, isRTL } = useLanguage();
     const { darkMode } = useTheme();
 
@@ -23,6 +22,7 @@ const ThinkingBubble = () => {
             </div>
         </div>
     );
-};
+});
+ThinkingBubble.displayName = 'ThinkingBubble';
 
 export default ThinkingBubble;

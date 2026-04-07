@@ -13,26 +13,29 @@ load_dotenv(current_dir.parent / ".env")
 # Patterns that unambiguously indicate a Timetable query even when a teacher
 # name is present (which would otherwise be mis-classified as Faculty).
 _TIMETABLE_PATTERNS = [
-    # "classes of Dr. X" / "class of Prof. Y"
-    r'\bclasses?\s+(?:of|for)\b',
-    # "where is Dr. X class" / "where is Prof. Y class"
-    r'\bwhere\s+is\b.{0,30}\bclass\b',
+    # "classes of Dr. X" / "class of Prof. Y" / "classes Dr. X"
+    r'\bclasses?\s+(?:of|for)?\s*(?:dr|prof|engr|mr|ms|sir)?\s*\w+\b',
+    # "schedule of Dr. X" / "schedule Dr. X"
+    r'\bschedule\s+(?:of|for)?\s*(?:dr|prof|engr|mr|ms|sir)?\s*\w+\b',
+    # "timetable of Dr. X" / "timetable Dr. X"
+    r'\btime\s*table\s+(?:of|for)?\s*(?:dr|prof|engr|mr|ms|sir)?\s*\w+\b',
+    # "where is Dr. X class" / "where is Prof. Y class" / "where is Prof. Y"
+    r'\bwhere\s+is\b.{0,30}\b(?:class|teach|timetable)\b',
     # "(whose) class is it"
     r'\b(?:whose|who)\b.{0,20}\bclass\b',
-    # "timetable of …" / "time table of …"
-    r'\btime\s*table\s+(?:of|for)\b',
-    # "schedule of …"
-    r'\bschedule\s+(?:of|for)\b',
-    # "show (me) (the) timetable / schedule of / for …"
+    # "any classes today" / "any class tomorrow" / "any classes"
+    r'\bany\s+classes?\b',
+    # "show (me) (the) timetable / schedule / routine"
     r'\bshow\b.{0,20}\b(?:timetable|schedule|routine)\b',
-    # "when does … teach" / "when does … have class"
-    r'\bwhen\s+does\b.{0,40}\b(?:teach|have\s+class)\b',
+    # "when does … teach" / "when does … have class" / "when does … take"
+    r'\bwhen\s+does\b.{0,40}\b(?:teach|have\s+class|took|take)\b',
     # "does Dr. X teach on …" / "does Prof. Y have class …"
     r'\bdoes\b.{0,30}\b(?:teach|have\s+(?:a\s+)?class)\b',
-    # "what does Dr. X teach" — asking about teaching schedule / subjects+times
+    # "what does Dr. X teach"
     r'\bwhat\b.{0,20}\b(?:teach)\b',
-    # Mentioning a title + class keywords
-    r'\b(?:dr|prof|engr|mr|ms|miss)\.?\s+\w+.{0,20}\b(?:class|schedule|timetable)\b',
+    # Mentioning a title + class keywords (any order, within 30 chars)
+    r'\b(?:dr|prof|engr|mr|ms|miss)\.?\s+\w+.{0,30}\b(?:class|schedule|timetable|routine|teach)\b',
+    r'\b(?:class|schedule|timetable|routine|teach).{0,30}\b(?:dr|prof|engr|mr|ms|miss)\.?\s+\w+',
 ]
 _TIMETABLE_RE = re.compile("|".join(_TIMETABLE_PATTERNS), re.IGNORECASE)
 
@@ -106,11 +109,12 @@ def _normalize_category(raw: str) -> str | None:
     return None
 
 
-async def classify_query(query: str) -> str:
+async def classify_query(query: str, last_category: str = None) -> str:
     """
     Classifies the user query into one of the predefined categories.
     Returns the canonical category name as a string.
-    Includes output validation and retry logic for robustness.
+    If last_category is provided, it helps the LLM with context-aware classification
+    (e.g., a teacher's name alone after a Timetable query remains Timetable).
     """
     # 1. Fast pre-LLM heuristic check (catches obvious Timetable queries)
     pre_cat = _pre_classify(query)
@@ -121,11 +125,14 @@ async def classify_query(query: str) -> str:
     # 2. LLM-based classification
     llm = _get_classifier_llm()
     
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", CLASSIFICATION_PROMPT),
-        ("human", "{query}")
-    ])
+    messages = [("system", CLASSIFICATION_PROMPT)]
+    if last_category:
+        messages.append(("system", f"CONTEXT: The previous query was classified as '{last_category}'. "
+                                    f"If the current query is a follow-up (like just a name or a room number), "
+                                    f"it should likely stay in the same category."))
+    messages.append(("human", "{query}"))
     
+    prompt = ChatPromptTemplate.from_messages(messages)
     chain = prompt | llm | StrOutputParser()
     
     # Attempt 1
@@ -153,9 +160,9 @@ async def classify_query(query: str) -> str:
             return category
         
         # Final fallback
-        print(f"[CLASSIFIER] Retry also failed ('{raw_output.strip()}'). Falling back to Policies.")
-        return "Policies"
+        print(f"[CLASSIFIER] Retry also failed ('{raw_output.strip()}'). Falling back to General.")
+        return "General"
         
     except Exception as e:
-        print(f"[CLASSIFIER] Error during classification: {e}. Falling back to Policies.")
-        return "Policies"
+        print(f"[CLASSIFIER] Error during classification: {e}. Falling back to General.")
+        return "General"

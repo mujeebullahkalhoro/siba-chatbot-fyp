@@ -2,6 +2,7 @@
 from pathlib import Path
 from typing import Dict, AsyncGenerator
 import os
+from datetime import datetime, timezone, timedelta
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -236,17 +237,38 @@ def find_role_documents(query: str) -> str:
     return ""
 
 # ── Prompts ──────────────────────────────────────────────
-UNIVERSAL_SYSTEM_PROMPT = (current_dir.parent / "prompts" / "universal_system.txt").read_text(encoding="utf-8")
+# Read prompt dynamically so edits to the .txt file take effect without restarting the server
+def _load_universal_system_prompt() -> str:
+    return (current_dir.parent / "prompts" / "universal_system.txt").read_text(encoding="utf-8")
+
+UNIVERSAL_SYSTEM_PROMPT = _load_universal_system_prompt()
 
 # ── Schema index (always included in context) ───────────
 _SCHEMAS_INDEX_PATH = current_dir.parent / "data" / "schemas_index.txt"
 SCHEMAS_INDEX_CONTENT = _SCHEMAS_INDEX_PATH.read_text(encoding="utf-8") if _SCHEMAS_INDEX_PATH.exists() else ""
 
-universal_prompt = ChatPromptTemplate.from_messages([
-    ("system", UNIVERSAL_SYSTEM_PROMPT),
-    MessagesPlaceholder(variable_name="chat_history"),
-    ("human", "Context:\n{context}\n\nQuestion: {question}\n\nRESPONSE LANGUAGE INSTRUCTION: {response_language}")
-])
+def _get_pkt_time() -> datetime:
+    """Returns the current time in Pakistan Standard Time (UTC+5)."""
+    return datetime.now(timezone(timedelta(hours=5)))
+
+def get_current_context_header(now: datetime) -> str:
+    """Returns a string describing the current date, time, and day in PKT."""
+    date_str = now.strftime("%A, %B %d, %Y")
+    time_str = now.strftime("%I:%M %p")
+    # This acts as the source of truth for the LLM's date reasoning
+    return (f"[Current Date and Time Context]\n"
+            f"Today is: {date_str}\n"
+            f"Current Time: {time_str} (Pakistan Standard Time)\n")
+
+def _build_universal_prompt() -> ChatPromptTemplate:
+    """Build the prompt template fresh each call so system prompt edits take effect immediately."""
+    return ChatPromptTemplate.from_messages([
+        ("system", _load_universal_system_prompt()),
+        MessagesPlaceholder(variable_name="chat_history"),
+        ("human", "{current_time}\nContext:\n{context}\n\nQuestion: {question}\n\nRESPONSE LANGUAGE INSTRUCTION: {response_language}")
+    ])
+
+universal_prompt = _build_universal_prompt()  # cached at startup, rebuilt per-request below
 
 
 # ── Lazy singletons ─────────────────────────────────────
@@ -277,9 +299,48 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 
 
 # ── Non-streaming chat ───────────────────────────────────
+def _get_last_category(history: BaseChatMessageHistory) -> str | None:
+    """Robustly infer the previous topic from history by checking headers and keywords."""
+    if not history or not history.messages:
+        return None
+        
+    for msg in reversed(history.messages):
+        content = str(msg.content).lower()
+        
+        # Explicit headers are best (if preserved)
+        if "[timetable" in content: return "Timetable"
+        if "[faculty" in content: return "Faculty"
+        if "[policies" in content: return "Policies"
+        if "[events" in content: return "Events"
+        if "[scholarships" in content: return "Scholarships"
+        
+        # Heuristic for AI messages: Did we just show a table or talk about schedule?
+        if isinstance(msg, AIMessage):
+            if any(kw in content for kw in ["| day |", "no classes found", "teaching schedule", "timetable"]):
+                return "Timetable"
+        
+        # Heuristic for Human messages: Was the last question about a schedule?
+        # Note: If they ask "Dr. Asif" after "Who is Dr. Asif?", it should be Faculty.
+        # But if they ask "Dr. Asif" after "classes of Dr. Ismail?", it should be Timetable.
+        if isinstance(msg, HumanMessage):
+            # Only count as Timetable if it has strong timetable keywords
+            if any(kw in content for kw in ["class", "schedule", "timetable", "routine", "teach", "took", "takes"]):
+                return "Timetable"
+            elif any(kw in content for kw in ["who is", "email", "office", "designation", "hod", "profile"]):
+                return "Faculty"
+                
+    return None
+
+# ── Non-streaming chat ───────────────────────────────────
 async def faculty_chat(query: str, session_id: str, is_authenticated: bool = False) -> str:
-    category = await classify_query(query)
-    print(f"DEBUG: Query classified as: {category}, Authenticated: {is_authenticated}")
+    pkt_now = _get_pkt_time()
+    
+    # Get last category from history to provide context to the classifier
+    history = get_session_history(session_id)
+    last_category = _get_last_category(history)
+
+    category = await classify_query(query, last_category=last_category)
+    print(f"DEBUG: Query classified as: {category} (context: {last_category}), Authenticated: {is_authenticated}")
 
     if category in ["Timetable", "Events"] and not is_authenticated:
         return "LOGIN_REQUIRED"
@@ -300,7 +361,7 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
 
     # Always use universal retriever — skip for Timetable (timetable data is injected directly)
     retriever = _get_universal_retriever()
-    active_prompt = universal_prompt
+    active_prompt = _build_universal_prompt()  # read fresh from disk each request
 
     if category == "Timetable":
         docs = []  # skip retriever — timetable context injected below
@@ -312,6 +373,7 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
             print(f"[DEBUG] Doc {i+1}: {d.page_content[:100]}...")
     print(f"{'='*60}\n")
 
+    current_time_str = get_current_context_header(pkt_now)
     context = ""
     for d in docs:
         source_info = f"[Source: {d.metadata.get('source', 'Unknown')}, Link: {d.metadata.get('source_link', 'N/A')}]"
@@ -324,7 +386,7 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
 
     # Inject timetable data if applicable
     if category == "Timetable":
-        tt_context = search_timetable(retrieval_query)
+        tt_context = search_timetable(retrieval_query, now=pkt_now)
         if tt_context:
             context = tt_context + context
 
@@ -346,6 +408,7 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
 
     response = await with_message_history.ainvoke(
         {
+            "current_time": current_time_str,
             "context": context,
             "question": query,
             "response_language": response_lang_instruction
@@ -361,8 +424,14 @@ async def faculty_chat_stream(
     query: str, session_id: str, is_authenticated: bool = False
 ) -> AsyncGenerator[str, None]:
     """Stream LLM response chunks for SSE."""
-    category = await classify_query(query)
-    print(f"DEBUG: Query classified as: {category}, Authenticated: {is_authenticated}")
+    pkt_now = _get_pkt_time()
+    
+    # Get last category from history to provide context to the classifier
+    history = get_session_history(session_id)
+    last_category = _get_last_category(history)
+
+    category = await classify_query(query, last_category=last_category)
+    print(f"DEBUG: Query classified as: {category} (context: {last_category}), Authenticated: {is_authenticated}")
 
     if category in ["Timetable", "Events"] and not is_authenticated:
         yield "LOGIN_REQUIRED"
@@ -384,7 +453,7 @@ async def faculty_chat_stream(
 
     # Always use universal retriever — skip for Timetable (timetable data is injected directly)
     retriever = _get_universal_retriever()
-    active_prompt = universal_prompt
+    active_prompt = _build_universal_prompt()  # read fresh from disk each request
 
     if category == "Timetable":
         docs = []  # skip retriever — timetable context injected below
@@ -397,6 +466,7 @@ async def faculty_chat_stream(
     print(f"{'='*60}\n")
 
     # Include source metadata in streaming context (matching non-streaming path)
+    current_time_str = get_current_context_header(pkt_now)
     context = ""
     for d in docs:
         source_info = f"[Source: {d.metadata.get('source', 'Unknown')}]"
@@ -409,7 +479,7 @@ async def faculty_chat_stream(
 
     # Inject timetable data if applicable
     if category == "Timetable":
-        tt_context = search_timetable(retrieval_query)
+        tt_context = search_timetable(retrieval_query, now=pkt_now)
         if tt_context:
             context = tt_context + context
 
@@ -423,6 +493,7 @@ async def faculty_chat_stream(
 
     # Format the prompt with history
     formatted = await active_prompt.ainvoke({
+        "current_time": current_time_str,
         "chat_history": chat_history,
         "context": context,
         "question": query,

@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from dataclasses import dataclass
 from typing import List, Dict, Optional
+from datetime import datetime
 
 # -- Day bitmask mapping ----------------------------------
 DAY_BITS   = {0: "Monday", 1: "Tuesday", 2: "Wednesday", 3: "Thursday", 4: "Friday"}
@@ -209,17 +210,17 @@ class TimetableLookup:
                 return 0.0
 
         # Hard filter 2: Semester
+        # Expand mapping: 1->I, 2->II, 3->III, 4->IV, 5->V, 6->VI, 7->VII, 8->VIII
+        # This handles cases where user says 'semester 6' but timetable uses 'VI'
+        cn_romans = {_roman_to_int(t) for t in cn_tokens if _roman_to_int(t) > 0}
+        cn_digits  = {int(t) for t in cn_tokens if t.isdigit()}
+        cn_all_numeric = cn_romans | cn_digits
+
         for rt in roman_tokens:
-            rv = _roman_to_int(rt)
-            cn_romans = {_roman_to_int(t) for t in cn_tokens if _roman_to_int(t) > 0}
-            cn_digits  = {int(t) for t in cn_tokens if t.isdigit()}
-            if rv not in cn_romans and rv not in cn_digits:
+            if _roman_to_int(rt) not in cn_all_numeric:
                 return 0.0
         for dt in digit_tokens:
-            dv = int(dt)
-            cn_romans = {_roman_to_int(t) for t in cn_tokens if _roman_to_int(t) > 0}
-            cn_digits  = {int(t) for t in cn_tokens if t.isdigit()}
-            if dv not in cn_romans and dv not in cn_digits:
+            if int(dt) not in cn_all_numeric:
                 return 0.0
 
         # Soft score
@@ -234,7 +235,10 @@ class TimetableLookup:
         """Return list of matching class names from the timetable, ordered by score."""
         q_tokens = self._tokenise(query)
         stopwords = {"the","for","of","and","is","show","me","what","timetable",
-                     "schedule","class","classes","section","semester","batch"}
+                     "schedule","class","classes","section","semester","batch",
+                     "will","be","when","who","which","where","how","days",
+                     "free","have","has","no","dr","prof","sir","mr","ms",
+                     "he","she","they","his","her","on","in","at","to"}
         q_tokens -= stopwords
 
         if not q_tokens:
@@ -252,10 +256,115 @@ class TimetableLookup:
             return []
 
         best = scored[0][0]
+        # Prevent very weak false positives (e.g. from stray tokens matching 'BS' or 'BE')
+        if best < 0.3:
+            return []
+            
         return [cn for score, cn in scored if score >= 0.5 * best]
 
+    # Known spelling variants: map user-typed variant -> canonical form in timetable
+    _SPELLING_VARIANTS = {
+        "zakria":      "zakriya",
+        "zakhria":     "zakriya",
+        "zakhirya":    "zakriya",
+        "asadulah":    "asadullah",
+        "ahsanulah":   "ahsanullah",
+        "sanaulah":    "sanaullah",
+        "amanulah":    "amanullah",
+        "ubedullah":   "ubaidullah",
+        "ubaidulah":   "ubaidullah",
+        "waliulah":    "waliullah",
+        "inamulah":    "inamullah",
+        "zafarulah":   "zafarullah",
+        "fasial":      "faisal",
+        "faisl":       "faisal",
+        "ismal":       "ismail",
+        "ismael":      "ismail",
+        "kamren":      "kamran",
+        "khaleel":     "khalil",
+    }
+
+    def _normalise_token(self, token: str) -> str:
+        """Apply known spelling corrections to a single token."""
+        return self._SPELLING_VARIANTS.get(token, token)
+
+    def _token_match_score(self, query_word: str, teacher_word: str) -> int:
+        """Score how well a single query token matches a single teacher name token.
+        Returns a tiered score:
+          10 = exact match
+           8 = one is a substring of the other (len >= 4)
+           7 = same prefix of >= 4 characters
+           5 = high-confidence fuzzy match (with prefix guard for long tokens)
+           0 = no match
+        """
+        # Tier 1: exact match
+        if query_word == teacher_word:
+            return 10
+
+        # Hard Guard: If both tokens are long, they MUST share first character
+        # This prevents "Ahsanullah" (A) from matching "Sanaullah" (S)
+        if len(query_word) >= 4 and len(teacher_word) >= 4:
+            if query_word[0] != teacher_word[0]:
+                return 0
+
+        # Tier 2: substring or prefix match (to handle truncation like Abro -> Abr)
+        if len(query_word) >= 4 and len(teacher_word) >= 4:
+            if query_word.startswith(teacher_word) or teacher_word.startswith(query_word):
+                # If query is LONGER than teacher token (e.g. 'asadullah' contains 'asad'),
+                # score lower (7) to avoid false ambiguity with the shorter name.
+                # If teacher is longer or equal (prefix truncation like 'abro' vs 'abroo'), score high (9).
+                if len(query_word) > len(teacher_word):
+                    return 7   # query contains teacher as prefix → weaker signal
+                return 9       # teacher contains query as prefix → strong truncation match
+            if query_word in teacher_word or teacher_word in query_word:
+                return 8
+
+        # Tier 3: shared prefix (>= 4 chars match)
+        min_len = min(len(query_word), len(teacher_word))
+        if min_len >= 4:
+            prefix_len = 0
+            for a, b in zip(query_word, teacher_word):
+                if a == b:
+                    prefix_len += 1
+                else:
+                    break
+            if prefix_len >= 4:
+                return 7
+
+        # Tier 4: fuzzy match with guards
+        # For longer tokens (compound names like "ahsanullah"), require higher
+        # similarity AND matching first 3 chars to prevent cross-name contamination
+        if len(query_word) >= 3 and len(teacher_word) >= 3:
+            import difflib
+            ratio = difflib.SequenceMatcher(None, query_word, teacher_word).ratio()
+
+            if len(query_word) >= 6 or len(teacher_word) >= 6:
+                # Long compound names: require high similarity + prefix guard
+                # This blocks "ahsanullah" ↔ "sanaullah" (different prefix)
+                # but allows  "zakriya" ↔ "zakria"   (same prefix "zakr")
+                if ratio >= 0.82 and query_word[:3] == teacher_word[:3]:
+                    return 5
+            else:
+                # Short names: standard fuzzy match with reasonable cutoff
+                if ratio >= 0.80:
+                    return 5
+
+        return 0
+
     def match_teachers(self, query: str) -> List[tuple]:
-        """Return list of (score, name) pairs for matching teachers."""
+        """Return list of (score, name) pairs for matching teachers.
+        
+        Uses a tiered scoring algorithm:
+        - Exact token match:      10 pts per token
+        - Substring containment:   8 pts per token
+        - Prefix match (≥4 char):  7 pts per token
+        - Fuzzy match (guarded):   5 pts per token
+        
+        Bonuses:
+        - All teacher name tokens matched via EXACT hits: +5
+        - Title (dr/engr/prof) matched: +3
+        - Full query matches teacher name exactly: +5
+        """
         q_tokens = self._tokenise(query)
         stopwords = {"the","for","of","and","is","teacher","professor","when","does","teach",
                      "show","me","schedule","timetable","class","classes","dr","prof","engr","sir",
@@ -266,48 +375,78 @@ class TimetableLookup:
         if not q_meaningful:
             return []
 
+        # Apply spelling normalization to query tokens
+        q_meaningful_normalised = {self._normalise_token(t) for t in q_meaningful}
+
         potential_teachers = []
         for tn in self.all_teachers:
             t_tokens = self._tokenise(tn)
-            # Remove title tokens from teacher name tokens for better matching
             clean_t_tokens = t_tokens - {"dr","prof","engr","mr","ms","vf"}
             potential_teachers.append((tn, t_tokens, clean_t_tokens))
 
         scored_matches = []
         for tn, t_tokens, clean_t_tokens in potential_teachers:
-            if not clean_t_tokens: continue
-            
-            # Intersection score with integrated inline fuzzy matching
-            intersection = set()
-            import difflib
-            for qw in q_meaningful:
-                if qw in clean_t_tokens:
-                    intersection.add(qw)
-                elif len(qw) > 2:
-                    m = difflib.get_close_matches(qw, list(clean_t_tokens), n=1, cutoff=0.75)
-                    if m:
-                        intersection.add(m[0])
-            
-            if not intersection: continue
-            
-            score = len(intersection) * 10
-            
-            # Extra bonus for core exact match
-            if intersection == clean_t_tokens:
+            if not clean_t_tokens:
+                continue
+
+            # Score each query token against each teacher token, take best per query token
+            matched_teacher_tokens = set()   # teacher tokens that were matched
+            exact_matched_tokens   = set()   # teacher tokens matched via exact hit
+            total_token_score      = 0
+            has_any_match          = False
+
+            for qw in q_meaningful_normalised:
+                best_score   = 0
+                best_t_token = None
+                for tw in clean_t_tokens:
+                    s = self._token_match_score(qw, tw)
+                    if s > best_score:
+                        best_score   = s
+                        best_t_token = tw
+
+                if best_score > 0:
+                    has_any_match = True
+                    total_token_score += best_score
+                    matched_teacher_tokens.add(best_t_token)
+                    if best_score == 10:
+                        exact_matched_tokens.add(best_t_token)
+
+            if not has_any_match:
+                continue
+
+            score = total_token_score
+
+            # Bonus: all teacher name tokens were matched via EXACT hits
+            if exact_matched_tokens == clean_t_tokens:
                 score += 5
-                if len(clean_t_tokens) == len(t_tokens):
+                # Extra if teacher has no titles (simple name fully matched)
+                # but ONLY if user didn't explicitly ask for a title
+                if len(clean_t_tokens) == len(t_tokens) and not (q_tokens & {"dr","prof","engr","mr","ms"}):
                     score += 2
-                    
-            # Titles bonus
+
+            # Bonus/penalty: title matching
             titles = t_tokens - clean_t_tokens
-            if (q_tokens & titles):
+            query_titles = q_tokens & {"dr","prof","engr","mr","ms"}
+            if query_titles:
+                if query_titles & titles:
+                    # User asked for dr/engr/etc and teacher has that title → bonus
+                    score += 3
+                elif titles:
+                    # User asked for different title than teacher has → penalty
+                    score -= 3
+                else:
+                    # User asked for a title but teacher has no title → strong penalty
+                    score -= 5
+            elif titles and (q_tokens & titles):
+                # Title present in query but not in stopwords? Grant bonus
                 score += 3
-                
-            # Extra bonus for full exact match (including titles)
-            q_clean = q_tokens - {"the","for","of","and","is","show","me","what","who","timetable","schedule","class","classes","teacher","professor"}
+
+            # Bonus: full exact match (query tokens == teacher tokens including titles)
+            q_clean = q_tokens - {"the","for","of","and","is","show","me","what","who",
+                                  "timetable","schedule","class","classes","teacher","professor"}
             if q_clean == t_tokens:
                 score += 5
-                
+
             scored_matches.append((score, tn))
 
         return sorted(scored_matches, key=lambda x: x[0], reverse=True)
@@ -332,8 +471,17 @@ class TimetableLookup:
                               for c in class_names)]
 
         if teacher_names:
-            results = [e for e in results
-                       if any(tn.lower() in e.teacher.lower() for tn in teacher_names)]
+            # teacher_names are canonical names from the data (like "Dr. Asif Khan")
+            # e.teacher might be "Dr. Asif Khan" or "Asif" or "Dr. A, Dr. B" (co-taught)
+            # We must ensure that "Asif" doesn't match "Dr. Asif Khan" via a loose "in" check.
+            def _teacher_entry_matches(entry_teacher_str, targets):
+                # Split entry by comma to handle co-taught
+                individual_teachers = [t.strip().lower() for t in entry_teacher_str.split(',')]
+                target_lowers = [t.lower() for t in targets]
+                # Match if ANY target is found as a whole name in the entry
+                return any(t in individual_teachers for t in target_lowers)
+
+            results = [e for e in results if _teacher_entry_matches(e.teacher, teacher_names)]
 
         if room_q:
             results = [e for e in results if room_q.lower() in e.room.lower()]
@@ -364,7 +512,7 @@ class TimetableLookup:
         return "\n".join(lines)
 
     # ────────────────────────────────────────────────────
-    def search(self, query: str) -> str:
+    def search(self, query: str, now: Optional[datetime] = None) -> str:
         q = query.lower()
 
         # Day detection
@@ -383,10 +531,18 @@ class TimetableLookup:
                     day_q = day_lower_map[matches[0]]
                     break
         if not day_q:
-            from datetime import datetime, timedelta
-            now = datetime.now()
-            if "tomorrow" in q: day_q = (now + timedelta(days=1)).strftime("%A")
-            elif "today" in q: day_q = now.strftime("%A")
+            from datetime import timedelta
+            # Ensure we use an absolute reference for relative dates
+            if now is None:
+                # Fallback to PKT manually if not provided (rare)
+                from datetime import timezone
+                now = datetime.now(timezone(timedelta(hours=5)))
+
+            if "tomorrow" in q:
+                target_date = now + timedelta(days=1)
+                day_q = target_date.strftime("%A")
+            elif "today" in q:
+                day_q = now.strftime("%A")
 
         # Room detection
         room_q = ""
@@ -408,18 +564,33 @@ class TimetableLookup:
             class_names = self.match_classes(query)
             
         if not scored_teacher_matches and not class_names and not room_q:
+            # Fallback: try matching teachers and classes anyway
             scored_teacher_matches = self.match_teachers(query)
+            if not scored_teacher_matches:
+                class_names = self.match_classes(query)
+
+        # If STILL nothing found (no teacher, no class, no room AND no day), return empty
+        if not scored_teacher_matches and not class_names and not room_q and not day_q:
+            return ""
 
         teacher_names:  List[str] = []
         similar_names:  List[str] = []
         
         if scored_teacher_matches:
             max_score = scored_teacher_matches[0][0]
+            # Use relative threshold: teachers within a tight range of top score are "matches"
+            # If we have a high-confidence match (>=10), we use a very tight threshold (85% or -3)
+            # to exclude loose fuzzy matches (like Sanaullah matching Ahsanullah).
             if max_score >= 10:
-                teacher_names = [tn for s, tn in scored_teacher_matches if s >= max_score - 3]
-                similar_names = [tn for s, tn in scored_teacher_matches if s < max_score - 3 and s >= 8]
+                # If we have a clear, high-confidence winner, be extremely aggressive:
+                # 1. Must be within 85% of top score
+                # 2. Must be within 2 points of top score (e.g., 15 vs 13)
+                match_threshold = max(max_score * 0.85, max_score - 2)
+                teacher_names = [tn for s, tn in scored_teacher_matches if s >= match_threshold]
+                similar_names = [tn for s, tn in scored_teacher_matches
+                                 if s < match_threshold and s >= max_score * 0.40]
             else:
-                teacher_names = [tn for s, tn in scored_teacher_matches if s >= 0.5 * max_score]
+                teacher_names = [tn for s, tn in scored_teacher_matches if s >= 0.8 * max_score]
 
         if teacher_names and len(teacher_names) > 1 and not class_names:
             return ("[Timetable — Ambiguous Teacher Name]\nMultiple teachers match your query:\n"
@@ -432,16 +603,34 @@ class TimetableLookup:
             if class_names: parts.append(f"class(es): {', '.join(class_names)}")
             if teacher_names: parts.append(f"teacher: {', '.join(teacher_names)}")
             if room_q: parts.append(f"room: {room_q}")
-            if day_q: parts.append(f"day: {day_q}")
-            header = "[Timetable — " + " | ".join(parts) + "]\n"
+            if day_q:
+                parts.append(f"day: {day_q}")
+            else:
+                parts.append("ALL DAYS (no day filter applied — show complete week schedule)")
+
+            # Add an anchoring date/day reasoning for the LLM
+            today_day = now.strftime("%A") if now else "Unknown"
+            day_reasoning = ""
+            if "tomorrow" in q and day_q:
+                day_reasoning = f" (User asked for 'tomorrow'. Since Today is {today_day}, Tomorrow is {day_q})"
+            elif "today" in q and day_q:
+                day_reasoning = f" (User asked for 'today'. Since Today is {today_day})"
+
+            header = f"[Timetable — " + " | ".join(parts) + f"]{day_reasoning}\n"
             footer = ""
             if similar_names:
                 footer = "\n\n*(Note: Found teachers with similar names: " + ", ".join(similar_names[:5]) + ")*"
             return header + self._to_markdown_table(results) + footer
 
-        if class_names or teacher_names:
-            target = ", ".join(class_names + teacher_names)
-            return f"[Timetable] No classes found for {target}.\n"
+        if class_names or teacher_names or room_q:
+            target_list = class_names + teacher_names
+            if room_q: target_list.append(f"Room {room_q}")
+            target = ", ".join(target_list)
+            
+            msg = f"[Timetable] No classes found for {target}"
+            if day_q:
+                msg += f" on {day_q}"
+            return msg + ".\n"
         return ""
 
 
@@ -455,12 +644,16 @@ def get_timetable() -> Optional[TimetableLookup]:
     xml_files = list(xml_dir.glob("*.xml"))
     if not xml_files: return None
     try:
-        _timetable = TimetableLookup(str(xml_files[0]))
+        # Load and merge ALL XML files in the directory
+        main_tt = TimetableLookup(str(xml_files[0]))
+        for extra_xml in xml_files[1:]:
+            main_tt._parse(str(extra_xml))
+        _timetable = main_tt
         return _timetable
     except Exception as e:
         print(f"[TIMETABLE] Error: {e}")
         return None
 
-def search_timetable(query: str) -> str:
+def search_timetable(query: str, now: Optional[datetime] = None) -> str:
     tt = get_timetable()
-    return tt.search(query) if tt else ""
+    return tt.search(query, now=now) if tt else ""

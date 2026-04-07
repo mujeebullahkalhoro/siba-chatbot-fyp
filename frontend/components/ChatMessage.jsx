@@ -1,10 +1,9 @@
-"use client";
-import React from "react";
+import React, { memo } from "react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTheme } from "@/context/ThemeContext";
 
-export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false }) {
+function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false }) {
   const { text, sender } = message;
   const isUser = sender === "user";
   const { darkMode } = useTheme();
@@ -20,7 +19,7 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t,
   };
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full`} dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full animate-fade-in-up`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div
         className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word rounded-t-xl 
           ${isUser
@@ -140,3 +139,32 @@ export default function ChatMessage({ message, feedback, onFeedback, ttsHook, t,
     </div >
   );
 }
+
+// Optimization: Use React.memo with a custom comparison function
+// to prevent re-rendering when parent state (like ChatInput message) changes.
+const MemoizedChatMessage = memo(ChatMessage, (prev, next) => {
+  // Only re-render if:
+  // 1. Core message content or sender changed
+  if (prev.message.id !== next.message.id) return false;
+  if (prev.message.text !== next.message.text) return false;
+  
+  // 2. Feedback status changed
+  if (prev.feedback !== next.feedback) return false;
+  
+  // 3. UI Context changed
+  if (prev.isRTL !== next.isRTL) return false;
+
+  // 4. THIS specific message's speaking status changed
+  const prevIsSpeaking = prev.ttsHook?.speakingId === prev.message.id && prev.ttsHook?.isSpeaking;
+  const nextIsSpeaking = next.ttsHook?.speakingId === next.message.id && next.ttsHook?.isSpeaking;
+  if (prevIsSpeaking !== nextIsSpeaking) return false;
+
+  // 5. Global TTS "isSpeaking" status changed (needed for the pulse animation if it was speaking)
+  // Actually, point 4 covers the toggle. Let's add global speaking just to be safe for listener buttons.
+  if (prev.ttsHook?.isSpeaking !== next.ttsHook?.isSpeaking) return false;
+
+  return true; // props are effectively equal for rendering
+});
+MemoizedChatMessage.displayName = 'ChatMessage';
+
+export default MemoizedChatMessage;

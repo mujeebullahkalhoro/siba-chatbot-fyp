@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import VoiceRecorder from "./VoiceRecorder";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -8,24 +8,31 @@ const sibaOrange = "#ea6645";
 
 export default function ChatInput({
   handleSendMessage = () => { },
-  currentMessage = "",
+  currentMessage: initialMessage = "", // renamed to show it's the initial/external value
   setCurrentMessage = () => { },
   className = "",
-  textareaRef, // accept the prop so it's in scope
-  markVoiceQuery, // for voice-to-voice auto-speak
+  textareaRef,
+  markVoiceQuery,
   isGenerating,
   onStopGeneration,
   isMaintenance = false,
 } = {}) {
   const localRef = useRef(null);
-  const taRef = textareaRef ?? localRef; // safe fallback
+  const taRef = textareaRef ?? localRef;
   const [isRecording, setIsRecording] = useState(false);
+  const [localMessage, setLocalMessage] = useState(initialMessage); // Local state for smooth typing
   const { t, isRTL } = useLanguage();
   const { darkMode } = useTheme();
 
+  // Sync with parent when suggested questions or other external actions change initialMessage
+  useEffect(() => {
+    setLocalMessage(initialMessage);
+  }, [initialMessage]);
+
   const handleTextareaChange = (e) => {
     const v = e.target.value ?? "";
-    setCurrentMessage(v);
+    setLocalMessage(v); // Update local state ONLY
+    // We don't call setCurrentMessage(v) here to avoid parent re-renders
     const ta = e.target;
     ta.style.height = "auto";
     ta.style.height = `${Math.min(ta.scrollHeight, 160)}px`;
@@ -33,20 +40,25 @@ export default function ChatInput({
 
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
-    const trimmed = (currentMessage ?? "").trim();
+    const trimmed = (localMessage ?? "").trim();
     if (!trimmed) return;
-    handleSendMessage(e);
+    
+    // Sync back to parent only on submit if needed, 
+    // but handleSendMessage usually takes the text directly anyway.
+    handleSendMessage(e, trimmed); 
+    setLocalMessage(""); // Clear local
     if (taRef.current) taRef.current.style.height = "44px";
   };
 
   const handleTranscription = (text) => {
     setIsRecording(false);
-    setCurrentMessage(text);
+    setLocalMessage(text);
     markVoiceQuery?.(); // Flag so the response gets auto-spoken
-    handleSendMessage(null, text); // Pass text directly to avoid state race
+    handleSendMessage(null, text); // Pass text directly
+    setLocalMessage(""); // Clear local
   };
 
-  const disabled = !((currentMessage ?? "").trim()) || isMaintenance;
+  const disabled = !((localMessage ?? "").trim()) || isMaintenance;
   const placeholder = isMaintenance ? "System is under maintenance..." : t("input.placeholder");
 
   if (isRecording) {
@@ -73,7 +85,7 @@ export default function ChatInput({
     >
       <textarea
         ref={taRef}
-        value={currentMessage ?? ""}
+        value={localMessage ?? ""}
         onChange={handleTextareaChange}
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) handleSubmit(e);
