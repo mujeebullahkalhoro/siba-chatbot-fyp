@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from routes import auth_routes, chat_routes, audio_routes, chat_history_routes, admin_routes, feedback_routes
+from routes import auth_routes, chat_routes, audio_routes, chat_history_routes, admin_routes, feedback_routes, settings_routes
 from database import init_db, close_db
 
 # Explicit origins are required when allow_credentials=True
@@ -60,3 +60,4 @@ app.include_router(audio_routes.router)
 app.include_router(chat_history_routes.router)
 app.include_router(admin_routes.router)
 app.include_router(feedback_routes.router)
+app.include_router(settings_routes.router)

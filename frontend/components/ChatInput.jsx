@@ -80,6 +80,7 @@ export default function ChatInput({
   isGenerating,
   onStopGeneration,
   isMaintenance = false,
+  sendOnEnter = true,
 } = {}) {
   const localRef = useRef(null);
   const taRef = textareaRef ?? localRef;
@@ -176,24 +177,38 @@ export default function ChatInput({
     <form
       onSubmit={handleSubmit}
       className={[
-        "relative flex items-center border rounded-xl shadow-lg px-3 py-2 transition-colors duration-300",
+        "relative flex items-center border rounded-xl shadow-lg px-3 py-2 transition-colors duration-300 ui-card focus-within:border-[#8db9e8] focus-within:shadow-[0_0_0_3px_var(--ring-soft)]",
         darkMode
           ? "bg-slate-800 border-slate-700"
-          : "bg-white border-gray-200",
+          : "bg-white border-[color:var(--border-soft)]",
         className,
       ].join(" ")}
     >
+      {isMaintenance && (
+        <div className={`absolute -top-7 ${isRTL ? "right-2" : "left-2"} text-[11px] px-2 py-0.5 rounded-full border ${
+          darkMode ? "bg-slate-800 border-slate-700 text-amber-300" : "bg-amber-50 border-amber-200 text-amber-700"
+        }`}>
+          {t("maintenance.short")}
+        </div>
+      )}
       <textarea
         ref={taRef}
         value={localMessage ?? ""}
         onChange={handleTextareaChange}
         onKeyDown={(e) => {
-          if (e.key === "Enter" && !e.shiftKey) handleSubmit(e);
+          if (e.key !== "Enter" || e.shiftKey) return;
+          if (sendOnEnter) {
+            handleSubmit(e);
+            return;
+          }
+          if (e.ctrlKey || e.metaKey) {
+            handleSubmit(e);
+          }
         }}
         placeholder={placeholder}
         disabled={isMaintenance}
         dir={isRTL ? "rtl" : "ltr"}
-        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-5 min-h-[44px] max-h-40 custom-scrollbar bg-transparent ${darkMode ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-400'} ${isMaintenance ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`flex-1 border-0 rounded-lg p-2 ${isRTL ? 'pl-22 sm:pl-20' : 'pr-22 sm:pr-20'} resize-none overflow-y-auto focus:outline-none focus:ring-0 text-sm leading-6 min-h-[44px] max-h-40 custom-scrollbar bg-transparent ${darkMode ? 'text-gray-100 placeholder:text-gray-400' : 'text-gray-900 placeholder:text-gray-400'} ${isMaintenance ? 'opacity-50 cursor-not-allowed' : ''}`}
         rows={1}
         style={{ lineHeight: "1.5", transition: "height 0.1s ease-out" }}
       />
@@ -205,7 +220,7 @@ export default function ChatInput({
           disabled={micStarting || isMaintenance}
           aria-busy={micStarting}
           onClick={handleMicClick}
-          className="text-gray-500 hover:text-gray-700 focus:outline-none h-9 w-9 flex items-center justify-center disabled:opacity-50"
+          className="text-gray-500 hover:text-gray-700 focus:outline-none h-9 w-9 flex items-center justify-center disabled:opacity-50 ui-control ui-focus-ring"
           style={{ color: sibaOrange }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -218,7 +233,7 @@ export default function ChatInput({
             type="button"
             onClick={onStopGeneration}
             aria-label={t("voice.stop")}
-            className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2"
+            className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2 ui-control ui-focus-ring"
             style={{ backgroundColor: "#dc2626" }} // Tailwind red-600
           >
             {/* A square STOP icon */}
@@ -231,8 +246,7 @@ export default function ChatInput({
             type="submit"
             disabled={disabled}
             aria-label={t("voice.submit")}
-            className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{ backgroundColor: sibaOrange }}
+            className="text-white rounded-lg p-2 h-9 w-9 flex items-center justify-center hover:bg-opacity-90 transition duration-150 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed ui-primary-btn ui-control ui-focus-ring"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L6 12Z" />

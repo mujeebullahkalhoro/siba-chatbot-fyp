@@ -14,7 +14,10 @@ function subscribe(callback) {
 }
 
 function getSnapshot() {
-  return localStorage.getItem('siba_dark_mode') === 'true';
+  const mode = localStorage.getItem('siba_theme_mode') || 'system';
+  if (mode === 'dark') return true;
+  if (mode === 'light') return false;
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
 function getServerSnapshot() {
@@ -29,15 +32,28 @@ export function ThemeProvider({ children }) {
   //   - After hydration: uses getSnapshot() => reads real localStorage value
   const darkMode = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  const toggleDarkMode = useCallback(() => {
-    const newVal = !(localStorage.getItem('siba_dark_mode') === 'true');
-    localStorage.setItem('siba_dark_mode', String(newVal));
-    // Trigger a storage event so useSyncExternalStore re-reads the snapshot
-    window.dispatchEvent(new StorageEvent('storage', { key: 'siba_dark_mode' }));
+  const getThemeMode = useCallback(() => {
+    if (typeof window === 'undefined') return 'system';
+    return localStorage.getItem('siba_theme_mode') || 'system';
   }, []);
 
+  const toggleDarkMode = useCallback(() => {
+    const currentMode = localStorage.getItem('siba_theme_mode') || 'system';
+    const next = currentMode === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('siba_theme_mode', next);
+    window.dispatchEvent(new StorageEvent('storage', { key: 'siba_theme_mode' }));
+  }, []);
+
+  const setThemeMode = useCallback((mode) => {
+    const safeMode = ['light', 'dark', 'system'].includes(mode) ? mode : 'system';
+    localStorage.setItem('siba_theme_mode', safeMode);
+    window.dispatchEvent(new StorageEvent('storage', { key: 'siba_theme_mode' }));
+  }, []);
+
+  const themeMode = getThemeMode();
+
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ darkMode, toggleDarkMode, themeMode, setThemeMode }}>
       {children}
     </ThemeContext.Provider>
   );

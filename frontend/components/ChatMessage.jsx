@@ -3,14 +3,14 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTheme } from "@/context/ThemeContext";
 
-function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false }) {
+function ChatMessage({ message, compact = false, feedback, onFeedback, ttsHook, t, isRTL = false }) {
   const { text, sender } = message;
   const isUser = sender === "user";
   const { darkMode } = useTheme();
   const isThisSpeaking = ttsHook?.speakingId === message.id && ttsHook?.isSpeaking;
 
   // Bot bubble background
-  const botBg = darkMode ? '#1e293b' : undefined;
+  const botBg = darkMode ? '#1e293b' : '#ffffff';
 
   // Function to provide a fallback translation if t is not available
   const translate = (key, defaultText) => {
@@ -19,19 +19,24 @@ function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false 
   };
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full animate-fade-in-up`} dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full animate-fade-in-up ${compact ? "mt-1" : ""}`} dir={isRTL ? 'rtl' : 'ltr'}>
+      {!isUser && !compact && (
+        <div className="w-7 h-7 rounded-full mr-2 mt-1 bg-gradient-to-br from-blue-500 to-[#003e80] text-white text-xs font-bold flex items-center justify-center shrink-0">
+          AI
+        </div>
+      )}
       <div
-        className={`w-auto max-w-[90%] sm:max-w-xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word rounded-t-xl 
+        className={`w-auto max-w-[92%] sm:max-w-2xl px-4 py-3 shadow-md text-base transition-all duration-300 wrap-break-word rounded-2xl border ui-card
           ${isUser
-            ? `text-white ${isRTL ? 'rounded-br-xl' : 'rounded-bl-xl'}`
-            : `${isRTL ? 'rounded-bl-xl' : 'rounded-br-xl'}`
+            ? `text-white ${isRTL ? 'rounded-br-md' : 'rounded-bl-md'} border-transparent`
+            : `${isRTL ? 'rounded-bl-md' : 'rounded-br-md'} ${darkMode ? 'border-slate-700/70' : 'border-[color:var(--border-soft)]'}`
           }`}
         style={{ 
-          backgroundColor: isUser ? '#003e80' : botBg,
+          background: isUser ? 'linear-gradient(135deg, #003e80 0%, #0056b3 100%)' : botBg,
           color: isUser ? 'white' : (darkMode ? '#e2e8f0' : '#333333')
         }}
       >
-        <div className={`prose prose-sm max-w-none ${isUser ? 'prose-invert text-white' : (darkMode ? 'prose-invert text-gray-200' : 'text-gray-800')}`}>
+        <div className={`prose prose-sm max-w-none leading-relaxed ${isUser ? 'prose-invert text-white' : (darkMode ? 'prose-invert text-gray-200' : 'text-gray-800')}`}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -49,7 +54,7 @@ function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false 
                   />
                 );
               },
-              p: ({ node, ...props }) => <p {...props} className="mb-1 last:mb-0" />,
+              p: ({ node, ...props }) => <p {...props} className="mb-2 last:mb-0" />,
               table: ({ node, ...props }) => <div className="overflow-x-auto my-2" dir="ltr"><table {...props} className={`min-w-full divide-y border text-sm ${darkMode ? 'divide-slate-700 border-slate-700' : 'divide-gray-300 border-gray-300'}`} /></div>,
               thead: ({ node, ...props }) => <thead {...props} className={isUser ? 'bg-white/10' : (darkMode ? 'bg-slate-800' : 'bg-gray-200')} />,
               th: ({ node, ...props }) => <th {...props} className={`px-3 py-2 font-semibold ${isRTL ? 'text-right' : 'text-left'}`} />,
@@ -71,7 +76,7 @@ function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false 
             {/* 👍 Thumbs Up */}
             <button
               onClick={() => onFeedback && onFeedback(message.id, 'up')}
-              className={`p-1.5 rounded-lg transition-all duration-200 ${
+              className={`p-1.5 rounded-lg transition-all duration-200 ui-control ui-focus-ring ${
                 feedback === 'up'
                   ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
                   : `${darkMode ? 'text-slate-500 hover:text-green-400 hover:bg-slate-700' : 'text-gray-400 hover:text-green-600 hover:bg-green-50'}`
@@ -95,7 +100,7 @@ function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false 
             {/* 👎 Thumbs Down */}
             <button
               onClick={() => onFeedback && onFeedback(message.id, 'down')}
-              className={`p-1.5 rounded-lg transition-all duration-200 ${
+              className={`p-1.5 rounded-lg transition-all duration-200 ui-control ui-focus-ring ${
                 feedback === 'down'
                   ? 'bg-red-100 text-red-500 dark:bg-red-900/30 dark:text-red-400'
                   : `${darkMode ? 'text-slate-500 hover:text-red-400 hover:bg-slate-700' : 'text-gray-400 hover:text-red-500 hover:bg-red-50'}`
@@ -120,7 +125,7 @@ function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false 
             {ttsHook && !isRTL && (
             <button
               onClick={() => ttsHook.speak(text, message.id)}
-              className={`p-1.5 rounded-lg transition-all duration-200 ${
+              className={`p-1.5 rounded-lg transition-all duration-200 ui-control ui-focus-ring ${
                 isThisSpeaking
                   ? 'text-blue-600 bg-blue-50 animate-pulse dark:bg-blue-900/30 dark:text-blue-400'
                   : `${darkMode ? 'text-slate-500 hover:text-blue-400 hover:bg-slate-700' : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'}`
@@ -136,6 +141,11 @@ function ChatMessage({ message, feedback, onFeedback, ttsHook, t, isRTL = false 
           </div>
         </div>
       )}
+      {isUser && !compact && (
+        <div className="w-7 h-7 rounded-full ml-2 mt-1 bg-gradient-to-br from-[#ea6645] to-[#c94f33] text-white text-xs font-bold flex items-center justify-center shrink-0">
+          You
+        </div>
+      )}
     </div >
   );
 }
@@ -147,6 +157,7 @@ const MemoizedChatMessage = memo(ChatMessage, (prev, next) => {
   // 1. Core message content or sender changed
   if (prev.message.id !== next.message.id) return false;
   if (prev.message.text !== next.message.text) return false;
+  if (prev.compact !== next.compact) return false;
   
   // 2. Feedback status changed
   if (prev.feedback !== next.feedback) return false;

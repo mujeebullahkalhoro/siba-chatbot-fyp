@@ -23,6 +23,9 @@ const nastaliqUrdu = Noto_Nastaliq_Urdu({
 export const metadata = {
   title: "SIBA Chatbot",
   description: "Sukkur IBA University AI Chatbot",
+  icons: {
+    icon: "/image.png",
+  },
 };
 
 export default function RootLayout({ children }) {

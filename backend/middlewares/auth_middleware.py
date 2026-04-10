@@ -12,6 +12,7 @@ PUBLIC_PATHS: List[str] = [
     "/api/public",
     "/api/auth/google",           # ID token endpoint (optional)
     "/api/auth/google/callback",  # OAuth code callback
+    "/api/auth/2fa/verify-login", # 2FA challenge completion
     "/api/auth/logout",
     "/api/chat",                  # Chat endpoint is public (handles its own auth check)
     "/docs", "/openapi.json", "/favicon.ico", "/redoc"

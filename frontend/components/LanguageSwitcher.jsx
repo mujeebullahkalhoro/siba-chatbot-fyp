@@ -10,7 +10,7 @@ export default function LanguageSwitcher({ className = "" }) {
     return (
         <button
             onClick={toggle}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:bg-white/10 ${className}`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:bg-white/10 border border-white/15 ui-control ui-focus-ring ${className}`}
             title={lang === "en" ? "Switch to Urdu" : "Switch to English"}
             style={{ fontFamily: lang === "en" ? "'Noto Nastaliq Urdu', serif" : "inherit" }}
         >

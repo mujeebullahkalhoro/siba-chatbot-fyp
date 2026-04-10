@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import SideBar from "@/components/SideBar";
 import ChatHeader from "@/components/ChatHeader";
 import AuthProvider, { useAuth } from "@/context/AuthContext";
@@ -40,6 +41,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 
 function DashboardContent({ children }) {
+  const router = useRouter();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
@@ -87,6 +89,8 @@ function DashboardContent({ children }) {
         onSelectSession={handleSelectSession}
         onDeleteChat={handleDeleteChat}
         onRenameChat={handleRenameChat}
+        onOpenSettings={() => router.push("/settings")}
+        onOpenHelp={() => router.push("/dashboard/help")}
       />
 
       {/* Main content */}

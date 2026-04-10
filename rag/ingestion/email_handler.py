@@ -5,8 +5,10 @@ import sys
 import imaplib
 import email
 from email.header import decode_header
+from email.utils import parsedate_to_datetime
 import xmltodict
 import json
+from urllib import request as urllib_request
 from datetime import datetime
 from bs4 import BeautifulSoup
 import re
@@ -27,13 +29,66 @@ EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
 IMAP_SERVER = os.getenv("IMAP_SERVER", "imap.gmail.com")
 IMAP_PORT = int(os.getenv("IMAP_PORT", 993))
+BACKEND_API_BASE = os.getenv("BACKEND_API_BASE", "http://localhost:8000")
+MAINTENANCE_INTERNAL_TOKEN = os.getenv("MAINTENANCE_INTERNAL_TOKEN", "")
 
 TIMETABLE_DIR = RAG_DIR / "data" / "timetable"
 EVENTS_DIR = RAG_DIR / "data" / "events"
+EMAIL_CLASSIFICATION_PROMPT_PATH = RAG_DIR / "prompts" / "email_classification.txt"
+MAX_RECENT_EMAILS = int(os.getenv("EMAIL_MAX_RECENT", "10"))
+PROCESS_TODAY_ONLY = os.getenv("EMAIL_PROCESS_TODAY_ONLY", "true").lower() == "true"
 
 # Ensure directories exist
 TIMETABLE_DIR.mkdir(parents=True, exist_ok=True)
 EVENTS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def log(message):
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{ts}] {message}")
+
+
+def contains_any(text, words):
+    return any(w in text for w in words)
+
+
+def load_email_classification_prompt():
+    try:
+        return EMAIL_CLASSIFICATION_PROMPT_PATH.read_text(encoding="utf-8")
+    except Exception as e:
+        log(f"WARNING: failed to load email prompt, using fallback: {e}")
+        return (
+            "Classify email into exactly one: timetable, event, other. "
+            "Exams and admin notices are other. Return one lowercase word only."
+        )
+
+
+def set_backend_maintenance(active, reason):
+    """Toggle backend maintenance mode via internal protected API."""
+    if not MAINTENANCE_INTERNAL_TOKEN:
+        log("WARNING: MAINTENANCE_INTERNAL_TOKEN missing; cannot toggle maintenance mode")
+        return False
+    url = f"{BACKEND_API_BASE}/api/admin/maintenance/internal"
+    payload = json.dumps({"maintenance": bool(active), "reason": reason}).encode("utf-8")
+    req = urllib_request.Request(
+        url,
+        data=payload,
+        method="POST",
+        headers={
+            "Content-Type": "application/json",
+            "X-Maintenance-Token": MAINTENANCE_INTERNAL_TOKEN,
+        },
+    )
+    try:
+        with urllib_request.urlopen(req, timeout=10) as resp:
+            if resp.status == 200:
+                log(f"Maintenance mode set to {active} ({reason})")
+                return True
+            log(f"WARNING: maintenance toggle returned status {resp.status}")
+            return False
+    except Exception as e:
+        log(f"WARNING: failed to toggle maintenance mode: {e}")
+        return False
 
 def clean_subject(subject):
     if not subject: return ""
@@ -83,36 +138,56 @@ def extract_xml_content(msg):
     return xml_str
 
 def classify_email_type(subject, body):
-    subject_lower = subject.lower()
-    if "timetable" in subject_lower or "updated" in subject_lower:
+    text = f"{subject}\n{body}".lower()
+
+    # Keep timetable detection strict to timetable/xml only.
+    if "timetable" in text or "<timetable" in text:
         return "timetable"
-    
-    # Use LLM for event classification
-    print("🤖 Calling LLM for classification...")
+
+    # Hard exclusions: do not ingest these categories.
+    excluded_keywords = [
+        "exam", "examination", "midterm", "final term", "quiz", "assignment",
+        "result", "grades", "marksheet", "paper", "hostel", "admission",
+        "fee", "dues", "transport", "holiday", "internship", "job"
+    ]
+    if contains_any(text, excluded_keywords):
+        return "other"
+
+    # Fast path positive hint for obvious cases, then validate via LLM.
+    allowed_event_keywords = ["event", "workshop", "seminar", "seminor"]
+    looks_event_like = contains_any(text, allowed_event_keywords)
+    looks_timetable_like = "timetable" in text or "<timetable" in text
+
+    prompt = load_email_classification_prompt()
     llm = get_groq_llm_fast()
-    prompt = f"""Classify this email into one of these categories: 'event', 'scholarship', 'workshop', 'other'.
-    Respond with ONLY the category name.
-    
-    Subject: {subject}
-    Body snippet: {body[:300]}
-    """
+    llm_input = (
+        f"{prompt}\n\n"
+        f"Subject:\n{subject[:500]}\n\n"
+        f"Body (truncated):\n{body[:2000]}\n\n"
+        f"Return label:"
+    )
     try:
-        response = llm.invoke(prompt)
-        category = response.content.strip().lower()
-        if any(c in category for c in ['event', 'scholarship', 'workshop']):
-            return "event"
+        response = llm.invoke(llm_input)
+        label = (response.content or "").strip().lower()
+        label = re.sub(r"[^a-z]", "", label)
+        if label in {"timetable", "event", "other"}:
+            return label
+        log(f"WARNING: Unexpected LLM label '{response.content}', fallback to rules")
     except Exception as e:
-        print(f"⚠️ LLM classification failed: {e}")
-        # Fallback to keyword search
-        if any(k in subject_lower for k in ["event", "scholarship", "workshop"]):
-            return "event"
-    
+        log(f"WARNING: Email LLM classification failed, fallback to rules: {e}")
+
+    # Fallback if LLM fails/unexpected output.
+    if looks_timetable_like:
+        return "timetable"
+    if looks_event_like:
+        return "event"
+
     return "other"
 
 def process_timetable(msg, subject):
     xml_str = extract_xml_content(msg)
     if not xml_str:
-        print("⚠️ No XML timetable found in email")
+        log("WARNING: No XML timetable found in email")
         return False
     
     # Cleanup malformed XML using BeautifulSoup
@@ -133,7 +208,7 @@ def process_timetable(msg, subject):
         
         xml_files = list(TIMETABLE_DIR.glob("*.xml"))
         for old_file in xml_files:
-            print(f"📦 Backing up old timetable: {old_file.name}")
+            log(f"Backing up old timetable: {old_file.name}")
             backup_path = BACKUP_DIR / f"{old_file.stem}_{datetime.now().strftime('%Y%m%d_%H%M%S')}{old_file.suffix}"
             try:
                 old_file.replace(backup_path)
@@ -145,20 +220,11 @@ def process_timetable(msg, subject):
         save_path = TIMETABLE_DIR / filename
         with open(save_path, "w", encoding="utf-8") as f:
             f.write(fixed_xml)
-        print(f"✅ New timetable saved: {filename}")
+        log(f"New timetable saved: {filename}")
 
-        # Rebuild vector store to reflect new timetable
-        print("🔄 Rebuilding universal vector store...")
-        try:
-            build_universal_vectorstore()
-            print("✅ Vector store rebuilt successfully")
-        except Exception as e:
-            print(f"⚠️ Vector store rebuild failed: {e}")
-            return False
-            
         return True
     except Exception as e:
-        print(f"⚠️ Failed to process XML: {e}")
+        log(f"WARNING: Failed to process XML: {e}")
         return False
 
 def process_event(msg, subject, body):
@@ -168,7 +234,7 @@ def process_event(msg, subject, body):
         try:
             content = existing_file.read_text(encoding="utf-8")
             if f"Subject: {subject}" in content and body[:500] in content:
-                print(f"⏭ TC-17: Duplicate detected. Ignoring repeated event: {subject}")
+                log(f"TC-17: Duplicate detected. Ignoring repeated event: {subject}")
                 return False
         except Exception:
             continue
@@ -178,58 +244,100 @@ def process_event(msg, subject, body):
     save_path = EVENTS_DIR / filename
     with open(save_path, "w", encoding="utf-8") as f:
         f.write(f"Subject: {subject}\nDate: {datetime.now().isoformat()}\n\n{body}")
-    print(f"✅ New event saved: {filename}")
+    log(f"New event saved: {filename}")
     
-    # Rebuild vector store
-    print("🔄 Rebuilding universal vector store...")
-    try:
-        build_universal_vectorstore()
-        print("✅ Vector store rebuilt successfully")
-    except Exception as e:
-        print(f"⚠️ Vector store rebuild failed: {e}")
-        return False
     return True
 
 def fetch_and_process_emails():
-    print(f"Connecting to {IMAP_SERVER}...")
+    log(f"Connecting to {IMAP_SERVER}...")
     if not EMAIL_USER or not EMAIL_PASS:
-        print("❌ EMAIL_USER or EMAIL_PASS not set in environment!")
-        return
+        log("ERROR: EMAIL_USER or EMAIL_PASS not set in environment")
+        return 1
 
     try:
         mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
         mail.login(EMAIL_USER, EMAIL_PASS)
         mail.select("inbox")
         
-        status, messages = mail.search(None, "UNSEEN")
+        # Pull most recent emails from current day (or last 10 unread if disabled).
+        if PROCESS_TODAY_ONLY:
+            imap_day = datetime.now().strftime("%d-%b-%Y")
+            status, messages = mail.search(None, "SINCE", imap_day)
+            search_desc = f"today since {imap_day}"
+        else:
+            status, messages = mail.search(None, "UNSEEN")
+            search_desc = "UNSEEN"
         if status != "OK":
-            print("⚠️ Failed to search unseen emails")
-            return
+            log(f"WARNING: Failed to search emails for {search_desc}")
+            mail.logout()
+            return 1
             
         email_ids = messages[0].split()
-        print(f"📩 Found {len(email_ids)} unread emails")
+        email_ids = email_ids[-MAX_RECENT_EMAILS:]
+        log(f"Found {len(email_ids)} candidate emails ({search_desc}), scanning latest {MAX_RECENT_EMAILS}")
         
-        for eid in email_ids:
+        processed_count = 0
+        skipped_by_date = 0
+        for eid in reversed(email_ids):
             _, msg_data = mail.fetch(eid, "(RFC822)")
             msg = email.message_from_bytes(msg_data[0][1])
             subject = clean_subject(msg["Subject"])
             body = extract_email_body(msg)
+
+            if PROCESS_TODAY_ONLY:
+                msg_date = msg.get("Date")
+                try:
+                    parsed = parsedate_to_datetime(msg_date) if msg_date else None
+                    if not parsed or parsed.date() != datetime.now().date():
+                        skipped_by_date += 1
+                        log(f"Skipped (not current day): {subject}")
+                        continue
+                except Exception:
+                    skipped_by_date += 1
+                    log(f"Skipped (invalid date header): {subject}")
+                    continue
             
-            print(f"\n--- Processing: {subject} ---")
+            log(f"Processing: {subject}")
             
             email_type = classify_email_type(subject, body)
-            print(f"📂 Category: {email_type}")
+            log(f"Category: {email_type}")
             
             if email_type == "timetable":
-                process_timetable(msg, subject)
+                if process_timetable(msg, subject):
+                    processed_count += 1
             elif email_type == "event":
-                process_event(msg, subject, body)
+                if process_event(msg, subject, body):
+                    processed_count += 1
             else:
-                print("⏭ Skipped (Irrelevant category)")
+                log("Skipped (Irrelevant category)")
                 
+        if skipped_by_date:
+            log(f"Skipped by date filter: {skipped_by_date}")
+
+        # Rebuild once after all relevant extractions.
+        if processed_count > 0:
+            set_backend_maintenance(True, "email_rebuild")
+            log("Rebuilding universal vector store (single batch run)...")
+            try:
+                build_universal_vectorstore()
+                log("Vector store rebuilt successfully")
+            except Exception as e:
+                log(f"WARNING: Vector store rebuild failed: {e}")
+                mail.logout()
+                set_backend_maintenance(False, "email_rebuild_failed")
+                return 1
+            finally:
+                set_backend_maintenance(False, "email_rebuild_complete")
+
         mail.logout()
+        log(f"Run complete. Updated items: {processed_count}")
+        return 0
+    except imaplib.IMAP4.error as e:
+        log(f"ERROR: IMAP authentication/login failed: {e}")
+        return 1
     except Exception as e:
-        print(f"❌ Error: {e}")
+        log(f"ERROR: {e}")
+        return 1
 
 if __name__ == "__main__":
-    fetch_and_process_emails()
+    raise SystemExit(fetch_and_process_emails())

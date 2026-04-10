@@ -82,6 +82,7 @@ function getSupportedMimeType() {
 
 export default function VoiceRecorder({ audioStream, onTranscription, onClose }) {
     const [isRecording, setIsRecording] = useState(false);
+    const [elapsedSec, setElapsedSec] = useState(0);
     const [stream, setStream] = useState(null);
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
@@ -97,6 +98,7 @@ export default function VoiceRecorder({ audioStream, onTranscription, onClose })
 
         setStream(audioStream);
         setIsRecording(true);
+        setElapsedSec(0);
 
         let mediaRecorder;
         try {
@@ -139,6 +141,12 @@ export default function VoiceRecorder({ audioStream, onTranscription, onClose })
             mediaRecorderRef.current = null;
         };
     }, [audioStream]);
+
+    useEffect(() => {
+        if (!isRecording) return;
+        const id = setInterval(() => setElapsedSec((s) => s + 1), 1000);
+        return () => clearInterval(id);
+    }, [isRecording]);
 
     const stopStream = () => {
         if (stream) {
@@ -207,7 +215,12 @@ export default function VoiceRecorder({ audioStream, onTranscription, onClose })
             {/* Visualizer Area (Center, Fills space) */}
             <div className="flex-1 h-10 mx-4 overflow-hidden flex items-center justify-center">
                 {isRecording ? (
-                    <AudioVisualizer stream={stream} />
+                    <div className="w-full h-full flex items-center gap-2">
+                        <AudioVisualizer stream={stream} />
+                        <span className={`text-[11px] min-w-10 ${darkMode ? "text-slate-400" : "text-gray-500"}`}>
+                            0:{String(elapsedSec).padStart(2, "0")}
+                        </span>
+                    </div>
                 ) : (
                     <span className={`text-sm font-medium animate-pulse ${darkMode ? 'text-gray-400' : 'text-gray-400'}`}>{t('voice.listening')}</span>
                 )}

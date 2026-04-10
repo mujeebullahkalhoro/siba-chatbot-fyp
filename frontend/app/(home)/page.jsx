@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useRouter } from 'next/navigation';
 import AuthModal from '@/components/AuthModal';
 import SideBar from '@/components/SideBar';
 import ChatInput from '@/components/ChatInput';
@@ -13,6 +14,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback } from '@/services/chatService';
 import { fetchMaintenanceStatus } from '@/services/adminService';
+import { getUserSettings } from '@/services/settingsService';
 import useTTS from '@/hooks/useTTS';
 
 // This ensures the custom-scrollbar class is defined globally.
@@ -49,10 +51,8 @@ const GlobalStyles = () => (
 );
 
 // Color Variables
-const sibaLightBlue = '#007bff';
 const sibaDarkBlue = '#0056b3';
 const sibaDarkerBlue = '#003e80';
-const sibaOrange = '#ea6645';
 const sibaDarkText = '#333333';
 const sibaLight = '#f7f7f7';
 
@@ -60,8 +60,9 @@ const sibaLight = '#f7f7f7';
 
 // Main Page Component 
 export default function App() {
+  const router = useRouter();
   const { user } = useAuth();
-  const { t, isRTL, lang } = useLanguage();
+  const { t, isRTL } = useLanguage();
   const { darkMode, toggleDarkMode } = useTheme();
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
@@ -75,6 +76,14 @@ export default function App() {
   const [currentSessionId, setCurrentSessionId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [feedbackMap, setFeedbackMap] = useState({}); // { messageId: 'up' | 'down' }
+  const [settings, setSettings] = useState({
+    auto_speak: false,
+    enter_to_send: true,
+    show_suggested_prompts: true,
+    reduce_animations: false,
+    chat_density: 'comfortable',
+    font_size: 'medium',
+  });
 
   // TTS (Text-to-Speech) for voice-to-voice
   const ttsHook = useTTS();
@@ -85,10 +94,10 @@ export default function App() {
   };
 
   const SUGGESTED_QUESTIONS = [
-    t("suggested.1"),
-    t("suggested.2"),
-    t("suggested.3"),
-    t("suggested.4"),
+    { text: t("suggested.1"), label: "POLICY" },
+    { text: t("suggested.2"), label: "FACULTY" },
+    { text: t("suggested.3"), label: "AID" },
+    { text: t("suggested.4"), label: "PROGRAMS" },
   ];
 
   // Dark mode colors
@@ -107,6 +116,15 @@ export default function App() {
 
   // Font class for Urdu
   const fontClass = isRTL ? 'font-urdu' : '';
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error') === 'mongodb_offline') {
+      alert(t('auth.error.mongodb'));
+      router.replace('/', { scroll: false });
+    }
+  }, [router, t]);
 
   useEffect(() => {
     // Generate a simple guest session ID on mount
@@ -128,6 +146,7 @@ export default function App() {
   useEffect(() => {
     if (user) {
       loadSessions();
+      loadSettings();
     } else {
       setSessions([]);
       setCurrentSessionId(null);
@@ -136,6 +155,15 @@ export default function App() {
       sessionIdRef.current = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     }
   }, [user]);
+
+  const loadSettings = async () => {
+    try {
+      const res = await getUserSettings();
+      setSettings((prev) => ({ ...prev, ...(res.settings || {}) }));
+    } catch (e) {
+      console.error("Failed to load settings:", e);
+    }
+  };
 
   const loadSessions = async () => {
     try {
@@ -249,7 +277,7 @@ export default function App() {
       }, abortControllerRef.current.signal);
 
       // Auto-speak if voice-initiated query
-      if (isVoiceQueryRef.current && fullText) {
+      if ((isVoiceQueryRef.current || settings.auto_speak) && fullText) {
         ttsHook.speak(fullText, botId);
         isVoiceQueryRef.current = false;
       }
@@ -285,6 +313,19 @@ export default function App() {
 
   useEffect(() => {
     textareaRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      // "/" focuses chat composer when not typing in an input/textarea.
+      if (e.key !== "/") return;
+      const tag = e.target?.tagName?.toLowerCase();
+      if (tag === "input" || tag === "textarea" || e.target?.isContentEditable) return;
+      e.preventDefault();
+      textareaRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   const handleAuthClick = () => {
@@ -331,8 +372,18 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    document.body.classList.toggle('reduced-motion', !!settings.reduce_animations);
+    return () => document.body.classList.remove('reduced-motion');
+  }, [settings.reduce_animations]);
+
   return (
-    <div className={`flex h-screen overflow-hidden font-sans transition-colors duration-300 ${fontClass}`} style={{ backgroundColor: bg }}>
+    <div
+      className={`flex h-screen overflow-hidden font-sans transition-colors duration-300 ${fontClass} ${
+        settings.chat_density === 'compact' ? 'text-[15px]' : 'text-base'
+      } ${settings.font_size === 'small' ? 'text-sm' : settings.font_size === 'large' ? 'text-[17px]' : 'text-base'}`}
+      style={{ backgroundColor: bg }}
+    >
       <GlobalStyles />
 
       {/* Sidebar for authenticated users */}
@@ -345,16 +396,23 @@ export default function App() {
           onSelectSession={handleSelectSession}
           onNewChat={handleNewChat}
           onDeleteChat={handleDeleteChat}
+          onOpenSettings={() => router.push('/settings')}
+          onOpenHelp={() => router.push('/dashboard/help')}
         />
       )}
 
       {/* Main Content Wrapper */}
       <div className="flex-1 flex flex-col h-full overflow-hidden relative transition-all duration-300">
+        <div className={`pointer-events-none absolute inset-0 ${
+          darkMode
+            ? "bg-[radial-gradient(circle_at_20%_10%,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(234,102,69,0.14),transparent_40%)]"
+            : "bg-[radial-gradient(circle_at_20%_10%,rgba(0,123,255,0.08),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(234,102,69,0.10),transparent_40%)]"
+        }`} />
 
         {/* Header */}
         <header
-          className="w-full h-16 shadow-lg z-30 flex items-center justify-between px-4 sm:px-6 shrink-0 transition-colors duration-300"
-          style={{ backgroundColor: headerBg }}
+          className="w-full h-16 z-30 flex items-center justify-between px-4 sm:px-6 shrink-0 transition-colors duration-300 backdrop-blur-sm ui-header"
+          style={{ backgroundColor: darkMode ? headerBg : undefined }}
         >
           <div className="flex items-center">
             {user ? (
@@ -368,7 +426,7 @@ export default function App() {
               </button>
             ) : null}
 
-            <h1 className="text-lg sm:text-xl font-bold uppercase text-white">
+            <h1 className="text-lg sm:text-xl font-extrabold uppercase text-white ui-heading tracking-wide">
               {t('header.title')}
             </h1>
           </div>
@@ -380,7 +438,7 @@ export default function App() {
             {/* Dark mode toggle */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 text-white rounded-lg hover:bg-white/10 transition"
+              className="p-2 text-white rounded-lg hover:bg-white/10 transition ui-control ui-focus-ring"
               title={darkMode ? t('header.lightMode') : t('header.darkMode')}
             >
               {darkMode ? (
@@ -397,15 +455,14 @@ export default function App() {
               <>
                 <button
                   onClick={handleAuthClick}
-                  className="bg-white font-semibold py-2 px-4 text-sm sm:text-base rounded-lg hover:bg-gray-100 transition duration-150"
+                  className="bg-white/95 font-semibold py-2 px-4 text-sm sm:text-base rounded-xl hover:bg-white transition duration-150 shadow-sm hover:shadow ui-control ui-focus-ring"
                   style={{ color: sibaDarkBlue }}
                 >
                   {t('header.login')}
                 </button>
                 <button
                   onClick={handleAuthClick}
-                  className="font-semibold py-2 px-4 text-sm sm:text-base rounded-lg transition duration-150 hover:opacity-90 min-w-max"
-                  style={{ backgroundColor: sibaOrange, color: 'white' }}
+                  className="font-semibold py-2 px-4 text-sm sm:text-base rounded-xl transition duration-150 min-w-max ui-primary-btn ui-control ui-focus-ring"
                 >
                   {t('header.signup')}
                 </button>
@@ -415,39 +472,55 @@ export default function App() {
         </header>
 
         <main
-          className={`flex-1 w-full flex flex-col items-center overflow-y-auto transition-all duration-300 ${hasMessages ? 'justify-start pt-4 pb-28' : 'justify-center'
+          className={`flex-1 w-full flex flex-col items-center overflow-y-auto transition-all duration-300 relative z-10 ${hasMessages ? 'justify-start pt-6 pb-28' : 'justify-center'
             }`}
         >
           {!hasMessages && (
-            <div className="text-center flex flex-col items-center justify-center max-w-[800px] w-full px-6 h-full">
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-2" style={{ color: textColor }}>
+            <div className={`text-center flex flex-col items-center justify-center max-w-[920px] w-full px-6 py-10 rounded-3xl border backdrop-blur-sm ui-card ${
+              darkMode ? "bg-slate-900/40 border-slate-800" : "ui-surface"
+            }`}>
+              <div className={`mb-4 inline-flex items-center gap-2 text-[11px] px-3 py-1 rounded-full border ${
+                darkMode ? "border-slate-700 bg-slate-800/60 text-slate-300" : "border-gray-200 bg-white text-gray-600"
+              }`}>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                Live AI Assistance
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-extrabold mb-2 tracking-tight ui-heading" style={{ color: textColor }}>
                 {t('header.title')}
               </h2>
-              <p className={`text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-sm sm:text-lg max-w-lg mx-auto mb-8 px-4 ${darkMode ? 'text-gray-400' : 'text-[color:var(--text-muted)]'}`}>
                 {t('home.subtitle')}
               </p>
+              <div className={`mb-6 text-xs ${darkMode ? "text-slate-400" : "text-gray-500"}`}>
+                Press <kbd className={`px-1.5 py-0.5 rounded ${darkMode ? "bg-slate-800 border border-slate-700" : "bg-gray-100 border border-gray-200"}`}>/</kbd> to start typing quickly
+              </div>
               {/* Suggested Questions */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 w-full max-w-lg px-4">
+              {settings.show_suggested_prompts && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 w-full max-w-2xl px-2 sm:px-4">
                 {SUGGESTED_QUESTIONS.map((q, idx) => (
                   <button
                     key={idx}
                     onClick={() => {
-                      setCurrentMessage(q);
+                      setCurrentMessage(q.text);
                       // Trigger send via form-submit-like approach
                       setTimeout(() => {
                         const form = document.querySelector('form');
                         if (form) form.requestSubmit();
                       }, 50);
                     }}
-                    className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${isRTL ? 'text-right' : ''} ${darkMode
-                      ? 'bg-slate-800 border-slate-700 text-gray-300 hover:bg-slate-700 hover:border-slate-600'
-                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    className={`text-left px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 border ui-control ui-focus-ring ${isRTL ? 'text-right' : ''} ${darkMode
+                      ? 'bg-slate-800/80 border-slate-700 text-gray-300 hover:bg-slate-700 hover:border-slate-600 hover:-translate-y-0.5'
+                      : 'bg-white/90 border-[color:var(--border-soft)] text-gray-700 hover:bg-white hover:border-[#c4d4e8] hover:shadow-sm hover:-translate-y-0.5'
                       }`}
                   >
-                    {q}
+                    <span className="inline-flex items-center gap-2">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded border ${darkMode ? "border-slate-600 text-slate-400" : "border-gray-300 text-gray-500"}`}>{q.label}</span>
+                      <span>{q.text}</span>
+                    </span>
                   </button>
                 ))}
               </div>
+              )}
               <ChatInput
                 handleSendMessage={handleSendMessage}
                 currentMessage={currentMessage}
@@ -457,19 +530,21 @@ export default function App() {
                 isGenerating={isGenerating}
                 onStopGeneration={handleStopGeneration}
                 isMaintenance={isMaintenance}
-                className="relative w-full max-w-[800px] px-4"
+                sendOnEnter={settings.enter_to_send}
+                className="relative w-full max-w-[860px] px-2 sm:px-4"
               />
             </div>
           )}
 
           <div
-            className={`flex flex-col space-y-4 pt-4 pb-4 w-full max-w-[800px] px-4 sm:px-6 ${hasMessages ? 'opacity-100' : 'hidden'
+            className={`flex flex-col space-y-5 pt-2 pb-4 w-full max-w-[860px] px-4 sm:px-6 ${hasMessages ? 'opacity-100' : 'hidden'
               }`}
           >
-            {messages.map((msg) => (
+            {messages.map((msg, idx) => (
               <ChatMessage
                 key={msg.id}
                 message={msg}
+                compact={idx > 0 && messages[idx - 1]?.sender === msg.sender}
                 feedback={feedbackMap[msg.id]}
                 onFeedback={handleFeedback}
                 darkMode={darkMode}
@@ -484,7 +559,7 @@ export default function App() {
         </main>
 
         {hasMessages && (
-          <div className={`w-full flex justify-center py-4 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] shrink-0 transition-colors duration-300 ${darkMode ? 'bg-slate-900 border-t border-slate-700' : 'bg-gray-100 border-t border-gray-200'}`}>
+          <div className={`w-full flex justify-center py-4 z-30 shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.25)] shrink-0 transition-colors duration-300 backdrop-blur-md ${darkMode ? 'bg-slate-900/90 border-t border-slate-700' : 'bg-white/85 border-t border-[color:var(--border-soft)]'}`}>
             <ChatInput
               handleSendMessage={handleSendMessage}
               currentMessage={currentMessage}
@@ -494,7 +569,8 @@ export default function App() {
               isGenerating={isGenerating}
               onStopGeneration={handleStopGeneration}
               isMaintenance={isMaintenance}
-              className="w-full max-w-[800px] px-4 sm:px-6"
+              sendOnEnter={settings.enter_to_send}
+              className="w-full max-w-[860px] px-4 sm:px-6"
             />
           </div>
         )}

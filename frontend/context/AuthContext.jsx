@@ -1,8 +1,10 @@
 "use client";
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import AuthModal from "@/components/AuthModal";
+import TwoFactorLoginModal from "@/components/TwoFactorLoginModal";
 
 import axios from "axios";
+import { getApiBase } from "@/lib/apiBase";
 
 // Provide a safe default shape to avoid null destructuring if misused
 const AuthContext = createContext({
@@ -13,12 +15,11 @@ const AuthContext = createContext({
   openLoginModal: () => {},
   closeLoginModal: () => {},
   isModalOpen: false,
+  twoFactorRequired: false,
 });
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
-
 const api = axios.create({
-  baseURL: API_BASE,
+  baseURL: getApiBase(),
   withCredentials: true, // send/receive cookies across origins
 });
 
@@ -26,6 +27,7 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [twoFactorRequired, setTwoFactorRequired] = useState(false);
 
   // Check /api/auth/me on load
   const checkUserLoggedIn = useCallback(async () => {
@@ -33,7 +35,11 @@ export default function AuthProvider({ children }) {
     try {
       const res = await api.get("/api/auth/me");
       setUser(res.data);
-    } catch {
+      setTwoFactorRequired(false);
+    } catch (err) {
+      if (err?.response?.status === 428) {
+        setTwoFactorRequired(true);
+      }
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -47,9 +53,14 @@ export default function AuthProvider({ children }) {
   // Called by the modal with the Google ID token
   const loginWithGoogleToken = async (token) => {
     try {
-      await api.post("/api/auth/google", { google_token: token });
-      await checkUserLoggedIn();
-      setIsModalOpen(false);
+      const res = await api.post("/api/auth/google", { google_token: token });
+      if (res?.data?.requires_2fa) {
+        setTwoFactorRequired(true);
+        setIsModalOpen(false);
+      } else {
+        await checkUserLoggedIn();
+        setIsModalOpen(false);
+      }
     } catch (err) {
       console.error("❌ Google Login Error:", err);
     }
@@ -74,6 +85,8 @@ export default function AuthProvider({ children }) {
         openLoginModal: () => setIsModalOpen(true),
         closeLoginModal: () => setIsModalOpen(false),
         isModalOpen,
+        twoFactorRequired,
+        refreshUser: checkUserLoggedIn,
       }}
     >
       {children}
@@ -83,6 +96,13 @@ export default function AuthProvider({ children }) {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onGoogleLogin={loginWithGoogleToken}
+      />
+      <TwoFactorLoginModal
+        isOpen={twoFactorRequired}
+        onVerified={async () => {
+          setTwoFactorRequired(false);
+          await checkUserLoggedIn();
+        }}
       />
     </AuthContext.Provider>
   );

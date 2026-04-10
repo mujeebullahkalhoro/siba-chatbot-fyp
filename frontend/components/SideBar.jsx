@@ -37,7 +37,7 @@ const GMAIL_PALETTE = [
 function hashString(str) { let h = 5381; for (let i = 0; i < str.length; i++)h = (h << 5) + h + str.charCodeAt(i); return h >>> 0; }
 function gmailColor(seed) { const h = hashString((seed || "user").toLowerCase()); return GMAIL_PALETTE[h % GMAIL_PALETTE.length]; }
 
-export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = [], currentSessionId, onSelectSession, onNewChat, onDeleteChat, onRenameChat }) {
+export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = [], currentSessionId, onSelectSession, onNewChat, onDeleteChat, onRenameChat, onOpenSettings, onOpenHelp }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const hideText = isCollapsed;
@@ -93,9 +93,29 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
     (session.title || t("sidebar.newChat")).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const groupedSessions = useMemo(() => {
+    const groups = { today: [], yesterday: [], older: [] };
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const yesterdayStart = new Date(todayStart);
+    yesterdayStart.setDate(yesterdayStart.getDate() - 1);
+
+    for (const s of filteredSessions) {
+      const raw = s.updated_at || s.updatedAt || s.created_at || s.createdAt;
+      const dt = raw ? new Date(raw) : null;
+      if (!dt || Number.isNaN(dt.getTime())) {
+        groups.older.push(s);
+        continue;
+      }
+      if (dt >= todayStart) groups.today.push(s);
+      else if (dt >= yesterdayStart) groups.yesterday.push(s);
+      else groups.older.push(s);
+    }
+    return groups;
+  }, [filteredSessions]);
+
   // Popover & Menu State
   const [menuOpen, setMenuOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -120,17 +140,6 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
       setIsLoggingOut(false);
     }
   };
-
-  // Calculate menu position
-  useEffect(() => {
-    if (menuOpen && triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect();
-      setPos({
-        top: Math.max(10, rect.top - 160),
-        left: rect.left
-      });
-    }
-  }, [menuOpen]);
 
   // Close menu on outside click
   useEffect(() => {
@@ -159,11 +168,11 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
       )}
 
       <aside
-        className={`h-screen shrink-0 flex flex-col border-r transition-all duration-300 ease-in-out z-50
+        className={`h-screen shrink-0 flex flex-col border-r transition-all duration-300 ease-in-out z-50 backdrop-blur-sm
           fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-64 ${isMobileOpen ? "translate-x-0 shadow-xl" : (isRTL ? "translate-x-full" : "-translate-x-full")}
           md:sticky md:translate-x-0 md:top-0
           ${isCollapsed ? "md:w-14" : "md:w-72"}
-          ${darkMode ? "bg-slate-900 border-slate-700" : "bg-white border-gray-200"}`}
+          ${darkMode ? "bg-slate-900/95 border-slate-700" : "bg-white/90 border-[color:var(--border-soft)]"}`}
       >
         {/* Header */}
         <div className={`flex items-center border-b ${darkMode ? "border-slate-800" : "border-gray-200"} ${hideText ? "justify-center py-4" : "justify-between p-4"}`}>
@@ -171,7 +180,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
             <>
               <div className="flex items-center">
                 <Image src="/image.png" alt="SIBA AI Logo" width={46} height={46} className="rounded-full" />
-                <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-xl font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>{t('sidebar.brand')}</span>
+                <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-xl font-extrabold tracking-tight ui-heading ${darkMode ? "text-white" : "text-[#003e80]"}`}>{t('sidebar.brand')}</span>
               </div>
               <div className="hidden md:block">
                 <button onClick={() => setIsCollapsed(true)} className="text-gray-500 hover:text-gray-800 relative group/tooltip">
@@ -213,10 +222,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
         <div className={hideText ? "px-2 py-4" : "p-4"}>
           <button
             onClick={onNewChat}
-            className={`flex items-center justify-center w-full text-white font-semibold py-2 rounded-lg transition ${hideText ? "p-2 h-[46px]" : "px-4"}`}
-            style={{ backgroundColor: '#ea6645' }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#d95a3d'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ea6645'}
+            className={`flex items-center justify-center w-full text-white font-semibold py-2 rounded-xl transition shadow-sm hover:shadow ui-primary-btn ui-control ui-focus-ring ${hideText ? "p-2 h-[46px]" : "px-4"}`}
           >
             <Plus className={`w-5 h-5 ${hideText ? "" : (isRTL ? "ml-2" : "mr-2")}`} />
             {!hideText && <span>{t('sidebar.newChat')}</span>}
@@ -236,7 +242,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 dir={isRTL ? "rtl" : "ltr"}
-                className={`w-full ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} py-2 text-sm border border-transparent rounded-lg focus:outline-none transition-all
+                className={`w-full ${isRTL ? 'pr-9 pl-3' : 'pl-9 pr-3'} py-2 text-sm border border-transparent rounded-lg focus:outline-none transition-all ui-focus-ring
                   ${darkMode 
                     ? "bg-slate-800 text-gray-200 focus:bg-slate-700 focus:border-slate-600" 
                     : "bg-gray-100 text-gray-900 focus:bg-white focus:border-gray-300"}`}
@@ -257,11 +263,22 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
               <h3 className="px-2 pt-4 text-xs font-semibold text-gray-500 uppercase">
                 {t('sidebar.myChats')} ({filteredSessions.length})
               </h3>
-              {filteredSessions.map((session) => (
+              {[
+                { key: "today", label: t("sidebar.today"), items: groupedSessions.today },
+                { key: "yesterday", label: t("sidebar.yesterday"), items: groupedSessions.yesterday },
+                { key: "older", label: t("sidebar.older"), items: groupedSessions.older },
+              ].map((group) => (
+                <div key={group.key}>
+                  {group.items.length > 0 && (
+                    <h4 className={`px-2 pt-3 pb-1 text-[11px] uppercase tracking-wide ${darkMode ? "text-slate-500" : "text-gray-400"}`}>
+                      {group.label}
+                    </h4>
+                  )}
+                  {group.items.map((session) => (
                 <div key={session._id} className="group relative">
                   {renamingId === session._id ? (
                     // Inline rename input
-                    <div className={`flex items-center gap-1 p-1 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-gray-100'}`} onClick={e => e.stopPropagation()}>
+                    <div className={`flex items-center gap-1 p-1 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-[color:var(--surface-soft)]'}`} onClick={e => e.stopPropagation()}>
                       <input
                         ref={renameInputRef}
                         value={renameValue}
@@ -271,7 +288,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                           if (e.key === 'Escape') handleRenameCancel();
                         }}
                         className={`flex-1 text-sm px-2 py-1 rounded border focus:outline-none focus:ring-1 focus:ring-blue-400 min-w-0
-                          ${darkMode ? 'bg-slate-700 border-slate-600 text-gray-100' : 'bg-white border-gray-300 text-gray-900'}`}
+                          ${darkMode ? 'bg-slate-700 border-slate-600 text-gray-100' : 'bg-white border-[color:var(--border-soft)] text-gray-900'}`}
                         autoFocus
                       />
                       {/* Save */}
@@ -293,10 +310,10 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                         href="#"
                         dir="auto"
                         onClick={(e) => { e.preventDefault(); onSelectSession(session._id); }}
-                        className={`block text-sm p-2 rounded-lg transition-colors truncate ${isRTL ? 'pl-16' : 'pr-16'} 
+                        className={`block text-sm p-2 rounded-xl transition-colors truncate ui-control ${isRTL ? 'pl-16' : 'pr-16'} 
                           ${currentSessionId === session._id 
-                            ? (darkMode ? "bg-slate-800 text-white font-semibold" : "bg-gray-100 font-semibold text-gray-900") 
-                            : (darkMode ? "text-gray-400 hover:bg-slate-800 hover:text-gray-200" : "text-gray-700 hover:bg-gray-50")}`}
+                            ? (darkMode ? "bg-slate-800 text-white font-semibold shadow-sm" : "bg-[color:var(--surface-soft)] border border-[color:var(--border-soft)] font-semibold text-[#003e80] shadow-sm") 
+                            : (darkMode ? "text-gray-400 hover:bg-slate-800 hover:text-gray-200" : "text-gray-700 hover:bg-[#f7faff]")}`}
                       >
                         {session.title || t('sidebar.newChat')}
                       </a>
@@ -322,6 +339,8 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                     </>
                   )}
                 </div>
+                  ))}
+                </div>
               ))}
               {filteredSessions.length === 0 && (
                 <p className="px-2 text-sm text-gray-400 italic">{t('sidebar.noChats')}</p>
@@ -337,7 +356,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
               ref={triggerRef}
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              className={`w-full flex items-center rounded-lg ${hideText ? "justify-center" : "justify-between"} px-2 py-2 cursor-pointer transition-colors
+                    className={`w-full flex items-center rounded-lg ${hideText ? "justify-center" : "justify-between"} px-2 py-2 cursor-pointer transition-colors ui-control ui-focus-ring
                 ${darkMode ? "hover:bg-slate-800" : "hover:bg-gray-50"}`}
               aria-haspopup="menu"
               aria-expanded={menuOpen ? "true" : "false"}
@@ -391,14 +410,31 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
                   ref={menuRef}
                   role="menu"
                   aria-label="Account menu"
-                  className={`fixed z-99 w-72 sm:w-80 border rounded-xl shadow-2xl ring-1 ring-black/5 py-2
+                  className={`absolute z-99 bottom-full mb-2 left-0 right-0 w-full border rounded-xl shadow-2xl ring-1 ring-black/5 py-2
                     ${darkMode ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-gray-200 text-gray-900"}`}
-                  style={{ top: pos.top - 160, left: 10 }}
                 >
                   <div className={`px-4 pb-2 text-xs truncate ${darkMode ? "text-gray-400" : "text-gray-500"}`}>{user?.email || "account"}</div>
 
-                  <button role="menuitem" className={`w-full text-left px-4 py-2 text-sm transition-colors ${darkMode ? "text-gray-200 hover:bg-slate-700" : "text-gray-800 hover:bg-gray-50"}`}>
+                  <button
+                    role="menuitem"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      onOpenSettings?.();
+                    }}
+                    className={`w-full text-left px-4 py-2 text-sm transition-colors ${darkMode ? "text-gray-200 hover:bg-slate-700" : "text-gray-800 hover:bg-gray-50"}`}
+                  >
                     {t('sidebar.settings')}
+                  </button>
+
+                  <button
+                    role="menuitem"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      onOpenHelp?.();
+                    }}
+                    className={`w-full text-left px-4 py-2 text-sm transition-colors ${darkMode ? "text-gray-200 hover:bg-slate-700" : "text-gray-800 hover:bg-gray-50"}`}
+                  >
+                    {t("sidebar.help")}
                   </button>
 
                   <div className={`my-2 border-t ${darkMode ? "border-slate-700" : "border-gray-200"}`} />

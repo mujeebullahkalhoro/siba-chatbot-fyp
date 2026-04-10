@@ -9,12 +9,18 @@ import urllib.parse
 from pathlib import Path
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, UploadFile, File, Depends, status
+from fastapi import APIRouter, HTTPException, UploadFile, File, Depends, status, Header
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 from jose import jwt, JWTError
 
-from config import JWT_SECRET, JWT_ALGORITHM, ADMIN_EMAIL, ADMIN_PASSWORD
+from config import (
+    JWT_SECRET,
+    JWT_ALGORITHM,
+    ADMIN_EMAIL,
+    ADMIN_PASSWORD,
+    MAINTENANCE_INTERNAL_TOKEN,
+)
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 security = HTTPBearer()
@@ -47,6 +53,11 @@ class LoginRequest(BaseModel):
 
 class FileUpdateRequest(BaseModel):
     content: str
+
+
+class MaintenanceToggleRequest(BaseModel):
+    maintenance: bool
+    reason: Optional[str] = None
 
 
 def _create_admin_token() -> str:
@@ -347,6 +358,26 @@ async def rebuild_status():
 async def get_maintenance():
     """Public endpoint — no auth required. Frontend polls this."""
     return {"maintenance": _maintenance_mode}
+
+
+@router.post("/maintenance/internal")
+async def set_maintenance_internal(
+    body: MaintenanceToggleRequest,
+    x_maintenance_token: Optional[str] = Header(None),
+):
+    """Internal endpoint used by automation scripts (e.g., email ingestion)."""
+    global _maintenance_mode
+    if not MAINTENANCE_INTERNAL_TOKEN:
+        raise HTTPException(status_code=503, detail="Internal maintenance token is not configured")
+    if x_maintenance_token != MAINTENANCE_INTERNAL_TOKEN:
+        raise HTTPException(status_code=401, detail="Unauthorized internal maintenance request")
+
+    _maintenance_mode = body.maintenance
+    return {
+        "ok": True,
+        "maintenance": _maintenance_mode,
+        "reason": body.reason or "unspecified",
+    }
 
 
 # ── Analytics ────────────────────────────────────────────

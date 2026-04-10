@@ -659,4 +659,1950 @@ with new imports of:
 >> from langchain_community.vectorstores import FAISS
 
   warn_deprecated(
-^C
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 11:40:49] Connecting to imap.gmail.com...
+[2026-04-09 11:40:52] ERROR: IMAP authentication/login failed: b'[AUTHENTICATIONFAILED] Invalid credentials (Failure)'
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 11:56:00] Connecting to imap.gmail.com...
+[2026-04-09 11:56:03] ERROR: IMAP authentication/login failed: b'[AUTHENTICATIONFAILED] Invalid credentials (Failure)'
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 11:58:06] Connecting to imap.gmail.com...
+[2026-04-09 11:58:07] ERROR: IMAP authentication/login failed: b'[AUTHENTICATIONFAILED] Invalid credentials (Failure)'
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 15:43:50] Connecting to imap.gmail.com...
+[2026-04-09 15:43:53] Found 1371 unread emails
+[2026-04-09 15:43:53] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:43:53] Calling LLM for classification...
+[2026-04-09 15:43:57] Category: other
+[2026-04-09 15:43:57] Skipped (Irrelevant category)
+[2026-04-09 15:43:58] Processing: Important: Hostel Entry/Exit Timings
+[2026-04-09 15:43:58] Calling LLM for classification...
+[2026-04-09 15:43:58] Category: event
+[2026-04-09 15:43:58] New event saved: event_20260409_154358.txt
+[2026-04-09 15:43:58] Rebuilding universal vector store...
+Removing old vector store at d:\siba-chatbot-fyp\rag\vector_db\universal...
+ Loading TXT [unknown]: schemas_index.txt
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260320_210955.txt
+ Loading TXT [events]: event_20260409_154358.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txtWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [schema]: Annexure-B Schema of BS SE.pdf
+ Skipping embedding for PDF [schema]: Annexure-B Schema of BS SE.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-C Schema of BS AI.pdf
+ Skipping embedding for PDF [schema]: Annexure-C Schema of BS AI.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf
+ Skipping embedding for PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf
+ Skipping embedding for PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf (Link Only strategy)
+ Loading PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf
+ Skipping embedding for PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BE EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: BE EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS AI Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS AI Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS CS Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS CS Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema for BBA Program.pdf
+ Skipping embedding for PDF [schema]: Course Schema for BBA Program.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf
+ Skipping embedding for PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme BS and AD Physical.pdf
+ Skipping embedding for PDF [schema]: Course Scheme BS and AD Physical.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme_MPhil in Education.pdf
+ Skipping embedding for PDF [schema]: Course Scheme_MPhil in Education.pdf (Link Only strategy)
+ Loading PDF [schema]: Course-schema-BS-Economics.pdf
+ Skipping embedding for PDF [schema]: Course-schema-BS-Economics.pdf (Link Only strategy)
+ Loading PDF [schema]: CourseSchema_ME_RE.pdf
+ Skipping embedding for PDF [schema]: CourseSchema_ME_RE.pdf (Link Only strategy)
+ Loading PDF [schema]: CSE-Course-schema.pdf
+ Skipping embedding for PDF [schema]: CSE-Course-schema.pdf (Link Only strategy)
+ Loading PDF [schema]: ME EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: ME EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: MS in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: MS in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD Electrical Engineering Course Schema.pdf
+ Skipping embedding for PDF [schema]: PhD Electrical Engineering Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Computer Science.pdf
+ Skipping embedding for PDF [schema]: PhD in Computer Science.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: PhD in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: PhD in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+📊 Total raw documents loaded: 367
+📊 Total chunks after splitting: 752
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3194.61it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+✅ Universal vector store created at: d:\siba-chatbot-fyp\rag\vector_db\universal
+   Total vectors: 752
+[2026-04-09 15:44:53] Vector store rebuilt successfully
+[2026-04-09 15:44:54] Processing: Cyber Monday: $74 Off
+[2026-04-09 15:44:54] Calling LLM for classification...
+[2026-04-09 15:44:56] Category: event
+[2026-04-09 15:44:56] New event saved: event_20260409_154456.txt
+[2026-04-09 15:44:56] Rebuilding universal vector store...
+Removing old vector store at d:\siba-chatbot-fyp\rag\vector_db\universal...
+ Loading TXT [unknown]: schemas_index.txt
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260320_210955.txt
+ Loading TXT [events]: event_20260409_154358.txt
+ Loading TXT [events]: event_20260409_154456.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [schema]: Annexure-B Schema of BS SE.pdf
+ Skipping embedding for PDF [schema]: Annexure-B Schema of BS SE.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-C Schema of BS AI.pdf
+ Skipping embedding for PDF [schema]: Annexure-C Schema of BS AI.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf
+ Skipping embedding for PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf
+ Skipping embedding for PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf (Link Only strategy)
+ Loading PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf
+ Skipping embedding for PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BE EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: BE EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS AI Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS AI Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS CS Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS CS Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema for BBA Program.pdf
+ Skipping embedding for PDF [schema]: Course Schema for BBA Program.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf
+ Skipping embedding for PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme BS and AD Physical.pdf
+ Skipping embedding for PDF [schema]: Course Scheme BS and AD Physical.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme_MPhil in Education.pdf
+ Skipping embedding for PDF [schema]: Course Scheme_MPhil in Education.pdf (Link Only strategy)
+ Loading PDF [schema]: Course-schema-BS-Economics.pdf
+ Skipping embedding for PDF [schema]: Course-schema-BS-Economics.pdf (Link Only strategy)
+ Loading PDF [schema]: CourseSchema_ME_RE.pdf
+ Skipping embedding for PDF [schema]: CourseSchema_ME_RE.pdf (Link Only strategy)
+ Loading PDF [schema]: CSE-Course-schema.pdf
+ Skipping embedding for PDF [schema]: CSE-Course-schema.pdf (Link Only strategy)
+ Loading PDF [schema]: ME EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: ME EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: MS in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: MS in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD Electrical Engineering Course Schema.pdf
+ Skipping embedding for PDF [schema]: PhD Electrical Engineering Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Computer Science.pdf
+ Skipping embedding for PDF [schema]: PhD in Computer Science.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: PhD in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: PhD in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+📊 Total raw documents loaded: 368
+📊 Total chunks after splitting: 755
+[2026-04-09 15:45:13] WARNING: Vector store rebuild failed: The paging file is too small for this operation to complete. (os error 1455)
+[2026-04-09 15:45:14] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:45:14] Calling LLM for classification...
+[2026-04-09 15:45:15] Category: other
+[2026-04-09 15:45:15] Skipped (Irrelevant category)
+[2026-04-09 15:45:15] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:45:15] Calling LLM for classification...
+[2026-04-09 15:45:17] Category: other
+[2026-04-09 15:45:17] Skipped (Irrelevant category)
+[2026-04-09 15:45:17] Processing: AUDITION FOR HOSTING IN SINDHI LANGUAGE
+[2026-04-09 15:45:17] Calling LLM for classification...
+[2026-04-09 15:45:18] Category: event
+[2026-04-09 15:45:18] New event saved: event_20260409_154518.txt
+[2026-04-09 15:45:18] Rebuilding universal vector store...
+ Loading TXT [unknown]: schemas_index.txt
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260320_210955.txt
+ Loading TXT [events]: event_20260409_154358.txt
+ Loading TXT [events]: event_20260409_154456.txt
+ Loading TXT [events]: event_20260409_154518.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [schema]: Annexure-B Schema of BS SE.pdf
+ Skipping embedding for PDF [schema]: Annexure-B Schema of BS SE.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-C Schema of BS AI.pdf
+ Skipping embedding for PDF [schema]: Annexure-C Schema of BS AI.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf
+ Skipping embedding for PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf
+ Skipping embedding for PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf (Link Only strategy)
+ Loading PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf
+ Skipping embedding for PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BE EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: BE EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS AI Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS AI Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS CS Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS CS Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema for BBA Program.pdf
+ Skipping embedding for PDF [schema]: Course Schema for BBA Program.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf
+ Skipping embedding for PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme BS and AD Physical.pdf
+ Skipping embedding for PDF [schema]: Course Scheme BS and AD Physical.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme_MPhil in Education.pdf
+ Skipping embedding for PDF [schema]: Course Scheme_MPhil in Education.pdf (Link Only strategy)
+ Loading PDF [schema]: Course-schema-BS-Economics.pdf
+ Skipping embedding for PDF [schema]: Course-schema-BS-Economics.pdf (Link Only strategy)
+ Loading PDF [schema]: CourseSchema_ME_RE.pdf
+ Skipping embedding for PDF [schema]: CourseSchema_ME_RE.pdf (Link Only strategy)
+ Loading PDF [schema]: CSE-Course-schema.pdf
+ Skipping embedding for PDF [schema]: CSE-Course-schema.pdf (Link Only strategy)
+ Loading PDF [schema]: ME EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: ME EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: MS in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: MS in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD Electrical Engineering Course Schema.pdf
+ Skipping embedding for PDF [schema]: PhD Electrical Engineering Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Computer Science.pdf
+ Skipping embedding for PDF [schema]: PhD in Computer Science.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: PhD in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: PhD in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+📊 Total raw documents loaded: 369
+📊 Total chunks after splitting: 756
+[2026-04-09 15:45:38] WARNING: Vector store rebuild failed: The paging file is too small for this operation to complete. (os error 1455)
+[2026-04-09 15:45:38] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:45:38] Calling LLM for classification...
+[2026-04-09 15:45:40] Category: other
+[2026-04-09 15:45:40] Skipped (Irrelevant category)
+[2026-04-09 15:45:41] Processing: Fwd: Type C Charger
+[2026-04-09 15:45:41] Calling LLM for classification...
+[2026-04-09 15:45:43] Category: other
+[2026-04-09 15:45:43] Skipped (Irrelevant category)
+[2026-04-09 15:45:43] Processing: Fwd: Lost my dell laptop charger in library.
+[2026-04-09 15:45:43] Calling LLM for classification...
+[2026-04-09 15:45:45] Category: other
+[2026-04-09 15:45:45] Skipped (Irrelevant category)
+[2026-04-09 15:45:45] Processing: 13 DECEMBER LAST CLASS OF BS SEMESTER FALL 2024
+[2026-04-09 15:45:45] Calling LLM for classification...
+[2026-04-09 15:45:46] Category: event
+[2026-04-09 15:45:46] New event saved: event_20260409_154546.txt
+[2026-04-09 15:45:46] Rebuilding universal vector store...
+ Loading TXT [unknown]: schemas_index.txt
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260320_210955.txt
+ Loading TXT [events]: event_20260409_154358.txt
+ Loading TXT [events]: event_20260409_154456.txt
+ Loading TXT [events]: event_20260409_154518.txt
+ Loading TXT [events]: event_20260409_154546.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [schema]: Annexure-B Schema of BS SE.pdf
+ Skipping embedding for PDF [schema]: Annexure-B Schema of BS SE.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-C Schema of BS AI.pdf
+ Skipping embedding for PDF [schema]: Annexure-C Schema of BS AI.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf
+ Skipping embedding for PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf
+ Skipping embedding for PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf (Link Only strategy)
+ Loading PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf
+ Skipping embedding for PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BE EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: BE EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS AI Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS AI Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS CS Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS CS Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema for BBA Program.pdf
+ Skipping embedding for PDF [schema]: Course Schema for BBA Program.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf
+ Skipping embedding for PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme BS and AD Physical.pdf
+ Skipping embedding for PDF [schema]: Course Scheme BS and AD Physical.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme_MPhil in Education.pdf
+ Skipping embedding for PDF [schema]: Course Scheme_MPhil in Education.pdf (Link Only strategy)
+ Loading PDF [schema]: Course-schema-BS-Economics.pdf
+ Skipping embedding for PDF [schema]: Course-schema-BS-Economics.pdf (Link Only strategy)
+ Loading PDF [schema]: CourseSchema_ME_RE.pdf
+ Skipping embedding for PDF [schema]: CourseSchema_ME_RE.pdf (Link Only strategy)
+ Loading PDF [schema]: CSE-Course-schema.pdf
+ Skipping embedding for PDF [schema]: CSE-Course-schema.pdf (Link Only strategy)
+ Loading PDF [schema]: ME EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: ME EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: MS in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: MS in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD Electrical Engineering Course Schema.pdf
+ Skipping embedding for PDF [schema]: PhD Electrical Engineering Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Computer Science.pdf
+ Skipping embedding for PDF [schema]: PhD in Computer Science.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: PhD in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: PhD in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+📊 Total raw documents loaded: 370
+📊 Total chunks after splitting: 757
+[2026-04-09 15:46:04] WARNING: Vector store rebuild failed: The paging file is too small for this operation to complete. (os error 1455)
+[2026-04-09 15:46:05] Processing: NOTICE for Students to Review Final Exam Schedule for Removal of
+ Clashes - Fall 2024 till Friday, December 06, 2024
+[2026-04-09 15:46:05] Calling LLM for classification...
+[2026-04-09 15:46:06] Category: event
+[2026-04-09 15:46:06] New event saved: event_20260409_154606.txt
+[2026-04-09 15:46:06] Rebuilding universal vector store...
+ Loading TXT [unknown]: schemas_index.txt
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260320_210955.txt
+ Loading TXT [events]: event_20260409_154358.txt
+ Loading TXT [events]: event_20260409_154456.txt
+ Loading TXT [events]: event_20260409_154518.txt
+ Loading TXT [events]: event_20260409_154546.txt
+ Loading TXT [events]: event_20260409_154606.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [schema]: Annexure-B Schema of BS SE.pdf
+ Skipping embedding for PDF [schema]: Annexure-B Schema of BS SE.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-C Schema of BS AI.pdf
+ Skipping embedding for PDF [schema]: Annexure-C Schema of BS AI.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure-VI-MS-AI-Schema(32CH)-Spring-2026-for-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf
+ Skipping embedding for PDF [schema]: Annexure_IV-MS-CS-(35-Crediti-Hours)-Spring-2026-For-Web.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf
+ Skipping embedding for PDF [schema]: B.Ed (Hons) - 4 YEARS - FOR WEBSITE.pdf (Link Only strategy)
+ Loading PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf
+ Skipping embedding for PDF [schema]: B.Ed 2.5 (Extension) degree program -Revised.pdf (Link Only strategy)
+ Loading PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf
+ Skipping embedding for PDF [schema]: BBA Agribusiness Courses Offered-Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BE EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: BE EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS AI Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS AI Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: BS CS Fall 2025 Schema.pdf
+ Skipping embedding for PDF [schema]: BS CS Fall 2025 Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema for BBA Program.pdf
+ Skipping embedding for PDF [schema]: Course Schema for BBA Program.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf
+ Skipping embedding for PDF [schema]: Course Schema of M.E. (Electronics and Communication) - From Batch 2025 and onwards.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme BS and AD Physical.pdf
+ Skipping embedding for PDF [schema]: Course Scheme BS and AD Physical.pdf (Link Only strategy)
+ Loading PDF [schema]: Course Scheme_MPhil in Education.pdf
+ Skipping embedding for PDF [schema]: Course Scheme_MPhil in Education.pdf (Link Only strategy)
+ Loading PDF [schema]: Course-schema-BS-Economics.pdf
+ Skipping embedding for PDF [schema]: Course-schema-BS-Economics.pdf (Link Only strategy)
+ Loading PDF [schema]: CourseSchema_ME_RE.pdf
+ Skipping embedding for PDF [schema]: CourseSchema_ME_RE.pdf (Link Only strategy)
+ Loading PDF [schema]: CSE-Course-schema.pdf
+ Skipping embedding for PDF [schema]: CSE-Course-schema.pdf (Link Only strategy)
+ Loading PDF [schema]: ME EE Course Schema.pdf
+ Skipping embedding for PDF [schema]: ME EE Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: MS in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: MS in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: MS in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD Electrical Engineering Course Schema.pdf
+ Skipping embedding for PDF [schema]: PhD Electrical Engineering Course Schema.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Computer Science.pdf
+ Skipping embedding for PDF [schema]: PhD in Computer Science.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Management Science Program.pdf
+ Skipping embedding for PDF [schema]: PhD in Management Science Program.pdf (Link Only strategy)
+ Loading PDF [schema]: PhD in Mathematics Schema.pdf
+ Skipping embedding for PDF [schema]: PhD in Mathematics Schema.pdf (Link Only strategy)
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+📊 Total raw documents loaded: 371
+📊 Total chunks after splitting: 759
+[2026-04-09 15:46:26] WARNING: Vector store rebuild failed: The paging file is too small for this operation to complete. (os error 1455)
+[2026-04-09 15:46:26] Processing: Fwd: Found earbuds
+[2026-04-09 15:46:26] Calling LLM for classification...
+[2026-04-09 15:46:28] Category: other
+[2026-04-09 15:46:28] Skipped (Irrelevant category)
+[2026-04-09 15:46:28] Processing: Fwd:
+[2026-04-09 15:46:28] Calling LLM for classification...
+[2026-04-09 15:46:30] Category: other
+[2026-04-09 15:46:30] Skipped (Irrelevant category)
+[2026-04-09 15:46:34] Processing: Practical Examinations Schedule of Final Term (Department of Computer
+ Science) - Fall 2024
+[2026-04-09 15:46:34] Calling LLM for classification...
+[2026-04-09 15:46:35] Category: event
+[2026-04-09 15:46:35] New event saved: event_20260409_154635.txt
+[2026-04-09 15:46:35] Rebuilding universal vector store...
+ Loading TXT [unknown]: schemas_index.txt
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260320_210955.txt
+ Loading TXT [events]: event_20260409_154358.txt
+ Loading TXT [events]: event_20260409_154456.txt
+ Loading TXT [events]: event_20260409_154518.txt
+ Loading TXT [events]: event_20260409_154546.txt
+ Loading TXT [events]: event_20260409_154606.txt
+ Loading TXT [events]: event_20260409_154635.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 15:53:14] Connecting to imap.gmail.com...
+[2026-04-09 15:53:16] Found 9 candidate emails (today since 09-Apr-2026), scanning latest 10
+[2026-04-09 15:53:17] Processing: Security alert
+[2026-04-09 15:53:17] Category: other
+[2026-04-09 15:53:17] Skipped (Irrelevant category)
+[2026-04-09 15:53:19] Processing: Notification-Austerity Measures Committee 2026
+[2026-04-09 15:53:19] Category: other
+[2026-04-09 15:53:19] Skipped (Irrelevant category)
+[2026-04-09 15:53:20] Processing: Security alert
+[2026-04-09 15:53:20] Category: other
+[2026-04-09 15:53:20] Skipped (Irrelevant category)
+[2026-04-09 15:53:20] Processing: Security alert
+[2026-04-09 15:53:20] Category: other
+[2026-04-09 15:53:20] Skipped (Irrelevant category)
+[2026-04-09 15:53:21] Processing: 2-Step Verification turned on
+[2026-04-09 15:53:21] Category: other
+[2026-04-09 15:53:21] Skipped (Irrelevant category)
+[2026-04-09 15:53:21] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:53:21] Category: other
+[2026-04-09 15:53:21] Skipped (Irrelevant category)
+[2026-04-09 15:53:22] Processing: Library Closure Notice
+[2026-04-09 15:53:22] Category: other
+[2026-04-09 15:53:22] Skipped (Irrelevant category)
+[2026-04-09 15:53:22] Processing: Notice: Change of operating hours at the Gymnasium of the Physical
+ Education Department
+[2026-04-09 15:53:22] Category: other
+[2026-04-09 15:53:22] Skipped (Irrelevant category)
+[2026-04-09 15:53:23] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:53:23] Category: other
+[2026-04-09 15:53:23] Skipped (Irrelevant category)
+[2026-04-09 15:53:23] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 15:54:38] Connecting to imap.gmail.com...
+[2026-04-09 15:54:41] Found 9 candidate emails (today since 09-Apr-2026), scanning latest 10
+[2026-04-09 15:54:42] Processing: Security alert
+[2026-04-09 15:54:42] Category: other
+[2026-04-09 15:54:42] Skipped (Irrelevant category)
+[2026-04-09 15:54:43] Processing: Notification-Austerity Measures Committee 2026
+[2026-04-09 15:54:43] Category: other
+[2026-04-09 15:54:43] Skipped (Irrelevant category)
+[2026-04-09 15:54:43] Processing: Security alert
+[2026-04-09 15:54:43] Category: other
+[2026-04-09 15:54:43] Skipped (Irrelevant category)
+[2026-04-09 15:54:44] Processing: Security alert
+[2026-04-09 15:54:44] Category: other
+[2026-04-09 15:54:44] Skipped (Irrelevant category)
+[2026-04-09 15:54:44] Processing: 2-Step Verification turned on
+[2026-04-09 15:54:44] Category: other
+[2026-04-09 15:54:44] Skipped (Irrelevant category)
+[2026-04-09 15:54:44] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:54:44] Category: other
+[2026-04-09 15:54:44] Skipped (Irrelevant category)
+[2026-04-09 15:54:44] Processing: Library Closure Notice
+[2026-04-09 15:54:44] Category: other
+[2026-04-09 15:54:44] Skipped (Irrelevant category)
+[2026-04-09 15:54:45] Processing: Notice: Change of operating hours at the Gymnasium of the Physical
+ Education Department
+[2026-04-09 15:54:45] Category: other
+[2026-04-09 15:54:45] Skipped (Irrelevant category)
+[2026-04-09 15:54:45] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 15:54:45] Category: other
+[2026-04-09 15:54:45] Skipped (Irrelevant category)
+[2026-04-09 15:54:45] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 16:07:00] Connecting to imap.gmail.com...
+[2026-04-09 16:07:00] ERROR: EMAIL_USER or EMAIL_PASS not set in environment
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-09 16:11:42] Connecting to imap.gmail.com...
+[2026-04-09 16:11:45] Found 10 candidate emails (today since 09-Apr-2026), scanning latest 10
+[2026-04-09 16:11:46] Processing: Security alert
+[2026-04-09 16:11:49] WARNING: Unexpected LLM label 'other
+
+Reason: The email is a security alert from Google, which is not related to the university's timetable, events, or any other institutional activity. It', fallback to rules
+[2026-04-09 16:11:49] Category: other
+[2026-04-09 16:11:49] Skipped (Irrelevant category)
+[2026-04-09 16:11:49] Processing: Fwd: Lost Redmi Mobile at Masjid
+[2026-04-09 16:11:51] Category: other
+[2026-04-09 16:11:51] Skipped (Irrelevant category)
+[2026-04-09 16:11:52] Processing: Fwd: Lost hp laptop charger
+[2026-04-09 16:11:53] Category: other
+[2026-04-09 16:11:53] Skipped (Irrelevant category)
+[2026-04-09 16:11:53] Processing: Fwd: Found Airbuds
+[2026-04-09 16:11:56] Category: other
+[2026-04-09 16:11:56] Skipped (Irrelevant category)
+[2026-04-09 16:11:56] Processing: Security alert
+[2026-04-09 16:11:58] WARNING: Unexpected LLM label 'other
+
+Reason: The email is a security alert from Google, which is not related to the university's timetable, events, or any other institutional activity. It', fallback to rules
+[2026-04-09 16:11:58] Category: other
+[2026-04-09 16:11:58] Skipped (Irrelevant category)
+[2026-04-09 16:11:59] Processing: Notification-Austerity Measures Committee 2026
+[2026-04-09 16:12:00] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject "Notification-Austerity Measures Committee 2026" does not contain any keywords related to timetable or event.
+- The body', fallback to rules
+[2026-04-09 16:12:00] Category: other
+[2026-04-09 16:12:00] Skipped (Irrelevant category)
+[2026-04-09 16:12:00] Processing: Security alert
+[2026-04-09 16:12:02] Category: other
+[2026-04-09 16:12:02] Skipped (Irrelevant category)
+[2026-04-09 16:12:02] Processing: Security alert
+[2026-04-09 16:12:03] WARNING: Unexpected LLM label 'other
+
+Reason: The email is a security alert from Google, which is not related to the university's timetable, events, or any other institutional activity. It', fallback to rules
+[2026-04-09 16:12:03] Category: other
+[2026-04-09 16:12:03] Skipped (Irrelevant category)
+[2026-04-09 16:12:04] Processing: 2-Step Verification turned on
+[2026-04-09 16:12:10] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject and body of the email do not contain any keywords related to timetable or event.
+- The email is about Google 2', fallback to rules
+[2026-04-09 16:12:10] Category: other
+[2026-04-09 16:12:10] Skipped (Irrelevant category)
+[2026-04-09 16:12:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-09 16:12:12] Category: other
+[2026-04-09 16:12:12] Skipped (Irrelevant category)
+[2026-04-09 16:12:12] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-10 13:57:26] Connecting to imap.gmail.com...
+[2026-04-10 13:57:40] Found 2 candidate emails (today since 10-Apr-2026), scanning latest 10
+[2026-04-10 13:57:41] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-10 13:57:54] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-10 13:57:54] Category: other
+[2026-04-10 13:57:54] Skipped (Irrelevant category)
+[2026-04-10 13:57:55] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-10 13:57:56] Category: other
+[2026-04-10 13:57:56] Skipped (Irrelevant category)
+[2026-04-10 13:57:57] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-10 14:57:04] Connecting to imap.gmail.com...
+[2026-04-10 14:57:09] Found 2 candidate emails (today since 10-Apr-2026), scanning latest 10
+[2026-04-10 14:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-10 14:57:13] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-10 14:57:13] Category: other
+[2026-04-10 14:57:13] Skipped (Irrelevant category)
+[2026-04-10 14:57:14] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-10 14:57:16] Category: other
+[2026-04-10 14:57:16] Skipped (Irrelevant category)
+[2026-04-10 14:57:16] Run complete. Updated items: 0

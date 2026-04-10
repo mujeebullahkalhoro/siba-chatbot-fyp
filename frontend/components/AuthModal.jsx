@@ -94,22 +94,29 @@ export default function AuthModal({ isOpen, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 backdrop-blur-md p-4"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-auto p-8 relative flex flex-col items-center"
+        className="rounded-3xl shadow-2xl w-full max-w-md mx-auto p-8 relative flex flex-col items-center ui-surface ui-card"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold text-center text-gray-800">
+        <h2 className="text-2xl font-bold text-center text-gray-800 tracking-tight ui-heading">
           {t('auth.title')}
         </h2>
-        <p className="text-center text-gray-600 text-sm mt-2">
+        <p className="text-center text-sm mt-2 text-[color:var(--text-muted)]">
           {t('auth.subtitle')}
         </p>
+        <div className="mt-5 w-full grid grid-cols-1 gap-2">
+          {[t("auth.benefit1"), t("auth.benefit2"), t("auth.benefit3")].map((item, idx) => (
+            <div key={idx} className="text-xs text-gray-600 rounded-lg px-3 py-2 ui-surface-soft">
+              {item}
+            </div>
+          ))}
+        </div>
         <button
           onClick={handleGoogleClick}
-          className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-3 px-6 mt-8 w-full text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+          className="flex items-center justify-center gap-2 border border-[color:var(--border-soft)] rounded-xl py-3 px-6 mt-6 w-full text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 shadow-sm hover:shadow ui-control ui-focus-ring"
           type="button"
         >
           {/* Google multicolor G */}
@@ -139,7 +146,7 @@ export default function AuthModal({ isOpen, onClose }) {
               placeholder={t('auth.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-base"
+              className="mt-1 block w-full px-4 py-3 border border-[color:var(--border-soft)] rounded-xl focus:ring-blue-500 focus:border-blue-500 text-base ui-focus-ring"
               required
               pattern={`^[^\\s@]+@${IBA_HD.replace(".", "\\.")}$`}
               title={`Use your IBA email (e.g., user${IBA_DOMAIN})`}
@@ -155,8 +162,8 @@ export default function AuthModal({ isOpen, onClose }) {
           <button
             type="submit"
             disabled={!isIbaEmail}
-            className={`w-full py-3 px-4 rounded-lg text-white font-semibold transition-colors duration-200 ${isIbaEmail
-                ? "bg-[#ea6645] hover:bg-[#d95a3d]"
+            className={`w-full py-3 px-4 rounded-xl text-white font-semibold transition-colors duration-200 shadow-sm ui-control ui-focus-ring ${isIbaEmail
+                ? "ui-primary-btn"
                 : "bg-gray-300 cursor-not-allowed"
               }`}
             aria-disabled={!isIbaEmail}
