@@ -22,6 +22,10 @@ const ur = {
     // Chat header
     "chatHeader.share": "چیٹ شیئر کریں",
 
+    // Chat messages
+    "chat.user": "You",
+    "chat.ai": "AI",
+
     // Sidebar
     "sidebar.brand": "سبا چیٹ بوٹ",
     "sidebar.newChat": "نئی چیٹ",
@@ -64,6 +68,16 @@ const ur = {
     "share.description": "اس لنک والا کوئی بھی شخص اس چیٹ سیشن کو دیکھ سکتا ہے۔",
     "share.copy": "کلپ بورڈ میں کاپی کریں",
     "share.done": "مکمل",
+    "share.conversation": "شیئر شدہ گفتگو",
+    "share.viewReadOnly": "صرف مطالعہ",
+    "share.viewHint": "لنک رکھنے والا کوئی بھی یہ گفتگو دیکھ سکتا ہے۔ یہاں جواب نہیں بھیج سکتے۔",
+    "share.cta": "اپنے سوالات پوچھنا چاہتے ہیں؟",
+    "share.startOwn": "اپنی چیٹ شروع کریں",
+    "share.errorTitle": "یہ چیٹ لوڈ نہیں ہو سکی",
+    "share.errorBody": "شاید یہ حذف ہو چکی ہے یا لنک غلط ہے۔",
+    "share.home": "ہوم پر واپس",
+    "share.empty": "اس گفتگو میں کوئی پیغام نہیں۔",
+    "share.messagesLabel": "پیغامات",
 
     // Maintenance banner
     "maintenance.message": "سسٹم کی دیکھ بھال جاری ہے — نالج بیس اپ ڈیٹ ہو رہا ہے۔ براہ کرم تھوڑی دیر بعد دوبارہ کوشش کریں۔",
@@ -159,9 +173,9 @@ const ur = {
     "help.ex.timetable.4": "بی ایس سی ایس 4ویں سمسٹر سیکشن بی کا ٹائم ٹیبل دکھائیں۔",
     "help.cat.admissions.title": "داخلے",
     "help.cat.admissions.desc": "اہلیت، آخری تاریخیں، اور داخلہ کے عمل کی تفصیلات حاصل کریں۔",
-    "help.ex.admissions.1": "سبا میں بی ایس سی ایس کے داخلے کا عمل کیا ہے؟",
-    "help.ex.admissions.2": "بی ایس اے آئی کے لیے اہلیت کے معیار کیا ہیں؟",
-    "help.ex.admissions.3": "خزاں سیشن کے داخلے کب شروع ہوتے ہیں؟",
+    "help.ex.admissions.1": "سکھر آئی بی اے میں داخلے کا کیا طریقہ کار ہے؟",
+    "help.ex.admissions.2": "بی ایس سی ایس کے لیے اہلیت کا معیار کیا ہے؟",
+    "help.ex.admissions.3": "این ٹی ایچ پی یا ایس ٹی ایچ پی میں داخلہ کیسے حاصل کریں؟",
     "help.ex.admissions.4": "انڈرگریجویٹ داخلے کے لیے کون سے دستاویزات درکار ہیں؟",
     "help.cat.scholarships.title": "اسکالرشپ اور مالی امداد",
     "help.cat.scholarships.desc": "میرٹ اسکالرشپ اور فیس میں امداد کے اختیارات دیکھیں۔",

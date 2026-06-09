@@ -6,13 +6,14 @@ import ChatHeader from "@/components/ChatHeader";
 import AuthProvider, { useAuth } from "@/context/AuthContext";
 
 function Guard({ children }) {
-  const { user, isLoading, openLoginModal } = useAuth();
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (!isLoading && !user) {
-      openLoginModal();
+      router.push("/");
     }
-  }, [isLoading, user, openLoginModal]);
+  }, [isLoading, user, router]);
 
   if (isLoading) {
     return (

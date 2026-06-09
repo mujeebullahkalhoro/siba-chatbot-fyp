@@ -1,9 +1,10 @@
-const API_URL = "http://localhost:8000/api/chat";
-const STREAM_URL = "http://localhost:8000/api/chat/stream";
+import { getApiBase } from "@/lib/apiBase";
+
+const apiUrl = (path) => `${getApiBase()}${path.startsWith("/") ? path : `/${path}`}`;
 
 export const sendMessage = async (message, sessionId) => {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(apiUrl("/api/chat"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +37,7 @@ export const sendMessage = async (message, sessionId) => {
  * @returns {Promise<string>} the full response once streaming finishes
  */
 export const sendMessageStream = async (message, sessionId, onToken, signal) => {
-  const response = await fetch(STREAM_URL, {
+  const response = await fetch(apiUrl("/api/chat/stream"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -80,8 +81,6 @@ export const sendMessageStream = async (message, sessionId, onToken, signal) => 
         if (payload.token) {
           fullText += payload.token;
           onToken(payload.token);
-          // Add a small delay for smoother typing effect
-          await new Promise(resolve => setTimeout(resolve, 30));
         }
       } catch (e) {
         if (e.message !== "Unexpected end of JSON input") {
@@ -94,10 +93,10 @@ export const sendMessageStream = async (message, sessionId, onToken, signal) => 
   return fullText;
 };
 
-const HISTORY_API_URL = "http://localhost:8000/api/chats";
+const historyChatsUrl = () => apiUrl("/api/chats");
 
 export const getChatSessions = async () => {
-  const response = await fetch(HISTORY_API_URL, {
+  const response = await fetch(historyChatsUrl(), {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -110,7 +109,7 @@ export const getChatSessions = async () => {
 }
 
 export const createChatSession = async (title = "New Chat") => {
-  const response = await fetch(HISTORY_API_URL, {
+  const response = await fetch(historyChatsUrl(), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -121,7 +120,7 @@ export const createChatSession = async (title = "New Chat") => {
 }
 
 export const deleteChatSession = async (sessionId) => {
-  const response = await fetch(`${HISTORY_API_URL}/${sessionId}`, {
+  const response = await fetch(`${historyChatsUrl()}/${sessionId}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -131,7 +130,7 @@ export const deleteChatSession = async (sessionId) => {
 }
 
 export const renameChatSession = async (sessionId, title) => {
-  const response = await fetch(`${HISTORY_API_URL}/${sessionId}`, {
+  const response = await fetch(`${historyChatsUrl()}/${sessionId}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -142,7 +141,7 @@ export const renameChatSession = async (sessionId, title) => {
 }
 
 export const getChatMessages = async (sessionId) => {
-  const response = await fetch(`${HISTORY_API_URL}/${sessionId}/messages`, {
+  const response = await fetch(`${historyChatsUrl()}/${sessionId}/messages`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -152,7 +151,7 @@ export const getChatMessages = async (sessionId) => {
 }
 
 export const shareChatSession = async (sessionId) => {
-  const response = await fetch(`${HISTORY_API_URL}/${sessionId}/share`, {
+  const response = await fetch(`${historyChatsUrl()}/${sessionId}/share`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
@@ -162,10 +161,7 @@ export const shareChatSession = async (sessionId) => {
 }
 
 export const getSharedChat = async (shareId) => {
-  // Note: This is a public endpoint, no credentials needed usually, 
-  // but if backend requires it (unlikely for public share), we might need it.
-  // Routes say: @router.get("/api/shared/{share_id}") -> public
-  const response = await fetch(`http://localhost:8000/api/shared/${shareId}`, {
+  const response = await fetch(apiUrl(`/api/shared/${encodeURIComponent(shareId)}`), {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
@@ -174,7 +170,7 @@ export const getSharedChat = async (shareId) => {
 }
 
 export const submitFeedback = async (data) => {
-  const response = await fetch("http://localhost:8000/api/feedback", {
+  const response = await fetch(apiUrl("/api/feedback"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",

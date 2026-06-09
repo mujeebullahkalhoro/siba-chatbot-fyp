@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import VoiceRecorder from "./VoiceRecorder";
+import VirtualUrduKeyboard from "./VirtualUrduKeyboard";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -91,6 +92,52 @@ export default function ChatInput({
   const { t, isRTL } = useLanguage();
   const { darkMode } = useTheme();
 
+  // ── Virtual Urdu Keyboard ─────────────────────────────
+  const [showUrduKeyboard, setShowUrduKeyboard] = useState(false);
+
+  // Handle virtual keyboard key press — insert Urdu char at cursor
+  const handleVirtualKeyPress = (char) => {
+    const ta = taRef.current;
+    if (!ta) return;
+
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+    const text = localMessage || '';
+    const newText = text.substring(0, start) + char + text.substring(end);
+
+    // Imperatively update DOM and selection to prevent React cursor jumping
+    ta.value = newText;
+    ta.setSelectionRange(start + char.length, start + char.length);
+    setLocalMessage(newText);
+    
+    ta.style.height = 'auto';
+    ta.style.height = `${Math.min(ta.scrollHeight, 160)}px`;
+    ta.focus();
+  };
+
+  // Handle virtual keyboard backspace
+  const handleVirtualBackspace = () => {
+    const ta = taRef.current;
+    if (!ta) return;
+
+    const start = ta.selectionStart;
+    const end = ta.selectionEnd;
+    const text = localMessage || '';
+
+    if (start === end && start > 0) {
+      const newText = text.substring(0, start - 1) + text.substring(end);
+      ta.value = newText;
+      ta.setSelectionRange(start - 1, start - 1);
+      setLocalMessage(newText);
+    } else if (start !== end) {
+      const newText = text.substring(0, start) + text.substring(end);
+      ta.value = newText;
+      ta.setSelectionRange(start, start);
+      setLocalMessage(newText);
+    }
+    ta.focus();
+  };
+
   // Sync with parent when suggested questions or other external actions change initialMessage
   useEffect(() => {
     setLocalMessage(initialMessage);
@@ -174,6 +221,19 @@ export default function ChatInput({
   }
 
   return (
+    <div className={`relative w-full ${className || ""}`}>
+      {/* Virtual Urdu Keyboard — shown floating above the input */}
+      {showUrduKeyboard && isRTL && (
+        <div className="absolute bottom-full left-0 right-0 mb-3 z-50 flex justify-center">
+          <div className="w-full max-w-[600px]">
+            <VirtualUrduKeyboard
+              onKeyPress={handleVirtualKeyPress}
+              onBackspace={handleVirtualBackspace}
+              onClose={() => setShowUrduKeyboard(false)}
+            />
+          </div>
+        </div>
+      )}
     <form
       onSubmit={handleSubmit}
       className={[
@@ -181,7 +241,6 @@ export default function ChatInput({
         darkMode
           ? "bg-slate-800 border-slate-700"
           : "bg-white border-[color:var(--border-soft)]",
-        className,
       ].join(" ")}
     >
       {isMaintenance && (
@@ -214,6 +273,27 @@ export default function ChatInput({
       />
 
       <div className={`absolute bottom-2 ${isRTL ? 'left-3' : 'right-3'} flex items-center space-x-2`}>
+        {/* Urdu Keyboard toggle — visible when language is set to Urdu */}
+        {isRTL && (
+          <button
+            type="button"
+            onClick={() => setShowUrduKeyboard(prev => !prev)}
+            title={showUrduKeyboard ? "اردو کی بورڈ بند کریں" : "اردو کی بورڈ کھولیں"}
+            className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold transition-all duration-200 border ${
+              showUrduKeyboard
+                ? 'bg-orange-500/20 border-orange-400/50 text-orange-500'
+                : darkMode
+                  ? 'bg-slate-700/50 border-slate-600/50 text-slate-400 hover:text-slate-300'
+                  : 'bg-gray-100 border-gray-200 text-gray-400 hover:text-gray-600'
+            }`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+              <path fillRule="evenodd" d="M3.5 2A1.5 1.5 0 0 0 2 3.5v13A1.5 1.5 0 0 0 3.5 18h13a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 16.5 2h-13ZM5 5.75A.75.75 0 0 1 5.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 5 5.75Zm3.75-.75a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm2.75.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM5 9.75A.75.75 0 0 1 5.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 5 9.75Zm3.75-.75a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm2.75.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.75 13a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Z" clipRule="evenodd" />
+            </svg>
+            <span style={{ fontFamily: "'Noto Nastaliq Urdu', serif", fontSize: '10px' }}>اردو</span>
+            {showUrduKeyboard && <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />}
+          </button>
+        )}
         <button
           type="button"
           aria-label={t("voice.submit")}
@@ -255,5 +335,6 @@ export default function ChatInput({
         )}
       </div>
     </form>
+    </div>
   );
 }

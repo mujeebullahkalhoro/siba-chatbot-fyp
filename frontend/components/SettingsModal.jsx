@@ -83,7 +83,7 @@ export default function SettingsModal({
             <select
               value={settings.chat_density}
               onChange={(e) => onChangeSetting("chat_density", e.target.value)}
-              className={`w-full rounded-lg border px-3 py-2 ${darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-[color:var(--border-soft)]"}`}
+              className={`w-full rounded-lg border px-3 py-2 ${darkMode ? "bg-slate-800 border-slate-600 text-white" : "bg-white border-[color:var(--border-soft)] text-black"}`}
             >
               <option value="comfortable">{t("settings.comfortable")}</option>
               <option value="compact">{t("settings.compact")}</option>
@@ -95,7 +95,7 @@ export default function SettingsModal({
             <select
               value={settings.font_size}
               onChange={(e) => onChangeSetting("font_size", e.target.value)}
-              className={`w-full rounded-lg border px-3 py-2 ${darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-[color:var(--border-soft)]"}`}
+              className={`w-full rounded-lg border px-3 py-2 ${darkMode ? "bg-slate-800 border-slate-600 text-white" : "bg-white border-[color:var(--border-soft)] text-black"}`}
             >
               <option value="small">{t("settings.small")}</option>
               <option value="medium">{t("settings.medium")}</option>
@@ -141,7 +141,7 @@ export default function SettingsModal({
                     value={setupCode}
                     onChange={(e) => setSetupCode(e.target.value)}
                     placeholder={t("settings.twofaCode")}
-                    className={`w-full rounded-lg border px-3 py-2 text-sm ${darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-[color:var(--border-soft)]"}`}
+                    className={`w-full rounded-lg border px-3 py-2 text-sm ${darkMode ? "bg-slate-800 border-slate-600 text-white" : "bg-white border-[color:var(--border-soft)] text-black"}`}
                   />
                   <button onClick={handleEnable2FA} disabled={isBusy || setupCode.length < 6} className="ui-primary-btn ui-control ui-focus-ring rounded-lg px-3 py-2 text-sm">
                     {t("settings.twofaEnable")}
@@ -155,7 +155,7 @@ export default function SettingsModal({
                 value={disableCode}
                 onChange={(e) => setDisableCode(e.target.value)}
                 placeholder={t("settings.twofaCode")}
-                className={`w-full rounded-lg border px-3 py-2 text-sm ${darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-[color:var(--border-soft)]"}`}
+                className={`w-full rounded-lg border px-3 py-2 text-sm ${darkMode ? "bg-slate-800 border-slate-600 text-white" : "bg-white border-[color:var(--border-soft)] text-black"}`}
               />
               <button onClick={handleDisable2FA} disabled={isBusy || disableCode.length < 6} className="rounded-lg px-3 py-2 text-sm text-white bg-red-600 hover:bg-red-700 ui-control ui-focus-ring">
                 {t("settings.twofaDisable")}

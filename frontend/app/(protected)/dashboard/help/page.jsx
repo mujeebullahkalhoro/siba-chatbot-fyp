@@ -3,6 +3,8 @@
 import React, { useMemo } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { useRouter } from "next/navigation";
+import { useChat } from "@/context/ChatContext";
 
 const GUIDE_SECTIONS = [
   {
@@ -52,6 +54,16 @@ const GUIDE_SECTIONS = [
 export default function HelpPage() {
   const { darkMode } = useTheme();
   const { isRTL, t } = useLanguage();
+  const router = useRouter();
+  const { setCurrentMessage, textareaRef } = useChat();
+
+  const handleQuestionClick = (query) => {
+    setCurrentMessage(query);
+    router.push("/dashboard");
+    setTimeout(() => {
+      textareaRef.current?.focus();
+    }, 100);
+  };
 
   const sections = useMemo(
     () =>
@@ -104,10 +116,11 @@ export default function HelpPage() {
                 {category.examples.map((query) => (
                   <li
                     key={query}
-                    className={`rounded-xl border px-3 py-2 text-sm ${
+                    onClick={() => handleQuestionClick(query)}
+                    className={`cursor-pointer transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-md rounded-xl border px-3 py-2 text-sm ${
                       darkMode
-                        ? "border-slate-700 bg-slate-800/60 text-slate-200"
-                        : "border-[color:var(--border-soft)] bg-[color:var(--surface-soft)] text-gray-800"
+                        ? "border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-700 hover:border-slate-500"
+                        : "border-[color:var(--border-soft)] bg-[color:var(--surface-soft)] text-gray-800 hover:bg-white hover:border-[#c4d4e8]"
                     }`}
                   >
                     {query}

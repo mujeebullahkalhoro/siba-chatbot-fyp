@@ -21,8 +21,8 @@ function ChatMessage({ message, compact = false, feedback, onFeedback, ttsHook, 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} w-full animate-fade-in-up ${compact ? "mt-1" : ""}`} dir={isRTL ? 'rtl' : 'ltr'}>
       {!isUser && !compact && (
-        <div className="w-7 h-7 rounded-full mr-2 mt-1 bg-gradient-to-br from-blue-500 to-[#003e80] text-white text-xs font-bold flex items-center justify-center shrink-0">
-          AI
+        <div className="w-7 h-7 rounded-full me-2 mt-1 bg-gradient-to-br from-blue-500 to-[#003e80] text-white text-[11px] font-bold flex items-center justify-center shrink-0 leading-none">
+          <span className="translate-y-[1px]">{t('chat.ai')}</span>
         </div>
       )}
       <div
@@ -70,7 +70,7 @@ function ChatMessage({ message, compact = false, feedback, onFeedback, ttsHook, 
       
       {/* Feedback + Speaker buttons for bot messages */}
       {!isUser && (
-        <div className={`flex flex-col gap-1 mt-1 ${isRTL ? 'mr-1' : 'ml-1'}`}>
+        <div className={`flex flex-col gap-1 mt-1 ${isRTL ? 'me-1' : 'ms-1'}`}>
           <div className="flex gap-1 items-center">
 
             {/* 👍 Thumbs Up */}
@@ -142,8 +142,8 @@ function ChatMessage({ message, compact = false, feedback, onFeedback, ttsHook, 
         </div>
       )}
       {isUser && !compact && (
-        <div className="w-7 h-7 rounded-full ml-2 mt-1 bg-gradient-to-br from-[#ea6645] to-[#c94f33] text-white text-xs font-bold flex items-center justify-center shrink-0">
-          You
+        <div className="w-7 h-7 rounded-full ms-2 mt-1 bg-gradient-to-br from-[#ea6645] to-[#c94f33] text-white text-[11px] font-bold flex items-center justify-center shrink-0 leading-none">
+          <span className="translate-y-[1px]">{t('chat.user')}</span>
         </div>
       )}
     </div >

@@ -27,5 +27,6 @@ SMTP_USE_TLS = os.getenv("SMTP_USE_TLS", "true").lower() in {"1", "true", "yes"}
 # Admin panel credentials
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@siba.edu.pk")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
+ADMIN_TOKEN_SECRET = os.getenv("ADMIN_TOKEN_SECRET", "default_admin_secret")
 MAINTENANCE_INTERNAL_TOKEN = os.getenv("MAINTENANCE_INTERNAL_TOKEN", "")
 

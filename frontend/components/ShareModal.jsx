@@ -50,7 +50,7 @@ export default function ShareModal({ isOpen, onClose, shareUrl }) {
                             type="text"
                             readOnly
                             value={shareUrl}
-                            className="w-full pl-4 pr-12 py-3 text-sm text-gray-600 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                            className="w-full pl-4 pr-12 py-3 text-sm text-black bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                         />
                         <button
                             onClick={handleCopy}

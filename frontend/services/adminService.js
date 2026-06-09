@@ -48,6 +48,31 @@ export async function fetchOverview() {
     return res.json();
 }
 
+export async function createCategory(name) {
+    const res = await fetch(`${API_BASE}/api/admin/categories`, {
+        method: "POST",
+        headers: { ...authHeaders(), "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.detail || "Failed to create category");
+    }
+    return res.json();
+}
+
+export async function deleteCategory(category) {
+    const res = await fetch(`${API_BASE}/api/admin/categories/${category}`, {
+        method: "DELETE",
+        headers: authHeaders(),
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.detail || "Failed to delete category");
+    }
+    return res.json();
+}
+
 export async function fetchCategoryFiles(category) {
     const res = await fetch(
         `${API_BASE}/api/admin/categories/${category}/files`,

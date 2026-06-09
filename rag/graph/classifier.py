@@ -48,10 +48,10 @@ def _pre_classify(query: str) -> str | None:
 
 # Load classification prompt
 prompt_path = current_dir.parent / "prompts" / "classification.txt"
-CLASSIFICATION_PROMPT = prompt_path.read_text()
+CLASSIFICATION_PROMPT = prompt_path.read_text(encoding="utf-8")
 
 # Valid categories with canonical names
-VALID_CATEGORIES = {"Faculty", "Policies", "Events", "Scholarships", "Timetable", "Academic", "General"}
+VALID_CATEGORIES = {"Faculty", "Policies", "Events", "Scholarships", "Timetable", "Academic", "General", "Irrelevant"}
 
 # Map common LLM output variations to canonical category names
 CATEGORY_ALIASES = {
@@ -80,6 +80,10 @@ CATEGORY_ALIASES = {
     "greetings": "General",
     "chitchat": "General",
     "other": "General",
+    "irrelevant": "Irrelevant",
+    "unknown": "Irrelevant",
+    "out of scope": "Irrelevant",
+    "random": "Irrelevant",
 }
 
 # Cached classifier LLM instance
@@ -119,7 +123,7 @@ async def classify_query(query: str, last_category: str = None) -> str:
     # 1. Fast pre-LLM heuristic check (catches obvious Timetable queries)
     pre_cat = _pre_classify(query)
     if pre_cat:
-        print(f"[CLASSIFIER] Pre-classified (regex): '{query}' → {pre_cat}")
+        print(f"[CLASSIFIER] Pre-classified (regex): '{query}' -> {pre_cat}")
         return pre_cat
 
     # 2. LLM-based classification
@@ -141,7 +145,7 @@ async def classify_query(query: str, last_category: str = None) -> str:
         category = _normalize_category(raw_output)
         
         if category:
-            print(f"[CLASSIFIER] Query: '{query}' → {category} (raw: '{raw_output.strip()}')")
+            print(f"[CLASSIFIER] Query: '{query}' -> {category} (raw: '{raw_output.strip()}')")
             return category
         
         # Attempt 2: retry with a stricter prompt if first attempt failed validation

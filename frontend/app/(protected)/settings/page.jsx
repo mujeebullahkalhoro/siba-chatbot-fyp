@@ -222,12 +222,12 @@ export default function SettingsPage() {
                   <input
                     value={profile.name}
                     onChange={(e) => setProfile((prev) => ({ ...prev, name: e.target.value }))}
-                    className={`w-full rounded-xl border px-3 py-2.5 ui-focus-ring ${darkMode ? "bg-slate-800 border-slate-600" : "bg-white border-[color:var(--border-soft)]"}`}
+                    className={`w-full rounded-xl border px-3 py-2.5 ui-focus-ring ${darkMode ? "bg-slate-800 border-slate-600 text-white" : "bg-white border-[color:var(--border-soft)] text-black"}`}
                   />
                 </label>
                 <label className="block text-sm">
                   <span className="block mb-1">{t("settingsPage.email")}</span>
-                  <input value={profile.email} readOnly className={`w-full rounded-xl border px-3 py-2.5 opacity-80 ${darkMode ? "bg-slate-800 border-slate-600" : "bg-gray-50 border-[color:var(--border-soft)]"}`} />
+                  <input value={profile.email} readOnly className={`w-full rounded-xl border px-3 py-2.5 opacity-80 ${darkMode ? "bg-slate-800 border-slate-600 text-white" : "bg-gray-50 border-[color:var(--border-soft)] text-black"}`} />
                 </label>
                 <div className={`sticky bottom-0 pt-2 ${darkMode ? "bg-slate-900/80" : "bg-white/80"} backdrop-blur-sm`}>
                   <button onClick={handleProfileSave} disabled={isSaving} className="ui-primary-btn rounded-lg px-4 py-2 text-sm ui-control ui-focus-ring">

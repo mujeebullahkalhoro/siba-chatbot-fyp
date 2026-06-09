@@ -10,7 +10,7 @@ import {
     replaceFile,
 } from "@/services/adminService";
 
-const CATEGORY_LABELS = {
+const CATEGORY_LABELS_STATIC = {
     faculty: "Faculty Documents",
     policies: "Policies Documents",
     programs: "Programs Documents",
@@ -36,22 +36,33 @@ export default function CategoryPage() {
     const [deleteConfirm, setDeleteConfirm] = useState(null);
     const [message, setMessage] = useState(null);
     const [preview, setPreview] = useState(null); // {name, type, content}
+    const [categoryExists, setCategoryExists] = useState(true);
 
     const loadFiles = useCallback(async () => {
         setLoading(true);
         try {
             const data = await fetchCategoryFiles(category);
             setFiles(data.files || []);
+            setCategoryExists(true);
         } catch (err) {
-            if (err.message === "UNAUTHORIZED") router.replace("/admin");
+            if (err.message === "UNAUTHORIZED") {
+                router.replace("/admin");
+            } else {
+                setCategoryExists(false);
+            }
         } finally {
             setLoading(false);
         }
     }, [category, router]);
 
     useEffect(() => {
-        if (category && CATEGORY_LABELS[category]) loadFiles();
+        if (category) loadFiles();
     }, [category, loadFiles]);
+
+    const getCategoryLabel = () => {
+        if (CATEGORY_LABELS_STATIC[category]) return CATEGORY_LABELS_STATIC[category];
+        return category.charAt(0).toUpperCase() + category.slice(1).replace(/_/g, " ");
+    };
 
     const showMessage = (text, type = "success") => {
         setMessage({ text, type });
@@ -191,7 +202,7 @@ export default function CategoryPage() {
         setEditing(null);
     };
 
-    if (!CATEGORY_LABELS[category]) {
+    if (!loading && !categoryExists) {
         return <div style={{ padding: 40, textAlign: "center", color: "#64748b" }}>Category not found</div>;
     }
 
@@ -211,7 +222,7 @@ export default function CategoryPage() {
                             onClick={handleBack}
                             style={{ background: "none", border: "none", color: "#3b82f6", cursor: "pointer", fontSize: 13, marginBottom: 6, padding: 0 }}
                         >
-                            ← Back to {CATEGORY_LABELS[category]}
+                            ← Back to {getCategoryLabel()}
                         </button>
                         <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: "#0f172a" }}>
                             {editing.name}
@@ -239,6 +250,7 @@ export default function CategoryPage() {
                         fontSize: 13, fontFamily: "'SF Mono', 'Consolas', monospace",
                         lineHeight: 1.7, resize: "vertical", outline: "none",
                         boxSizing: "border-box", background: "#fff",
+                        color: "#0f172a",
                     }}
                 />
             </div>
@@ -354,7 +366,7 @@ export default function CategoryPage() {
                         ← Dashboard
                     </button>
                     <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: "#0f172a" }}>
-                        {CATEGORY_LABELS[category]}
+                        {getCategoryLabel()}
                     </h1>
                     <p style={{ margin: "2px 0 0", fontSize: 13, color: "#94a3b8" }}>
                         {files.length} document{files.length !== 1 ? "s" : ""}
@@ -382,7 +394,7 @@ export default function CategoryPage() {
                     style={{
                         width: "100%", maxWidth: 360, padding: "8px 12px",
                         borderRadius: 6, border: "1px solid #e2e8f0",
-                        fontSize: 13, outline: "none", boxSizing: "border-box",
+                        fontSize: 13, color: "#0f172a", outline: "none", boxSizing: "border-box",
                     }}
                 />
             </div>

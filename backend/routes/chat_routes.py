@@ -188,3 +188,21 @@ async def download_schema(filename: str):
         filename=decoded_filename,
         media_type='application/pdf'
     )
+
+@router.get("/api/forms/download/{filename}")
+async def download_form(filename: str):
+    """Download a form or voucher PDF."""
+    decoded_filename = urllib.parse.unquote(filename)
+    
+    forms_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../rag/data/forms"))
+    file_path = os.path.join(forms_dir, decoded_filename)
+    
+    if not os.path.exists(file_path):
+        print(f"[DEBUG] Form download requested for '{decoded_filename}', but not found at {file_path}")
+        raise HTTPException(status_code=404, detail="File not found")
+        
+    return FileResponse(
+        path=file_path,
+        filename=decoded_filename,
+        media_type='application/pdf'
+    )

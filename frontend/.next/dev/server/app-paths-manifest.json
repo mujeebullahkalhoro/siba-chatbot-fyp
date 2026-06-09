@@ -1,5 +1,8 @@
 {
-  "/(protected)/settings/page": "app/(protected)/settings/page.js",
+  "/(home)/page": "app/(home)/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/(protected)/dashboard/help/page": "app/(protected)/dashboard/help/page.js",
-  "/(home)/page": "app/(home)/page.js"
+  "/(protected)/dashboard/page": "app/(protected)/dashboard/page.js",
+  "/share/[shareId]/page": "app/share/[shareId]/page.js"
 }

@@ -35,7 +35,7 @@ export default function TwoFactorLoginModal({ isOpen, onVerified }) {
           onChange={(e) => setCode(e.target.value)}
           inputMode="numeric"
           placeholder="123456"
-          className="w-full rounded-lg border border-[color:var(--border-soft)] px-3 py-2 mb-3"
+          className="w-full rounded-lg border border-[color:var(--border-soft)] px-3 py-2 mb-3 text-black"
         />
         {error && <p className="text-xs text-red-600 mb-2">{error}</p>}
         <button
@@ -52,11 +52,11 @@ export default function TwoFactorLoginModal({ isOpen, onVerified }) {
             }
           }}
           disabled={resending}
-          className="mb-2 w-full rounded-lg border border-[color:var(--border-soft)] py-2 text-sm hover:bg-gray-50"
+          className="mb-2 w-full rounded-lg border border-[color:var(--border-soft)] py-2 text-sm hover:bg-gray-50 text-black"
         >
           {resending ? "Sending..." : "Resend code"}
         </button>
-        <button disabled={loading || code.trim().length < 6} className="w-full ui-primary-btn rounded-lg py-2 ui-control ui-focus-ring">
+        <button disabled={loading || code.trim().length < 6} className="w-full ui-primary-btn rounded-lg py-2 ui-control ui-focus-ring text-white">
           {loading ? "Verifying..." : "Verify"}
         </button>
       </form>

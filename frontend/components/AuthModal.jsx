@@ -146,7 +146,7 @@ export default function AuthModal({ isOpen, onClose }) {
               placeholder={t('auth.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-4 py-3 border border-[color:var(--border-soft)] rounded-xl focus:ring-blue-500 focus:border-blue-500 text-base ui-focus-ring"
+              className="mt-1 block w-full px-4 py-3 border border-[color:var(--border-soft)] rounded-xl focus:ring-blue-500 focus:border-blue-500 text-base ui-focus-ring text-black"
               required
               pattern={`^[^\\s@]+@${IBA_HD.replace(".", "\\.")}$`}
               title={`Use your IBA email (e.g., user${IBA_DOMAIN})`}

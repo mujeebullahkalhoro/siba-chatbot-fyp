@@ -31,8 +31,8 @@ async def _warmup_rag():
 async def lifespan(app: FastAPI):
     # Startup
     await init_db()     # ensure unique email index exists
-    # Warm up RAG components in background so first request isn't slow
-    asyncio.create_task(_warmup_rag())
+    # Block until RAG is warm so the first chat request does not pay cold-load latency
+    await _warmup_rag()
     yield
     # Shutdown
     close_db()

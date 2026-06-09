@@ -12,11 +12,13 @@ Categories:
 
 4. Scholarships — Questions about financial aid, need-based scholarships, merit scholarships, scholarship application procedures, eligibility criteria, or funding opportunities.
 
-5. Timetable — Questions about class schedules, what classes are today or on a specific day, when a specific subject class is, or if a professor has a class right now. This includes asking about the schedule or classes of a specific teacher or professor.
+5. Timetable — Questions about class schedules, what classes are today or on a specific day, when a specific subject class is, who is teaching a specific subject, or if a professor has a class right now. This includes asking about the schedule or classes of a specific teacher or professor.
 
-6. Academic — Questions about academic calendar, course outlines, programs offered, departments, curriculum, semesters, or degree requirements.
+6. Academic — Questions about academic calendar, course outlines, programs offered, departments, curriculum, semesters, degree requirements, student councils (SISC), or university centers (EDC, CDC, ORIC).
 
-7. General — Greetings, thanks, chitchat, or queries completely unrelated to the university (e.g., "hello", "how are you", "thank you", "what is the weather").
+7. General — Greetings, introductions, self-identification, or polite closing remarks (e.g., "hello", "hi", "who are you", "what is your name", "thank you", "bye").
+
+8. Irrelevant — Queries completely unrelated to Sukkur IBA University, general knowledge questions, external current affairs, hypothetical opinions, coding help, math problems, or any topic where the assistant should not provide an answer (e.g., "what is machine learning", "how to bake a cake", "make-up tips", "solve this equation", "who is the prime minister").
 
 Classification rules:
 - If a query asks about HOW to get admission, admission requirements, or admission procedure, classify as Policies.
@@ -25,33 +27,50 @@ Classification rules:
 - IMPORTANT: If a query asks about the SCHEDULE, CLASSES, TIMETABLE, or TEACHING TIMES of a teacher (even if the teacher is mentioned by name and even if 'of' or 'for' is missing), classify as Timetable — NOT Faculty.
 - If a query mentions a professor or teacher by name but is asking about their profile, contact info, email, designation, or qualifications, classify as Faculty.
 - If a query contains both a name AND "class", "schedule", or "teach", prioritize Timetable.
+- If a query is a greeting or asks who the bot is, classify as General.
+- If a query is about any general knowledge topic, fact-finding outside the university, or personal opinions on non-university matters, classify as Irrelevant.
+- If a query asks "Who is teaching [Subject]" or "Schedule for [Subject]", classify as Timetable.
+- If a query is about university-affiliated student bodies (SISC, Student Council), entrepreneurship/career centers (EDC, CDC, ORIC), or university societies, classify as Academic.
 
 Examples:
-- "Who is the HOD of CS department?" → Faculty
-- "Tell me about Dr. Ahmed" → Faculty
-- "What is the email of Prof. Irfan?" → Faculty
-- "teachers in electrical engineering" → Faculty
-- "What is the attendance policy?" → Policies
-- "What is the grading criteria?" → Policies
-- "How to get admission in Sukkur IBA University?" → Policies
-- "How much marks required to pass a course?" → Policies
-- "What is the fee refund policy?" → Policies
-- "What is the code of conduct?" → Policies
-- "admission requirements" → Policies
-- "Is there any upcoming event?" → Events
-- "When is the next seminar?" → Events
-- "What scholarships are available?" → Scholarships
-- "How to apply for need-based scholarship?" → Scholarships
-- "What is my class schedule today?" → Timetable
-- "Does Dr. Ali have a class on Monday?" → Timetable
-- "What are the classes of Dr. Ismail?" → Timetable
-- "Show me the timetable of Dr. Khan" → Timetable
-- "When does Dr. Niaz teach?" → Timetable
-- "What subjects does Prof. Irfan teach and when?" → Timetable
-- "classes dr ahsanullah" → Timetable
-- "schedule dr asif" → Timetable
-- "What programs does the university offer?" → Academic
-- "Tell me about the CS department curriculum" → Academic
-- "Hello" → General
-- "Thank you" → General
-- "How are you?" → General
+- "Who is the HOD of CS department?" -> Faculty
+- "Tell me about Dr. Ahmed" -> Faculty
+- "What is the email of Prof. Irfan?" -> Faculty
+- "teachers in electrical engineering" -> Faculty
+- "What is the attendance policy?" -> Policies
+- "What is the grading criteria?" -> Policies
+- "How to get admission in Sukkur IBA University?" -> Policies
+- "How much marks required to pass a course?" -> Policies
+- "What is the fee refund policy?" -> Policies
+- "What is the code of conduct?" -> Policies
+- "admission requirements" -> Policies
+- "Is there any upcoming event?" -> Events
+- "When is the next seminar?" -> Events
+- "What scholarships are available?" -> Scholarships
+- "How to apply for need-based scholarship?" -> Scholarships
+- "What is my class schedule today?" -> Timetable
+- "Does Dr. Ali have a class on Monday?" -> Timetable
+- "What are the classes of Dr. Ismail?" -> Timetable
+- "Show me the timetable of Dr. Khan" -> Timetable
+- "When does Dr. Niaz teach?" -> Timetable
+- "What subjects does Prof. Irfan teach and when?" -> Timetable
+- "classes dr ahsanullah" -> Timetable
+- "schedule dr asif" -> Timetable
+- "who is teaching discrete structures?" -> Timetable
+- "schedule for ICT" -> Timetable
+- "What programs does the university offer?" -> Academic
+- "Tell me about the CS department curriculum" -> Academic
+- "how is the president of sisc elected?" -> Academic
+- "tell me about the student council" -> Academic
+- "what is EDC at Sukkur IBA?" -> Academic
+- "career development center services" -> Academic
+- "Hello" -> General
+- "Thank you" -> General
+- "How are you?" -> General
+- "what is machine learning" -> Irrelevant
+- "how to cook pasta" -> Irrelevant
+- "solve 5x + 3 = 10" -> Irrelevant
+- "What is your opinion on beauty?" -> Irrelevant
+- "tell me a joke" -> Irrelevant
+
+

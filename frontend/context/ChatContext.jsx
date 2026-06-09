@@ -76,9 +76,9 @@ export const ChatProvider = ({ children }) => {
     };
 
     // Shared send logic
-    const handleSendMessage = async (e) => {
+    const handleSendMessage = async (e, overrideText = null) => {
         if (e) e.preventDefault();
-        const trimmed = currentMessage.trim();
+        const trimmed = (overrideText || currentMessage).trim();
         if (!trimmed || isLoading) return;
 
         const usrId = Date.now();

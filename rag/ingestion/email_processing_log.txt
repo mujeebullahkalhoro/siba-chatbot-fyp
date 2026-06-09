@@ -2606,3 +2606,3312 @@ The email is about account sign-in activity, which is not related to the class s
 [2026-04-10 14:57:16] Category: other
 [2026-04-10 14:57:16] Skipped (Irrelevant category)
 [2026-04-10 14:57:16] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-11 14:19:52] Connecting to imap.gmail.com...
+[2026-04-11 14:19:55] Found 1 candidate emails (today since 11-Apr-2026), scanning latest 10
+[2026-04-11 14:19:55] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-11 14:20:03] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-11 14:20:03] Category: other
+[2026-04-11 14:20:03] Skipped (Irrelevant category)
+[2026-04-11 14:20:03] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-11 14:57:08] Connecting to imap.gmail.com...
+[2026-04-11 14:57:11] Found 1 candidate emails (today since 11-Apr-2026), scanning latest 10
+[2026-04-11 14:57:12] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-11 14:57:15] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-11 14:57:15] Category: other
+[2026-04-11 14:57:15] Skipped (Irrelevant category)
+[2026-04-11 14:57:15] Run complete. Updated items: 0
+^C^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-14 00:57:04] Connecting to imap.gmail.com...
+[2026-04-14 00:57:07] Found 2 candidate emails (today since 14-Apr-2026), scanning latest 10
+[2026-04-14 00:57:08] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-14 00:57:10] Category: other
+[2026-04-14 00:57:10] Skipped (Irrelevant category)
+[2026-04-14 00:57:11] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-14 00:57:12] Category: other
+[2026-04-14 00:57:12] Skipped (Irrelevant category)
+[2026-04-14 00:57:12] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-15 00:16:35] Connecting to imap.gmail.com...
+[2026-04-15 00:16:38] Found 1 candidate emails (today since 15-Apr-2026), scanning latest 10
+[2026-04-15 00:16:39] Processing: Revised Zuhur Prayer Timing - 1:15 PM
+[2026-04-15 00:16:39] Category: timetable
+[2026-04-15 00:16:39] WARNING: No XML timetable found in email
+[2026-04-15 00:16:39] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-15 00:57:05] Connecting to imap.gmail.com...
+[2026-04-15 00:57:07] Found 1 candidate emails (today since 15-Apr-2026), scanning latest 10
+[2026-04-15 00:57:08] Processing: Revised Zuhur Prayer Timing - 1:15 PM
+[2026-04-15 00:57:08] Category: timetable
+[2026-04-15 00:57:08] WARNING: No XML timetable found in email
+[2026-04-15 00:57:08] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-16 16:57:03] Connecting to imap.gmail.com...
+[2026-04-16 16:57:05] Found 10 candidate emails (today since 16-Apr-2026), scanning latest 10
+[2026-04-16 16:57:06] Processing: Re: WEB OF SCIENCE ACTIVATION
+[2026-04-16 16:57:06] Category: other
+[2026-04-16 16:57:06] Skipped (Irrelevant category)
+[2026-04-16 16:57:08] Processing: Re: WEB OF SCIENCE ACTIVATION
+[2026-04-16 16:57:08] Category: other
+[2026-04-16 16:57:08] Skipped (Irrelevant category)
+[2026-04-16 16:57:12] Processing: Found card of Muhammad Awais BBA, collect it from reception
+[2026-04-16 16:57:16] Category: other
+[2026-04-16 16:57:16] Skipped (Irrelevant category)
+[2026-04-16 16:57:17] Processing: Jumma Prayer Timing Update - 1:15 PM
+[2026-04-16 16:57:20] Category: other
+[2026-04-16 16:57:20] Skipped (Irrelevant category)
+[2026-04-16 16:57:21] ERROR: IMAP authentication/login failed: command: FETCH => System Error
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-19 16:08:08] Connecting to imap.gmail.com...
+[2026-04-19 16:08:10] Found 0 candidate emails (today since 19-Apr-2026), scanning latest 10
+[2026-04-19 16:08:10] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-19 16:57:04] Connecting to imap.gmail.com...
+[2026-04-19 16:57:06] Found 0 candidate emails (today since 19-Apr-2026), scanning latest 10
+[2026-04-19 16:57:06] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-20 20:57:04] Connecting to imap.gmail.com...
+[2026-04-20 20:57:28] Found 10 candidate emails (today since 20-Apr-2026), scanning latest 10
+[2026-04-20 20:57:32] Processing: Fwd: Lost Backpack on gate 1
+[2026-04-20 20:57:34] Category: other
+[2026-04-20 20:57:34] Skipped (Irrelevant category)
+[2026-04-20 20:57:37] Processing: Fwd: Lost Earbuds – Ronin R520
+[2026-04-20 20:57:38] Category: other
+[2026-04-20 20:57:38] Skipped (Irrelevant category)
+[2026-04-20 20:57:40] Processing: Re: PhD Math: Invitation to attend the PhD Thesis Defense/Viva-Voce
+ of Mr. Darshan Mal (PhD Scholar, Mathematics)
+[2026-04-20 20:57:41] WARNING: Unexpected LLM label 'Based on the provided email, I would classify it as:
+
+event
+
+Reasoning:
+
+- The email is an institutional activity announcement, specifically a PhD Thesis Defense/V', fallback to rules
+[2026-04-20 20:57:41] Category: other
+[2026-04-20 20:57:41] Skipped (Irrelevant category)
+[2026-04-20 20:57:44] Processing: Re: PhD Math: Invitation to attend the PhD Thesis Defense/Viva-Voce
+ of Mr. Darshan Mal (PhD Scholar, Mathematics)
+[2026-04-20 20:57:45] Category: event
+[2026-04-20 20:57:45] New event saved: event_20260420_205745.txt
+[2026-04-20 20:57:51] Processing: Withdrawal Policy and Withdrawal Portal - Spring semester 2026
+[2026-04-20 20:57:51] Category: other
+[2026-04-20 20:57:51] Skipped (Irrelevant category)
+[2026-04-20 20:57:54] Processing: Invitation to Annual Sports Gala 2026 at IBA Sukkur
+[2026-04-20 20:57:55] WARNING: Unexpected LLM label 'Based on the provided email, I would classify it as:
+
+event
+
+Reasoning:
+
+- The subject line mentions "Annual Sports Gala 2026", which is', fallback to rules
+[2026-04-20 20:57:55] Category: event
+[2026-04-20 20:57:55] New event saved: event_20260420_205755.txt
+[2026-04-20 20:58:04] Processing: JazzWorld Summer Internship 2026 - Application is now live!
+[2026-04-20 20:58:04] Category: other
+[2026-04-20 20:58:04] Skipped (Irrelevant category)
+[2026-04-20 20:58:08] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-20 20:58:11] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-20 20:58:11] Category: other
+[2026-04-20 20:58:11] Skipped (Irrelevant category)
+[2026-04-20 20:58:53] Processing: Shan Summer Internship Program 2026_Applications are now live on LinkedIn!
+[2026-04-20 20:58:53] Category: other
+[2026-04-20 20:58:53] Skipped (Irrelevant category)
+[2026-04-20 20:58:55] Processing: Fwd: HE - Decision on Manuscript HE-08-2025-0130.R2 - (Impact Factor
+ 1.6 | Scopus & WoS)
+[2026-04-20 20:58:55] Category: other
+[2026-04-20 20:58:55] Skipped (Irrelevant category)
+[2026-04-20 20:58:59] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-04-20 20:58:59] Rebuilding universal vector store (single batch run)...
+Removing old vector store at d:\siba-chatbot-fyp\rag\vector_db\universal...
+ Loading PDF [CDC]: Career Development Center(CDC).pdf
+ Loading PDF [CDC]: sisc.pdf
+ Loading PDF [EDC]: CSS Preparatory Classes.pdf
+ Loading PDF [EDC]: Diploma Programs.pdf
+ Loading PDF [EDC]: Executive Development Centre(EDC).pdf
+ Loading PDF [EDC]: IT Industry Bootcamp.pdf
+ Loading PDF [EDC]: Peoples Information Technology Program(PITP).pdf
+ Loading PDF [EDC]: Programs Offered by Executive Development Center.pdf
+ Loading PDF [EDC]: Skills Development Program.pdf
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260420_205745.txt
+ Loading TXT [events]: event_20260420_205755.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: Community Colleges and Sub Campuses.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+Total raw documents loaded: 391
+Total chunks after splitting: 793
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2716.28it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+Universal vector store created at: d:\siba-chatbot-fyp\rag\vector_db\universal
+   Total vectors: 793
+[2026-04-20 21:00:02] Vector store rebuilt successfully
+[2026-04-20 21:00:06] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-04-20 21:00:09] Run complete. Updated items: 2
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-23 10:09:44] Connecting to imap.gmail.com...
+[2026-04-23 10:09:48] Found 3 candidate emails (today since 23-Apr-2026), scanning latest 10
+[2026-04-23 10:09:50] Processing: Invitation to Participate in Essay Writing and Video Contests – 75th China–Pakistan Diplomatic Anniversary
+[2026-04-23 10:09:59] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject does not contain any strong timetable signals.
+- The subject does not contain any institutional activity announcements like events, workshops, seminars', fallback to rules
+[2026-04-23 10:09:59] Category: other
+[2026-04-23 10:09:59] Skipped (Irrelevant category)
+[2026-04-23 10:10:00] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-23 10:10:03] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-23 10:10:03] Category: other
+[2026-04-23 10:10:03] Skipped (Irrelevant category)
+[2026-04-23 10:10:04] Skipped (not current day): Your TL;DR of Canva Create 
+[2026-04-23 10:10:04] Skipped by date filter: 1
+[2026-04-23 10:10:05] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-24 10:40:57] Connecting to imap.gmail.com...
+[2026-04-24 10:40:59] Found 5 candidate emails (today since 24-Apr-2026), scanning latest 10
+[2026-04-24 10:41:00] Processing: Re: Expression of Gratitude and Call for Student Volunteers – Student Mess Management Committee
+[2026-04-24 10:41:00] Category: other
+[2026-04-24 10:41:00] Skipped (Irrelevant category)
+[2026-04-24 10:41:01] Processing: Re: Expression of Gratitude and Call for Student Volunteers – Student Mess Management Committee
+[2026-04-24 10:41:01] Category: other
+[2026-04-24 10:41:01] Skipped (Irrelevant category)
+[2026-04-24 10:41:01] Processing: Re: Expression of Gratitude and Call for Student Volunteers – Student Mess Management Committee
+[2026-04-24 10:41:01] Category: other
+[2026-04-24 10:41:01] Skipped (Irrelevant category)
+[2026-04-24 10:41:02] Processing: Re: Expression of Gratitude and Call for Student Volunteers – Student Mess Management Committee
+[2026-04-24 10:41:02] Category: other
+[2026-04-24 10:41:02] Skipped (Irrelevant category)
+[2026-04-24 10:41:03] Processing: Expression of Gratitude and Call for Student Volunteers – Student Mess Management Committee
+[2026-04-24 10:41:03] Category: other
+[2026-04-24 10:41:03] Skipped (Irrelevant category)
+[2026-04-24 10:41:03] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-25 17:44:29] Connecting to imap.gmail.com...
+[2026-04-25 17:44:32] Found 5 candidate emails (today since 25-Apr-2026), scanning latest 10
+[2026-04-25 17:44:33] Processing: [GitHub] A first-party GitHub OAuth application has been added to
+ your account
+[2026-04-25 17:44:35] Category: other
+[2026-04-25 17:44:35] Skipped (Irrelevant category)
+[2026-04-25 17:44:36] Processing: [GitHub] A third-party OAuth application has been added to your
+ account
+[2026-04-25 17:44:36] Category: other
+[2026-04-25 17:44:36] Skipped (Irrelevant category)
+[2026-04-25 17:44:37] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-25 17:44:41] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-25 17:44:41] Category: other
+[2026-04-25 17:44:41] Skipped (Irrelevant category)
+[2026-04-25 17:44:41] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-25 17:44:44] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-25 17:44:44] Category: other
+[2026-04-25 17:44:44] Skipped (Irrelevant category)
+[2026-04-25 17:44:44] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-25 17:44:45] Category: other
+[2026-04-25 17:44:45] Skipped (Irrelevant category)
+[2026-04-25 17:44:45] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-26 15:46:40] Connecting to imap.gmail.com...
+[2026-04-26 15:46:42] Found 5 candidate emails (today since 26-Apr-2026), scanning latest 10
+[2026-04-26 15:46:43] Processing: Folder shared with you: "License_plate_dataset"
+[2026-04-26 15:46:45] Category: other
+[2026-04-26 15:46:45] Skipped (Irrelevant category)
+[2026-04-26 15:46:46] Processing: Folder shared with you: "CV_Project_Runs"
+[2026-04-26 15:46:48] Category: other
+[2026-04-26 15:46:48] Skipped (Irrelevant category)
+[2026-04-26 15:46:51] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-26 15:46:52] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-26 15:46:52] Category: other
+[2026-04-26 15:46:52] Skipped (Irrelevant category)
+[2026-04-26 15:46:53] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-26 15:46:54] Category: other
+[2026-04-26 15:46:54] Skipped (Irrelevant category)
+[2026-04-26 15:46:55] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-26 15:46:56] Category: other
+[2026-04-26 15:46:56] Skipped (Irrelevant category)
+[2026-04-26 15:47:00] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-26 16:57:04] Connecting to imap.gmail.com...
+[2026-04-26 16:57:06] Found 5 candidate emails (today since 26-Apr-2026), scanning latest 10
+[2026-04-26 16:57:06] Processing: Folder shared with you: "License_plate_dataset"
+[2026-04-26 16:57:07] Category: other
+[2026-04-26 16:57:07] Skipped (Irrelevant category)
+[2026-04-26 16:57:08] Processing: Folder shared with you: "CV_Project_Runs"
+[2026-04-26 16:57:08] Category: other
+[2026-04-26 16:57:08] Skipped (Irrelevant category)
+[2026-04-26 16:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-26 16:57:09] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-04-26 16:57:09] Category: other
+[2026-04-26 16:57:09] Skipped (Irrelevant category)
+[2026-04-26 16:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-26 16:57:10] Category: other
+[2026-04-26 16:57:10] Skipped (Irrelevant category)
+[2026-04-26 16:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-26 16:57:11] Category: other
+[2026-04-26 16:57:11] Skipped (Irrelevant category)
+[2026-04-26 16:57:12] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-27 14:57:04] Connecting to imap.gmail.com...
+[2026-04-27 14:57:05] Found 10 candidate emails (today since 27-Apr-2026), scanning latest 10
+[2026-04-27 14:57:05] ERROR: IMAP authentication/login failed: command: FETCH => System Error
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-28 18:57:04] Connecting to imap.gmail.com...
+[2026-04-28 18:57:06] Found 10 candidate emails (today since 28-Apr-2026), scanning latest 10
+[2026-04-28 18:57:07] Processing: Invitation: Mental Health Awareness Session
+[2026-04-28 18:57:08] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The email is an invitation to a Mental Health Awareness Session, which is an institutional activity announcement.
+- However, the definition of "', fallback to rules
+[2026-04-28 18:57:08] Category: other
+[2026-04-28 18:57:08] Skipped (Irrelevant category)
+[2026-04-28 18:57:09] Processing: Fwd: Rescheduling of Friday Class due to Labor Day
+[2026-04-28 18:57:09] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject line "Fwd: Rescheduling of Friday Class due to Labor Day" suggests a change in schedule, but it's', fallback to rules
+[2026-04-28 18:57:09] Category: other
+[2026-04-28 18:57:09] Skipped (Irrelevant category)
+[2026-04-28 18:57:10] Processing: Fwd: Lost Wallet in AB-V
+[2026-04-28 18:57:10] Category: other
+[2026-04-28 18:57:10] Skipped (Irrelevant category)
+[2026-04-28 18:57:10] Processing: IMPORTANT NOTICE FOR LIBRARY USERS
+[2026-04-28 18:57:11] Category: other
+[2026-04-28 18:57:11] Skipped (Irrelevant category)
+[2026-04-28 18:57:11] Processing: Fwd: Wiley Free Training Webinars for Researchers & Faculty -
+ May-June 2026
+[2026-04-28 18:57:11] Category: other
+[2026-04-28 18:57:11] Skipped (Irrelevant category)
+[2026-04-28 18:57:12] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-28 18:57:12] Category: other
+[2026-04-28 18:57:12] Skipped (Irrelevant category)
+[2026-04-28 18:57:12] Processing: You have submitted your assignment submission for Day 9 Node JS application through Dockerfile
+[2026-04-28 18:57:12] Category: other
+[2026-04-28 18:57:12] Skipped (Irrelevant category)
+[2026-04-28 18:57:13] Processing: You have upcoming activities due
+[2026-04-28 18:57:13] Category: other
+[2026-04-28 18:57:13] Skipped (Irrelevant category)
+[2026-04-28 18:57:14] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-04-28 18:57:14] Category: other
+[2026-04-28 18:57:14] Skipped (Irrelevant category)
+[2026-04-28 18:57:14] Processing: You have submitted your assignment submission for Computer Vision Project Section D
+[2026-04-28 18:57:14] Category: other
+[2026-04-28 18:57:14] Skipped (Irrelevant category)
+[2026-04-28 18:57:15] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-29 00:19:52] Connecting to imap.gmail.com...
+[2026-04-29 00:19:54] Found 0 candidate emails (today since 29-Apr-2026), scanning latest 10
+[2026-04-29 00:19:54] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-04-30 21:52:42] Connecting to imap.gmail.com...
+[2026-04-30 21:52:44] Found 10 candidate emails (today since 30-Apr-2026), scanning latest 10
+[2026-04-30 21:52:45] Processing: Re: Applications Open – FrieslandCampina Engro Pakistan Summer Internship 2026
+[2026-04-30 21:52:45] Category: other
+[2026-04-30 21:52:45] Skipped (Irrelevant category)
+[2026-04-30 21:52:45] Processing: Join the Nestlé Paid Nesternship 2026 – Applications Now Open
+[2026-04-30 21:52:45] Category: other
+[2026-04-30 21:52:45] Skipped (Irrelevant category)
+[2026-04-30 21:52:45] Processing: Clearing of all Students' outstanding Dues
+[2026-04-30 21:52:45] Category: other
+[2026-04-30 21:52:45] Skipped (Irrelevant category)
+[2026-04-30 21:52:46] Processing: Re: Resolve issue of outstanding udues of Sukkur IBA University.
+[2026-04-30 21:52:46] Category: other
+[2026-04-30 21:52:46] Skipped (Irrelevant category)
+[2026-04-30 21:52:46] Processing: PARCO Gunvor Limited - Recruitment Drive @ Sukkur IBA University
+[2026-04-30 21:52:48] Category: other
+[2026-04-30 21:52:48] Skipped (Irrelevant category)
+[2026-04-30 21:52:48] Processing: Re: PhD (Management Sciences) - Invitation to Attend the PhD Final
+ Thesis (Finance) Defense of PhD Scholar - Mr. Muhammad Ilyas - Department of
+ Business Administration
+[2026-04-30 21:52:50] Category: other
+[2026-04-30 21:52:50] Skipped (Irrelevant category)
+[2026-04-30 21:52:51] Processing: Generate the perfect graphic for any project
+[2026-04-30 21:52:52] Category: other
+[2026-04-30 21:52:52] Skipped (Irrelevant category)
+[2026-04-30 21:52:53] Processing: Final Examinations Schedule of MS/PhD (Mathematics, Basic Sciences &
+ Humanities) - Spring 2026
+[2026-04-30 21:52:53] Category: other
+[2026-04-30 21:52:53] Skipped (Irrelevant category)
+[2026-04-30 21:52:54] Processing: Practical Examinations Schedule of Final Term (Department of
+ Mathematics & Basic Sciences) - Spring 2026
+[2026-04-30 21:52:54] Category: other
+[2026-04-30 21:52:54] Skipped (Irrelevant category)
+[2026-04-30 21:52:55] Processing: MAD - Spring 2026: Work Manager Video Uploaded
+[2026-04-30 21:52:55] Category: other
+[2026-04-30 21:52:55] Skipped (Irrelevant category)
+[2026-04-30 21:52:56] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-01 14:57:04] Connecting to imap.gmail.com...
+[2026-05-01 14:57:06] Found 3 candidate emails (today since 01-May-2026), scanning latest 10
+[2026-05-01 14:57:06] Processing: Meet ChatGPT Images 2.0
+[2026-05-01 14:57:06] Category: other
+[2026-05-01 14:57:06] Skipped (Irrelevant category)
+[2026-05-01 14:57:06] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-01 14:57:08] Category: other
+[2026-05-01 14:57:08] Skipped (Irrelevant category)
+[2026-05-01 14:57:08] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-01 14:57:08] Category: other
+[2026-05-01 14:57:08] Skipped (Irrelevant category)
+[2026-05-01 14:57:09] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-01 23:57:05] Connecting to imap.gmail.com...
+[2026-05-01 23:57:07] Found 5 candidate emails (today since 01-May-2026), scanning latest 10
+[2026-05-01 23:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-01 23:57:09] Category: other
+[2026-05-01 23:57:09] Skipped (Irrelevant category)
+[2026-05-01 23:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-01 23:57:10] Category: other
+[2026-05-01 23:57:10] Skipped (Irrelevant category)
+[2026-05-01 23:57:10] Processing: Meet ChatGPT Images 2.0
+[2026-05-01 23:57:10] Category: other
+[2026-05-01 23:57:10] Skipped (Irrelevant category)
+[2026-05-01 23:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-01 23:57:11] Category: other
+[2026-05-01 23:57:11] Skipped (Irrelevant category)
+[2026-05-01 23:57:11] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-01 23:57:12] Category: other
+[2026-05-01 23:57:12] Skipped (Irrelevant category)
+[2026-05-01 23:57:12] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-02 12:57:05] Connecting to imap.gmail.com...
+[2026-05-02 12:57:07] Found 2 candidate emails (today since 02-May-2026), scanning latest 10
+[2026-05-02 12:57:08] Processing: MS Math: Invitation to attend the MS Thesis Proposal Defense of Mr.
+ Muhammad Hanif and Saeed Ahmed
+[2026-05-02 12:57:09] Category: other
+[2026-05-02 12:57:09] Skipped (Irrelevant category)
+[2026-05-02 12:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-02 12:57:11] Category: other
+[2026-05-02 12:57:11] Skipped (Irrelevant category)
+[2026-05-02 12:57:11] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-05-05 15:32:50] Connecting to imap.gmail.com...
+[2026-05-05 15:32:52] Found 4 candidate emails (today since 05-May-2026), scanning latest 10
+[2026-05-05 15:32:53] Processing: Re: Invitation to attend the Academic Seminar under the Commemoration of Marka-e- Haq – One Year Anniversary 2026
+[2026-05-05 15:32:56] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+
+- The subject line does not contain any strong timetable signals.
+- The body of the email mentions an "Academic Seminar" which could', fallback to rules
+[2026-05-05 15:32:56] Category: event
+[2026-05-05 15:32:56] New event saved: event_20260505_153256.txt
+[2026-05-05 15:33:08] Processing: Invitation to attend the Milli Naghma Competition under the Commemoration of Marka-e- Haq – One Year Anniversary 2026
+[2026-05-05 15:33:08] WARNING: Unexpected LLM label 'Based on the provided email, I will classify it into one of the three labels: timetable, event, or other.
+
+The subject of the email is "Inv', fallback to rules
+[2026-05-05 15:33:08] Category: event
+[2026-05-05 15:33:08] New event saved: event_20260505_153308.txt
+[2026-05-05 15:33:09] Processing: SCOPUS ORIENTATION SESSION – ENHANCE YOUR RESEARCH CAPABILITIES
+[2026-05-05 15:33:10] Category: other
+[2026-05-05 15:33:10] Skipped (Irrelevant category)
+[2026-05-05 15:33:12] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-05 15:33:14] Category: other
+[2026-05-05 15:33:14] Skipped (Irrelevant category)
+[2026-05-05 15:33:18] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-05-05 15:33:18] Rebuilding universal vector store (single batch run)...
+Removing old vector store at d:\siba-chatbot-fyp\rag\vector_db\universal...
+ Loading PDF [CDC]: Career Development Center(CDC).pdf
+ Loading PDF [CDC]: sisc.pdf
+ Loading PDF [EDC]: CSS Preparatory Classes.pdf
+ Loading PDF [EDC]: Diploma Programs.pdf
+ Loading PDF [EDC]: Executive Development Centre(EDC).pdf
+ Loading PDF [EDC]: IT Industry Bootcamp.pdf
+ Loading PDF [EDC]: Peoples Information Technology Program(PITP).pdf
+ Loading PDF [EDC]: Programs Offered by Executive Development Center.pdf
+ Loading PDF [EDC]: Skills Development Program.pdf
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260420_205745.txt
+ Loading TXT [events]: event_20260420_205755.txt
+ Loading TXT [events]: event_20260503_171104.txt
+ Loading TXT [events]: event_20260505_153256.txt
+ Loading TXT [events]: event_20260505_153308.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: Community Colleges and Sub Campuses.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+Total raw documents loaded: 394
+Total chunks after splitting: 800
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2952.24it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+forrtl: error (200): program aborting due to window-CLOSE event
+Image              PC                Routine            Line        Source             
+KERNELBASE.dll     00007FF8B5C7A3CD  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FF8B875E8D7  Unknown               Unknown  Unknown
+ntdll.dll          00007FF8B902C3FC  Unknown               Unknown  Unknown
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-05-05 16:57:04] Connecting to imap.gmail.com...
+[2026-05-05 16:57:06] Found 8 candidate emails (today since 05-May-2026), scanning latest 10
+[2026-05-05 16:57:07] Processing: Special Comprehensive Examination Schedule for MBA Programs Students
+ - (Thursday) May 7, 2026
+[2026-05-05 16:57:07] Category: other
+[2026-05-05 16:57:07] Skipped (Irrelevant category)
+[2026-05-05 16:57:08] Processing: Fwd: Lost my identity card
+[2026-05-05 16:57:09] Category: other
+[2026-05-05 16:57:09] Skipped (Irrelevant category)
+[2026-05-05 16:57:09] Processing: Fwd: Lost Mobile Charger
+[2026-05-05 16:57:10] Category: other
+[2026-05-05 16:57:10] Skipped (Irrelevant category)
+[2026-05-05 16:57:11] Processing: Fwd: Lost wallet
+[2026-05-05 16:57:12] Category: other
+[2026-05-05 16:57:12] Skipped (Irrelevant category)
+[2026-05-05 16:57:12] Processing: Re: Invitation to attend the Academic Seminar under the Commemoration of Marka-e- Haq – One Year Anniversary 2026
+[2026-05-05 16:57:13] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+
+- The subject line does not contain any strong timetable signals.
+- The body of the email mentions an "Academic Seminar" which could', fallback to rules
+[2026-05-05 16:57:13] Category: event
+[2026-05-05 16:57:13] New event saved: event_20260505_165713.txt
+[2026-05-05 16:57:16] Processing: Invitation to attend the Milli Naghma Competition under the Commemoration of Marka-e- Haq – One Year Anniversary 2026
+[2026-05-05 16:57:17] WARNING: Unexpected LLM label 'Based on the provided email, I will classify it into one of the three labels: timetable, event, or other.
+
+The subject of the email is "Inv', fallback to rules
+[2026-05-05 16:57:17] Category: event
+[2026-05-05 16:57:17] New event saved: event_20260505_165717.txt
+[2026-05-05 16:57:17] Processing: SCOPUS ORIENTATION SESSION – ENHANCE YOUR RESEARCH CAPABILITIES
+[2026-05-05 16:57:18] Category: other
+[2026-05-05 16:57:18] Skipped (Irrelevant category)
+[2026-05-05 16:57:18] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-05 16:57:19] Category: other
+[2026-05-05 16:57:19] Skipped (Irrelevant category)
+[2026-05-05 16:57:23] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-05-05 16:57:23] Rebuilding universal vector store (single batch run)...
+ Loading PDF [CDC]: Career Development Center(CDC).pdf
+ Loading PDF [CDC]: sisc.pdf
+ Loading PDF [EDC]: CSS Preparatory Classes.pdf
+ Loading PDF [EDC]: Diploma Programs.pdf
+ Loading PDF [EDC]: Executive Development Centre(EDC).pdf
+ Loading PDF [EDC]: IT Industry Bootcamp.pdf
+ Loading PDF [EDC]: Peoples Information Technology Program(PITP).pdf
+ Loading PDF [EDC]: Programs Offered by Executive Development Center.pdf
+ Loading PDF [EDC]: Skills Development Program.pdf
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260420_205745.txt
+ Loading TXT [events]: event_20260420_205755.txt
+ Loading TXT [events]: event_20260503_171104.txt
+ Loading TXT [events]: event_20260505_153256.txt
+ Loading TXT [events]: event_20260505_153308.txt
+ Loading TXT [events]: event_20260505_165713.txt
+ Loading TXT [events]: event_20260505_165717.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: Community Colleges and Sub Campuses.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+Total raw documents loaded: 396
+Total chunks after splitting: 805
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2704.70it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+Universal vector store created at: d:\siba-chatbot-fyp\rag\vector_db\universal
+   Total vectors: 805
+[2026-05-05 16:58:09] Vector store rebuilt successfully
+[2026-05-05 16:58:13] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-05-05 16:58:13] Run complete. Updated items: 2
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-06 14:24:04] Connecting to imap.gmail.com...
+[2026-05-06 14:24:04] ERROR: [Errno 11001] getaddrinfo failed
+^C^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-07 20:06:22] Connecting to imap.gmail.com...
+[2026-05-07 20:06:25] Found 10 candidate emails (today since 07-May-2026), scanning latest 10
+[2026-05-07 20:06:26] Processing: PhD Math: Invitation to attend the PhD Thesis Defense / Viva-Voce of
+ Mr. Shoaib Khan (PhD Scholar)
+[2026-05-07 20:06:28] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject does not contain any strong timetable signals.
+- The body does not mention any schedule or timetable updates.
+- The email is', fallback to rules
+[2026-05-07 20:06:28] Category: other
+[2026-05-07 20:06:28] Skipped (Irrelevant category)
+[2026-05-07 20:06:28] Processing: MS Math: Invitation to attend the MS Thesis Proposal Defense of Mr.
+ Naimatullah & Mr. Hanif
+[2026-05-07 20:06:29] Category: other
+[2026-05-07 20:06:29] Skipped (Irrelevant category)
+[2026-05-07 20:06:29] Processing: Re: Announcement HEC Google Career Certificate Courses
+[2026-05-07 20:06:29] Category: other
+[2026-05-07 20:06:29] Skipped (Irrelevant category)
+[2026-05-07 20:06:30] Processing: Invitation to Apply for Markhor 2026 – Youth Leadership Conference
+[2026-05-07 20:06:30] Category: other
+[2026-05-07 20:06:30] Skipped (Irrelevant category)
+[2026-05-07 20:06:31] Processing: LIBRARY TIMING DURING FINAL TERM EXAMS
+[2026-05-07 20:06:31] Category: other
+[2026-05-07 20:06:31] Skipped (Irrelevant category)
+[2026-05-07 20:06:31] Processing: Fwd: Lost Lenovo Laptop Charger
+[2026-05-07 20:06:32] Category: other
+[2026-05-07 20:06:32] Skipped (Irrelevant category)
+[2026-05-07 20:06:33] Processing: Fees for Additional Courses
+[2026-05-07 20:06:33] Category: other
+[2026-05-07 20:06:33] Skipped (Irrelevant category)
+[2026-05-07 20:06:33] Processing: UBL - Campus Recruitment Drive @ Sukkur IBA University
+[2026-05-07 20:06:34] Category: other
+[2026-05-07 20:06:34] Skipped (Irrelevant category)
+[2026-05-07 20:06:34] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-07 20:06:35] Category: other
+[2026-05-07 20:06:35] Skipped (Irrelevant category)
+[2026-05-07 20:06:35] Processing: Re: MS Math: Invitation to attend the MS Thesis Proposal Defense of
+ Mr. Adil Hussain and Mr. Aijaz Ali
+[2026-05-07 20:06:36] Category: other
+[2026-05-07 20:06:36] Skipped (Irrelevant category)
+[2026-05-07 20:06:36] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-07 23:57:04] Connecting to imap.gmail.com...
+[2026-05-07 23:57:06] Found 10 candidate emails (today since 07-May-2026), scanning latest 10
+[2026-05-07 23:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-07 23:57:08] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-07 23:57:08] Category: other
+[2026-05-07 23:57:08] Skipped (Irrelevant category)
+[2026-05-07 23:57:08] Processing: Re: LIBRARY TIMING DURING FINAL TERM EXAMS
+[2026-05-07 23:57:08] Category: other
+[2026-05-07 23:57:08] Skipped (Irrelevant category)
+[2026-05-07 23:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-07 23:57:10] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-07 23:57:10] Category: other
+[2026-05-07 23:57:10] Skipped (Irrelevant category)
+[2026-05-07 23:57:10] Processing: PhD Math: Invitation to attend the PhD Thesis Defense / Viva-Voce of
+ Mr. Shoaib Khan (PhD Scholar)
+[2026-05-07 23:57:11] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject does not contain any strong timetable signals.
+- The body does not mention any schedule or timetable updates.
+- The email is', fallback to rules
+[2026-05-07 23:57:11] Category: other
+[2026-05-07 23:57:11] Skipped (Irrelevant category)
+[2026-05-07 23:57:11] Processing: MS Math: Invitation to attend the MS Thesis Proposal Defense of Mr.
+ Naimatullah & Mr. Hanif
+[2026-05-07 23:57:12] Category: other
+[2026-05-07 23:57:12] Skipped (Irrelevant category)
+[2026-05-07 23:57:12] Processing: Re: Announcement HEC Google Career Certificate Courses
+[2026-05-07 23:57:12] Category: other
+[2026-05-07 23:57:12] Skipped (Irrelevant category)
+[2026-05-07 23:57:13] Processing: Invitation to Apply for Markhor 2026 – Youth Leadership Conference
+[2026-05-07 23:57:13] Category: other
+[2026-05-07 23:57:13] Skipped (Irrelevant category)
+[2026-05-07 23:57:13] Processing: LIBRARY TIMING DURING FINAL TERM EXAMS
+[2026-05-07 23:57:13] Category: other
+[2026-05-07 23:57:13] Skipped (Irrelevant category)
+[2026-05-07 23:57:14] Processing: Fwd: Lost Lenovo Laptop Charger
+[2026-05-07 23:57:14] Category: other
+[2026-05-07 23:57:14] Skipped (Irrelevant category)
+[2026-05-07 23:57:15] Processing: Fees for Additional Courses
+[2026-05-07 23:57:15] Category: other
+[2026-05-07 23:57:15] Skipped (Irrelevant category)
+[2026-05-07 23:57:15] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-08 00:57:03] Connecting to imap.gmail.com...
+[2026-05-08 00:57:05] Found 0 candidate emails (today since 08-May-2026), scanning latest 10
+[2026-05-08 00:57:05] Run complete. Updated items: 0
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-08 19:57:03] Connecting to imap.gmail.com...
+[2026-05-08 19:57:05] Found 9 candidate emails (today since 08-May-2026), scanning latest 10
+[2026-05-08 19:57:06] Processing: Urgent Reminder: Online Application for Admit Cards – Spring 2026 Final Examinations
+[2026-05-08 19:57:06] Category: other
+[2026-05-08 19:57:06] Skipped (Irrelevant category)
+[2026-05-08 19:57:06] Processing: Re: Announcement HEC Google Career Certificate Courses
+[2026-05-08 19:57:06] Category: other
+[2026-05-08 19:57:06] Skipped (Irrelevant category)
+[2026-05-08 19:57:07] Processing: Spring 2026-Preparatory Holiday for Regular Programs on Monday, May
+ 11, 2026
+[2026-05-08 19:57:07] Category: other
+[2026-05-08 19:57:07] Skipped (Irrelevant category)
+[2026-05-08 19:57:08] Processing: [Important] Invitation to MS Thesis Proposal Defense of MSCS Scholars
+ of Computer Science Department Spring 2026
+[2026-05-08 19:57:08] Category: other
+[2026-05-08 19:57:08] Skipped (Irrelevant category)
+[2026-05-08 19:57:08] Processing: Re: Announcement HEC Google Career Certificate Courses
+[2026-05-08 19:57:08] Category: other
+[2026-05-08 19:57:08] Skipped (Irrelevant category)
+[2026-05-08 19:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-08 19:57:10] Category: other
+[2026-05-08 19:57:10] Skipped (Irrelevant category)
+[2026-05-08 19:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-08 19:57:11] Category: other
+[2026-05-08 19:57:11] Skipped (Irrelevant category)
+[2026-05-08 19:57:12] Processing: NesDrive Alert -- Connect with Nestlé Team for Internship & Career Opportunities
+[2026-05-08 19:57:12] Category: other
+[2026-05-08 19:57:12] Skipped (Irrelevant category)
+[2026-05-08 19:57:12] Processing: Re: Announcement HEC Google Career Certificate Courses
+[2026-05-08 19:57:12] Category: other
+[2026-05-08 19:57:12] Skipped (Irrelevant category)
+[2026-05-08 19:57:13] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-10 15:50:53] Connecting to imap.gmail.com...
+[2026-05-10 15:50:56] Found 10 candidate emails (today since 10-May-2026), scanning latest 10
+[2026-05-10 15:50:56] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-10 15:50:58] Category: other
+[2026-05-10 15:50:58] Skipped (Irrelevant category)
+[2026-05-10 15:50:59] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:50:59] Category: other
+[2026-05-10 15:50:59] Skipped (Irrelevant category)
+[2026-05-10 15:50:59] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:50:59] Category: other
+[2026-05-10 15:50:59] Skipped (Irrelevant category)
+[2026-05-10 15:51:00] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:51:00] Category: other
+[2026-05-10 15:51:00] Skipped (Irrelevant category)
+[2026-05-10 15:51:00] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:51:00] Category: other
+[2026-05-10 15:51:00] Skipped (Irrelevant category)
+[2026-05-10 15:51:01] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:51:01] Category: other
+[2026-05-10 15:51:01] Skipped (Irrelevant category)
+[2026-05-10 15:51:01] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:51:01] Category: other
+[2026-05-10 15:51:01] Skipped (Irrelevant category)
+[2026-05-10 15:51:02] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:51:02] Category: other
+[2026-05-10 15:51:02] Skipped (Irrelevant category)
+[2026-05-10 15:51:02] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-10 15:51:03] Category: other
+[2026-05-10 15:51:03] Skipped (Irrelevant category)
+[2026-05-10 15:51:04] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 15:51:04] Category: other
+[2026-05-10 15:51:04] Skipped (Irrelevant category)
+[2026-05-10 15:51:04] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-10 16:57:04] Connecting to imap.gmail.com...
+[2026-05-10 16:57:05] Found 10 candidate emails (today since 10-May-2026), scanning latest 10
+[2026-05-10 16:57:05] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-10 16:57:07] Category: other
+[2026-05-10 16:57:07] Skipped (Irrelevant category)
+[2026-05-10 16:57:07] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:07] Category: other
+[2026-05-10 16:57:07] Skipped (Irrelevant category)
+[2026-05-10 16:57:07] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:07] Category: other
+[2026-05-10 16:57:07] Skipped (Irrelevant category)
+[2026-05-10 16:57:08] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:08] Category: other
+[2026-05-10 16:57:08] Skipped (Irrelevant category)
+[2026-05-10 16:57:08] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:08] Category: other
+[2026-05-10 16:57:08] Skipped (Irrelevant category)
+[2026-05-10 16:57:08] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:08] Category: other
+[2026-05-10 16:57:08] Skipped (Irrelevant category)
+[2026-05-10 16:57:09] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:09] Category: other
+[2026-05-10 16:57:09] Skipped (Irrelevant category)
+[2026-05-10 16:57:09] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:09] Category: other
+[2026-05-10 16:57:09] Skipped (Irrelevant category)
+[2026-05-10 16:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-10 16:57:10] Category: other
+[2026-05-10 16:57:10] Skipped (Irrelevant category)
+[2026-05-10 16:57:10] Processing: Re: Request for Extension of Library Timing During Examination Days
+[2026-05-10 16:57:10] Category: other
+[2026-05-10 16:57:10] Skipped (Irrelevant category)
+[2026-05-10 16:57:11] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-12 11:06:56] Connecting to imap.gmail.com...
+[2026-05-12 11:06:56] ERROR: [Errno 11001] getaddrinfo failed
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-13 23:58:44] Connecting to imap.gmail.com...
+[2026-05-13 23:58:46] Found 10 candidate emails (today since 13-May-2026), scanning latest 10
+[2026-05-13 23:58:48] Processing: Get Ready! Farewell 2022 Batch
+[2026-05-13 23:58:50] Category: other
+[2026-05-13 23:58:50] Skipped (Irrelevant category)
+[2026-05-13 23:58:50] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-13 23:58:51] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-13 23:58:51] Category: other
+[2026-05-13 23:58:51] Skipped (Irrelevant category)
+[2026-05-13 23:58:51] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-13 23:58:52] Category: other
+[2026-05-13 23:58:52] Skipped (Irrelevant category)
+[2026-05-13 23:58:52] Processing: Muhammad Uzair: Google Career Certificates PK 73 invites you to learn on Coursera!
+[2026-05-13 23:58:52] Category: other
+[2026-05-13 23:58:52] Skipped (Irrelevant category)
+[2026-05-13 23:58:53] Processing: Software Engineer Position at Dell Technologies Posted 36 minutes
+ ago
+[2026-05-13 23:58:53] Category: other
+[2026-05-13 23:58:53] Skipped (Irrelevant category)
+[2026-05-13 23:58:53] Processing: Re: Proud Moment - HEC Best Young Researcher Award
+[2026-05-13 23:58:53] Category: other
+[2026-05-13 23:58:53] Skipped (Irrelevant category)
+[2026-05-13 23:58:53] Processing: Re: Proud Moment - HEC Best Young Researcher Award
+[2026-05-13 23:58:54] Category: other
+[2026-05-13 23:58:54] Skipped (Irrelevant category)
+[2026-05-13 23:58:55] Processing: Re: Proud Moment - HEC Best Young Researcher Award
+[2026-05-13 23:58:55] Category: other
+[2026-05-13 23:58:55] Skipped (Irrelevant category)
+[2026-05-13 23:58:56] Processing: Re: Proud Moment - HEC Best Young Researcher Award
+[2026-05-13 23:58:56] Category: other
+[2026-05-13 23:58:56] Skipped (Irrelevant category)
+[2026-05-13 23:58:57] Processing: Re: Proud Moment - HEC Best Young Researcher Award
+[2026-05-13 23:58:57] Category: other
+[2026-05-13 23:58:57] Skipped (Irrelevant category)
+[2026-05-13 23:58:57] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-16 18:16:12] Connecting to imap.gmail.com...
+[2026-05-16 18:16:14] Found 1 candidate emails (today since 16-May-2026), scanning latest 10
+[2026-05-16 18:16:15] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-16 18:16:17] Category: other
+[2026-05-16 18:16:17] Skipped (Irrelevant category)
+[2026-05-16 18:16:17] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-16 18:57:04] Connecting to imap.gmail.com...
+[2026-05-16 18:57:05] Found 1 candidate emails (today since 16-May-2026), scanning latest 10
+[2026-05-16 18:57:06] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-16 18:57:07] Category: other
+[2026-05-16 18:57:07] Skipped (Irrelevant category)
+[2026-05-16 18:57:07] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-17 11:58:16] Connecting to imap.gmail.com...
+[2026-05-17 11:58:18] Found 1 candidate emails (today since 17-May-2026), scanning latest 10
+[2026-05-17 11:58:18] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-17 11:58:20] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-17 11:58:20] Category: other
+[2026-05-17 11:58:20] Skipped (Irrelevant category)
+[2026-05-17 11:58:20] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-17 12:57:05] Connecting to imap.gmail.com...
+[2026-05-17 12:57:07] Found 1 candidate emails (today since 17-May-2026), scanning latest 10
+[2026-05-17 12:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-17 12:57:08] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-17 12:57:08] Category: other
+[2026-05-17 12:57:08] Skipped (Irrelevant category)
+[2026-05-17 12:57:08] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-17 23:57:04] Connecting to imap.gmail.com...
+[2026-05-17 23:57:06] Found 4 candidate emails (today since 17-May-2026), scanning latest 10
+[2026-05-17 23:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-17 23:57:08] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-17 23:57:08] Category: other
+[2026-05-17 23:57:08] Skipped (Irrelevant category)
+[2026-05-17 23:57:08] Processing: Software Engineer Position at Xometry Posted 1 hour ago
+[2026-05-17 23:57:08] Category: other
+[2026-05-17 23:57:08] Skipped (Irrelevant category)
+[2026-05-17 23:57:09] Processing: Re: Transport Provision for Regular Program (Spring-2026)
+[2026-05-17 23:57:09] Category: other
+[2026-05-17 23:57:09] Skipped (Irrelevant category)
+[2026-05-17 23:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-17 23:57:10] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-17 23:57:10] Category: other
+[2026-05-17 23:57:10] Skipped (Irrelevant category)
+[2026-05-17 23:57:11] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-18 14:57:05] Connecting to imap.gmail.com...
+[2026-05-18 14:57:07] Found 10 candidate emails (today since 18-May-2026), scanning latest 10
+[2026-05-18 14:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-18 14:57:10] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-18 14:57:10] Category: other
+[2026-05-18 14:57:10] Skipped (Irrelevant category)
+[2026-05-18 14:57:10] Processing: Re: Announcement HEC Google Career Certificate Courses
+[2026-05-18 14:57:10] Category: other
+[2026-05-18 14:57:10] Skipped (Irrelevant category)
+[2026-05-18 14:57:11] Processing: Feedback of FYP-II Final Internal Defense
+[2026-05-18 14:57:11] Category: other
+[2026-05-18 14:57:11] Skipped (Irrelevant category)
+[2026-05-18 14:57:20] Processing: Fwd: FOUND EYEGLASSES – AB-II
+[2026-05-18 14:57:21] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject and body of the email do not contain any keywords related to timetable or event.
+- The email is about found eyeg', fallback to rules
+[2026-05-18 14:57:21] Category: other
+[2026-05-18 14:57:21] Skipped (Irrelevant category)
+[2026-05-18 14:57:21] Processing: Fwd: Subject: Lost Charger To: receptionist@iba-suk.edu.pk Dear
+ Sir/Madam, I lost my charger on campus in Academic Block 3 probably after
+ class on [Wednesday/06/May]. It may have been left in the classroom, lab, or
+ sitting area. The charger is a [Vivo/White mobile charger with Black and
+ yellow Beme data cable]. If anyone has found it, kindly contact me or submit
+ it to the reception office. Thank you. Regards, [Sahil Ahmed] [Electrical
+ engineering] [Whatsapp:0303 3216258]
+[2026-05-18 14:57:22] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The email is about a lost charger, which is not related to the university's schedule, events, or institutional activities.
+- There', fallback to rules
+[2026-05-18 14:57:22] Category: other
+[2026-05-18 14:57:22] Skipped (Irrelevant category)
+[2026-05-18 14:57:23] Processing: Fwd: Found ID Card
+[2026-05-18 14:57:23] Category: other
+[2026-05-18 14:57:23] Skipped (Irrelevant category)
+[2026-05-18 14:57:24] Processing: Fwd: Lost watch - Zero Life style watch (LUNA)
+[2026-05-18 14:57:25] Category: other
+[2026-05-18 14:57:25] Skipped (Irrelevant category)
+[2026-05-18 14:57:26] Processing: Fwd: Request Regarding Bag Exchange in IBA University masjid
+[2026-05-18 14:57:27] Category: other
+[2026-05-18 14:57:27] Skipped (Irrelevant category)
+[2026-05-18 14:57:27] Processing: Fwd: I lost my Black color wallet on Saturday
+[2026-05-18 14:57:30] Category: other
+[2026-05-18 14:57:30] Skipped (Irrelevant category)
+[2026-05-18 14:57:30] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-18 14:57:31] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-18 14:57:31] Category: other
+[2026-05-18 14:57:31] Skipped (Irrelevant category)
+[2026-05-18 14:57:31] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-19 00:57:03] Connecting to imap.gmail.com...
+[2026-05-19 00:57:05] Found 2 candidate emails (today since 19-May-2026), scanning latest 10
+[2026-05-19 00:57:06] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 00:57:07] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is a hard exclusion for the "other" label.', fallback to rules
+[2026-05-19 00:57:07] Category: other
+[2026-05-19 00:57:07] Skipped (Irrelevant category)
+[2026-05-19 00:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 00:57:09] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-05-19 00:57:09] Category: other
+[2026-05-19 00:57:09] Skipped (Irrelevant category)
+[2026-05-19 00:57:09] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-19 11:14:53] Connecting to imap.gmail.com...
+[2026-05-19 11:14:56] Found 6 candidate emails (today since 19-May-2026), scanning latest 10
+[2026-05-19 11:14:56] Processing: Fwd: Forgot Dell Precision Charger
+[2026-05-19 11:14:59] Category: other
+[2026-05-19 11:14:59] Skipped (Irrelevant category)
+[2026-05-19 11:14:59] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:15:00] Category: other
+[2026-05-19 11:15:00] Skipped (Irrelevant category)
+[2026-05-19 11:15:01] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:15:02] Category: other
+[2026-05-19 11:15:02] Skipped (Irrelevant category)
+[2026-05-19 11:15:02] Processing: You have submitted your assignment submission for Final Project Code and Demo Submissions
+[2026-05-19 11:15:02] Category: other
+[2026-05-19 11:15:02] Skipped (Irrelevant category)
+[2026-05-19 11:15:03] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:15:04] Category: other
+[2026-05-19 11:15:04] Skipped (Irrelevant category)
+[2026-05-19 11:15:05] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:15:05] Category: other
+[2026-05-19 11:15:05] Skipped (Irrelevant category)
+[2026-05-19 11:15:05] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-19 11:57:04] Connecting to imap.gmail.com...
+[2026-05-19 11:57:06] Found 6 candidate emails (today since 19-May-2026), scanning latest 10
+[2026-05-19 11:57:07] Processing: Fwd: Forgot Dell Precision Charger
+[2026-05-19 11:57:08] Category: other
+[2026-05-19 11:57:08] Skipped (Irrelevant category)
+[2026-05-19 11:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:57:10] Category: other
+[2026-05-19 11:57:10] Skipped (Irrelevant category)
+[2026-05-19 11:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:57:11] Category: other
+[2026-05-19 11:57:11] Skipped (Irrelevant category)
+[2026-05-19 11:57:11] Processing: You have submitted your assignment submission for Final Project Code and Demo Submissions
+[2026-05-19 11:57:11] Category: other
+[2026-05-19 11:57:11] Skipped (Irrelevant category)
+[2026-05-19 11:57:12] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:57:12] Category: other
+[2026-05-19 11:57:12] Skipped (Irrelevant category)
+[2026-05-19 11:57:13] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-19 11:57:14] Category: other
+[2026-05-19 11:57:14] Skipped (Irrelevant category)
+[2026-05-19 11:57:14] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-05-22 23:57:04] Connecting to imap.gmail.com...
+[2026-05-22 23:57:05] Found 8 candidate emails (today since 22-May-2026), scanning latest 10
+[2026-05-22 23:57:06] Processing: You have submitted your assignment submission for Project Submission
+[2026-05-22 23:57:06] Category: other
+[2026-05-22 23:57:06] Skipped (Irrelevant category)
+[2026-05-22 23:57:06] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-22 23:57:08] Category: other
+[2026-05-22 23:57:08] Skipped (Irrelevant category)
+[2026-05-22 23:57:08] Processing: FYP Title and Abstract (Summary) of the Project
+[2026-05-22 23:57:09] Category: other
+[2026-05-22 23:57:09] Skipped (Irrelevant category)
+[2026-05-22 23:57:09] Processing: Updated Final External Defense Schedule
+[2026-05-22 23:57:10] WARNING: Unexpected LLM label 'Based on the provided definitions and rules, I will classify the incoming email into exactly one label: timetable, event, or other.
+
+Subject: Updated Final External Defense', fallback to rules
+[2026-05-22 23:57:10] Category: other
+[2026-05-22 23:57:10] Skipped (Irrelevant category)
+[2026-05-22 23:57:10] Processing: Final External Defense Schedule
+[2026-05-22 23:57:10] Category: other
+[2026-05-22 23:57:10] Skipped (Irrelevant category)
+[2026-05-22 23:57:11] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-22 23:57:11] Category: other
+[2026-05-22 23:57:11] Skipped (Irrelevant category)
+[2026-05-22 23:57:12] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-22 23:57:12] Category: other
+[2026-05-22 23:57:12] Skipped (Irrelevant category)
+[2026-05-22 23:57:13] Processing: UPDATE REGARDING FAREWELL
+[2026-05-22 23:57:13] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+- The subject "UPDATE REGARDING FAREWELL" does not contain any strong timetable signals.
+- The body of the email mentions', fallback to rules
+[2026-05-22 23:57:13] Category: event
+[2026-05-22 23:57:14] New event saved: event_20260522_235714.txt
+[2026-05-22 23:57:16] Maintenance mode set to True (email_rebuild)
+[2026-05-22 23:57:16] Rebuilding universal vector store (single batch run)...
+Removing old vector store at d:\siba-chatbot-fyp\rag\vector_db\universal...
+ Loading PDF [CDC]: Career Development Center(CDC).pdf
+ Loading PDF [CDC]: sisc.pdf
+ Loading PDF [EDC]: CSS Preparatory Classes.pdf
+ Loading PDF [EDC]: Diploma Programs.pdf
+ Loading PDF [EDC]: Executive Development Centre(EDC).pdf
+ Loading PDF [EDC]: IT Industry Bootcamp.pdf
+ Loading PDF [EDC]: Peoples Information Technology Program(PITP).pdf
+ Loading PDF [EDC]: Programs Offered by Executive Development Center.pdf
+ Loading PDF [EDC]: Skills Development Program.pdf
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260420_205745.txt
+ Loading TXT [events]: event_20260420_205755.txt
+ Loading TXT [events]: event_20260503_171104.txt
+ Loading TXT [events]: event_20260505_153256.txt
+ Loading TXT [events]: event_20260505_153308.txt
+ Loading TXT [events]: event_20260505_165713.txt
+ Loading TXT [events]: event_20260505_165717.txt
+ Loading TXT [events]: event_20260522_235714.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: Community Colleges and Sub Campuses.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+Total raw documents loaded: 397
+Total chunks after splitting: 807
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 3359.44it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+Universal vector store created at: d:\siba-chatbot-fyp\rag\vector_db\universal
+   Total vectors: 807
+[2026-05-22 23:58:27] Vector store rebuilt successfully
+[2026-05-22 23:58:29] Maintenance mode set to False (email_rebuild_complete)
+[2026-05-22 23:58:29] Run complete. Updated items: 1
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-28 11:06:21] Connecting to imap.gmail.com...
+[2026-05-28 11:06:23] Found 4 candidate emails (today since 28-May-2026), scanning latest 10
+[2026-05-28 11:06:24] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:06:35] Category: other
+[2026-05-28 11:06:35] Skipped (Irrelevant category)
+[2026-05-28 11:06:35] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:06:36] Category: other
+[2026-05-28 11:06:36] Skipped (Irrelevant category)
+[2026-05-28 11:06:37] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:06:40] Category: other
+[2026-05-28 11:06:40] Skipped (Irrelevant category)
+[2026-05-28 11:06:42] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:06:43] Category: other
+[2026-05-28 11:06:43] Skipped (Irrelevant category)
+[2026-05-28 11:06:44] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-28 11:57:04] Connecting to imap.gmail.com...
+[2026-05-28 11:57:05] Found 4 candidate emails (today since 28-May-2026), scanning latest 10
+[2026-05-28 11:57:06] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:57:07] Category: other
+[2026-05-28 11:57:07] Skipped (Irrelevant category)
+[2026-05-28 11:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:57:08] Category: other
+[2026-05-28 11:57:08] Skipped (Irrelevant category)
+[2026-05-28 11:57:08] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:57:09] Category: other
+[2026-05-28 11:57:09] Skipped (Irrelevant category)
+[2026-05-28 11:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-05-28 11:57:10] Category: other
+[2026-05-28 11:57:10] Skipped (Irrelevant category)
+[2026-05-28 11:57:10] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-05-31 15:52:58] Connecting to imap.gmail.com...
+[2026-05-31 15:53:00] Found 0 candidate emails (today since 31-May-2026), scanning latest 10
+[2026-05-31 15:53:01] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-02 16:57:05] Connecting to imap.gmail.com...
+[2026-06-02 16:57:07] Found 10 candidate emails (today since 02-Jun-2026), scanning latest 10
+[2026-06-02 16:57:08] Processing: Welcome to Claude. Let’s get you set up.
+[2026-06-02 16:57:08] Category: other
+[2026-06-02 16:57:08] Skipped (Irrelevant category)
+[2026-06-02 16:57:08] Processing: Great job! Start your next course—Use AI Responsibly
+[2026-06-02 16:57:08] Category: other
+[2026-06-02 16:57:08] Skipped (Irrelevant category)
+[2026-06-02 16:57:09] Processing: Great job! Start your next course—Discover the Art of Prompting
+[2026-06-02 16:57:09] Category: other
+[2026-06-02 16:57:09] Skipped (Irrelevant category)
+[2026-06-02 16:57:09] Processing: Congratulations, Your Certificate is Ready!
+[2026-06-02 16:57:09] Category: other
+[2026-06-02 16:57:09] Skipped (Irrelevant category)
+[2026-06-02 16:57:10] Processing: Great job! Start your next course—Maximize Productivity With AI Tools
+[2026-06-02 16:57:10] Category: other
+[2026-06-02 16:57:10] Skipped (Irrelevant category)
+[2026-06-02 16:57:10] Processing: Welcome to the Google AI Essentials Specialization!
+[2026-06-02 16:57:12] Category: other
+[2026-06-02 16:57:12] Skipped (Irrelevant category)
+[2026-06-02 16:57:12] Processing: Coursera Password Reset
+[2026-06-02 16:57:12] Category: other
+[2026-06-02 16:57:12] Skipped (Irrelevant category)
+[2026-06-02 16:57:12] Processing: Submission of Google Career Certifications
+[2026-06-02 16:57:13] Category: other
+[2026-06-02 16:57:13] Skipped (Irrelevant category)
+[2026-06-02 16:57:19] Processing: NOTICE regarding Announcement of Results - Comprehensive Examinations
+ for MBA (Case Study) - April 2026
+[2026-06-02 16:57:19] Category: other
+[2026-06-02 16:57:19] Skipped (Irrelevant category)
+[2026-06-02 16:57:20] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-02 16:57:22] Category: other
+[2026-06-02 16:57:22] Skipped (Irrelevant category)
+[2026-06-02 16:57:23] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-04 16:37:59] Connecting to imap.gmail.com...
+[2026-06-04 16:38:01] Found 5 candidate emails (today since 04-Jun-2026), scanning latest 10
+[2026-06-04 16:38:01] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-04 16:38:03] Category: other
+[2026-06-04 16:38:03] Skipped (Irrelevant category)
+[2026-06-04 16:38:04] Processing: Congratulations, Your Certificate is Ready!
+[2026-06-04 16:38:04] Category: other
+[2026-06-04 16:38:04] Skipped (Irrelevant category)
+[2026-06-04 16:38:05] Processing: Congratulations, Your Certificate is Ready!
+[2026-06-04 16:38:05] Category: other
+[2026-06-04 16:38:05] Skipped (Irrelevant category)
+[2026-06-04 16:38:05] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-04 16:38:06] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is a hard exclusion for the "other" label.', fallback to rules
+[2026-06-04 16:38:06] Category: other
+[2026-06-04 16:38:06] Skipped (Irrelevant category)
+[2026-06-04 16:38:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-04 16:38:22] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-06-04 16:38:22] Category: other
+[2026-06-04 16:38:22] Skipped (Irrelevant category)
+[2026-06-04 16:38:23] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-04 16:57:03] Connecting to imap.gmail.com...
+[2026-06-04 16:57:05] Found 5 candidate emails (today since 04-Jun-2026), scanning latest 10
+[2026-06-04 16:57:05] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-04 16:57:06] Category: other
+[2026-06-04 16:57:06] Skipped (Irrelevant category)
+[2026-06-04 16:57:07] Processing: Congratulations, Your Certificate is Ready!
+[2026-06-04 16:57:07] Category: other
+[2026-06-04 16:57:07] Skipped (Irrelevant category)
+[2026-06-04 16:57:07] Processing: Congratulations, Your Certificate is Ready!
+[2026-06-04 16:57:07] Category: other
+[2026-06-04 16:57:07] Skipped (Irrelevant category)
+[2026-06-04 16:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-04 16:57:08] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is a hard exclusion for the "other" label.', fallback to rules
+[2026-06-04 16:57:08] Category: other
+[2026-06-04 16:57:08] Skipped (Irrelevant category)
+[2026-06-04 16:57:09] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-04 16:57:10] WARNING: Unexpected LLM label 'other
+
+Reasoning:
+The email is about account sign-in activity, which is not related to the class schedule, institutional activities, or any of the hard exclus', fallback to rules
+[2026-06-04 16:57:10] Category: other
+[2026-06-04 16:57:10] Skipped (Irrelevant category)
+[2026-06-04 16:57:10] Run complete. Updated items: 0
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-05 12:06:56] Connecting to imap.gmail.com...
+[2026-06-05 12:06:59] Found 3 candidate emails (today since 05-Jun-2026), scanning latest 10
+[2026-06-05 12:06:59] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-05 12:07:02] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-05 12:07:02] Category: other
+[2026-06-05 12:07:02] Skipped (Irrelevant category)
+[2026-06-05 12:07:02] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-05 12:07:03] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-05 12:07:03] Category: other
+[2026-06-05 12:07:03] Skipped (Irrelevant category)
+[2026-06-05 12:07:03] Skipped (not current day): Congratulations! You've earned a badge from Google
+[2026-06-05 12:07:03] Skipped by date filter: 1
+[2026-06-05 12:07:04] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-05 12:57:03] Connecting to imap.gmail.com...
+[2026-06-05 12:57:05] Found 3 candidate emails (today since 05-Jun-2026), scanning latest 10
+[2026-06-05 12:57:05] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-05 12:57:06] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-05 12:57:06] Category: other
+[2026-06-05 12:57:06] Skipped (Irrelevant category)
+[2026-06-05 12:57:07] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-05 12:57:07] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-05 12:57:07] Category: other
+[2026-06-05 12:57:07] Skipped (Irrelevant category)
+[2026-06-05 12:57:08] Skipped (not current day): Congratulations! You've earned a badge from Google
+[2026-06-05 12:57:08] Skipped by date filter: 1
+[2026-06-05 12:57:08] Run complete. Updated items: 0
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+^Cd:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-08 12:11:50] Connecting to imap.gmail.com...
+[2026-06-08 12:11:53] Found 6 candidate emails (today since 08-Jun-2026), scanning latest 10
+[2026-06-08 12:11:54] Processing: You have submitted your assignment submission for Final FYP Project Report (Thesis) Submission in Booklet Format
+[2026-06-08 12:11:54] Category: other
+[2026-06-08 12:11:54] Skipped (Irrelevant category)
+[2026-06-08 12:11:55] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-08 12:11:59] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 12:11:59] Category: other
+[2026-06-08 12:11:59] Skipped (Irrelevant category)
+[2026-06-08 12:12:00] Processing: Re: Registration Open: ACT AI Training Program (Deadline: April 12, 2026)
+[2026-06-08 12:12:05] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 12:12:05] Category: other
+[2026-06-08 12:12:05] Skipped (Irrelevant category)
+[2026-06-08 12:12:06] Processing: Re: Updated Timetable and Section-Wise Student Lists for Summer
+ Program 2026
+[2026-06-08 12:12:06] Category: timetable
+[2026-06-08 12:12:06] WARNING: No XML timetable found in email
+[2026-06-08 12:12:06] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-08 12:12:07] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 12:12:07] Category: other
+[2026-06-08 12:12:07] Skipped (Irrelevant category)
+[2026-06-08 12:12:08] Processing: Updated Timetable and Section-Wise Student Lists for Summer Program 2026
+[2026-06-08 12:12:08] Category: timetable
+[2026-06-08 12:12:08] WARNING: No XML timetable found in email
+[2026-06-08 12:12:09] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-08 15:47:19] Connecting to imap.gmail.com...
+[2026-06-08 15:47:21] Found 6 candidate emails (today since 08-Jun-2026), scanning latest 10
+[2026-06-08 15:47:25] Processing: You have submitted your assignment submission for Final FYP Project Report (Thesis) Submission in Booklet Format
+[2026-06-08 15:47:25] Category: other
+[2026-06-08 15:47:25] Skipped (Irrelevant category)
+[2026-06-08 15:47:26] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-08 15:47:40] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:47:40] Category: other
+[2026-06-08 15:47:40] Skipped (Irrelevant category)
+[2026-06-08 15:47:41] Processing: Re: Registration Open: ACT AI Training Program (Deadline: April 12, 2026)
+[2026-06-08 15:47:44] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:47:44] Category: other
+[2026-06-08 15:47:44] Skipped (Irrelevant category)
+[2026-06-08 15:47:45] Processing: Re: Updated Timetable and Section-Wise Student Lists for Summer
+ Program 2026
+[2026-06-08 15:47:45] Category: timetable
+[2026-06-08 15:47:45] WARNING: No XML timetable found in email
+[2026-06-08 15:47:48] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-08 15:47:51] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:47:51] Category: other
+[2026-06-08 15:47:51] Skipped (Irrelevant category)
+[2026-06-08 15:47:54] Processing: Updated Timetable and Section-Wise Student Lists for Summer Program 2026
+[2026-06-08 15:47:54] Category: timetable
+[2026-06-08 15:47:54] WARNING: No XML timetable found in email
+[2026-06-08 15:47:55] Run complete. Updated items: 0
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-08 15:57:05] Connecting to imap.gmail.com...
+[2026-06-08 15:57:08] Found 7 candidate emails (today since 08-Jun-2026), scanning latest 10
+[2026-06-08 15:57:10] Processing: Invitation to attend the Screening of Movie "Mera Liyari"
+[2026-06-08 15:57:11] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:57:11] Category: event
+[2026-06-08 15:57:11] New event saved: event_20260608_155711.txt
+[2026-06-08 15:57:11] Processing: You have submitted your assignment submission for Final FYP Project Report (Thesis) Submission in Booklet Format
+[2026-06-08 15:57:11] Category: other
+[2026-06-08 15:57:11] Skipped (Irrelevant category)
+[2026-06-08 15:57:11] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-08 15:57:12] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:57:12] Category: other
+[2026-06-08 15:57:12] Skipped (Irrelevant category)
+[2026-06-08 15:57:12] Processing: Re: Registration Open: ACT AI Training Program (Deadline: April 12, 2026)
+[2026-06-08 15:57:13] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:57:13] Category: other
+[2026-06-08 15:57:13] Skipped (Irrelevant category)
+[2026-06-08 15:57:13] Processing: Re: Updated Timetable and Section-Wise Student Lists for Summer
+ Program 2026
+[2026-06-08 15:57:13] Category: timetable
+[2026-06-08 15:57:13] WARNING: No XML timetable found in email
+[2026-06-08 15:57:14] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-08 15:57:14] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-08 15:57:14] Category: other
+[2026-06-08 15:57:14] Skipped (Irrelevant category)
+[2026-06-08 15:57:15] Processing: Updated Timetable and Section-Wise Student Lists for Summer Program 2026
+[2026-06-08 15:57:15] Category: timetable
+[2026-06-08 15:57:15] WARNING: No XML timetable found in email
+[2026-06-08 15:57:19] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-06-08 15:57:19] Rebuilding universal vector store (single batch run)...
+Removing old vector store at d:\siba-chatbot-fyp\rag\vector_db\universal...
+ Loading PDF [CDC]: Career Development Center(CDC).pdf
+ Loading PDF [CDC]: sisc.pdf
+ Loading PDF [EDC]: CSS Preparatory Classes.pdf
+ Loading PDF [EDC]: Diploma Programs.pdf
+ Loading PDF [EDC]: Executive Development Centre(EDC).pdf
+ Loading PDF [EDC]: IT Industry Bootcamp.pdf
+ Loading PDF [EDC]: Peoples Information Technology Program(PITP).pdf
+ Loading PDF [EDC]: Programs Offered by Executive Development Center.pdf
+ Loading PDF [EDC]: Skills Development Program.pdf
+ Loading TXT [events]: event_20260320_210642.txt
+ Loading TXT [events]: event_20260420_205745.txt
+ Loading TXT [events]: event_20260420_205755.txt
+ Loading TXT [events]: event_20260503_171104.txt
+ Loading TXT [events]: event_20260505_153256.txt
+ Loading TXT [events]: event_20260505_153308.txt
+ Loading TXT [events]: event_20260505_165713.txt
+ Loading TXT [events]: event_20260505_165717.txt
+ Loading TXT [events]: event_20260522_235714.txt
+ Loading TXT [events]: event_20260608_155711.txt
+ Loading TXT [faculty]: abbas_mehdi.txt
+ Loading TXT [faculty]: abdul_basit.txt
+ Loading TXT [faculty]: abdul_hameed_kumbhar.txt
+ Loading TXT [faculty]: abdul_khaliq_daudpota.txt
+ Loading TXT [faculty]: abid_ullah.txt
+ Loading TXT [faculty]: adnan_rauf.txt
+ Loading TXT [faculty]: afshan_shah_.txt
+ Loading TXT [faculty]: agha_waleed_pathan.txt
+ Loading TXT [faculty]: ahmed_ali.txt
+ Loading TXT [faculty]: aijaz_ali_soomro.txt
+ Loading TXT [faculty]: ali_raza_barket.txt
+ Loading TXT [faculty]: amir_ali_khan_ghouri.txt
+ Loading TXT [faculty]: anjbeen_soomro.txt
+ Loading TXT [faculty]: asif_ali.txt
+ Loading TXT [faculty]: asif_rajput.txt
+ Loading TXT [faculty]: bahawal_soomro.txt
+ Loading TXT [faculty]: dring_kashif_hussain.txt
+ Loading TXT [faculty]: dr_abdul_aziz.txt
+ Loading TXT [faculty]: dr_abdul_baseer_buriro.txt
+ Loading TXT [faculty]: dr_abdul_qadir.txt
+ Loading TXT [faculty]: dr_abdul_raheem.txt
+ Loading TXT [faculty]: dr_adil_khan.txt
+ Loading TXT [faculty]: dr_afaque_manzoor_soomro.txt
+ Loading TXT [faculty]: dr_agha_jahanzeb.txt
+ Loading TXT [faculty]: dr_ahmad_waqas.txt
+ Loading TXT [faculty]: dr_ahmed_ali_shah.txt
+ Loading TXT [faculty]: dr_ahsanullah_abro.txt
+ Loading TXT [faculty]: dr_ali_hassan_sodhro.txt
+ Loading TXT [faculty]: dr_ali_nawab.txt
+ Loading TXT [faculty]: dr_ali_raza.txt
+ Loading TXT [faculty]: dr_altaf_hussain_samo.txt
+ Loading TXT [faculty]: dr_al_karim_datoo.txt
+ Loading TXT [faculty]: dr_asad_ali_qazi.txt
+ Loading TXT [faculty]: dr_aziz_altaf_khuwaja.txt
+ Loading TXT [faculty]: dr_a_rehman_gilal.txt
+ Loading TXT [faculty]: dr_barkat_ali_bhayo.txt
+ Loading TXT [faculty]: dr_dhani_bux_shah.txt
+ Loading TXT [faculty]: dr_engr_safeer_hyder.txt
+ Loading TXT [faculty]: dr_faheem_gul_gilal.txt
+ Loading TXT [faculty]: dr_faisal_bin_ubaid.txt
+ Loading TXT [faculty]: dr_faiz_muhammad_khuwaja.txt
+ Loading TXT [faculty]: dr_fareed_ahmed_mangi.txt
+ Loading TXT [faculty]: dr_farhan_shahzad.txt
+ Loading TXT [faculty]: dr_ghulam_abbas.txt
+ Loading TXT [faculty]: dr_ghulam_abbas_lashari.txt
+ Loading TXT [faculty]: dr_ghulam_murtaza_memon.txt
+ Loading TXT [faculty]: dr_gulsher_ali_lund.txt
+ Loading TXT [faculty]: dr_gul_muhammad_rind.txt
+ Loading TXT [faculty]: dr_hafiz_mudassir_munir.txt
+ Loading TXT [faculty]: dr_hassan_abbas.txt
+ Loading TXT [faculty]: dr_jamshed_ahmed_ansari.txt
+ Loading TXT [faculty]: dr_jan_muhammad_sohu.txt
+ Loading TXT [faculty]: dr_javed_ali.txt
+ Loading TXT [faculty]: dr_javed_hussain.txt
+ Loading TXT [faculty]: dr_junaid_ahmed.txt
+ Loading TXT [faculty]: dr_khalid_ahmed.txt
+ Loading TXT [faculty]: dr_khalil_ahmed_channa.txt
+ Loading TXT [faculty]: dr_khawaja_haider_ali.txt
+ Loading TXT [faculty]: dr_manzoor_ali_mirani.txt
+ Loading TXT [faculty]: dr_muhammad_asif_khan.txt
+ Loading TXT [faculty]: dr_muhammad_asim_ali.txt
+ Loading TXT [faculty]: dr_muhammad_fazeel_anwar.txt
+ Loading TXT [faculty]: dr_muhammad_irshad_nazeer.txt
+ Loading TXT [faculty]: dr_muhammad_ismail_mangrio.txt
+ Loading TXT [faculty]: dr_muhammad_mujtaba_asad.txt
+ Loading TXT [faculty]: dr_muhammad_muzamil_sattar.txt
+ Loading TXT [faculty]: dr_muhammad_shaique.txt
+ Loading TXT [faculty]: dr_muhammad_waqas.txt
+ Loading TXT [faculty]: dr_muhammad_yameen_sandhu.txt
+ Loading TXT [faculty]: dr_mujeeburehman_bhayo.txt
+ Loading TXT [faculty]: dr_mumtaz_ali_kaloi.txt
+ Loading TXT [faculty]: dr_m_saleem_korejo.txt
+ Loading TXT [faculty]: dr_nabeel_nisar.txt
+ Loading TXT [faculty]: dr_nabeel_siddiqui.txt
+ Loading TXT [faculty]: dr_niaz_hussain_ghumro.txt
+ Loading TXT [faculty]: dr_obed_rashdi_syed.txt
+ Loading TXT [faculty]: dr_pervaiz_memon.txt
+ Loading TXT [faculty]: dr_qamar_uddin_khand.txt
+ Loading TXT [faculty]: dr_raheel_ahmed_memon.txt
+ Loading TXT [faculty]: dr_raja_shahzad_shaikh.txt
+ Loading TXT [faculty]: dr_rida_e_zenab.txt
+ Loading TXT [faculty]: dr_rifat_abbas_khan.txt
+ Loading TXT [faculty]: dr_rukhsana_gul.txt
+ Loading TXT [faculty]: dr_saeed_ahmed_khan.txt
+ Loading TXT [faculty]: dr_sahibzada_muhammad_wasim_jan.txt
+ Loading TXT [faculty]: dr_sajid_khan.txt
+ Loading TXT [faculty]: dr_sarfraz_ahmed_dakhan.txt
+ Loading TXT [faculty]: dr_sehrish_bukhari.txt
+ Loading TXT [faculty]: dr_sharjeel_afridi.txt
+ Loading TXT [faculty]: dr_sheeraz_mustafa.txt
+ Loading TXT [faculty]: dr_shuaib_ahmed_soomro.txt
+ Loading TXT [faculty]: dr_sidrah_ahmed.txt
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\huggingface_hub\file_download.py:129: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\muham\.cache\huggingface\hub\models--sentence-transformers--all-MiniLM-L6-v2. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+ Loading TXT [faculty]: dr_sohail_ahmed_memon.txt
+ Loading TXT [faculty]: dr_syed_aamir_ali_shah.txt
+ Loading TXT [faculty]: dr_syed_asif_raza.txt
+ Loading TXT [faculty]: dr_syed_hassan_ali.txt
+ Loading TXT [faculty]: dr_syed_hyder_ali_muttaqi_shah.txt
+ Loading TXT [faculty]: dr_syed_sabir_hussain_bukhari.txt
+ Loading TXT [faculty]: dr_tariq_aziz.txt
+ Loading TXT [faculty]: dr_ubaidullah.txt
+ Loading TXT [faculty]: dr_ubedullah_memon.txt
+ Loading TXT [faculty]: dr_ume_salma_akbar.txt
+ Loading TXT [faculty]: dr_unaeza_alvi.txt
+ Loading TXT [faculty]: dr_zafarullah_sahito.txt
+ Loading TXT [faculty]: dr_zakria.txt
+ Loading TXT [faculty]: dr_zarqa_bano.txt
+ Loading TXT [faculty]: dr_zulfiqar_ali_chachar.txt
+ Loading TXT [faculty]: engr_dr_abdul_sattar_chan.txt
+ Loading TXT [faculty]: engr_dr_muhammad_hussain_mughal.txt
+ Loading TXT [faculty]: engr_dr_suresh_kumar.txt
+ Loading TXT [faculty]: engr_irfan_ali_babar.txt
+ Loading TXT [faculty]: engr_muhammad_azeem_abro.txt
+ Loading TXT [faculty]: engr_paras_qadir_memon.txt
+ Loading TXT [faculty]: engr_prof_dr_madad_ali_shah.txt
+ Loading TXT [faculty]: engr_sohail_ahmed_soomro.txt
+ Loading TXT [faculty]: faryal_shamsi.txt
+ Loading TXT [faculty]: fida_hussain_memon.txt
+ Loading TXT [faculty]: gul_afshan.txt
+ Loading TXT [faculty]: hassan_abbas_soomro.txt
+ Loading TXT [faculty]: hyder_ali_phd_fhea.txt
+ Loading TXT [faculty]: irfan_mughal.txt
+ Loading TXT [faculty]: irshaad_ahmed.txt
+ Loading TXT [faculty]: jahangeer_badar_soomro_.txt
+ Loading TXT [faculty]: javed_ali_abbasi_.txt
+ Loading TXT [faculty]: kamran_akhtar_siddiqui.txt
+ Loading TXT [faculty]: kamran_hyder.txt
+ Loading TXT [faculty]: kashif_ali_kalhoro.txt
+ Loading TXT [faculty]: khalid_hussain_asadullah.txt
+ Loading TXT [faculty]: mahmood_ahmed_dool.txt
+ Loading TXT [faculty]: masroor_ali_soomro.txt
+ Loading TXT [faculty]: mir_muhammad_lodro.txt
+ Loading TXT [faculty]: miss_pirah_noor.txt
+ Loading TXT [faculty]: miss_sonia_kumari.txt
+ Loading TXT [faculty]: miss_syeda_warda_taqdees.txt
+ Loading TXT [faculty]: mohammad_shoaib_khan.txt
+ Loading TXT [faculty]: mr_abdul_basit.txt
+ Loading TXT [faculty]: mr_abid_memon.txt
+ Loading TXT [faculty]: mr_amanullah_.txt
+ Loading TXT [faculty]: mr_ameet_kumar.txt
+ Loading TXT [faculty]: mr_arfan_hyder.txt
+ Loading TXT [faculty]: mr_ashfaq_gilal.txt
+ Loading TXT [faculty]: mr_faheem_akhtar_rajput.txt
+ Loading TXT [faculty]: mr_haider_ali_zaidi.txt
+ Loading TXT [faculty]: mr_hifazat_ali_shah.txt
+ Loading TXT [faculty]: mr_irfan_ahmed.txt
+ Loading TXT [faculty]: mr_irfan_ali.txt
+ Loading TXT [faculty]: mr_ishfaque_ahmed_abbasi.txt
+ Loading TXT [faculty]: mr_jawaid_ahmed_siddiqui.txt
+ Loading TXT [faculty]: mr_khan_zada.txt
+ Loading TXT [faculty]: mr_mansoor_ahmed_junejo.txt
+ Loading TXT [faculty]: mr_nazim_hussain.txt
+ Loading TXT [faculty]: mr_noor_hussain.txt
+ Loading TXT [faculty]: mr_saeed_abbas_shah.txt
+ Loading TXT [faculty]: mr_sharik_zamir.txt
+ Loading TXT [faculty]: mr_zahid_ali_jatoi.txt
+ Loading TXT [faculty]: mr_zahid_hussain_shaikh.txt
+ Loading TXT [faculty]: mubeena_soomro.txt
+ Loading TXT [faculty]: muhammad_asif_memon.txt
+ Loading TXT [faculty]: mukhtiar_ahmed_arain.txt
+ Loading TXT [faculty]: mulazim_ali_khokhar.txt
+ Loading TXT [faculty]: m_fayyaz_uddin.txt
+ Loading TXT [faculty]: nahdia_majeed.txt
+ Loading TXT [faculty]: nasrullah_dharejo.txt
+ Loading TXT [faculty]: naveed_qureshi.txt
+ Loading TXT [faculty]: nisar_ahmed_siddiqui.txt
+ Loading TXT [faculty]: noor_a_khoso.txt
+ Loading TXT [faculty]: paras_sindhu.txt
+ Loading TXT [faculty]: pervez_ali.txt
+ Loading TXT [faculty]: prof_dr_engr_zahid_hussain_khand.txt
+ Loading TXT [faculty]: prof_dr_ghulam_mujtaba_shaikh.txt
+ Loading TXT [faculty]: prof_dr_irfan_ahmed_rind.txt
+ Loading TXT [faculty]: prof_dr_javed_ahmed_shahani.txt
+ Loading TXT [faculty]: prof_dr_m_abdul_rehman.txt
+ Loading TXT [faculty]: prof_dr_niaz_ahmed_bhutto.txt
+ Loading TXT [faculty]: prof_dr_sher_muhammad_daudpota.txt
+ Loading TXT [faculty]: prof_syed_mir_muhammad_shah.txt
+ Loading TXT [faculty]: pro_dr_sarwar_m_azhar.txt
+ Loading TXT [faculty]: qamaruddin_maitlo_.txt
+ Loading TXT [faculty]: qasim_ali.txt
+ Loading TXT [faculty]: rabia_shaikh.txt
+ Loading TXT [faculty]: raheela_haque_.txt
+ Loading TXT [faculty]: raja_fawad_zafar.txt
+ Loading TXT [faculty]: rakesh_kumar.txt
+ Loading TXT [faculty]: ranjeeta.txt
+ Loading TXT [faculty]: riaz_ali_soomro.txt
+ Loading TXT [faculty]: roshan_ali.txt
+ Loading TXT [faculty]: safdar_ali_soomro_.txt
+ Loading TXT [faculty]: saif_hassan.txt
+ Loading TXT [faculty]: sajjad_ahmed.txt
+ Loading TXT [faculty]: samar_batool_shah.txt
+ Loading TXT [faculty]: sanaullah_shar.txt
+ Loading TXT [faculty]: sana_fatima.txt
+ Loading TXT [faculty]: saqif_rafique_ansari.txt
+ Loading TXT [faculty]: shairoz_ismail.txt
+ Loading TXT [faculty]: shakil_ahmed_jiskani.txt
+ Loading TXT [faculty]: shoaib_ahmed_shaikh.txt
+ Loading TXT [faculty]: shujaat_ali.txt
+ Loading TXT [faculty]: shumaila_ambreen.txt
+ Loading TXT [faculty]: sunny_katyara.txt
+ Loading TXT [faculty]: surhan_fatima.txt
+ Loading TXT [faculty]: syed_bilal_raza_tirmizi.txt
+ Loading TXT [faculty]: syed_mohsin_amir_mukhtiar_dr_mohsin_kazmi.txt
+ Loading TXT [faculty]: syed_sikander_ali_shah.txt
+ Loading TXT [faculty]: syed_tanweer_ahmed.txt
+ Loading TXT [faculty]: tahir_mahmood.txt
+ Loading TXT [faculty]: tariq_ali.txt
+ Loading TXT [faculty]: umair_ayaz_kamangar.txt
+ Loading TXT [faculty]: umair_khan.txt
+ Loading TXT [faculty]: vikesh_kumar.txt
+ Loading TXT [faculty]: wajid_ali_qureshi.txt
+ Loading TXT [faculty]: ziauddin_khoso.txt
+ Loading PDF [FYP]: Overview of Final Year Project.pdf
+ Loading PDF [introduction]: Community Colleges and Sub Campuses.pdf
+ Loading PDF [introduction]: uni_mission_vision_history.pdf
+ Loading PDF [introduction]: vc.pdf
+ Loading PDF [policies]: Admission_Policy.pdf
+ Loading TXT [policies]: Attendance_Policy.txt
+ Loading TXT [policies]: Dos_&_don't_do's_during_examination.txt
+ Loading PDF [policies]: Examination_Regulations.pdf
+ Loading TXT [policies]: Grading_Policy.txt
+ Loading PDF [policies]: hostel_policy.pdf
+ Loading PDF [policies]: SIBA-Student-Fee-Refund-Policy.pdf
+ Loading PDF [policies]: SIBA_Admission_Policy.pdf
+ Loading TXT [policies]: Student_Assessement_policy.txt
+ Loading TXT [policies]: Withdrawal_policy.txt
+ Loading PDF [programs]: B.eD.pdf
+ Loading PDF [programs]: Bachelor of Business Administration.pdf
+ Loading PDF [programs]: Bachelor of Science in Artificial Intelligence.pdf
+ Loading PDF [programs]: BBA Agri.pdf
+ Loading PDF [programs]: BE Computer Systems Engineering.pdf
+ Loading PDF [programs]: BE Electrical Engineering.pdf
+ Loading PDF [programs]: BS Accounting and Finance.pdf
+ Loading PDF [programs]: BS Computer Science with Specialization in Artificial Intelligence.pdf
+ Loading PDF [programs]: BS CS.pdf
+ Loading PDF [programs]: BS Economics.pdf
+ Loading PDF [programs]: BS Mathematics.pdf
+ Loading PDF [programs]: BS Media and Communications.pdf
+ Loading PDF [programs]: BS Physical Education.pdf
+ Loading PDF [programs]: BS Software Engineering.pdf
+ Loading PDF [programs]: Crash Program.pdf
+ Loading PDF [programs]: Foundation Semester Program.pdf
+ Loading PDF [programs]: M Phil Education.pdf
+ Loading PDF [programs]: MASTER OF ENGINEERING IN RENEWABLE ENERGY.pdf
+ Loading PDF [programs]: MBA Program.pdf
+ Loading PDF [programs]: ME Electrical Engineering.pdf
+ Loading PDF [programs]: MS in Artificial Intelligence.pdf
+ Loading PDF [programs]: MS in Computer Science.pdf
+ Loading PDF [programs]: MS in Management Science.pdf
+ Loading PDF [programs]: MS in Mathematics.pdf
+ Loading PDF [programs]: Phd in Computer Science.pdf
+ Loading PDF [programs]: Phd in Education.pdf
+ Loading PDF [programs]: Phd in EE.pdf
+ Loading PDF [programs]: PhD in Managment Science.pdf
+ Loading PDF [programs]: Phd in Mathematics.pdf
+ Loading PDF [programs]: programs_offered_At_SIBA.pdf
+ Loading PDF [programs]: Summer Program.pdf
+ Loading PDF [scholarships]: National Talent Hunt Program.pdf
+ Loading PDF [scholarships]: Scholarships Offered.pdf
+ Loading PDF [scholarships]: scholarship_process.pdf
+ Loading PDF [scholarships]: Sindh Talent Hunt Program.pdf
+
+Total raw documents loaded: 398
+Total chunks after splitting: 808
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 1612.99it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+Universal vector store created at: d:\siba-chatbot-fyp\rag\vector_db\universal
+   Total vectors: 808
+[2026-06-08 15:59:24] Vector store rebuilt successfully
+[2026-06-08 15:59:28] WARNING: failed to toggle maintenance mode: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[2026-06-08 15:59:29] Run complete. Updated items: 1
+d:\siba-chatbot-fyp\backend\venv\Lib\site-packages\langchain\_api\module_import.py:120: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import FAISS
+
+with new imports of:
+
+>> from langchain_community.vectorstores import FAISS
+
+  warn_deprecated(
+[2026-06-09 18:57:08] Connecting to imap.gmail.com...
+[2026-06-09 18:57:09] Found 7 candidate emails (today since 09-Jun-2026), scanning latest 10
+[2026-06-09 18:57:10] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-09 18:57:11] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-09 18:57:11] Category: other
+[2026-06-09 18:57:11] Skipped (Irrelevant category)
+[2026-06-09 18:57:12] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-09 18:57:13] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-09 18:57:13] Category: other
+[2026-06-09 18:57:13] Skipped (Irrelevant category)
+[2026-06-09 18:57:14] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-09 18:57:14] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-09 18:57:14] Category: other
+[2026-06-09 18:57:14] Skipped (Irrelevant category)
+[2026-06-09 18:57:15] Processing: External Committee Members Feedback of FYP Project (FAll 2022 Batch)
+[2026-06-09 18:57:15] Category: other
+[2026-06-09 18:57:15] Skipped (Irrelevant category)
+[2026-06-09 18:57:15] Processing: NOTICE regarding Announcement of Results - Regular Foundation 2026
+[2026-06-09 18:57:15] Category: other
+[2026-06-09 18:57:15] Skipped (Irrelevant category)
+[2026-06-09 18:57:15] Processing: New sign in to your Elearning Sukkur IBA University account
+[2026-06-09 18:57:16] WARNING: Email LLM classification failed, fallback to rules: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'expired_api_key'}}
+[2026-06-09 18:57:16] Category: other
+[2026-06-09 18:57:16] Skipped (Irrelevant category)
+[2026-06-09 18:57:17] Processing: Updated Summer Program 2026 Timetable and One-Day Lab Room Adjustment
+ for 9 June 2026
+[2026-06-09 18:57:17] Category: timetable
+[2026-06-09 18:57:17] WARNING: No XML timetable found in email
+[2026-06-09 18:57:17] Run complete. Updated items: 0
+^C

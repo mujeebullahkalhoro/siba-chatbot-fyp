@@ -60,8 +60,23 @@ class UniversalBM25Retriever(BaseRetriever):
         documents = []
         corpus = []
 
+        EXCLUDED_DIRS = ["forms", "schema"]
+        EXCLUDED_FILES = ["forms_index.txt", "schemas_index.txt"]
+
         for root, _, files in os.walk(DATA_ROOT):
+            # Determine which category this file belongs to (from folder name)
+            relative_path = os.path.relpath(root, DATA_ROOT)
+            path_parts = relative_path.split(os.sep)
+            
+            # Skip excluded directories
+            if any(excluded in path_parts for excluded in EXCLUDED_DIRS):
+                continue
+
             for file in files:
+                # Skip excluded files
+                if file in EXCLUDED_FILES:
+                    continue
+
                 file_path = os.path.join(root, file)
 
                 if file.endswith(".txt"):

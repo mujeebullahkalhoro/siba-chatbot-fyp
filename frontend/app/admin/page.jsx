@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { adminLogin } from "@/services/adminService";
 
 export default function AdminLoginPage() {
@@ -98,6 +99,7 @@ export default function AdminLoginPage() {
                                 borderRadius: 6,
                                 border: "1px solid #d1d5db",
                                 fontSize: 14,
+                                color: "#1e293b",
                                 outline: "none",
                                 boxSizing: "border-box",
                                 transition: "border 0.15s",
@@ -107,10 +109,20 @@ export default function AdminLoginPage() {
                         />
                     </div>
 
-                    <div style={{ marginBottom: 22 }}>
-                        <label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#374151", marginBottom: 5 }}>
-                            Password
-                        </label>
+                    <div style={{ marginBottom: 26 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
+                            <label style={{ fontSize: 13, fontWeight: 500, color: "#374151" }}>
+                                Password
+                            </label>
+                            <Link 
+                                href="/admin/forgot-password" 
+                                style={{ fontSize: 12, color: "#ea6645", textDecoration: "none", fontWeight: 500 }}
+                                onMouseOver={(e) => e.target.style.textDecoration = "underline"}
+                                onMouseOut={(e) => e.target.style.textDecoration = "none"}
+                            >
+                                Forgot Password?
+                            </Link>
+                        </div>
                         <input
                             type="password"
                             value={password}
@@ -123,6 +135,7 @@ export default function AdminLoginPage() {
                                 borderRadius: 6,
                                 border: "1px solid #d1d5db",
                                 fontSize: 14,
+                                color: "#1e293b",
                                 outline: "none",
                                 boxSizing: "border-box",
                                 transition: "border 0.15s",
@@ -145,10 +158,15 @@ export default function AdminLoginPage() {
                             fontWeight: 600,
                             fontSize: 14,
                             cursor: loading ? "not-allowed" : "pointer",
+                            boxShadow: "0 4px 6px -1px rgba(234, 102, 69, 0.2)",
+                            transition: "all 0.2s"
                         }}
+                        onMouseOver={(e) => !loading && (e.target.style.background = "#d95a3d")}
+                        onMouseOut={(e) => !loading && (e.target.style.background = "#ea6645")}
                     >
                         {loading ? "Signing in..." : "Sign In"}
                     </button>
+
                 </form>
 
                 <p style={{ textAlign: "center", marginTop: 20, fontSize: 11, color: "#94a3b8", margin: "20px 0 0" }}>

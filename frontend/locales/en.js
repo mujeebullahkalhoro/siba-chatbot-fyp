@@ -22,6 +22,10 @@ const en = {
     // Chat header
     "chatHeader.share": "Share Chat",
 
+    // Chat messages
+    "chat.user": "You",
+    "chat.ai": "AI",
+
     // Sidebar
     "sidebar.brand": "SibaChatbot",
     "sidebar.newChat": "New Chat",
@@ -64,6 +68,16 @@ const en = {
     "share.description": "Anyone with this link will be able to view this chat session.",
     "share.copy": "Copy to clipboard",
     "share.done": "Done",
+    "share.conversation": "Shared conversation",
+    "share.viewReadOnly": "Read-only",
+    "share.viewHint": "Anyone with the link can view this conversation. You cannot reply here.",
+    "share.cta": "Want to ask your own questions?",
+    "share.startOwn": "Start your own chat",
+    "share.errorTitle": "Could not load this chat",
+    "share.errorBody": "It may have been deleted or the link is invalid.",
+    "share.home": "Back to home",
+    "share.empty": "No messages in this conversation.",
+    "share.messagesLabel": "messages",
 
     // Maintenance banner
     "maintenance.message": "System maintenance in progress — The knowledge base is being updated. Please try again shortly.",
@@ -159,9 +173,9 @@ const en = {
     "help.ex.timetable.4": "Show timetable for BS CS 4th semester Section B.",
     "help.cat.admissions.title": "Admissions",
     "help.cat.admissions.desc": "Get details about eligibility, deadlines, and the admission process.",
-    "help.ex.admissions.1": "What is the admission process for BSCS at SIBA?",
-    "help.ex.admissions.2": "What are the eligibility criteria for BS AI?",
-    "help.ex.admissions.3": "When does the fall admission cycle start?",
+    "help.ex.admissions.1": "What is the admission procedure in Sukkur IBA?",
+    "help.ex.admissions.2": "What is the criteria of BS CS?",
+    "help.ex.admissions.3": "How to get admission in NTHP or STHP?",
     "help.ex.admissions.4": "What documents are required for undergraduate admission?",
     "help.cat.scholarships.title": "Scholarships & Financial Aid",
     "help.cat.scholarships.desc": "Explore merit scholarships and fee support options.",

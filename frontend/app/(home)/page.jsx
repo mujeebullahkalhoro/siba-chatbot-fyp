@@ -9,10 +9,12 @@ import ChatInput from '@/components/ChatInput';
 import ChatMessage from '@/components/ChatMessage';
 import ThinkingBubble from '@/components/ThinkingBubble';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import ShareModal from '@/components/ShareModal';
+import { Share2 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
-import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback } from '@/services/chatService';
+import { sendMessage, getChatSessions, createChatSession, getChatMessages, deleteChatSession, sendMessageStream, submitFeedback, shareChatSession } from '@/services/chatService';
 import { fetchMaintenanceStatus } from '@/services/adminService';
 import { getUserSettings } from '@/services/settingsService';
 import useTTS from '@/hooks/useTTS';
@@ -75,6 +77,8 @@ export default function App() {
   const [sessions, setSessions] = useState([]);
   const [currentSessionId, setCurrentSessionId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [shareUrl, setShareUrl] = useState('');
   const [feedbackMap, setFeedbackMap] = useState({}); // { messageId: 'up' | 'down' }
   const [settings, setSettings] = useState({
     auto_speak: false,
@@ -276,9 +280,13 @@ export default function App() {
         }
       }, abortControllerRef.current.signal);
 
-      // Auto-speak if voice-initiated query
+      // Auto-speak if voice-initiated query (English only — skip Urdu responses)
       if ((isVoiceQueryRef.current || settings.auto_speak) && fullText) {
-        ttsHook.speak(fullText, botId);
+        const urduChars = (fullText.match(/[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/g) || []).length;
+        const isUrduResponse = urduChars > 2;
+        if (!isUrduResponse) {
+          ttsHook.speak(fullText, botId);
+        }
         isVoiceQueryRef.current = false;
       }
 
@@ -307,9 +315,11 @@ export default function App() {
 
   useEffect(() => {
     if (hasMessages || isLoading) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      // Use 'auto' (instant) during streaming to avoid smooth-scroll juddering
+      const behavior = isGenerating ? 'auto' : 'smooth';
+      messagesEndRef.current?.scrollIntoView({ behavior });
     }
-  }, [messages, hasMessages, isLoading]);
+  }, [messages, hasMessages, isLoading, isGenerating]);
 
   useEffect(() => {
     textareaRef.current?.focus();
@@ -330,6 +340,22 @@ export default function App() {
 
   const handleAuthClick = () => {
     setIsModalOpen(true);
+  };
+
+  const handleShareChat = async () => {
+    if (!currentSessionId) {
+      alert('Please select a chat to share.');
+      return;
+    }
+    try {
+      const data = await shareChatSession(currentSessionId);
+      const url = `${window.location.origin}/share/${data.share_id}`;
+      setShareUrl(url);
+      setIsShareModalOpen(true);
+    } catch (error) {
+      console.error('Failed to share chat:', error);
+      alert('Failed to create share link.');
+    }
   };
 
   const handleFeedback = async (messageId, rating) => {
@@ -451,6 +477,17 @@ export default function App() {
                 </svg>
               )}
             </button>
+            {user && (
+              <button
+                type="button"
+                onClick={handleShareChat}
+                className="hidden md:flex items-center bg-white text-sm font-medium py-1.5 px-3 rounded-lg hover:bg-gray-100 cursor-pointer ui-control ui-focus-ring"
+                style={{ color: darkMode ? '#020617' : sibaDarkerBlue }}
+              >
+                <Share2 className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                {t('chatHeader.share')}
+              </button>
+            )}
             {!user && (
               <>
                 <button
@@ -576,6 +613,11 @@ export default function App() {
         )}
       </div>
 
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        shareUrl={shareUrl}
+      />
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );

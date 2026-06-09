@@ -19,8 +19,14 @@ from config import (
     JWT_ALGORITHM,
     ADMIN_EMAIL,
     ADMIN_PASSWORD,
+    ADMIN_TOKEN_SECRET,
+    FRONTEND_URL,
     MAINTENANCE_INTERNAL_TOKEN,
 )
+from database import admins_collection
+from utils.email_utils import send_admin_reset_email
+from passlib.hash import bcrypt
+import secrets
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 security = HTTPBearer()
@@ -29,15 +35,34 @@ security = HTTPBearer()
 RAG_DATA_ROOT = Path(__file__).parent.parent.parent / "rag" / "data"
 SCHEMAS_INDEX_PATH = RAG_DATA_ROOT / "schemas_index.txt"
 
-CATEGORY_DIRS = {
-    "faculty":       RAG_DATA_ROOT / "faculty",
-    "policies":      RAG_DATA_ROOT / "policies",
-    "programs":      RAG_DATA_ROOT / "programs",
-    "schemas":       RAG_DATA_ROOT / "schema",
-    "scholarships":  RAG_DATA_ROOT / "scholarships",
-    "introduction":  RAG_DATA_ROOT / "introduction",
-    "fyp":           RAG_DATA_ROOT / "FYP",
-}
+# ── Dynamic category discovery ──────────────────────────
+def get_category_dirs() -> dict[str, Path]:
+    """Dynamically discover category directories in RAG_DATA_ROOT."""
+    # Special mappings: API key -> OS folder path
+    dirs = {
+        "faculty":       RAG_DATA_ROOT / "faculty",
+        "policies":      RAG_DATA_ROOT / "policies",
+        "programs":      RAG_DATA_ROOT / "programs",
+        "schemas":       RAG_DATA_ROOT / "schema",
+        "scholarships":  RAG_DATA_ROOT / "scholarships",
+        "introduction":  RAG_DATA_ROOT / "introduction",
+        "fyp":           RAG_DATA_ROOT / "FYP",
+    }
+    
+    # Explicitly exclude folders handled by automation or internal systems
+    EXCLUDED = {"events", "timetable", "__pycache__", "embeddings", ".git", "vector_db", "vectorstores"}
+
+    if RAG_DATA_ROOT.exists():
+        for item in os.listdir(RAG_DATA_ROOT):
+            item_path = RAG_DATA_ROOT / item
+            if not item_path.is_dir() or item.lower() in EXCLUDED:
+                continue
+            
+            # If not already mapped via the special mappings above
+            if all(not item_path.samefile(p) for p in dirs.values() if p.exists()):
+                dirs[item.lower()] = item_path
+                
+    return dirs
 
 # ── Global maintenance state ─────────────────────────────
 _maintenance_mode = False
@@ -51,6 +76,15 @@ class LoginRequest(BaseModel):
     password: str
 
 
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
+
 class FileUpdateRequest(BaseModel):
     content: str
 
@@ -58,6 +92,10 @@ class FileUpdateRequest(BaseModel):
 class MaintenanceToggleRequest(BaseModel):
     maintenance: bool
     reason: Optional[str] = None
+
+
+class CategoryCreateRequest(BaseModel):
+    name: str
 
 
 def _create_admin_token() -> str:
@@ -79,10 +117,95 @@ def _verify_admin(credentials: HTTPAuthorizationCredentials = Depends(security))
 # ── Login ────────────────────────────────────────────────
 @router.post("/login")
 async def admin_login(body: LoginRequest):
-    if body.email != ADMIN_EMAIL or body.password != ADMIN_PASSWORD:
+    # 1. Try finding in DB
+    admin = await admins_collection.find_one({"email": body.email})
+    
+    if not admin:
+        # Fallback to .env for initial setup/migration
+        if body.email == ADMIN_EMAIL and body.password == ADMIN_PASSWORD:
+            # First time login with .env credentials - seed the DB
+            await admins_collection.update_one(
+                {"email": ADMIN_EMAIL},
+                {"$set": {
+                    "email": ADMIN_EMAIL,
+                    "hashed_password": bcrypt.hash(ADMIN_PASSWORD),
+                    "created_at": datetime.utcnow()
+                }},
+                upsert=True
+            )
+            token = _create_admin_token()
+            return {"token": token, "email": ADMIN_EMAIL}
         raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    # 2. Check hashed password
+    if not bcrypt.verify(body.password, admin.get("hashed_password")):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
     token = _create_admin_token()
-    return {"token": token, "email": ADMIN_EMAIL}
+    return {"token": token, "email": body.email}
+
+
+@router.post("/forgot-password")
+async def admin_forgot_password(body: ForgotPasswordRequest):
+    # Only allow for the configured admin email
+    if body.email.lower() != ADMIN_EMAIL.lower():
+        # Security: Don't reveal if email exists or not, but for admin we can be stricter or just silent
+        return {"message": "If this email is registered, a reset link will be sent."}
+
+    # Ensure admin exists in DB (might need migration if they never logged in)
+    admin = await admins_collection.find_one({"email": body.email.lower()})
+    if not admin:
+        # Seed it now if matched with .env
+        await admins_collection.update_one(
+            {"email": ADMIN_EMAIL},
+            {"$set": {
+                "email": ADMIN_EMAIL,
+                "hashed_password": bcrypt.hash(ADMIN_PASSWORD),
+                "created_at": datetime.utcnow()
+            }},
+            upsert=True
+        )
+
+    # Generate token
+    from datetime import timedelta, timezone
+    payload = {
+        "sub": body.email.lower(),
+        "purpose": "password_reset",
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=20)
+    }
+    token = jwt.encode(payload, ADMIN_TOKEN_SECRET, algorithm=JWT_ALGORITHM)
+    
+    # Send email
+    reset_link = f"{FRONTEND_URL}/admin/reset-password?token={token}"
+    try:
+        send_admin_reset_email(to_email=body.email.lower(), reset_link=reset_link)
+    except Exception as e:
+        print(f"[ADMIN] Failed to send reset email: {e}")
+        raise HTTPException(status_code=500, detail="Failed to send reset email")
+
+    return {"message": "Reset link sent successfully"}
+
+
+@router.post("/reset-password")
+async def admin_reset_password(body: ResetPasswordRequest):
+    try:
+        payload = jwt.decode(body.token, ADMIN_TOKEN_SECRET, algorithms=[JWT_ALGORITHM])
+        if payload.get("purpose") != "password_reset":
+            raise HTTPException(status_code=400, detail="Invalid token purpose")
+        email = payload.get("sub")
+    except JWTError:
+        raise HTTPException(status_code=400, detail="Invalid or expired reset token")
+
+    # Update password in DB
+    res = await admins_collection.update_one(
+        {"email": email},
+        {"$set": {"hashed_password": bcrypt.hash(body.new_password)}}
+    )
+    
+    if res.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Admin account not found")
+
+    return {"message": "Password reset successful"}
 
 
 # ── Dashboard overview ───────────────────────────────────
@@ -90,13 +213,66 @@ async def admin_login(body: LoginRequest):
 async def admin_overview():
     """Return file counts per category."""
     overview = {}
-    for cat, dirpath in CATEGORY_DIRS.items():
+    categories = get_category_dirs()
+    for cat, dirpath in categories.items():
         if dirpath.exists():
             files = [f for f in os.listdir(dirpath) if not f.startswith("~$")]
             overview[cat] = {"count": len(files), "path": str(dirpath)}
         else:
             overview[cat] = {"count": 0, "path": str(dirpath)}
     return {"categories": overview, "last_rebuild_at": _last_rebuild_at}
+
+
+@router.post("/categories", dependencies=[Depends(_verify_admin)])
+async def create_category(body: CategoryCreateRequest):
+    """Create a new category folder in rag/data."""
+    # Simple sanitization
+    name = body.name.strip().replace(" ", "_").lower()
+    if not name:
+        raise HTTPException(status_code=400, detail="Category name cannot be empty")
+    
+    EXCLUDED = {"events", "timetable", "__pycache__", "embeddings", ".git", "vector_db", "vectorstores"}
+    if name in EXCLUDED:
+        raise HTTPException(status_code=400, detail=f"Category name '{name}' is reserved")
+    
+    dirpath = RAG_DATA_ROOT / name
+    if dirpath.exists():
+         raise HTTPException(status_code=400, detail="Category already exists")
+    
+    try:
+        dirpath.mkdir(parents=True, exist_ok=True)
+        return {"message": f"Category '{name}' created successfully", "key": name}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create directory: {str(e)}")
+
+
+@router.delete("/categories/{category}", dependencies=[Depends(_verify_admin)])
+async def delete_category(category: str):
+    """Delete a category folder from rag/data."""
+    # Restricted categories that are managed by automation (Events & Timetable)
+    AUTOMATED_FOLDERS = {"events", "timetable"}
+    
+    if category.lower() in [c.lower() for c in AUTOMATED_FOLDERS]:
+        raise HTTPException(status_code=403, detail=f"Category '{category}' is managed by automated scripts and cannot be manually deleted.")
+
+    categories = get_category_dirs()
+    dirpath = categories.get(category)
+    
+    if not dirpath or not dirpath.exists():
+        raise HTTPException(status_code=404, detail="Category not found")
+        
+    try:
+        import shutil
+        # Safety: Verify the target is actually inside RAG_DATA_ROOT
+        target_abs = dirpath.absolute()
+        root_abs = RAG_DATA_ROOT.absolute()
+        if not str(target_abs).startswith(str(root_abs)):
+             raise HTTPException(status_code=403, detail="Unsafe directory operation")
+
+        shutil.rmtree(dirpath)
+        return {"message": f"Category '{category}' deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete category: {str(e)}")
 
 
 # ── List files in a category ─────────────────────────────
@@ -114,7 +290,7 @@ def _parse_department_from_faculty(filepath: Path) -> str:
 
 @router.get("/categories/{category}/files", dependencies=[Depends(_verify_admin)])
 async def list_files(category: str):
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath or not dirpath.exists():
         raise HTTPException(status_code=404, detail=f"Category '{category}' not found")
 
@@ -141,7 +317,7 @@ async def list_files(category: str):
 # ── Read file content ────────────────────────────────────
 @router.get("/categories/{category}/files/{filename}", dependencies=[Depends(_verify_admin)])
 async def read_file(category: str, filename: str):
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath:
         raise HTTPException(status_code=404, detail="Category not found")
 
@@ -168,7 +344,7 @@ async def read_file(category: str, filename: str):
 @router.get("/categories/{category}/download/{filename}", dependencies=[Depends(_verify_admin)])
 async def download_file(category: str, filename: str):
     from fastapi.responses import FileResponse
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath:
         raise HTTPException(status_code=404, detail="Category not found")
     decoded = urllib.parse.unquote(filename)
@@ -184,7 +360,7 @@ async def update_file(category: str, filename: str, body: FileUpdateRequest):
     if category == "schemas":
         raise HTTPException(status_code=400, detail="Schema files cannot be edited — upload a replacement instead")
 
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath:
         raise HTTPException(status_code=404, detail="Category not found")
 
@@ -204,7 +380,7 @@ async def update_file(category: str, filename: str, body: FileUpdateRequest):
 # ── Delete file ──────────────────────────────────────────
 @router.delete("/categories/{category}/files/{filename}", dependencies=[Depends(_verify_admin)])
 async def delete_file(category: str, filename: str):
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath:
         raise HTTPException(status_code=404, detail="Category not found")
 
@@ -226,7 +402,7 @@ async def delete_file(category: str, filename: str):
 # ── Upload file ──────────────────────────────────────────
 @router.post("/categories/{category}/upload", dependencies=[Depends(_verify_admin)])
 async def upload_file(category: str, file: UploadFile = File(...)):
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath:
         raise HTTPException(status_code=404, detail="Category not found")
 
@@ -247,7 +423,7 @@ async def upload_file(category: str, file: UploadFile = File(...)):
 # ── Replace file (upload new version) ────────────────────
 @router.post("/categories/{category}/files/{filename}/replace", dependencies=[Depends(_verify_admin)])
 async def replace_file(category: str, filename: str, file: UploadFile = File(...)):
-    dirpath = CATEGORY_DIRS.get(category)
+    dirpath = get_category_dirs().get(category)
     if not dirpath:
         raise HTTPException(status_code=404, detail="Category not found")
 
@@ -275,7 +451,7 @@ async def replace_file(category: str, filename: str, file: UploadFile = File(...
 # ── Regenerate schemas_index.txt ─────────────────────────
 def _regenerate_schemas_index():
     """Auto-regenerate schemas_index.txt from the schema directory."""
-    schema_dir = CATEGORY_DIRS["schemas"]
+    schema_dir = get_category_dirs()["schemas"]
     lines = [
         "Available Course Schemas (Downloadable PDFs)",
         "=" * 50,
@@ -386,50 +562,65 @@ async def admin_analytics():
     """Return analytics data for the admin dashboard."""
     from database import chat_messages_collection, feedback_collection
     from datetime import datetime, timedelta
+    import traceback
 
-    # Daily query counts (last 7 days)
-    now = datetime.utcnow()
-    daily_counts = []
-    for i in range(6, -1, -1):
-        day_start = (now - timedelta(days=i)).replace(hour=0, minute=0, second=0, microsecond=0)
-        day_end = day_start + timedelta(days=1)
-        count = await chat_messages_collection.count_documents({
-            "sender": "user",
-            "created_at": {"$gte": day_start, "$lt": day_end}
-        })
-        daily_counts.append({
-            "date": day_start.strftime("%b %d"),
-            "count": count,
-        })
+    try:
+        # Daily query counts (last 7 days)
+        now = datetime.utcnow()
+        daily_counts = []
+        for i in range(6, -1, -1):
+            day_start = (now - timedelta(days=i)).replace(hour=0, minute=0, second=0, microsecond=0)
+            day_end = day_start + timedelta(days=1)
+            count = await chat_messages_collection.count_documents({
+                "sender": "user",
+                "created_at": {"$gte": day_start, "$lt": day_end}
+            })
+            daily_counts.append({
+                "date": day_start.strftime("%b %d"),
+                "count": count,
+            })
 
-    # Total queries
-    total_queries = await chat_messages_collection.count_documents({"sender": "user"})
+        # Total queries
+        total_queries = await chat_messages_collection.count_documents({"sender": "user"})
 
-    # Feedback stats
-    total_feedback = await feedback_collection.count_documents({})
-    thumbs_up = await feedback_collection.count_documents({"rating": "up"})
-    thumbs_down = await feedback_collection.count_documents({"rating": "down"})
+        # Feedback stats
+        total_feedback = await feedback_collection.count_documents({})
+        thumbs_up = await feedback_collection.count_documents({"rating": "up"})
+        thumbs_down = await feedback_collection.count_documents({"rating": "down"})
 
-    # Recent feedback (last 20)
-    cursor = feedback_collection.find().sort("created_at", -1).limit(20)
-    recent = []
-    async for doc in cursor:
-        recent.append({
-            "rating": doc.get("rating"),
-            "query": doc.get("query", "")[:100],
-            "response_text": doc.get("response_text", "")[:150],
-            "created_at": doc.get("created_at").isoformat() if doc.get("created_at") else None,
-        })
+        # Recent feedback (last 20)
+        cursor = feedback_collection.find().sort("created_at", -1).limit(20)
+        recent = []
+        async for doc in cursor:
+            # Safer date handling
+            created_at = doc.get("created_at")
+            if isinstance(created_at, datetime):
+                created_at_str = created_at.isoformat()
+            elif created_at:
+                created_at_str = str(created_at)
+            else:
+                created_at_str = None
 
-    return {
-        "daily_counts": daily_counts,
-        "total_queries": total_queries,
-        "feedback": {
-            "total": total_feedback,
-            "thumbs_up": thumbs_up,
-            "thumbs_down": thumbs_down,
-            "satisfaction_rate": round((thumbs_up / total_feedback * 100)) if total_feedback > 0 else 0,
-        },
-        "recent_feedback": recent,
-    }
+            recent.append({
+                "rating": doc.get("rating"),
+                "query": doc.get("query", "")[:100] if doc.get("query") else "",
+                "response_text": doc.get("response_text", "")[:150] if doc.get("response_text") else "",
+                "created_at": created_at_str,
+            })
+
+        return {
+            "daily_counts": daily_counts,
+            "total_queries": total_queries,
+            "feedback": {
+                "total": total_feedback,
+                "thumbs_up": thumbs_up,
+                "thumbs_down": thumbs_down,
+                "satisfaction_rate": round((thumbs_up / total_feedback * 100)) if total_feedback > 0 else 0,
+            },
+            "recent_feedback": recent,
+        }
+    except Exception as e:
+        print(f"Analytics Error: {str(e)}")
+        print(traceback.format_exc())
+        raise HTTPException(status_code=500, detail=f"Analytics failed: {str(e)}")
 

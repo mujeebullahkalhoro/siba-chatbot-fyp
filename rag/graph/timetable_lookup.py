@@ -54,6 +54,7 @@ class TimetableLookup:
         self.entries:       List[ScheduleEntry] = []
         self.all_classes:   List[str]           = []   # all known class names
         self.all_teachers:  List[str]           = []   # all known teacher names
+        self.all_subjects:  List[str]           = []   # all known subject names
         self._parse(xml_path)
         print(f"[TIMETABLE] Loaded {len(self.entries)} entries, "
               f"{len(self.all_classes)} classes, {len(self.all_teachers)} teachers")
@@ -83,6 +84,8 @@ class TimetableLookup:
             sid  = el.attrib.get("id", "")
             name = el.attrib.get("name", el.attrib.get("short", ""))
             subjects[sid] = name
+            if name and name not in self.all_subjects:
+                self.all_subjects.append(name)
 
         for el in root.findall(".//class"):
             cid  = el.attrib.get("id", "")
@@ -174,12 +177,45 @@ class TimetableLookup:
         tokens = set()
         for t in re.split(r'[^a-z0-9]+', s.lower()):
             if not t: continue
-            # Convert ordinals like '1st', '2nd', '8th' directly to their base digits '1', '2', '8'
-            m = re.match(r'^(\d+)(st|nd|rd|th)$', t)
-            if m:
-                tokens.add(m.group(1))
+            
+            # Split combined program names into individual parts
+            if t == 'bscs':
+                tokens.update(['bs', 'cs'])
+            elif t == 'bsse':
+                tokens.update(['bs', 'se'])
+            elif t == 'bsai':
+                tokens.update(['bs', 'ai'])
+            elif t == 'bsaf':
+                tokens.update(['bs', 'a', 'f'])
+            elif t == 'bsmaths':
+                tokens.update(['bs', 'maths'])
+            elif t == 'bsmedia':
+                tokens.update(['bs', 'media'])
+            elif t == 'mscs':
+                tokens.update(['ms', 'cs'])
+            elif t == 'msse':
+                tokens.update(['ms', 'se'])
+            elif t == 'msmaths':
+                tokens.update(['ms', 'maths'])
+            elif t == 'phdcs':
+                tokens.update(['phd', 'cs'])
+            elif t == 'phdse':
+                tokens.update(['phd', 'se'])
+            elif t == 'phdmaths':
+                tokens.update(['phd', 'maths'])
+            elif t == 'becse':
+                tokens.update(['be', 'cse'])
+            elif t == 'beee':
+                tokens.update(['be', 'ee'])
+            elif t == 'bspess':
+                tokens.update(['bs', 'pe', 'ss'])
             else:
-                tokens.add(t)
+                # Convert ordinals like '1st', '2nd', '8th' directly to their base digits '1', '2', '8'
+                m = re.match(r'^(\d+)(st|nd|rd|th)$', t)
+                if m:
+                    tokens.add(m.group(1))
+                else:
+                    tokens.add(t)
         return tokens
 
     def _class_score(self, query_tokens: set, class_name: str) -> float:
@@ -234,11 +270,13 @@ class TimetableLookup:
     def match_classes(self, query: str) -> List[str]:
         """Return list of matching class names from the timetable, ordered by score."""
         q_tokens = self._tokenise(query)
-        stopwords = {"the","for","of","and","is","show","me","what","timetable",
-                     "schedule","class","classes","section","semester","batch",
+        stopwords = {"the","for","of","and","is","are","show","me","what","timetable",
+                     "schedule","scheduled","class","classes","section","semester","batch",
                      "will","be","when","who","which","where","how","days",
                      "free","have","has","no","dr","prof","sir","mr","ms",
-                     "he","she","they","his","her","on","in","at","to"}
+                     "he","she","they","his","her","on","in","at","to",
+                     "monday","tuesday","wednesday","thursday","friday","saturday","sunday",
+                     "today","tomorrow","can","i","get","list","all","subjects"}
         q_tokens -= stopwords
 
         if not q_tokens:
@@ -280,6 +318,7 @@ class TimetableLookup:
         "faisl":       "faisal",
         "ismal":       "ismail",
         "ismael":      "ismail",
+        "imsail":      "ismail",
         "kamren":      "kamran",
         "khaleel":     "khalil",
     }
@@ -339,9 +378,11 @@ class TimetableLookup:
             ratio = difflib.SequenceMatcher(None, query_word, teacher_word).ratio()
 
             if len(query_word) >= 6 or len(teacher_word) >= 6:
-                # Long compound names: require high similarity + prefix guard
-                # This blocks "ahsanullah" ↔ "sanaullah" (different prefix)
-                # but allows  "zakriya" ↔ "zakria"   (same prefix "zakr")
+                # Long compound names: require high similarity.
+                # Prefix guard (first 3 chars) is usually good, but we relax it 
+                # if the similarity is very high (>= 0.85) to allow for mid-name transpositions like imsail/ismail.
+                if ratio >= 0.85:
+                    return 5
                 if ratio >= 0.82 and query_word[:3] == teacher_word[:3]:
                     return 5
             else:
@@ -451,6 +492,36 @@ class TimetableLookup:
 
         return sorted(scored_matches, key=lambda x: x[0], reverse=True)
 
+    def match_subjects(self, query: str) -> List[str]:
+        """Return list of matching subject names from the timetable."""
+        q_tokens = self._tokenise(query)
+        stopwords = {"the","for","of","and","is","are","show","me","what","timetable",
+                     "schedule","scheduled","class","classes","section","semester","batch",
+                     "will","be","when","who","which","where","how","days",
+                     "free","have","has","no","dr","prof","sir","mr","ms",
+                     "he","she","they","his","her","on","in","at","to",
+                     "today","tomorrow","can","i","get","list","all","subjects",
+                     "teaching", "teach", "teacher", "professor"}
+        q_tokens -= stopwords
+        
+        if not q_tokens:
+            return []
+            
+        scored = []
+        for sn in self.all_subjects:
+            sn_tokens = self._tokenise(sn)
+            matched = sum(1 for t in q_tokens if t in sn_tokens)
+            if matched > 0:
+                score = matched / max(len(q_tokens), len(sn_tokens))
+                scored.append((score, sn))
+                
+        scored.sort(key=lambda x: -x[0])
+        if not scored: return []
+        
+        best = scored[0][0]
+        if best < 0.3: return []
+        return [sn for score, sn in scored if score >= 0.8 * best]
+
     # ────────────────────────────────────────────────────
     # Filtering
     # ────────────────────────────────────────────────────
@@ -459,12 +530,22 @@ class TimetableLookup:
         self,
         class_names: List[str] = [],
         teacher_names: List[str] = [],
+        subject_names: List[str] = [],
         room_q:    str = "",
         day_q:     str = "",
     ) -> List[ScheduleEntry]:
         results = self.entries
 
-        if class_names:
+        # Subject Filter
+        if subject_names:
+            results = [e for e in results if any(s.lower() in e.subject.lower() or e.subject.lower() in s.lower() for s in subject_names)]
+
+        # Strict Filter: If class_names were provided as a filter, only keep those entries.
+        # If class_names is an empty list but a class filter was INTENDED (strict_class=True),
+        # then we return nothing (this prevents semester-fallback errors).
+        if class_names is not None:
+            if not class_names:
+                return []
             results = [e for e in results
                        if any(self._normalise(c) in self._normalise(e.class_name) or
                               self._normalise(e.class_name) in self._normalise(c)
@@ -562,15 +643,22 @@ class TimetableLookup:
         class_intent = any(re.search(r'\b' + kw + r'\b', q) for kw in class_keywords)
         if class_intent or (not teacher_intent and not room_q):
             class_names = self.match_classes(query)
+
+        # Subject detection
+        subject_names: List[str] = []
+        if not scored_teacher_matches and not class_names:
+            subject_names = self.match_subjects(query)
             
-        if not scored_teacher_matches and not class_names and not room_q:
-            # Fallback: try matching teachers and classes anyway
+        if not scored_teacher_matches and not class_names and not subject_names and not room_q:
+            # Fallback: try matching everything
             scored_teacher_matches = self.match_teachers(query)
             if not scored_teacher_matches:
                 class_names = self.match_classes(query)
+            if not scored_teacher_matches and not class_names:
+                subject_names = self.match_subjects(query)
 
-        # If STILL nothing found (no teacher, no class, no room AND no day), return empty
-        if not scored_teacher_matches and not class_names and not room_q and not day_q:
+        # If STILL nothing found (no teacher, no class, no subject, no room AND no day), return empty
+        if not scored_teacher_matches and not class_names and not subject_names and not room_q and not day_q:
             return ""
 
         teacher_names:  List[str] = []
@@ -592,16 +680,24 @@ class TimetableLookup:
             else:
                 teacher_names = [tn for s, tn in scored_teacher_matches if s >= 0.8 * max_score]
 
-        if teacher_names and len(teacher_names) > 1 and not class_names:
-            return ("[Timetable — Ambiguous Teacher Name]\nMultiple teachers match your query:\n"
-                    + "\n".join(f"- {t}" for t in sorted(teacher_names)))
+        # Determine if a SPECIFIC class identifier was used (semester number, section, or program)
+        # We don't want to enforce strictness for a generic "classes on Monday" query.
+        specific_class_id = any(re.search(r'\b' + kw + r'\b', q) for kw in ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","semester","section","batch","group"])
+        strict_class_filter = None
+        if class_names:
+            strict_class_filter = class_names
+        elif class_intent and specific_class_id:
+            # We found an intent for a specific class but no name matched.
+            # Enforce an EMPTY filter so we return zero results rather than all.
+            strict_class_filter = []
 
-        results = self._filter(class_names=class_names, teacher_names=teacher_names, room_q=room_q, day_q=day_q)
+        results = self._filter(class_names=strict_class_filter, teacher_names=teacher_names, subject_names=subject_names, room_q=room_q, day_q=day_q)
 
         if results:
             parts = []
             if class_names: parts.append(f"class(es): {', '.join(class_names)}")
             if teacher_names: parts.append(f"teacher: {', '.join(teacher_names)}")
+            if subject_names: parts.append(f"subject: {', '.join(subject_names)}")
             if room_q: parts.append(f"room: {room_q}")
             if day_q:
                 parts.append(f"day: {day_q}")

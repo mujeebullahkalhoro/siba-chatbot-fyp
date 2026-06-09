@@ -29,15 +29,26 @@ def build_universal_vectorstore():
         shutil.rmtree(VECTOR_DB_PATH)
 
     documents = []
+    EXCLUDED_DIRS = ["forms", "schema"]
+    EXCLUDED_FILES = ["forms_index.txt", "schemas_index.txt"]
 
     # Walk through ALL subdirectories in data/
     for root, _, files in os.walk(DATA_ROOT):
-        for file in files:
-            file_path = os.path.join(root, file)
+        # Determine which category this file belongs to (from folder name)
+        relative_path = os.path.relpath(root, DATA_ROOT)
+        path_parts = relative_path.split(os.sep)
+        category = path_parts[0] if relative_path != "." else "unknown"
 
-            # Determine which category this file belongs to (from folder name)
-            relative_path = os.path.relpath(root, DATA_ROOT)
-            category = relative_path.split(os.sep)[0] if relative_path != "." else "unknown"
+        # Skip excluded directories
+        if any(excluded in path_parts for excluded in EXCLUDED_DIRS):
+            continue
+
+        for file in files:
+            # Skip excluded files
+            if file in EXCLUDED_FILES:
+                continue
+
+            file_path = os.path.join(root, file)
 
             if file.endswith(".txt"):
                 print(f" Loading TXT [{category}]: {file}")
@@ -50,24 +61,20 @@ def build_universal_vectorstore():
 
             elif file.endswith(".pdf"):
                 print(f" Loading PDF [{category}]: {file}")
-                if category == "schema":
-                    print(f" Skipping embedding for PDF [{category}]: {file} (Link Only strategy)")
-                    continue
-                else:
-                    try:
-                        loader = PyPDFLoader(file_path)
-                        loaded_docs = loader.load()
-                        for doc in loaded_docs:
-                            doc.metadata["category"] = category
-                            doc.metadata["source"] = file
-                        documents.extend(loaded_docs)
-                    except Exception as e:
-                        print(f"[WARN] Error loading PDF {file}: {e}")
+                try:
+                    loader = PyPDFLoader(file_path)
+                    loaded_docs = loader.load()
+                    for doc in loaded_docs:
+                        doc.metadata["category"] = category
+                        doc.metadata["source"] = file
+                    documents.extend(loaded_docs)
+                except Exception as e:
+                    print(f"[WARN] Error loading PDF {file}: {e}")
 
     if not documents:
         raise ValueError("No documents found in data directory!")
 
-    print(f"\n📊 Total raw documents loaded: {len(documents)}")
+    print(f"\nTotal raw documents loaded: {len(documents)}")
 
     # Split into chunks
     splitter = RecursiveCharacterTextSplitter(
@@ -77,14 +84,14 @@ def build_universal_vectorstore():
     )
 
     docs = splitter.split_documents(documents)
-    print(f"📊 Total chunks after splitting: {len(docs)}")
+    print(f"Total chunks after splitting: {len(docs)}")
 
     # Build FAISS index
     embeddings = get_embedding_model()
     vectorstore = FAISS.from_documents(docs, embeddings)
 
     vectorstore.save_local(VECTOR_DB_PATH)
-    print(f"\n✅ Universal vector store created at: {VECTOR_DB_PATH}")
+    print(f"\nUniversal vector store created at: {VECTOR_DB_PATH}")
     print(f"   Total vectors: {len(docs)}")
 
 

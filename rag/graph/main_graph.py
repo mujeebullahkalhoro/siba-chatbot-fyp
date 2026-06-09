@@ -1,6 +1,7 @@
 # rag/graph/main_graph.py
 from pathlib import Path
 from typing import Dict, AsyncGenerator
+import asyncio
 import os
 from datetime import datetime, timezone, timedelta
 
@@ -45,10 +46,69 @@ def detect_language_script(text: str) -> str:
     
     return "english"
 
+def sanitize_llm_response(text: str) -> str:
+    """
+    Permanent solution to remove any foreign scripts (Hindi, Chinese, etc.)
+    that might leak from the LLM, keeping only Urdu, English, and standard symbols.
+    """
+    if not text:
+        return text
+    
+    # Allowed ranges:
+    # - \u0000-\u007F: Basic Latin (English, Numbers, Punctuation)
+    # - \u0600-\u06FF: Arabic (Urdu core)
+    # - \u0750-\u077F: Arabic Supplement
+    # - \u0870-\u089F: Arabic Extended-B
+    # - \u08A0-\u08FF: Arabic Extended-A
+    # - \uFB50-\uFDFF: Arabic Presentation Forms-A
+    # - \uFE70-\uFEFF: Arabic Presentation Forms-B
+    # - \u2000-\u206F: General Punctuation
+    # - \u200C: Zero Width Non-Joiner (Urdu word separator)
+    # - \s: Whitespace
+    pattern = re.compile(r'[^\u0000-\u007F\u0600-\u06FF\u0750-\u077F\u0870-\u089F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u2000-\u206F\u200C\s]')
+    
+    sanitized = pattern.sub('', text)
+    
+    if len(sanitized) != len(text):
+        removed_chars = set(re.findall(pattern, text))
+        print(f"[SANITIZER] Filtered out unusual characters: {removed_chars}")
+        
+    return sanitized
+
+class SanitizedChatMessageHistory(ChatMessageHistory):
+    """
+    A ChatMessageHistory that automatically sanitizes messages as they are added or retrieved.
+    This provides a permanent safeguard against foreign script contamination in chat context.
+    """
+    def add_message(self, message):
+        if hasattr(message, "content"):
+            message.content = sanitize_llm_response(str(message.content))
+        super().add_message(message)
+    
+    @property
+    def messages(self):
+        msgs = super().messages
+        for m in msgs:
+            if hasattr(m, "content"):
+                m.content = sanitize_llm_response(str(m.content))
+        return msgs
+
 _RESPONSE_LANGUAGE_INSTRUCTIONS = {
-    "english": "Respond in English.",
-    "urdu_script": "Respond entirely in Urdu script (اردو). Do NOT use English.",
+    "english": "Respond in English. Use bullet points, bold text, and tables where appropriate. NEVER provide redundant information in multiple formats (e.g., do not repeat table data as bullets). If you use a table, that is sufficient.",
+    "urdu_script": (
+        "Respond in Urdu script (اردو). "
+        "FORMATTING: Use the SAME rich markdown formatting as English — bullet points (-), numbered lists (1. 2. 3.), "
+        "bold (**text**) for key terms, and markdown tables for structured data. "
+        "NO REDUNDANCY (CRITICAL): NEVER provide the same information in multiple formats. If you use a table, do NOT also provide a bulleted list of the same data. "
+        "Do NOT output a plain wall of text — structure the response with bullets, bold, or tables just like an English response. "
+        "TIMETABLE FORMATTING RULE (CRITICAL): For timetables, do NOT translate the Markdown table structure or headers (Day, Time, Subject, etc.). "
+        "You MUST output the exact English markdown table provided in the context. Translating the table into Urdu breaks the UI rendering. "
+        "Only translate the conversational sentence *before* the table into Urdu. "
+        "UNTRANSLATABLE WORDS: If you use English words, you MUST use standard US/UK English spelling (e.g. 'Control', 'Foundation'). NEVER use phonetic or non-standard spellings (e.g., 'kontrol', 'oundation'). "
+        "STRICT SCRIPT WARNING: Every character MUST be Urdu or English. NEVER use Devanagari/Hindi (ण, ن, क), Chinese (规, 矩), Cyrillic, or other foreign scripts."
+    ),
 }
+
 
 _translate_prompt = ChatPromptTemplate.from_messages([
     ("system",
@@ -125,10 +185,14 @@ def _load_faculty_roles():
         # Extract only the essential header (Name, Designation, Dept, Email)
         lines = text.split("\n")
         essential_lines = []
+        dept_val = ""
         for line in lines:
             stripped = line.strip()
             if stripped.startswith(("Name:", "Designation:", "Department:", "Email:")):
                 essential_lines.append(stripped)
+            if stripped.startswith("Department:"):
+                dept_val = stripped.split(":", 1)[1].strip()
+        
         essential_text = "\n".join(essential_lines)
 
         for line in lines:
@@ -140,9 +204,10 @@ def _load_faculty_roles():
 
             # HOD detection
             if "hod" in line_lower or "head of" in line_lower:
-                m = re.search(r'(?:hod|head)\s+(?:of\s+)?(.+)', stripped, re.IGNORECASE)
-                if m:
-                    dept = m.group(1).strip().rstrip(" Department").strip()
+                m = re.search(r'(?:hod|head)\s*(?:of\s+|,\s+)?(.+)', stripped, re.IGNORECASE)
+                dept = m.group(1).strip() if m else dept_val
+                if dept:
+                    dept = re.sub(r'\s+Department$', '', dept, flags=re.IGNORECASE).lstrip(",: ").strip()
                     dept_key = dept.lower().replace("(", "").replace(")", "").strip()
                     roles[f"hod_{dept_key}"] = essential_text
                     hod_entries.append(essential_text)
@@ -150,9 +215,10 @@ def _load_faculty_roles():
 
             # Dean detection
             if "dean" in line_lower and "pro vice" not in line_lower:
-                m = re.search(r'dean\s+(?:of\s+)?(.+)', stripped, re.IGNORECASE)
-                if m:
-                    dept = m.group(1).strip()
+                m = re.search(r'dean\s*(?:of\s+|,\s+)?(.+)', stripped, re.IGNORECASE)
+                dept = m.group(1).strip() if m else dept_val
+                if dept:
+                    dept = dept.lstrip(",: ").strip()
                     dept_key = dept.lower().replace("(", "").replace(")", "").strip()
                     roles[f"dean_{dept_key}"] = essential_text
                     print(f"[ROLES] Indexed Dean: '{dept}' → {f.name}")
@@ -247,6 +313,10 @@ UNIVERSAL_SYSTEM_PROMPT = _load_universal_system_prompt()
 _SCHEMAS_INDEX_PATH = current_dir.parent / "data" / "schemas_index.txt"
 SCHEMAS_INDEX_CONTENT = _SCHEMAS_INDEX_PATH.read_text(encoding="utf-8") if _SCHEMAS_INDEX_PATH.exists() else ""
 
+# ── Forms index (always included in context) ───────────
+_FORMS_INDEX_PATH = current_dir.parent / "data" / "forms_index.txt"
+FORMS_INDEX_CONTENT = _FORMS_INDEX_PATH.read_text(encoding="utf-8") if _FORMS_INDEX_PATH.exists() else ""
+
 def _get_pkt_time() -> datetime:
     """Returns the current time in Pakistan Standard Time (UTC+5)."""
     return datetime.now(timezone(timedelta(hours=5)))
@@ -294,7 +364,7 @@ store: Dict[str, BaseChatMessageHistory] = {}
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
-        store[session_id] = ChatMessageHistory()
+        store[session_id] = SanitizedChatMessageHistory()
     return store[session_id]
 
 
@@ -342,18 +412,31 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
     category = await classify_query(query, last_category=last_category)
     print(f"DEBUG: Query classified as: {category} (context: {last_category}), Authenticated: {is_authenticated}")
 
+    # Detect language/script of the query
+    detected_lang = detect_language_script(query)
+    print(f"[LANG] Detected: {detected_lang}")
+
     if category in ["Timetable", "Events"] and not is_authenticated:
         return "LOGIN_REQUIRED"
 
-    # Detect language/script of the query
-    detected_lang = detect_language_script(query)
-    response_lang_instruction = _RESPONSE_LANGUAGE_INSTRUCTIONS[detected_lang]
-    print(f"[LANG] Detected: {detected_lang}")
+    if category == "Irrelevant":
+        if detected_lang == "urdu_script":
+            return "مجھے ابھی یہ معلومات دستیاب نہیں ہیں۔"
+        return "I don't have that information right now."
 
-    # Translate query to English for retrieval (documents are in English)
-    retrieval_query = await translate_query_for_retrieval(query, detected_lang)
-    retrieval_query = normalize_retrieval_query(retrieval_query)
-    
+    response_lang_instruction = _RESPONSE_LANGUAGE_INSTRUCTIONS[detected_lang]
+
+    trans_task = asyncio.create_task(translate_query_for_retrieval(query, detected_lang))
+    warm_task = (
+        asyncio.create_task(asyncio.to_thread(_get_universal_retriever))
+        if _universal_retriever is None
+        else None
+    )
+    translated = await trans_task
+    retrieval_query = normalize_retrieval_query(translated)
+    if warm_task is not None:
+        await warm_task
+
     print(f"\n{'='*60}")
     print(f"[DEBUG] Original query (repr): {repr(query)}")
     print(f"[DEBUG] Detected language: {detected_lang}")
@@ -390,9 +473,12 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
         if tt_context:
             context = tt_context + context
 
-    # Include schemas index only for non-timetable queries
+    # Include schemas and forms index only for non-timetable queries
     if SCHEMAS_INDEX_CONTENT and category != "Timetable":
         context = f"[Schema Download Links]\n{SCHEMAS_INDEX_CONTENT}\n\n{context}"
+        
+    if FORMS_INDEX_CONTENT and category != "Timetable":
+        context = f"[Forms and Vouchers Download Links]\n{FORMS_INDEX_CONTENT}\n\n{context}"
 
     chain = active_prompt | _get_llm()
 
@@ -406,7 +492,7 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
     # Final debug of the context being sent to LLM
     print(f"\n[LLM CONTEXT] --- START ---\n{context[:500]}...\n[LLM CONTEXT] --- END ---\n")
 
-    response = await with_message_history.ainvoke(
+    response_obj = await with_message_history.ainvoke(
         {
             "current_time": current_time_str,
             "context": context,
@@ -416,7 +502,7 @@ async def faculty_chat(query: str, session_id: str, is_authenticated: bool = Fal
         config={"configurable": {"session_id": session_id}}
     )
 
-    return response.content  # type: ignore
+    return sanitize_llm_response(response_obj.content)  # type: ignore
 
 
 # ── Streaming chat ───────────────────────────────────────
@@ -433,19 +519,34 @@ async def faculty_chat_stream(
     category = await classify_query(query, last_category=last_category)
     print(f"DEBUG: Query classified as: {category} (context: {last_category}), Authenticated: {is_authenticated}")
 
+    # Detect language/script of the query
+    detected_lang = detect_language_script(query)
+    print(f"[LANG] Detected: {detected_lang}")
+
     if category in ["Timetable", "Events"] and not is_authenticated:
         yield "LOGIN_REQUIRED"
         return
 
-    # Detect language/script of the query
-    detected_lang = detect_language_script(query)
-    response_lang_instruction = _RESPONSE_LANGUAGE_INSTRUCTIONS[detected_lang]
-    print(f"[LANG] Detected: {detected_lang}")
+    if category == "Irrelevant":
+        if detected_lang == "urdu_script":
+            yield "مجھے ابھی یہ معلومات دستیاب نہیں ہیں۔"
+        else:
+            yield "I don't have that information right now."
+        return
 
-    # Translate query to English for retrieval (documents are in English)
-    retrieval_query = await translate_query_for_retrieval(query, detected_lang)
-    retrieval_query = normalize_retrieval_query(retrieval_query)
-    
+    response_lang_instruction = _RESPONSE_LANGUAGE_INSTRUCTIONS[detected_lang]
+
+    trans_task = asyncio.create_task(translate_query_for_retrieval(query, detected_lang))
+    warm_task = (
+        asyncio.create_task(asyncio.to_thread(_get_universal_retriever))
+        if _universal_retriever is None
+        else None
+    )
+    translated = await trans_task
+    retrieval_query = normalize_retrieval_query(translated)
+    if warm_task is not None:
+        await warm_task
+
     print(f"\n{'='*60}")
     print(f"[DEBUG-STREAM] Original query (repr): {repr(query)}")
     print(f"[DEBUG-STREAM] Detected language: {detected_lang}")
@@ -483,9 +584,12 @@ async def faculty_chat_stream(
         if tt_context:
             context = tt_context + context
 
-    # Include schemas index only for non-timetable queries
+    # Include schemas and forms index only for non-timetable queries
     if SCHEMAS_INDEX_CONTENT and category != "Timetable":
         context = f"[Schema Download Links]\n{SCHEMAS_INDEX_CONTENT}\n\n{context}"
+        
+    if FORMS_INDEX_CONTENT and category != "Timetable":
+        context = f"[Forms and Vouchers Download Links]\n{FORMS_INDEX_CONTENT}\n\n{context}"
 
     # Get chat history for the session
     history = get_session_history(session_id)
@@ -505,8 +609,10 @@ async def faculty_chat_stream(
     async for chunk in _get_llm().astream(formatted):
         token = chunk.content
         if token:
-            full_response += token
-            yield token
+            sanitized_token = sanitize_llm_response(token)
+            if sanitized_token:
+                full_response += sanitized_token
+                yield sanitized_token
 
     # Save to chat history after streaming completes
     history.add_message(HumanMessage(content=query))

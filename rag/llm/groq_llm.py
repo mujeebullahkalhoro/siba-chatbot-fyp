@@ -1,4 +1,5 @@
 # rag/llm/groq_llm.py
+# pyrefly: ignore [missing-import]
 from langchain_groq import ChatGroq
 
 def get_groq_llm():
@@ -6,7 +7,7 @@ def get_groq_llm():
     return ChatGroq(
         model="llama-3.3-70b-versatile",
         temperature=0.2,
-        max_tokens=1024,
+        max_tokens=4096,
     )
 
 def get_groq_llm_fast():

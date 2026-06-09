@@ -9,10 +9,12 @@ users_collection = db["users"]
 chat_sessions_collection = db["chat_sessions"]
 chat_messages_collection = db["chat_messages"]
 feedback_collection = db["feedback"]
+admins_collection = db["admins"]
 
 async def init_db() -> None:
     try:
         await users_collection.create_index([("email", ASCENDING)], unique=True, name="uniq_email")
+        await admins_collection.create_index([("email", ASCENDING)], unique=True, name="uniq_admin_email")
         await chat_sessions_collection.create_index([("user_id", ASCENDING)], name="idx_user_id")
         await chat_sessions_collection.create_index([("updated_at", -1)], name="idx_updated_at")
         await chat_messages_collection.create_index([("session_id", ASCENDING), ("created_at", ASCENDING)], name="idx_session_messages")

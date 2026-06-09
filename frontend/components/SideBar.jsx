@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { Plus, Search, PanelLeftClose, PanelRightClose, X, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
@@ -42,6 +43,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
   const [searchQuery, setSearchQuery] = useState("");
   const hideText = isCollapsed;
   const { user, logout } = useAuth() || {};
+  const router = useRouter();
   const { t, isRTL } = useLanguage();
   const { darkMode } = useTheme();
 
@@ -134,6 +136,7 @@ export default function ResponsiveSidebar({ isMobileOpen, onClose, sessions = []
     try {
       setIsLoggingOut(true);
       if (logout) await logout();
+      router.push("/");
     } catch (e) {
       console.error("Logout failed", e);
     } finally {
